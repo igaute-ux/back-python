@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Reporte ESG - Adaptia</title>
+    <style>
+      @page {
+        size: A4 landscape;
+        margin: 8mm;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        font-size: 11px;
+        line-height: 1.3;
+      }
+
+      h1,
+      h2 {
+        color: #2e86c1;
+        border-bottom: 2px solid #2e86c1;
+        padding-bottom: 5px;
+      }
+
+      h3 {
+        margin-top: 20px;
+        color: #1f4e79;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 10px 0;
+        font-size: 9.5px;
+        table-layout: auto;
+      }
+
+      th,
+      td {
+        border: 1px solid #ccc;
+        padding: 4px;
+        text-align: left;
+        word-wrap: break-word;
+        white-space: normal;
+        vertical-align: top;
+      }
+
+      th {
+        background: #f5f5f5;
+        font-weight: bold;
+      }
+
+      thead {
+        display: table-header-group; /* Mantener encabezados en cada página */
+      }
+
+      tr {
+        page-break-inside: avoid;
+      }
+
+      .page-break {
+        page-break-before: always;
+      }
+
+      .footer {
+        margin-top: 40px;
+        font-size: 12px;
+        color: #555;
+        text-align: center;
+      }
+
+      /* Ajustes especiales para columnas de acciones */
+      .materiality-actions td:nth-child(4),
+      .materiality-actions td:nth-child(5),
+      .materiality-actions td:nth-child(6) {
+        max-width: 120px;
+        text-align: justify;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Reporte Final de Análisis ESG</h1>
+
+    <!-- SECCIÓN 1: CONTEXTO ORGANIZACIONAL -->
+    <h2>1. Contexto Organizacional</h2>
+    <p><strong>Nombre de la empresa:</strong> {{ nombre_empresa }}</p>
+    <p><strong>País de operación:</strong> {{ pais_operacion }}</p>
+    <p><strong>Industria:</strong> {{ industria }}</p>
+    <p><strong>Tamaño de la empresa:</strong> {{ tamano_empresa }}</p>
+    <p><strong>Ubicación geográfica:</strong> {{ ubicacion_geografica }}</p>
+    <p><strong>Modelo de negocio:</strong> {{ modelo_negocio }}</p>
+    <p><strong>Cadena de valor:</strong> {{ cadena_valor }}</p>
+    <p>
+      <strong>Actividades principales:</strong> {{ actividades_principales }}
+    </p>
+    <p><strong>Madurez ESG:</strong> {{ madurez_esg }}</p>
+    <p>
+      <strong>Stakeholders relevantes:</strong> {{ stakeholders_relevantes }}
+    </p>
+
+    <!-- SECCIÓN 2: RESULTADOS -->
+    <h2>2. Resultados de Análisis</h2>
+
+    <!-- Matriz de Impactos - Parte A -->
+    <div class="page-break">
+      <h3>2.1 Matriz de Impactos (Parte A - Acciones)</h3>
+      <table class="materiality-actions">
+        <thead>
+          <tr>
+            <th>Sector</th>
+            <th>Tema</th>
+            <th>Materialidad Financiera</th>
+            <th>Acción Marginal</th>
+            <th>Acción Moderada</th>
+            <th>Acción Estructural</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in materiality_table %}
+          <tr>
+            <td>{{ item.sector }}</td>
+            <td>{{ item.tema }}</td>
+            <td>{{ item.materialidad_financiera }}</td>
+            <td>{{ item.accion_marginal }}</td>
+            <td>{{ item.accion_moderada }}</td>
+            <td>{{ item.accion_estructural }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Matriz de Impactos - Parte B -->
+    <div class="page-break">
+      <h3>2.1 Matriz de Impactos (Parte B - Evaluación)</h3>
+      <table class="materiality-evaluation">
+        <thead>
+          <tr>
+            <th>Tema</th>
+            <th>Tipo Impacto</th>
+            <th>Potencialidad</th>
+            <th>Horizonte</th>
+            <th>Intencionalidad</th>
+            <th>Penetración</th>
+            <th>Implicación</th>
+            <th>Gravedad</th>
+            <th>Probabilidad</th>
+            <th>Alcance</th>
+            <th>Impacto ESG</th>
+            <th>Impacto Financiero</th>
+            <th>Puntaje Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in materiality_table %}
+          <tr>
+            <td>{{ item.tema }}</td>
+            <td>{{ item.tipo_impacto }}</td>
+            <td>{{ item.potencialidad_impacto }}</td>
+            <td>{{ item.horizonte_impacto }}</td>
+            <td>{{ item.intencionalidad_impacto }}</td>
+            <td>{{ item.penetracion_impacto }}</td>
+            <td>{{ item.grado_implicacion }}</td>
+            <td>{{ item.gravedad }}</td>
+            <td>{{ item.probabilidad }}</td>
+            <td>{{ item.alcance }}</td>
+            <td>{{ item.impacto_esg }}</td>
+            <td>{{ item.impacto_financiero }}</td>
+            <td>{{ item.puntaje_total }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- ODS vinculados -->
+    <div class="page-break">
+      <h3>2.2 ODS vinculados a Temas Materiales</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Tema</th>
+            <th>Prioridad</th>
+            <th>ODS</th>
+            <th>Meta ODS</th>
+            <th>Indicador ODS</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in materiality_table %}
+          <tr>
+            <td>{{ item.tema }}</td>
+            <td>{{ item.prioridad }}</td>
+            <td>{{ item.ods }}</td>
+            <td>{{ item.meta_ods }}</td>
+            <td>{{ item.indicador_ods }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tabla GRI -->
+    <div class="page-break">
+      <h3>2.3 Estándares GRI</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Estándar GRI</th>
+            <th>Contenido GRI</th>
+            <th>Descripción del Indicador</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in gri %}
+          <tr>
+            <td>{{ item.estandar_gri }}</td>
+            <td>{{ item.contenido_gri }}</td>
+            <td>{{ item.descripcion_indicador }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tabla SASB -->
+    <div class="page-break">
+      <h3>2.4 Estándares SASB</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Industria</th>
+            <th>Tema</th>
+            <th>Parámetro Contabilidad</th>
+            <th>Categoría</th>
+            <th>Unidad de Medida</th>
+            <th>Código</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in tabla_sasb %}
+          <tr>
+            <td>{{ item.industria }}</td>
+            <td>{{ item.tema }}</td>
+            <td>{{ item.parametro_contabilidad }}</td>
+            <td>{{ item.categoria }}</td>
+            <td>{{ item.unidad_medida }}</td>
+            <td>{{ item.codigo }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tabla Regulaciones -->
+    <div class="page-break">
+      <h3>2.5 Regulaciones Relevantes</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Tema Material</th>
+            <th>Tipo Regulación</th>
+            <th>Descripción</th>
+            <th>Vigencia</th>
+            <th>Relevancia</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in regulaciones %}
+          <tr>
+            <td>{{ item.tema_material }}</td>
+            <td>{{ item.tipo_regulacion }}</td>
+            <td>{{ item.descripcion }}</td>
+            <td>{{ item.vigencia }}</td>
+            <td>{{ item.relevancia }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <!-- SECCIÓN 3: RESUMEN EJECUTIVO -->
+    <h2>3. Resumen Ejecutivo</h2>
+    <p>{{ parrafo_1 }}</p>
+    <p>{{ parrafo_2 }}</p>
+
+    <!-- FOOTER -->
+    <div class="footer">
+      <p>Adaptia © 2025 - Documento generado automáticamente.</p>
+    </div>
+  </body>
+</html>

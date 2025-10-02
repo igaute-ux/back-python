@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 
-class ChatRequest(BaseModel):
+class AnalysisRequest(BaseModel):
     organization_name: str
     country: str
     website: str

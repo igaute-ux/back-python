@@ -1,11 +1,12 @@
-from fastapi import APIRouter
+# from fastapi import APIRouter
+# from app.services import payment_service
 
-router = APIRouter()
+# router = APIRouter(prefix="/payments", tags=["Payments"])
 
-@router.post("/create")
-async def create_payment():
-    return {"message": "Create payment - TODO"}
+# @router.post("/{analysis_id}")
+# async def create_payment(analysis_id: str, user_id: str):
+#     return await payment_service.create(analysis_id, user_id)
 
-@router.get("/{payment_id}")
-async def get_payment():
-    return {"message": "Get payment - TODO"}
+# @router.get("/{payment_id}")
+# async def get_payment(payment_id: str):
+#     return await payment_service.get(payment_id)
