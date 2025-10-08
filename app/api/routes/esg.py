@@ -2,9 +2,7 @@ from fastapi import APIRouter, HTTPException
 from fastapi.responses import Response
 from app.models.analysis import AnalysisRequest
 from app.services.langchain.workflows import run_assistant_test, run_esg_analysis
-from app.services.pdf_generation.pdf import PDFGenerator, generate_esg_report
-import json
-import os
+from app.services.pdf_generation.pdf import PDFGenerator
 from pathlib import Path
 
 router = APIRouter()
@@ -111,41 +109,3 @@ async def test_pdf_from_example():
         print(f"❌ Error generando PDF de prueba: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error generando PDF de prueba: {str(e)}")
 
-@router.post("/generate-pdf-from-json")
-async def generate_pdf_from_json(json_data: dict):
-    """
-    Genera un PDF desde datos JSON proporcionados directamente
-    """
-    try:
-        # Validar que los datos tengan la estructura esperada
-        if not isinstance(json_data, list) or len(json_data) < 11:
-            raise HTTPException(
-                status_code=400, 
-                detail="Los datos JSON deben ser una lista con al menos 11 elementos"
-            )
-        
-        # Generar PDF en memoria
-        generator = PDFGenerator()
-        
-        # Generar PDF en memoria (sin guardar archivo)
-        pdf_bytes = generator.generate_esg_report(
-            pipeline_data=json_data,
-            output_path=None  # Genera en memoria
-        )
-        
-        filename = "esg_report_from_json.pdf"
-        print(f"✅ PDF generado exitosamente desde JSON en memoria: {len(pdf_bytes)} bytes")
-        
-        # Retornar PDF directamente en la respuesta
-        return Response(
-            content=pdf_bytes,
-            media_type="application/pdf",
-            headers={
-                "Content-Disposition": f"attachment; filename={filename}",
-                "Content-Length": str(len(pdf_bytes))
-            }
-        )
-        
-    except Exception as e:
-        print(f"❌ Error generando PDF desde JSON: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Error generando PDF desde JSON: {str(e)}")
