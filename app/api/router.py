@@ -3,7 +3,6 @@ from app.api.routes import auth, organizations, analyses, payments, esg, users
 
 api_router = APIRouter()
 
-# Include all endpoint routers
 # api_router.include_router(auth.router, prefix="/auth", tags=["authentication"])
 api_router.include_router(users.router)
 api_router.include_router(organizations.router)

@@ -1,8 +1,5 @@
 import os
-import pandas as pd
-import re
 import asyncio
-from io import StringIO
 from app.services.langchain.prompts import *
 from app.utils.json_formatter import clean_and_parse_json
 from app.core.config import settings
@@ -14,21 +11,6 @@ assistant = OpenAIAssistantV2Runnable(
     assistant_id='asst_uN6jjvZ9s4Yv2PFmV1J4iRJB',
     tools=[{"type": "code_interpreter", "file_ids": ["file-4utrNkHFDne6Egt6VZYrJK","file-NsDHe3whUTGZcEUt6k9Z5y","file-7YCPdsm2cPpGy6XLGtqbXe","file-4v5rfFJJowrhB1iTAziqRv","file-8JBPLJoGWWNTo6PAJfr22J","file-N4f3A6PBVuv8VZnGRYWaje"]}],
 )
-
-def markdown_to_df(response_text: str) -> pd.DataFrame:
-    match = re.search(r"(\|.+\|)", response_text, re.DOTALL)
-    if not match:
-        return pd.DataFrame()
-    
-    table_text = match.group(0)
-    table_io = StringIO(table_text)
-    df = pd.read_csv(table_io, sep="|", engine="python").dropna(axis=1, how="all")
-    
-    df.columns = [c.strip() for c in df.columns]
-    df = df.applymap(lambda x: str(x).strip() if pd.notnull(x) else x)
-    
-    return df
-
 
 async def run_assistant_test(organization_name: str, country: str, website: str) -> str:
     pipeline_responses = []
@@ -79,7 +61,6 @@ async def run_esg_analysis(organization_name: str, country: str, website: str) -
     responses = []
     thread_id = None
     
-    # Lista de prompts con sus configuraciones
     prompts_config = [
         {
             "prompt": prompt_1,
@@ -137,18 +118,15 @@ async def run_esg_analysis(organization_name: str, country: str, website: str) -
         print(f"\n🔄 Ejecutando {prompt.name} ({i}/{len(prompts_config)})")
         
         try:
-            # Ejecutar prompt
             call_params = {"content": content}
             if thread_id:
                 call_params["thread_id"] = thread_id
             
             response = assistant.invoke(call_params)
             
-            # Extraer información de la respuesta
             response_content = clean_and_parse_json(response[0].content[0].text.value)
             thread_id = response[0].thread_id
             
-            # Preparar respuesta base
             response_data = {
                 "name": prompt.name,
                 "response_content": response_content,
@@ -158,9 +136,8 @@ async def run_esg_analysis(organization_name: str, country: str, website: str) -
             responses.append(response_data)
             print(f"✅ {prompt.name} completado exitosamente")
             
-            # Delay simple cada dos prompts (después del prompt 2, 4, 6, 8, 10)
             if i % 2 == 0 and i < len(prompts_config):
-                delay = 30  # 30 segundos de delay
+                delay = 30 
                 print(f"⏳ Esperando {delay} segundos antes del siguiente prompt...")
                 await asyncio.sleep(delay)
                 

@@ -9,7 +9,7 @@ class OrganizationBase(BaseModel):
     company_size: Optional[str] = None
     employees_number: Optional[int] = None
     website: Optional[HttpUrl] = None
-    owner_id: UUID  # <- requerido
+    owner_id: UUID
 
 class OrganizationCreate(OrganizationBase):
     pass
@@ -21,14 +21,12 @@ class OrganizationUpdate(BaseModel):
     company_size: Optional[str] = None
     employees_number: Optional[int] = None
     website: Optional[HttpUrl] = None
-    # Si NO quieres permitir transferir propiedad por API, no incluyas owner_id aquí.
 
 class OrganizationOut(OrganizationBase):
     id: UUID
     class Config:
         from_attributes = True
 
-# (Opcional) Para retornar info breve del owner en el mismo payload
 class OwnerMini(BaseModel):
     id: UUID
     name: str

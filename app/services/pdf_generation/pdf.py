@@ -13,8 +13,6 @@ from jinja2 import Environment, FileSystemLoader, Template
 from weasyprint import HTML, CSS
 from weasyprint.text.fonts import FontConfiguration
 
-from .filters import CUSTOM_FILTERS
-
 logger = logging.getLogger(__name__)
 
 
@@ -32,23 +30,17 @@ class PDFGenerator:
                           Defaults to the templates directory in this module
         """
         if templates_dir is None:
-            # Default to the templates directory in this module
             current_dir = Path(__file__).parent
             templates_dir = current_dir / "templates"
         
         self.templates_dir = Path(templates_dir)
         self.templates_dir.mkdir(exist_ok=True)
         
-        # Initialize Jinja2 environment
         self.jinja_env = Environment(
             loader=FileSystemLoader(str(self.templates_dir)),
             autoescape=True
         )
         
-        # Add custom filters
-        self.jinja_env.filters.update(CUSTOM_FILTERS)
-        
-        # Font configuration for WeasyPrint
         self.font_config = FontConfiguration()
         
         logger.info(f"PDF Generator initialized with templates directory: {self.templates_dir}")
