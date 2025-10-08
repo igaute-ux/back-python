@@ -1,60 +1,65 @@
 # Adaptia Backend
 
-Backend minimalista construido con FastAPI, LangChain y Supabase.
+Backend de análisis ESG construido con FastAPI, LangChain, PostgreSQL y OpenAI.
 
 ## 🚀 Características
 
 - **FastAPI**: Framework web moderno y rápido para Python
-- **LangChain**: Framework para aplicaciones de IA
-- **Supabase**: Base de datos PostgreSQL como servicio
+- **LangChain**: Framework para aplicaciones de IA con OpenAI Assistant API
+- **PostgreSQL**: Base de datos relacional con SQLAlchemy ORM
+- **Análisis ESG**: Pipeline completo de análisis ESG automatizado con IA
+- **Generación de PDFs**: Creación de reportes ESG en PDF con WeasyPrint
+- **Gestión de Usuarios y Organizaciones**: Sistema completo de CRUD
 - **Arquitectura modular**: Estructura organizada con routers y separación de responsabilidades
 
 ## 📋 Requisitos
 
 - Python 3.8+
-- Las dependencias ya están en `requirements.txt`
+- PostgreSQL
+- OpenAI API Key con acceso a Assistants API
+- Las dependencias están en `requirements.txt`
 
 ## ⚙️ Configuración
 
-1. **Copiar el archivo de variables de entorno:**
+### 1. Variables de Entorno
 
-   ```bash
-   cp env.example .env
-   ```
+Copia el archivo de ejemplo y configura tus credenciales:
 
-2. **Configurar las variables en `.env`:**
+```bash
+cp env.example .env
+```
 
-   ```env
-   # Supabase Configuration
-   SUPABASE_URL=your_supabase_project_url
-   SUPABASE_KEY=your_supabase_anon_key
+Configura las siguientes variables en `.env`:
 
-   # OpenAI Configuration (para LangChain)
-   OPENAI_API_KEY=your_openai_api_key
+```env
+# OpenAI Configuration
+OPENAI_API_KEY=tu_openai_api_key
 
-   # Server Configuration
-   HOST=0.0.0.0
-   PORT=8000
-   DEBUG=True
-   ```
+# Database Configuration
+DATABASE_URL=postgresql://usuario:contraseña@localhost:5432/nombre_db
 
-3. **Obtener credenciales de Supabase:**
-   - Ve a [supabase.com](https://supabase.com)
-   - Crea un nuevo proyecto
-   - Copia la URL del proyecto y la anon key desde Settings > API
+# Environment
+ENVIRONMENT=development
+```
+
+### 2. Instalación de Dependencias
+
+```bash
+pip install -r requirements.txt
+```
 
 ## 🏃‍♂️ Ejecutar el proyecto
 
-### Opción 1: Con Uvicorn (Recomendado)
-
-```bash
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
-```
-
-### Opción 2: Con FastAPI CLI
+### Opción 1: Con FastAPI CLI (Recomendado)
 
 ```bash
 fastapi dev main.py
+```
+
+### Opción 2: Con Uvicorn
+
+```bash
+uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
 ### Opción 3: Con Python
@@ -63,77 +68,188 @@ fastapi dev main.py
 python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
 ```
 
-## 🌐 Endpoints
+El servidor estará disponible en: `http://localhost:8000`
+
+## 🌐 Endpoints de la API
+
+### Documentación
 
 - **GET /** - Endpoint raíz
-- **GET /api/v1/** - API endpoints (estructura modular)
-- **GET /docs** - Documentación automática de la API (Swagger UI)
+- **GET /docs** - Documentación interactiva (Swagger UI)
+- **GET /redoc** - Documentación alternativa (ReDoc)
 
-> **Nota**: Este es solo el setup inicial del proyecto. Los endpoints específicos se implementarán según las necesidades del proyecto.
+### Usuarios (`/api/users`)
+
+- **POST /api/users/** - Crear usuario
+- **GET /api/users/{user_id}** - Obtener usuario por ID
+- **GET /api/users/** - Listar todos los usuarios
+- **PUT /api/users/{user_id}** - Actualizar usuario
+- **DELETE /api/users/{user_id}** - Eliminar usuario
+- **GET /api/users/{user_id}/organizations** - Listar organizaciones de un usuario
+
+### Organizaciones (`/api/organizations`)
+
+- **POST /api/organizations/** - Crear organización
+- **GET /api/organizations/{org_id}** - Obtener organización por ID
+- **GET /api/organizations/** - Listar todas las organizaciones
+- **GET /api/organizations/owner/{owner_id}** - Listar organizaciones por propietario
+- **PUT /api/organizations/{org_id}** - Actualizar organización
+- **DELETE /api/organizations/{org_id}** - Eliminar organización
+
+### Análisis ESG (`/api/esg`)
+
+- **POST /api/esg/analyze-context** - Análisis de contexto básico
+- **POST /api/esg/esg-analysis** - Análisis ESG completo (JSON)
+- **POST /api/esg/esg-analysis-with-pdf** - Análisis ESG con generación de PDF
+- **GET /api/esg/test-pdf-from-example** - Generar PDF de prueba desde datos de ejemplo
 
 ## 📁 Estructura del proyecto
 
 ```
 adaptia--backend/
-├── main.py                               # Archivo principal de FastAPI
-├── app/                                  # Aplicación principal
-│   ├── __init__.py
-│   └── api/                              # API endpoints
-│       ├── __init__.py
-│       └── v1/                           # Versión 1 de la API
-│           ├── __init__.py
-│           └── router.py                 # Router principal de la API
-├── config/                               # Configuraciones del proyecto
-│   ├── __init__.py
-│   ├── database.py                       # Configuración de Supabase
-│   └── langchain_config.py               # Configuración de LangChain
-├── requirements.txt                      # Dependencias del proyecto
-├── env.example                           # Ejemplo de variables de entorno
-├── .gitignore                            # Archivos a ignorar por Git
-└── README.md                             # Este archivo
+├── main.py                           # Punto de entrada de la aplicación
+├── requirements.txt                  # Dependencias del proyecto
+├── env.example                       # Ejemplo de variables de entorno
+├── README.md                         # Este archivo
+│
+├── app/                              # Aplicación principal
+│   ├── api/                          # API endpoints
+│   │   ├── router.py                 # Router principal
+│   │   └── routes/                   # Rutas organizadas por módulo
+│   │       ├── auth.py               # Autenticación (pendiente)
+│   │       ├── users.py              # Gestión de usuarios
+│   │       ├── organizations.py      # Gestión de organizaciones
+│   │       ├── analyses.py           # Análisis (pendiente)
+│   │       ├── payments.py           # Pagos (pendiente)
+│   │       └── esg.py                # Análisis ESG
+│   │
+│   ├── core/                         # Configuraciones core
+│   │   ├── config.py                 # Settings y configuración
+│   │   └── database.py               # Configuración de base de datos
+│   │
+│   ├── models/                       # Modelos de base de datos (SQLAlchemy)
+│   │   ├── user.py                   # Modelo de Usuario
+│   │   ├── organization.py           # Modelo de Organización
+│   │   └── analysis.py               # Modelo de Análisis (Pydantic)
+│   │
+│   ├── schemas/                      # Schemas de validación (Pydantic)
+│   │   ├── user.py                   # Schemas de Usuario
+│   │   └── organization.py           # Schemas de Organización
+│   │
+│   ├── services/                     # Lógica de negocio
+│   │   ├── auth_service.py           # Servicio de autenticación
+│   │   ├── user_service.py           # Servicio de usuarios
+│   │   ├── organization_service.py   # Servicio de organizaciones
+│   │   │
+│   │   ├── langchain/                # Workflows de LangChain
+│   │   │   ├── prompts.py            # Prompts para análisis ESG
+│   │   │   └── workflows.py          # Workflows de análisis
+│   │   │
+│   │   └── pdf_generation/           # Generación de PDFs
+│   │       ├── pdf.py                # Generador de PDFs
+│   │       ├── filters.py            # Filtros Jinja2 personalizados
+│   │       ├── example_data.json     # Datos de ejemplo
+│   │       └── templates/            # Templates HTML
+│   │           └── esg_analysis.html # Template del reporte ESG
+│   │
+│   └── utils/                        # Utilidades
+│       └── json_formatter.py         # Formateador de JSON
 ```
 
 ## 🏗️ Arquitectura del proyecto
 
-El proyecto sigue una arquitectura modular y escalable:
+### Pipeline de Análisis ESG
 
-- **`main.py`**: Punto de entrada de la aplicación
-- **`app/`**: Lógica principal de la aplicación
-  - **`app/api/`**: Endpoints de la API organizados por versiones
-  - **`app/api/v1/`**: Primera versión de la API
-- **`config/`**: Configuraciones centralizadas
-- **Separación de responsabilidades**: Cada módulo tiene una función específica
+El sistema utiliza OpenAI Assistant API con LangChain para ejecutar un pipeline de análisis ESG que incluye:
+
+1. **Análisis de Contexto** - Recopilación de información de la organización
+2. **Análisis de Impacto** - Evaluación de impactos ambientales y sociales
+3. **Análisis de Materialidad** - Identificación de temas materiales
+4. **Análisis de Riesgos** - Evaluación de riesgos ESG
+5. **Recomendaciones** - Generación de plan de acción
+6. **Generación de PDF** - Creación de reporte profesional
+
+El pipeline ejecuta 11 prompts secuenciales con delays automáticos para optimizar el uso de la API.
+
+### Generación de PDFs
+
+- Utiliza **WeasyPrint** para conversión HTML a PDF
+- Templates con **Jinja2** para renderizado dinámico
+- Generación en memoria (sin archivos temporales)
+- Diseño profesional con CSS moderno
+- Incluye gráficos, tablas y visualizaciones
 
 ## 🔧 Desarrollo
 
-Para agregar nuevas funcionalidades:
+### Agregar nuevos endpoints
 
-1. **Nuevos endpoints**: Agregar en `app/api/v1/router.py` o crear nuevos routers
-2. **Configuraciones**: Agregar en el directorio `config/`
-3. **Modelos de datos**: Crear en un directorio `models/`
-4. **Servicios**: Crear en un directorio `services/`
-5. **Base de datos**: Agregar en `config/database.py`
-6. **LangChain**: Configurar en `config/langchain_config.py`
+1. Crear archivo de ruta en `app/api/routes/`
+2. Definir router con FastAPI
+3. Incluir en `app/api/router.py`
 
-## 📚 Documentación
+### Agregar nuevos modelos
+
+1. Crear modelo SQLAlchemy en `app/models/`
+2. Crear schemas Pydantic en `app/schemas/`
+3. Crear servicio en `app/services/`
+4. Migrar base de datos (pendiente: Alembic)
+
+### Agregar nuevos servicios
+
+1. Crear módulo en `app/services/`
+2. Implementar lógica de negocio
+3. Importar en las rutas correspondientes
+
+## 🛠️ Stack Tecnológico
+
+### Framework y Core
+
+- **FastAPI** - Framework web asíncrono
+- **Uvicorn** - Servidor ASGI
+- **Pydantic** - Validación de datos
+- **Python-dotenv** - Gestión de variables de entorno
+
+### Base de Datos
+
+- **PostgreSQL** - Base de datos relacional
+- **SQLAlchemy** - ORM
+- **psycopg2-binary** - Driver PostgreSQL
+
+### Inteligencia Artificial
+
+- **LangChain** - Framework de IA
+- **LangChain OpenAI** - Integración con OpenAI
+- **OpenAI** - API de OpenAI (GPT-4, Assistants API)
+
+### Generación de PDFs
+
+- **WeasyPrint** - Conversión HTML a PDF
+- **Jinja2** - Motor de templates
+
+### Utilidades
+
+- **Pandas** - Análisis de datos
+- **Requests** - Cliente HTTP
+
+## 📚 Documentación de referencia
 
 - **FastAPI**: https://fastapi.tiangolo.com/
 - **LangChain**: https://python.langchain.com/
-- **Supabase**: https://supabase.com/docs
+- **SQLAlchemy**: https://www.sqlalchemy.org/
+- **OpenAI API**: https://platform.openai.com/docs
+- **WeasyPrint**: https://doc.courtbouillon.org/weasyprint/
 
 ## 🆘 Troubleshooting
 
-### Error de conexión a Supabase
+### Error de conexión a PostgreSQL
 
-- Verifica que `SUPABASE_URL` y `SUPABASE_KEY` estén correctos
-- Asegúrate de que el proyecto de Supabase esté activo
+- Verifica que PostgreSQL esté ejecutándose
+- Confirma que `DATABASE_URL` esté correctamente configurado
+- Revisa las credenciales de acceso a la base de datos
 
-### Error de LangChain
+### Error de OpenAI API
 
 - Verifica que `OPENAI_API_KEY` esté configurado
 - La API key debe ser válida y tener créditos disponibles
 
-### Puerto ocupado
-
-- Cambia el puerto en `.env` o usa otro puerto disponible
-- Mata procesos que puedan estar usando el puerto 8000
+**Nota**: Este README refleja el estado actual del proyecto. Para contribuir o reportar issues, contacta al equipo de desarrollo.
