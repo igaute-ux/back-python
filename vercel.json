@@ -11,10 +11,5 @@
       "src": "/(.*)",
       "dest": "main.py"
     }
-  ],
-  "env": {
-    "OPENAI_API_KEY": "@OPENAI_API_KEY",
-    "DATABASE_URL": "@DATABASE_URL",
-    "ENVIRONMENT": "@ENVIRONMENT"
-  }
+  ]
 }
