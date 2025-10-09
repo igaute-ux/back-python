@@ -1,0 +1,14 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+.env
+tests/
+docs/
+data/
+*.pdf
+*.xlsx
+*.csv
+*.zip
