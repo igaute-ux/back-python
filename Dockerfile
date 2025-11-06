@@ -1,6 +1,6 @@
 FROM python:3.11-slim
 
-# 🧩 Instalar dependencias del sistema necesarias para WeasyPrint
+# 🧩 Dependencias necesarias para WeasyPrint
 RUN apt-get update && apt-get install -y \
     libcairo2 libpango-1.0-0 libpangoft2-1.0-0 \
     libgdk-pixbuf-2.0-0 libffi-dev shared-mime-info \
@@ -17,9 +17,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 📁 Copiar todo el código
 COPY . .
 
-# ✅ Railway usa una variable de entorno PORT automáticamente (p. ej. 8000, 8080, etc.)
-# Así que mejor usar esa en el CMD
-ENV PORT=8000
+# ✅ Railway define PORT dinámicamente (ej: 8080)
 EXPOSE $PORT
 
-CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT}"]
+# 🧠 Usa la variable $PORT si existe, o 8000 localmente
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]
