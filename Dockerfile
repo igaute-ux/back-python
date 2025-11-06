@@ -11,11 +11,9 @@ WORKDIR /app
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
 COPY . .
 
-# ⚙️ Dejá que Railway asigne el puerto dinámico
-ENV PORT=${PORT:-8000}
-EXPOSE ${PORT}
+EXPOSE 8000 
 
-# 🚀 Iniciar Uvicorn con el puerto asignado
-CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT}"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
