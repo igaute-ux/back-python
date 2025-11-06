@@ -1,26 +1,28 @@
 from fastapi import FastAPI
 from app.api.router import api_router
-from dotenv import load_dotenv
-import os
 from fastapi.middleware.cors import CORSMiddleware
+import os
+from dotenv import load_dotenv
 
 load_dotenv()
 
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-
 app = FastAPI(title="Adaptia API")
+
 app.include_router(api_router, prefix="/api")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],   # o ["http://localhost:3000"] si querés restringir
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],   # 👈 acepta OPTIONS, POST, GET, etc
-    allow_headers=["*"],   # 👈 acepta cualquier header
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
-
-app.include_router(api_router)
 
 @app.get("/")
 async def root():
     return {"message": "Adaptia API"}
+
+# ✅ Nuevo endpoint de healthcheck
+@app.get("/health")
+async def health():
+    return {"status": "ok", "port": os.getenv("PORT", "8000")}
