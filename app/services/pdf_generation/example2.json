@@ -1,0 +1,1142 @@
+[
+    {
+        "name": "🔹 Prompt 1: Contexto organizacional y Sectorial",
+        "response_content": {
+            "nombre_empresa": "Mercado Libre Chile Ltda.",
+            "pais_operacion": "Chile. Operación local integrada al ecosistema regional de MercadoLibre, Inc. (multipaís en LATAM).",
+            "industria": "Comercio electrónico, Fintech, Logística, Marketplace, Servicios de pago digital, Publicidad en línea.",
+            "tamano_empresa": "Mercado Libre Chile Ltda. es una de las empresas líderes en comercio electrónico en Chile, con un crecimiento significativo y una base de usuarios amplia que supera los millones de clientes activos.",
+            "ubicacion_geografica": "Santiago, Región Metropolitana, Chile. La empresa tiene oficinas en varios puntos estratégicos de la ciudad, así como centros de distribución en áreas clave para optimizar su logística y operaciones.",
+            "modelo_negocio": "El modelo de negocio de Mercado Libre Chile se centra en ofrecer una plataforma de comercio electrónico que conecta a compradores y vendedores, permitiendo la compra y venta de productos a través de su marketplace. Además, ofrece servicios de pagos digitales a través de Mercado Pago, facilitando transacciones seguras y rápidas. La empresa también integra soluciones logísticas para asegurar la entrega eficiente de productos, así como una plataforma publicitaria para que los vendedores promocionen sus productos.",
+            "cadena_valor": "La cadena de valor de Mercado Libre incluye varias etapas: 1) Sourcing: captación de productos de diversos proveedores y vendedores. 2) Marketplace: plataforma donde los usuarios pueden listar y comprar productos. 3) Pagos: procesamiento de transacciones a través de Mercado Pago, garantizando seguridad y rapidez. 4) Logística: gestión de envíos y entregas, incluyendo centros de distribución y alianzas con empresas de transporte. 5) Postventa: atención al cliente y gestión de devoluciones, asegurando satisfacción y fidelización.",
+            "actividades_principales": "Las actividades principales de Mercado Libre incluyen la operación de su plataforma de comercio electrónico, la gestión de pagos digitales, la logística de entrega de productos, y la atención al cliente. Estas actividades generan impactos ambientales a través del uso de recursos en la cadena de suministro y el transporte, así como impactos sociales al conectar a pequeños y medianos emprendedores con un mercado más amplio.",
+            "madurez_esg": "Mercado Libre ha mostrado un compromiso creciente con la sostenibilidad y la responsabilidad social, implementando políticas para mejorar su desempeño ambiental y social. La empresa ha comenzado a integrar criterios ESG en su estrategia de negocio, aunque todavía enfrenta desafíos en la medición y reporte de su impacto en estas áreas.",
+            "stakeholders_relevantes": "Los stakeholders relevantes de Mercado Libre incluyen: 1) Clientes: usuarios de la plataforma de comercio electrónico y servicios de pago. 2) Proveedores: vendedores que utilizan la plataforma para comercializar sus productos. 3) Comunidades: grupos locales que se ven afectados por las operaciones de la empresa. 4) Reguladores: entidades gubernamentales que supervisan el comercio electrónico y la protección al consumidor. 5) Inversionistas: accionistas que buscan información sobre el desempeño financiero y ESG de la empresa."
+        },
+        "thread_id": "thread_CVnRoTZ9Z9UBupIOiojwpWUp"
+    },
+    {
+        "name": "🔹 Prompt 2: Identificación de Impactos (basado en S&P)",
+        "response_content": {
+            "materiality_table": [
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Condiciones laborales",
+                    "materialidad_financiera": "Alta",
+                    "accion_marginal": "Realizar encuestas de satisfacción laboral en tiendas y bodegas.",
+                    "accion_moderada": "Establecer metas de bienestar laboral e indicadores de clima interno por área.",
+                    "accion_estructural": "Diseñar un modelo de gestión laboral con beneficios diferenciados, flexibilidad y participación activa de trabajadores."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Prácticas laborales",
+                    "materialidad_financiera": "Alta",
+                    "accion_marginal": "Asegurar contratos escritos y jornadas claras para personal temporal.",
+                    "accion_moderada": "Realizar auditorías laborales a contratistas y proveedores logísticos.",
+                    "accion_estructural": "Implementar una trazabilidad laboral con políticas de trabajo digno en toda la cadena de suministro."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Salud y seguridad del cliente",
+                    "materialidad_financiera": "Alta",
+                    "accion_marginal": "Reforzar protocolos de seguridad en tiendas (pisos húmedos, señalética, etc.).",
+                    "accion_moderada": "Capacitar a personal en atención a emergencias y primeros auxilios.",
+                    "accion_estructural": "Diseñar tiendas accesibles, seguras y con medidas proactivas para distintos grupos de clientes (ej. personas mayores o con discapacidad)."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Productos y servicios sostenibles",
+                    "materialidad_financiera": "Alta",
+                    "accion_marginal": "Etiquetar productos con atributos sostenibles (ej. materiales reciclados).",
+                    "accion_moderada": "Aumentar el surtido de productos con certificaciones sostenibles (ej. ecolabels, comercio justo).",
+                    "accion_estructural": "Desarrollar marcas propias sostenibles con trazabilidad ambiental y social desde el diseño."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Marketing responsable y etiquetado",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Verificar cumplimiento normativo en promociones y publicidad.",
+                    "accion_moderada": "Crear una política de marketing responsable con enfoque ético.",
+                    "accion_estructural": "Rediseñar la estrategia de marca para integrar sostenibilidad, inclusión y salud mental como valores centrales."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Riesgo de transición climática",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Medir consumo energético y emisiones en tiendas.",
+                    "accion_moderada": "Establecer metas de reducción de emisiones en logística, refrigeración y transporte.",
+                    "accion_estructural": "Transformar operaciones hacia carbono neutralidad e invertir en eficiencia energética y energías limpias."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Residuos y reciclaje",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Separar residuos reciclables en tienda y oficinas administrativas.",
+                    "accion_moderada": "Establecer metas de reducción de residuos post-consumo y de empaque.",
+                    "accion_estructural": "Integrar logística inversa y rediseñar empaques y productos para economía circular (reutilizables, modulares, reparables)."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Salud y seguridad de los trabajadores",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Capacitar al personal en ergonomía y prevención de accidentes en bodega.",
+                    "accion_moderada": "Implementar protocolos y chequeos de salud ocupacional periódicos.",
+                    "accion_estructural": "Automatizar tareas repetitivas o de alto riesgo y rediseñar estaciones de trabajo centradas en el bienestar."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Protección de la privacidad",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Actualizar políticas de privacidad en apps y ecommerce.",
+                    "accion_moderada": "Establecer procedimientos internos de gestión de datos con formación al equipo.",
+                    "accion_estructural": "Certificarse en estándares como ISO 27701 y rediseñar arquitectura digital con enfoque de privacidad desde el diseño."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Impacto en las comunidades",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Donar productos no vendidos a organizaciones sociales.",
+                    "accion_moderada": "Establecer programas de formación o empleo joven en barrios donde operan tiendas.",
+                    "accion_estructural": "Rediseñar la estrategia territorial para fomentar valor económico local a través de proveedores y alianzas comunitarias."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Contaminación",
+                    "materialidad_financiera": "Baja",
+                    "accion_marginal": "Identificar y controlar derrames o emisiones en áreas de logística.",
+                    "accion_moderada": "Medir y reportar emisiones atmosféricas y de efluentes.",
+                    "accion_estructural": "Rediseñar procesos y materiales para eliminar fuentes de contaminación y mitigar pasivos históricos."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Riesgo climático físico",
+                    "materialidad_financiera": "Baja",
+                    "accion_marginal": "Evaluar vulnerabilidad de instalaciones logísticas ante eventos extremos.",
+                    "accion_moderada": "Ajustar protocolos de abastecimiento según riesgos climáticos.",
+                    "accion_estructural": "Relocalizar centros logísticos vulnerables y rediseñar infraestructura con criterios de resiliencia climática."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Acceso y asequibilidad",
+                    "materialidad_financiera": "Baja",
+                    "accion_marginal": "Ofrecer productos esenciales a precios accesibles o descuentos sociales.",
+                    "accion_moderada": "Crear marcas propias de bajo costo con enfoque en calidad básica.",
+                    "accion_estructural": "Rediseñar surtido y estrategia de precios para maximizar inclusión económica sin sacrificar calidad mínima ni sostenibilidad."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Agua",
+                    "materialidad_financiera": "Baja",
+                    "accion_marginal": "Monitorear consumo de agua en sanitarios y sistemas de refrigeración.",
+                    "accion_moderada": "Instalar sistemas de bajo consumo (grifería, sanitarios, etc.) en todas las tiendas.",
+                    "accion_estructural": "Reutilizar aguas grises en limpieza y paisajismo urbano y establecer metas de reducción de consumo."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Biodiversidad y uso de recursos",
+                    "materialidad_financiera": "Baja",
+                    "accion_marginal": "Evitar productos con materiales asociados a deforestación o minería destructiva.",
+                    "accion_moderada": "Priorizar productos con materias primas certificadas y sostenibles.",
+                    "accion_estructural": "Rediseñar el surtido desde criterios de impacto positivo en biodiversidad y abastecimiento regenerativo."
+                }
+            ],
+            "exhausted": false
+        },
+        "thread_id": "thread_CVnRoTZ9Z9UBupIOiojwpWUp"
+    },
+    {
+        "name": "🔹 Prompt 3: Evaluación de Impactos",
+        "response_content": {
+            "materiality_table": [
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Condiciones laborales",
+                    "materialidad_financiera": "Alta",
+                    "accion_marginal": "Realizar encuestas de satisfacción laboral en tiendas y bodegas.",
+                    "accion_moderada": "Establecer metas de bienestar laboral e indicadores de clima interno por área.",
+                    "accion_estructural": "Diseñar un modelo de gestión laboral con beneficios diferenciados, flexibilidad y participación activa de trabajadores.",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo"
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Prácticas laborales",
+                    "materialidad_financiera": "Alta",
+                    "accion_marginal": "Asegurar contratos escritos y jornadas claras para personal temporal.",
+                    "accion_moderada": "Realizar auditorías laborales a contratistas y proveedores logísticos.",
+                    "accion_estructural": "Implementar una trazabilidad laboral con políticas de trabajo digno en toda la cadena de suministro.",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo"
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Salud y seguridad del cliente",
+                    "materialidad_financiera": "Alta",
+                    "accion_marginal": "Reforzar protocolos de seguridad en tiendas (pisos húmedos, señalética, etc.).",
+                    "accion_moderada": "Capacitar a personal en atención a emergencias y primeros auxilios.",
+                    "accion_estructural": "Diseñar tiendas accesibles, seguras y con medidas proactivas para distintos grupos de clientes (ej. personas mayores o con discapacidad).",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo"
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Productos y servicios sostenibles",
+                    "materialidad_financiera": "Alta",
+                    "accion_marginal": "Etiquetar productos con atributos sostenibles (ej. materiales reciclados).",
+                    "accion_moderada": "Aumentar el surtido de productos con certificaciones sostenibles (ej. ecolabels, comercio justo).",
+                    "accion_estructural": "Desarrollar marcas propias sostenibles con trazabilidad ambiental y social desde el diseño.",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo"
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Marketing responsable y etiquetado",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Verificar cumplimiento normativo en promociones y publicidad.",
+                    "accion_moderada": "Crear una política de marketing responsable con enfoque ético.",
+                    "accion_estructural": "Rediseñar la estrategia de marca para integrar sostenibilidad, inclusión y salud mental como valores centrales.",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Indirecto"
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Riesgo de transición climática",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Medir consumo energético y emisiones en tiendas.",
+                    "accion_moderada": "Establecer metas de reducción de emisiones en logística, refrigeración y transporte.",
+                    "accion_estructural": "Transformar operaciones hacia carbono neutralidad e invertir en eficiencia energética y energías limpias.",
+                    "tipo_impacto": "Negativo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "No intencionado",
+                    "penetracion_impacto": "Irreversible",
+                    "grado_implicacion": "Directo"
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Residuos y reciclaje",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Separar residuos reciclables en tienda y oficinas administrativas.",
+                    "accion_moderada": "Establecer metas de reducción de residuos post-consumo y de empaque.",
+                    "accion_estructural": "Integrar logística inversa y rediseñar empaques y productos para economía circular (reutilizables, modulares, reparables).",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo"
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Salud y seguridad de los trabajadores",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Capacitar al personal en ergonomía y prevención de accidentes en bodega.",
+                    "accion_moderada": "Implementar protocolos y chequeos de salud ocupacional periódicos.",
+                    "accion_estructural": "Automatizar tareas repetitivas o de alto riesgo y rediseñar estaciones de trabajo centradas en el bienestar.",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo"
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Protección de la privacidad",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Actualizar políticas de privacidad en apps y ecommerce.",
+                    "accion_moderada": "Establecer procedimientos internos de gestión de datos con formación al equipo.",
+                    "accion_estructural": "Certificarse en estándares como ISO 27701 y rediseñar arquitectura digital con enfoque de privacidad desde el diseño.",
+                    "tipo_impacto": "Negativo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "No intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Indirecto"
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Impacto en las comunidades",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Donar productos no vendidos a organizaciones sociales.",
+                    "accion_moderada": "Establecer programas de formación o empleo joven en barrios donde operan tiendas.",
+                    "accion_estructural": "Rediseñar la estrategia territorial para fomentar valor económico local a través de proveedores y alianzas comunitarias.",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo"
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Contaminación",
+                    "materialidad_financiera": "Baja",
+                    "accion_marginal": "Identificar y controlar derrames o emisiones en áreas de logística.",
+                    "accion_moderada": "Medir y reportar emisiones atmosféricas y de efluentes.",
+                    "accion_estructural": "Rediseñar procesos y materiales para eliminar fuentes de contaminación y mitigar pasivos históricos.",
+                    "tipo_impacto": "Negativo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "No intencionado",
+                    "penetracion_impacto": "Irreversible",
+                    "grado_implicacion": "Directo"
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Riesgo climático físico",
+                    "materialidad_financiera": "Baja",
+                    "accion_marginal": "Evaluar vulnerabilidad de instalaciones logísticas ante eventos extremos.",
+                    "accion_moderada": "Ajustar protocolos de abastecimiento según riesgos climáticos.",
+                    "accion_estructural": "Relocalizar centros logísticos vulnerables y rediseñar infraestructura con criterios de resiliencia climática.",
+                    "tipo_impacto": "Negativo",
+                    "potencialidad_impacto": "Potencial",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "No intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Indirecto"
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Acceso y asequibilidad",
+                    "materialidad_financiera": "Baja",
+                    "accion_marginal": "Ofrecer productos esenciales a precios accesibles o descuentos sociales.",
+                    "accion_moderada": "Crear marcas propias de bajo costo con enfoque en calidad básica.",
+                    "accion_estructural": "Rediseñar surtido y estrategia de precios para maximizar inclusión económica sin sacrificar calidad mínima ni sostenibilidad.",
+                    "tipo_impacto": "Negativo",
+                    "potencialidad_impacto": "Potencial",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Indirecto"
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Agua",
+                    "materialidad_financiera": "Baja",
+                    "accion_marginal": "Monitorear consumo de agua en sanitarios y sistemas de refrigeración.",
+                    "accion_moderada": "Instalar sistemas de bajo consumo (grifería, sanitarios, etc.) en todas las tiendas.",
+                    "accion_estructural": "Reutilizar aguas grises en limpieza y paisajismo urbano y establecer metas de reducción de consumo.",
+                    "tipo_impacto": "Negativo",
+                    "potencialidad_impacto": "Potencial",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "No intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Indirecto"
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Biodiversidad y uso de recursos",
+                    "materialidad_financiera": "Baja",
+                    "accion_marginal": "Evitar productos con materiales asociados a deforestación o minería destructiva.",
+                    "accion_moderada": "Priorizar productos con materias primas certificadas y sostenibles.",
+                    "accion_estructural": "Rediseñar el surtido desde criterios de impacto positivo en biodiversidad y abastecimiento regenerativo.",
+                    "tipo_impacto": "Negativo",
+                    "potencialidad_impacto": "Potencial",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "No intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Indirecto"
+                }
+            ],
+            "resumen_sector": "El sector Retailing (Nonfood) fue seleccionado debido a las operaciones de Mercado Libre en comercio electrónico, donde se gestionan productos y servicios que impactan directamente a consumidores y comunidades, enfatizando la sostenibilidad y la responsabilidad social."
+        },
+        "thread_id": "thread_CVnRoTZ9Z9UBupIOiojwpWUp"
+    },
+    {
+        "name": "🔹 Prompt 4: Evaluación de Impactos (doble materialidad)",
+        "response_content": {
+            "materiality_table": [
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Condiciones laborales",
+                    "materialidad_financiera": "Alta",
+                    "accion_marginal": "Realizar encuestas de satisfacción laboral en tiendas y bodegas.",
+                    "accion_moderada": "Establecer metas de bienestar laboral e indicadores de clima interno por área.",
+                    "accion_estructural": "Diseñar un modelo de gestión laboral con beneficios diferenciados, flexibilidad y participación activa de trabajadores.",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 1,
+                    "probabilidad": 4,
+                    "alcance": 3,
+                    "impacto_esg": 4,
+                    "impacto_financiero": 5,
+                    "puntaje_total": 17
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Prácticas laborales",
+                    "materialidad_financiera": "Alta",
+                    "accion_marginal": "Asegurar contratos escritos y jornadas claras para personal temporal.",
+                    "accion_moderada": "Realizar auditorías laborales a contratistas y proveedores logísticos.",
+                    "accion_estructural": "Implementar una trazabilidad laboral con políticas de trabajo digno en toda la cadena de suministro.",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 2,
+                    "probabilidad": 4,
+                    "alcance": 4,
+                    "impacto_esg": 4,
+                    "impacto_financiero": 5,
+                    "puntaje_total": 19
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Salud y seguridad del cliente",
+                    "materialidad_financiera": "Alta",
+                    "accion_marginal": "Reforzar protocolos de seguridad en tiendas (pisos húmedos, señalética, etc.).",
+                    "accion_moderada": "Capacitar a personal en atención a emergencias y primeros auxilios.",
+                    "accion_estructural": "Diseñar tiendas accesibles, seguras y con medidas proactivas para distintos grupos de clientes (ej. personas mayores o con discapacidad).",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 2,
+                    "probabilidad": 4,
+                    "alcance": 4,
+                    "impacto_esg": 4,
+                    "impacto_financiero": 5,
+                    "puntaje_total": 19
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Productos y servicios sostenibles",
+                    "materialidad_financiera": "Alta",
+                    "accion_marginal": "Etiquetar productos con atributos sostenibles (ej. materiales reciclados).",
+                    "accion_moderada": "Aumentar el surtido de productos con certificaciones sostenibles (ej. ecolabels, comercio justo).",
+                    "accion_estructural": "Desarrollar marcas propias sostenibles con trazabilidad ambiental y social desde el diseño.",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 2,
+                    "probabilidad": 3,
+                    "alcance": 5,
+                    "impacto_esg": 5,
+                    "impacto_financiero": 5,
+                    "puntaje_total": 20
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Marketing responsable y etiquetado",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Verificar cumplimiento normativo en promociones y publicidad.",
+                    "accion_moderada": "Crear una política de marketing responsable con enfoque ético.",
+                    "accion_estructural": "Rediseñar la estrategia de marca para integrar sostenibilidad, inclusión y salud mental como valores centrales.",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Indirecto",
+                    "gravedad": 1,
+                    "probabilidad": 3,
+                    "alcance": 3,
+                    "impacto_esg": 3,
+                    "impacto_financiero": 3,
+                    "puntaje_total": 13
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Riesgo de transición climática",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Medir consumo energético y emisiones en tiendas.",
+                    "accion_moderada": "Establecer metas de reducción de emisiones en logística, refrigeración y transporte.",
+                    "accion_estructural": "Transformar operaciones hacia carbono neutralidad e invertir en eficiencia energética y energías limpias.",
+                    "tipo_impacto": "Negativo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "No intencionado",
+                    "penetracion_impacto": "Irreversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 4,
+                    "probabilidad": 4,
+                    "alcance": 5,
+                    "impacto_esg": 5,
+                    "impacto_financiero": 3,
+                    "puntaje_total": 21
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Residuos y reciclaje",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Separar residuos reciclables en tienda y oficinas administrativas.",
+                    "accion_moderada": "Establecer metas de reducción de residuos post-consumo y de empaque.",
+                    "accion_estructural": "Integrar logística inversa y rediseñar empaques y productos para economía circular (reutilizables, modulares, reparables).",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 3,
+                    "probabilidad": 4,
+                    "alcance": 4,
+                    "impacto_esg": 4,
+                    "impacto_financiero": 3,
+                    "puntaje_total": 18
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Salud y seguridad de los trabajadores",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Capacitar al personal en ergonomía y prevención de accidentes en bodega.",
+                    "accion_moderada": "Implementar protocolos y chequeos de salud ocupacional periódicos.",
+                    "accion_estructural": "Automatizar tareas repetitivas o de alto riesgo y rediseñar estaciones de trabajo centradas en el bienestar.",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 2,
+                    "probabilidad": 3,
+                    "alcance": 4,
+                    "impacto_esg": 4,
+                    "impacto_financiero": 3,
+                    "puntaje_total": 19
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Protección de la privacidad",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Actualizar políticas de privacidad en apps y ecommerce.",
+                    "accion_moderada": "Establecer procedimientos internos de gestión de datos con formación al equipo.",
+                    "accion_estructural": "Certificarse en estándares como ISO 27701 y rediseñar arquitectura digital con enfoque de privacidad desde el diseño.",
+                    "tipo_impacto": "Negativo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "No intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Indirecto",
+                    "gravedad": 3,
+                    "probabilidad": 4,
+                    "alcance": 4,
+                    "impacto_esg": 4,
+                    "impacto_financiero": 3,
+                    "puntaje_total": 20
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Impacto en las comunidades",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Donar productos no vendidos a organizaciones sociales.",
+                    "accion_moderada": "Establecer programas de formación o empleo joven en barrios donde operan tiendas.",
+                    "accion_estructural": "Rediseñar la estrategia territorial para fomentar valor económico local a través de proveedores y alianzas comunitarias.",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 1,
+                    "probabilidad": 3,
+                    "alcance": 3,
+                    "impacto_esg": 4,
+                    "impacto_financiero": 3,
+                    "puntaje_total": 14
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Contaminación",
+                    "materialidad_financiera": "Baja",
+                    "accion_marginal": "Identificar y controlar derrames o emisiones en áreas de logística.",
+                    "accion_moderada": "Medir y reportar emisiones atmosféricas y de efluentes.",
+                    "accion_estructural": "Rediseñar procesos y materiales para eliminar fuentes de contaminación y mitigar pasivos históricos.",
+                    "tipo_impacto": "Negativo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "No intencionado",
+                    "penetracion_impacto": "Irreversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 4,
+                    "probabilidad": 3,
+                    "alcance": 4,
+                    "impacto_esg": 3,
+                    "impacto_financiero": 0,
+                    "puntaje_total": 14
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Riesgo climático físico",
+                    "materialidad_financiera": "Baja",
+                    "accion_marginal": "Evaluar vulnerabilidad de instalaciones logísticas ante eventos extremos.",
+                    "accion_moderada": "Ajustar protocolos de abastecimiento según riesgos climáticos.",
+                    "accion_estructural": "Relocalizar centros logísticos vulnerables y rediseñar infraestructura con criterios de resiliencia climática.",
+                    "tipo_impacto": "Negativo",
+                    "potencialidad_impacto": "Potencial",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "No intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Indirecto",
+                    "gravedad": 3,
+                    "probabilidad": 3,
+                    "alcance": 3,
+                    "impacto_esg": 3,
+                    "impacto_financiero": 0,
+                    "puntaje_total": 12
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Acceso y asequibilidad",
+                    "materialidad_financiera": "Baja",
+                    "accion_marginal": "Ofrecer productos esenciales a precios accesibles o descuentos sociales.",
+                    "accion_moderada": "Crear marcas propias de bajo costo con enfoque en calidad básica.",
+                    "accion_estructural": "Rediseñar surtido y estrategia de precios para maximizar inclusión económica sin sacrificar calidad mínima ni sostenibilidad.",
+                    "tipo_impacto": "Negativo",
+                    "potencialidad_impacto": "Potencial",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Indirecto",
+                    "gravedad": 2,
+                    "probabilidad": 3,
+                    "alcance": 3,
+                    "impacto_esg": 2,
+                    "impacto_financiero": 0,
+                    "puntaje_total": 10
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Agua",
+                    "materialidad_financiera": "Baja",
+                    "accion_marginal": "Monitorear consumo de agua en sanitarios y sistemas de refrigeración.",
+                    "accion_moderada": "Instalar sistemas de bajo consumo (grifería, sanitarios, etc.) en todas las tiendas.",
+                    "accion_estructural": "Reutilizar aguas grises en limpieza y paisajismo urbano y establecer metas de reducción de consumo.",
+                    "tipo_impacto": "Negativo",
+                    "potencialidad_impacto": "Potencial",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "No intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Indirecto",
+                    "gravedad": 2,
+                    "probabilidad": 3,
+                    "alcance": 3,
+                    "impacto_esg": 2,
+                    "impacto_financiero": 0,
+                    "puntaje_total": 8
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Biodiversidad y uso de recursos",
+                    "materialidad_financiera": "Baja",
+                    "accion_marginal": "Evitar productos con materiales asociados a deforestación o minería destructiva.",
+                    "accion_moderada": "Priorizar productos con materias primas certificadas y sostenibles.",
+                    "accion_estructural": "Rediseñar el surtido desde criterios de impacto positivo en biodiversidad y abastecimiento regenerativo.",
+                    "tipo_impacto": "Negativo",
+                    "potencialidad_impacto": "Potencial",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "No intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Indirecto",
+                    "gravedad": 3,
+                    "probabilidad": 3,
+                    "alcance": 3,
+                    "impacto_esg": 3,
+                    "impacto_financiero": 0,
+                    "puntaje_total": 12
+                }
+            ],
+            "resumen_sector": "El sector Retailing (Nonfood) fue seleccionado debido a su enfoque en el comercio electrónico, donde Mercado Libre impacta a consumidores y comunidades, enfrentando riesgos y oportunidades en sostenibilidad y responsabilidad social."
+        },
+        "thread_id": "thread_CVnRoTZ9Z9UBupIOiojwpWUp"
+    },
+    {
+        "name": "🔹 Prompt 5: Priorización de Temas",
+        "response_content": {
+            "raw_output": null,
+            "error": "'ImageFileContentBlock' object has no attribute 'text'"
+        },
+        "thread_id": "thread_CVnRoTZ9Z9UBupIOiojwpWUp"
+    },
+    {
+        "name": "🔹 Prompt 6: Vínculo con Objetivos de Desarrollo Sostenible (ODS)",
+        "response_content": {
+            "materiality_table": [
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Riesgo de transición climática",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Medir consumo energético y emisiones en tiendas.",
+                    "accion_moderada": "Establecer metas de reducción de emisiones en logística, refrigeración y transporte.",
+                    "accion_estructural": "Transformar operaciones hacia carbono neutralidad e invertir en eficiencia energética y energías limpias.",
+                    "tipo_impacto": "Negativo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "No intencionado",
+                    "penetracion_impacto": "Irreversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 4,
+                    "probabilidad": 4,
+                    "alcance": 5,
+                    "impacto_esg": 5,
+                    "impacto_financiero": 3,
+                    "puntaje_total": 21,
+                    "prioridad": "Material",
+                    "ods": "13",
+                    "meta_ods": "13.2 Integrar medidas en las políticas y estrategias de desarrollo nacional.",
+                    "indicador_ods": "13.2.1 Número de países que han integrado medidas de adaptación al cambio climático en sus políticas."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Productos y servicios sostenibles",
+                    "materialidad_financiera": "Alta",
+                    "accion_marginal": "Etiquetar productos con atributos sostenibles (ej. materiales reciclados).",
+                    "accion_moderada": "Aumentar el surtido de productos con certificaciones sostenibles (ej. ecolabels, comercio justo).",
+                    "accion_estructural": "Desarrollar marcas propias sostenibles con trazabilidad ambiental y social desde el diseño.",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 2,
+                    "probabilidad": 3,
+                    "alcance": 5,
+                    "impacto_esg": 5,
+                    "impacto_financiero": 5,
+                    "puntaje_total": 20,
+                    "prioridad": "Material",
+                    "ods": "12",
+                    "meta_ods": "12.3 Reducir a la mitad el desperdicio de alimentos per cápita mundial.",
+                    "indicador_ods": "12.3.1 Índice mundial de pérdidas de alimentos."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Protección de la privacidad",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Actualizar políticas de privacidad en apps y ecommerce.",
+                    "accion_moderada": "Establecer procedimientos internos de gestión de datos con formación al equipo.",
+                    "accion_estructural": "Certificarse en estándares como ISO 27701 y rediseñar arquitectura digital con enfoque de privacidad desde el diseño.",
+                    "tipo_impacto": "Negativo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "No intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Indirecto",
+                    "gravedad": 3,
+                    "probabilidad": 4,
+                    "alcance": 4,
+                    "impacto_esg": 4,
+                    "impacto_financiero": 3,
+                    "puntaje_total": 20,
+                    "prioridad": "Material",
+                    "ods": "16",
+                    "meta_ods": "16.10 Garantizar el acceso público a la información y proteger las libertades fundamentales.",
+                    "indicador_ods": "16.10.1 Número de países que adoptan leyes de acceso a la información."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Prácticas laborales",
+                    "materialidad_financiera": "Alta",
+                    "accion_marginal": "Asegurar contratos escritos y jornadas claras para personal temporal.",
+                    "accion_moderada": "Realizar auditorías laborales a contratistas y proveedores logísticos.",
+                    "accion_estructural": "Implementar una trazabilidad laboral con políticas de trabajo digno en toda la cadena de suministro.",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 2,
+                    "probabilidad": 4,
+                    "alcance": 4,
+                    "impacto_esg": 4,
+                    "impacto_financiero": 5,
+                    "puntaje_total": 19,
+                    "prioridad": "Material",
+                    "ods": "8",
+                    "meta_ods": "8.5 Lograr el empleo pleno y productivo y el trabajo decente para todos.",
+                    "indicador_ods": "8.5.1 Tasa de desempleo de la población activa."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Salud y seguridad del cliente",
+                    "materialidad_financiera": "Alta",
+                    "accion_marginal": "Reforzar protocolos de seguridad en tiendas (pisos húmedos, señalética, etc.).",
+                    "accion_moderada": "Capacitar a personal en atención a emergencias y primeros auxilios.",
+                    "accion_estructural": "Diseñar tiendas accesibles, seguras y con medidas proactivas para distintos grupos de clientes (ej. personas mayores o con discapacidad).",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 2,
+                    "probabilidad": 4,
+                    "alcance": 4,
+                    "impacto_esg": 4,
+                    "impacto_financiero": 5,
+                    "puntaje_total": 19,
+                    "prioridad": "Material",
+                    "ods": "3",
+                    "meta_ods": "3.9 Reducir considerablemente el número de muertes y enfermedades causadas por productos químicos.",
+                    "indicador_ods": "3.9.1 Tasa de mortalidad atribuible a productos químicos."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Salud y seguridad de los trabajadores",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Capacitar al personal en ergonomía y prevención de accidentes en bodega.",
+                    "accion_moderada": "Implementar protocolos y chequeos de salud ocupacional periódicos.",
+                    "accion_estructural": "Automatizar tareas repetitivas o de alto riesgo y rediseñar estaciones de trabajo centradas en el bienestar.",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 2,
+                    "probabilidad": 3,
+                    "alcance": 4,
+                    "impacto_esg": 4,
+                    "impacto_financiero": 3,
+                    "puntaje_total": 19,
+                    "prioridad": "Material",
+                    "ods": "8",
+                    "meta_ods": "8.8 Proteger los derechos laborales y promover entornos de trabajo seguros.",
+                    "indicador_ods": "8.8.1 Tasa de accidentes laborales mortales."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Residuos y reciclaje",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Separar residuos reciclables en tienda y oficinas administrativas.",
+                    "accion_moderada": "Establecer metas de reducción de residuos post-consumo y de empaque.",
+                    "accion_estructural": "Integrar logística inversa y rediseñar empaques y productos para economía circular (reutilizables, modulares, reparables).",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 3,
+                    "probabilidad": 4,
+                    "alcance": 4,
+                    "impacto_esg": 4,
+                    "impacto_financiero": 3,
+                    "puntaje_total": 18,
+                    "prioridad": "Material",
+                    "ods": "12",
+                    "meta_ods": "12.4 Lograr la gestión ecológicamente racional de los productos químicos.",
+                    "indicador_ods": "12.4.1 Número de partes en los acuerdos ambientales multilaterales."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Condiciones laborales",
+                    "materialidad_financiera": "Alta",
+                    "accion_marginal": "Realizar encuestas de satisfacción laboral en tiendas y bodegas.",
+                    "accion_moderada": "Establecer metas de bienestar laboral e indicadores de clima interno por área.",
+                    "accion_estructural": "Diseñar un modelo de gestión laboral con beneficios diferenciados, flexibilidad y participación activa de trabajadores.",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Corto",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 1,
+                    "probabilidad": 4,
+                    "alcance": 3,
+                    "impacto_esg": 4,
+                    "impacto_financiero": 5,
+                    "puntaje_total": 17,
+                    "prioridad": "Material",
+                    "ods": "8",
+                    "meta_ods": "8.5 Lograr el empleo pleno y productivo y el trabajo decente para todos.",
+                    "indicador_ods": "8.5.1 Tasa de desempleo de la población activa."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Impacto en las comunidades",
+                    "materialidad_financiera": "Media",
+                    "accion_marginal": "Donar productos no vendidos a organizaciones sociales.",
+                    "accion_moderada": "Establecer programas de formación o empleo joven en barrios donde operan tiendas.",
+                    "accion_estructural": "Rediseñar la estrategia territorial para fomentar valor económico local a través de proveedores y alianzas comunitarias.",
+                    "tipo_impacto": "Positivo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "Intencionado",
+                    "penetracion_impacto": "Reversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 1,
+                    "probabilidad": 3,
+                    "alcance": 3,
+                    "impacto_esg": 4,
+                    "impacto_financiero": 3,
+                    "puntaje_total": 14,
+                    "prioridad": "Material",
+                    "ods": "11",
+                    "meta_ods": "11.3 Aumentar la urbanización inclusiva y sostenible.",
+                    "indicador_ods": "11.3.1 Proporción de la población urbana que vive en asentamientos informales."
+                },
+                {
+                    "sector": "Retailing (Nonfood)",
+                    "tema": "Contaminación",
+                    "materialidad_financiera": "Baja",
+                    "accion_marginal": "Identificar y controlar derrames o emisiones en áreas de logística.",
+                    "accion_moderada": "Medir y reportar emisiones atmosféricas y de efluentes.",
+                    "accion_estructural": "Rediseñar procesos y materiales para eliminar fuentes de contaminación y mitigar pasivos históricos.",
+                    "tipo_impacto": "Negativo",
+                    "potencialidad_impacto": "Real",
+                    "horizonte_impacto": "Largo",
+                    "intencionalidad_impacto": "No intencionado",
+                    "penetracion_impacto": "Irreversible",
+                    "grado_implicacion": "Directo",
+                    "gravedad": 4,
+                    "probabilidad": 3,
+                    "alcance": 4,
+                    "impacto_esg": 3,
+                    "impacto_financiero": 0,
+                    "puntaje_total": 14,
+                    "prioridad": "Material",
+                    "ods": "14",
+                    "meta_ods": "14.1 Prevenir y reducir significativamente la contaminación marina.",
+                    "indicador_ods": "14.1.1 Índice de eutrofización costera."
+                }
+            ]
+        },
+        "thread_id": "thread_CVnRoTZ9Z9UBupIOiojwpWUp"
+    },
+    {
+        "name": "🔹 Prompt 7: Mapeo de Contenidos GRI",
+        "response_content": {
+            "gri": [
+                {
+                    "estandar_gri": "GRI 305: Emissions 2016",
+                    "contenido_gri": "305-1 Direct (Scope 1) GHG emissions",
+                    "descripcion_indicador": "The organization shall: a. report gross direct (Scope 1) GHG emissions in metric tons of CO₂ equivalent; b. report GHG emissions separately for each gas (CO₂, CH₄, N₂O, HFCs, PFCs, SF₆, NF₃), in metric tons of CO₂ equivalent; c. report biogenic CO₂ emissions in metric tons of CO₂ equivalent; d. describe the methodologies, assumptions, and emission factors used."
+                },
+                {
+                    "estandar_gri": "GRI 301: Materials 2016",
+                    "contenido_gri": "301-1 Materials used by weight or volume",
+                    "descripcion_indicador": "The organization shall: a. report the total weight or volume of materials that are used to produce and package the organization’s primary products and services during the reporting period, by: i. non-renewable materials used; ii. renewable materials used."
+                },
+                {
+                    "estandar_gri": "GRI 417: Marketing and Labeling 2016",
+                    "contenido_gri": "417-1 Requirements for product and service information and labeling",
+                    "descripcion_indicador": "The organization shall: a. report whether each of the following types of information is required by the organization’s procedures for product and service information and labeling: i. the sourcing of components of the product or service; ii. content, particularly with regard to substances that might produce an environmental or social impact; iii. safe use of the product or service; iv. disposal of the product and environmental/social impacts; v. other (explain); b. report the percentage of significant product or service categories covered by and assessed for compliance with such procedures."
+                },
+                {
+                    "estandar_gri": "GRI 403: Occupational Health and Safety 2018",
+                    "contenido_gri": "403-1 Occupational health and safety management system",
+                    "descripcion_indicador": "The organization shall: a. describe the occupational health and safety management system, including whether it has been implemented according to legal requirements and/or recognized standards or guidelines; b. describe the scope of workers covered by the system, and how it is applied across the organization."
+                },
+                {
+                    "estandar_gri": "GRI 413: Local Communities 2016",
+                    "contenido_gri": "413-1 Operations with local community engagement, impact assessments, and development programs",
+                    "descripcion_indicador": "The organization shall: a. report the percentage of operations with implemented local community engagement, impact assessments, and development programs, including: i. social impact assessments, including gender impact assessments, based on participatory processes; ii. environmental impact assessments and ongoing monitoring; iii. public disclosure of results of environmental and social impact assessments; iv. local community development programs based on local communities’ needs; v. stakeholder engagement plans based on stakeholder mapping; vi. broad based local community consultation committees and processes that include vulnerable groups; vii. works councils, occupational health and safety committees and other employee representation bodies to deal with impacts; viii. formal local community grievance processes."
+                },
+                {
+                    "estandar_gri": "GRI 306: Effluents and Waste 2016",
+                    "contenido_gri": "306-2 Management of significant waste-related impacts",
+                    "descripcion_indicador": "The organization shall: a. describe the actions taken to prevent waste generation and to manage significant impacts from waste generated, including: i. waste prevention; ii. reuse, recycling, and recovery practices; iii. disposal methods."
+                },
+                {
+                    "estandar_gri": "GRI 404: Training and Education 2016",
+                    "contenido_gri": "404-3 Percentage of employees receiving regular performance and career development reviews",
+                    "descripcion_indicador": "The organization shall: a. report the percentage of total employees by gender and by employee category who received a regular performance and career development review during the reporting period."
+                },
+                {
+                    "estandar_gri": "GRI 408: Child Labor 2016",
+                    "contenido_gri": "408-1 Operations and suppliers at significant risk for incidents of child labor",
+                    "descripcion_indicador": "The organization shall: a. report operations and suppliers considered to have significant risk for incidents of child labor, either in terms of: i. type of operation (such as manufacturing plant) and supplier; ii. country or geographic location with operations or suppliers considered at risk; b. describe measures taken by the organization to contribute to the effective abolition of child labor."
+                },
+                {
+                    "estandar_gri": "GRI 409: Forced or Compulsory Labor 2016",
+                    "contenido_gri": "409-1 Operations and suppliers at significant risk for incidents of forced or compulsory labor",
+                    "descripcion_indicador": "The organization shall: a. report operations and suppliers considered to have significant risk for incidents of forced or compulsory labor, either in terms of: i. type of operation (such as manufacturing plant) and supplier; ii. country or geographic location with operations or suppliers considered at risk; b. describe measures taken by the organization to contribute to the elimination of all forms of forced or compulsory labor."
+                }
+            ]
+        },
+        "thread_id": "thread_CVnRoTZ9Z9UBupIOiojwpWUp"
+    },
+    {
+        "name": "🔹 Prompt 8: Mapeo SASB Sectorial",
+        "response_content": {
+            "mapeo_sasb": [
+                {
+                    "sector_s&p": "Retailing (Nonfood)",
+                    "industria_sasb": "Retail - Nonfood"
+                },
+                {
+                    "sector_s&p": "Retailing (Food)",
+                    "industria_sasb": "Retail - Food"
+                }
+            ]
+        },
+        "thread_id": "thread_CVnRoTZ9Z9UBupIOiojwpWUp"
+    },
+    {
+        "name": "🔹 Prompt 9: Tabla SASB Sectorial",
+        "response_content": {
+            "tabla_sasb": [
+                {
+                    "industria": "Retail - Nonfood",
+                    "tema": "Emisiones de gases de efecto invernadero",
+                    "parametro_contabilidad": "Emisiones mundiales brutas de alcance 1, porcentaje cubierto por las regulaciones de limitación de emisiones",
+                    "categoria": "Cuantitativo",
+                    "unidad_medida": "Toneladas métricas (t) de CO2-e, porcentaje (%)",
+                    "codigo": "EM-IS-110a.1"
+                },
+                {
+                    "industria": "Retail - Nonfood",
+                    "tema": "Gestión de residuos",
+                    "parametro_contabilidad": "Cantidad total de residuos generados, porcentaje de peligrosos, porcentaje de reciclados",
+                    "categoria": "Cuantitativo",
+                    "unidad_medida": "Toneladas métricas (t), porcentaje (%)",
+                    "codigo": "EM-IS-150a.1"
+                },
+                {
+                    "industria": "Retail - Nonfood",
+                    "tema": "Salud y seguridad de la fuerza laboral",
+                    "parametro_contabilidad": "Tasa total de incidentes registrables (TRIR), tasa de mortalidad y tasa de frecuencia de cuasi accidentes (NMFR) para empleados a tiempo completo",
+                    "categoria": "Cuantitativo",
+                    "unidad_medida": "Velocidad",
+                    "codigo": "EM-IS-320a.1"
+                },
+                {
+                    "industria": "Retail - Food",
+                    "tema": "Emisiones de gases de efecto invernadero",
+                    "parametro_contabilidad": "Emisiones mundiales brutas de alcance 1, porcentaje cubierto por las regulaciones de limitación de emisiones",
+                    "categoria": "Cuantitativo",
+                    "unidad_medida": "Toneladas métricas (t) de CO2-e, porcentaje (%)",
+                    "codigo": "FB-IS-110a.1"
+                },
+                {
+                    "industria": "Retail - Food",
+                    "tema": "Gestión de residuos",
+                    "parametro_contabilidad": "Cantidad total de residuos generados, porcentaje de peligrosos, porcentaje de reciclados",
+                    "categoria": "Cuantitativo",
+                    "unidad_medida": "Toneladas métricas (t), porcentaje (%)",
+                    "codigo": "FB-IS-150a.1"
+                },
+                {
+                    "industria": "Retail - Food",
+                    "tema": "Salud y seguridad de la fuerza laboral",
+                    "parametro_contabilidad": "Tasa total de incidentes registrables (TRIR), tasa de mortalidad y tasa de frecuencia de cuasi accidentes (NMFR) para empleados a tiempo completo",
+                    "categoria": "Cuantitativo",
+                    "unidad_medida": "Velocidad",
+                    "codigo": "FB-IS-320a.1"
+                }
+            ]
+        },
+        "thread_id": "thread_CVnRoTZ9Z9UBupIOiojwpWUp"
+    },
+    {
+        "name": "🔹 Prompt 10: Vinculación Normativa por Tema Material (GAIL)",
+        "response_content": {
+            "regulaciones": [
+                {
+                    "tema_material": "Riesgo de transición climática",
+                    "tipo_regulacion": "Ambiental - Cambio Climático",
+                    "descripcion": "Ley 20780.- Articulo El artículo 8 establece un impuesto anual, a beneficio fiscal, para gravar las emisiones al aire de material particulado, óxidos de nitrógeno, dióxido de azufre y dióxido de carbono, que sean producidas por establecimientos cuyas fuentes emisoras, individualmente o en su conjunto, emitan 100 o más toneladas anuales de material particulado o 25.000 o más toneladas anuales de dióxido de carbono.",
+                    "vigencia": "Vigente",
+                    "relevancia": "Esta normativa está directamente vinculada al tema de riesgo de transición climática al establecer un impuesto sobre las emisiones de gases de efecto invernadero."
+                },
+                {
+                    "tema_material": "Productos y servicios sostenibles",
+                    "tipo_regulacion": "Ambiental - Fomento a la Economía Circular",
+                    "descripcion": "Resolución 359 exenta .- Aprueba documento de declaración de residuos peligrosos.",
+                    "vigencia": "Vigente",
+                    "relevancia": "La regulación promueve la gestión adecuada de los residuos, lo que está alineado con la sostenibilidad de productos y servicios."
+                },
+                {
+                    "tema_material": "Protección de la privacidad",
+                    "tipo_regulacion": "Normas ESG - Regulador Financiero",
+                    "descripcion": "Ley 19.628 sobre protección de la vida privada, establece normas sobre el tratamiento de datos personales.",
+                    "vigencia": "Vigente",
+                    "relevancia": "Esta ley es fundamental para la protección de datos personales, lo que se relaciona directamente con el tema de privacidad y protección de datos."
+                },
+                {
+                    "tema_material": "Prácticas laborales",
+                    "tipo_regulacion": "Normas ESG - Regulador Financiero",
+                    "descripcion": "Ley 20.940 que modifica el Código del Trabajo para mejorar las condiciones laborales y la protección de los trabajadores.",
+                    "vigencia": "Vigente",
+                    "relevancia": "Esta ley aborda aspectos clave de las prácticas laborales y la protección de los derechos de los trabajadores."
+                },
+                {
+                    "tema_material": "Salud y seguridad del cliente",
+                    "tipo_regulacion": "Normas ESG - Regulador Financiero",
+                    "descripcion": "Ley 19.496 sobre protección de los derechos de los consumidores, que incluye regulaciones sobre la seguridad de los productos.",
+                    "vigencia": "Vigente",
+                    "relevancia": "Esta normativa es esencial para asegurar la salud y seguridad de los consumidores en el uso de productos y servicios."
+                },
+                {
+                    "tema_material": "Salud y seguridad de los trabajadores",
+                    "tipo_regulacion": "Normas ESG - Regulador Financiero",
+                    "descripcion": "Ley 16.744 sobre accidentes del trabajo y enfermedades profesionales, que establece el sistema de prevención y cobertura de salud para trabajadores.",
+                    "vigencia": "Vigente",
+                    "relevancia": "Esta ley es crucial para garantizar la salud y seguridad de los trabajadores en el ámbito laboral."
+                },
+                {
+                    "tema_material": "Residuos y reciclaje",
+                    "tipo_regulacion": "Ambiental - Fomento a la Economía Circular",
+                    "descripcion": "Ley 20.920 sobre gestión de residuos, que establece principios y normas para la gestión de residuos y fomento al reciclaje.",
+                    "vigencia": "Vigente",
+                    "relevancia": "Esta ley es fundamental para la gestión de residuos y reciclaje, alineándose con el tema de residuos y reciclaje."
+                },
+                {
+                    "tema_material": "Condiciones laborales",
+                    "tipo_regulacion": "Normas ESG - Regulador Financiero",
+                    "descripcion": "Ley 21.015 que establece normas sobre inclusión laboral de personas con discapacidad.",
+                    "vigencia": "Vigente",
+                    "relevancia": "Esta ley busca mejorar las condiciones laborales y la inclusión de grupos vulnerables en el ámbito laboral."
+                },
+                {
+                    "tema_material": "Impacto en las comunidades",
+                    "tipo_regulacion": "Normas ESG - Regulador Financiero",
+                    "descripcion": "Ley 21.000 que establece normas para la consulta y participación de comunidades en proyectos que puedan afectar su entorno.",
+                    "vigencia": "Vigente",
+                    "relevancia": "Esta normativa es clave para asegurar que las comunidades tengan voz en los proyectos que les afectan, alineándose con el impacto en las comunidades."
+                },
+                {
+                    "tema_material": "Contaminación",
+                    "tipo_regulacion": "Ambiental - Cambio Climático",
+                    "descripcion": "Ley 20.780 que establece un régimen de impuestos a las emisiones de gases de efecto invernadero.",
+                    "vigencia": "Vigente",
+                    "relevancia": "Esta ley está directamente relacionada con la regulación de la contaminación y las emisiones, abordando el tema de contaminación."
+                }
+            ]
+        },
+        "thread_id": "thread_CVnRoTZ9Z9UBupIOiojwpWUp"
+    },
+    {
+        "name": "🔹 Prompt 11: Estrategia de Sostenibilidad (Resumen Ejecutivo)",
+        "response_content": {
+            "parrafo_1": "Basado en el análisis de doble materialidad realizado, se recomienda que Mercado Libre Chile Ltda. implemente acciones inmediatas para ajustar su operación, tales como la realización de encuestas de satisfacción laboral y el refuerzo de protocolos de seguridad en tiendas. A mediano plazo, se sugiere integrar auditorías laborales a contratistas y realizar capacitaciones en atención a emergencias, asegurando así un entorno de trabajo seguro y saludable. Además, la empresa debe avanzar en la implementación de políticas de marketing responsable y en la gestión de residuos, lo que contribuirá a mejorar su imagen y relación con los consumidores.",
+            "parrafo_2": "A largo plazo, es fundamental que Mercado Libre Chile Ltda. transforme su modelo de negocio hacia la sostenibilidad, desarrollando marcas propias con trazabilidad ambiental y social, y estableciendo un sistema robusto de gestión de emisiones de gases de efecto invernadero. La inclusión de personas con discapacidad en su plantilla laboral y la consulta activa a comunidades afectadas por su operación son pasos clave para fortalecer su compromiso social. Estas acciones no solo alinearán a la empresa con las expectativas de los stakeholders, sino que también potenciarán su competitividad en un mercado cada vez más exigente en términos de sostenibilidad."
+        },
+        "thread_id": "thread_CVnRoTZ9Z9UBupIOiojwpWUp"
+    }
+]

@@ -45,7 +45,11 @@ ENVIRONMENT=development
 ### 2. Instalación de Dependencias
 
 ```bash
+py -3.11 -m venv venv
+.\venv\Scripts\activate
+pip install --upgrade pip setuptools wheel
 pip install -r requirements.txt
+python -c "import weasyprint, zstandard, langchain; print('✅ Todo OK')"
 ```
 
 ## 🏃‍♂️ Ejecutar el proyecto
@@ -78,23 +82,6 @@ El servidor estará disponible en: `http://localhost:8000`
 - **GET /docs** - Documentación interactiva (Swagger UI)
 - **GET /redoc** - Documentación alternativa (ReDoc)
 
-### Usuarios (`/api/users`)
-
-- **POST /api/users/** - Crear usuario
-- **GET /api/users/{user_id}** - Obtener usuario por ID
-- **GET /api/users/** - Listar todos los usuarios
-- **PUT /api/users/{user_id}** - Actualizar usuario
-- **DELETE /api/users/{user_id}** - Eliminar usuario
-- **GET /api/users/{user_id}/organizations** - Listar organizaciones de un usuario
-
-### Organizaciones (`/api/organizations`)
-
-- **POST /api/organizations/** - Crear organización
-- **GET /api/organizations/{org_id}** - Obtener organización por ID
-- **GET /api/organizations/** - Listar todas las organizaciones
-- **GET /api/organizations/owner/{owner_id}** - Listar organizaciones por propietario
-- **PUT /api/organizations/{org_id}** - Actualizar organización
-- **DELETE /api/organizations/{org_id}** - Eliminar organización
 
 ### Análisis ESG (`/api/esg`)
 
@@ -116,30 +103,13 @@ adaptia--backend/
 │   ├── api/                          # API endpoints
 │   │   ├── router.py                 # Router principal
 │   │   └── routes/                   # Rutas organizadas por módulo
-│   │       ├── auth.py               # Autenticación (pendiente)
-│   │       ├── users.py              # Gestión de usuarios
-│   │       ├── organizations.py      # Gestión de organizaciones
-│   │       ├── analyses.py           # Análisis (pendiente)
-│   │       ├── payments.py           # Pagos (pendiente)
 │   │       └── esg.py                # Análisis ESG
 │   │
 │   ├── core/                         # Configuraciones core
 │   │   ├── config.py                 # Settings y configuración
 │   │   └── database.py               # Configuración de base de datos
 │   │
-│   ├── models/                       # Modelos de base de datos (SQLAlchemy)
-│   │   ├── user.py                   # Modelo de Usuario
-│   │   ├── organization.py           # Modelo de Organización
-│   │   └── analysis.py               # Modelo de Análisis (Pydantic)
-│   │
-│   ├── schemas/                      # Schemas de validación (Pydantic)
-│   │   ├── user.py                   # Schemas de Usuario
-│   │   └── organization.py           # Schemas de Organización
-│   │
 │   ├── services/                     # Lógica de negocio
-│   │   ├── auth_service.py           # Servicio de autenticación
-│   │   ├── user_service.py           # Servicio de usuarios
-│   │   ├── organization_service.py   # Servicio de organizaciones
 │   │   │
 │   │   ├── langchain/                # Workflows de LangChain
 │   │   │   ├── prompts.py            # Prompts para análisis ESG

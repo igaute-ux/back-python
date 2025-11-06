@@ -6,62 +6,109 @@ prompt_1 = PromptTemplate(
     name="🔹 Prompt 1: Contexto organizacional y Sectorial",
     input_variables=["organization_name", "country", "website"],
     template="""
-        🔹 Prompt 1: Contexto organizacional y Sectorial
-        Objetivo:
-        Recopilar información clave y contextual de la empresa para fundamentar el análisis de doble materialidad.
-        Información de la empresa: 
-        Nombre de empresa: {organization_name}
-        País de operación por ser analizado: {country}
-        Website de la empresa: {website}
-        Instrucciones:
-        Utilizando la información proporcionada y complementándola con fuentes públicas, genera un análisis contextual de la empresa que sirva como base para el análisis de doble materialidad. El análisis debe incluir todos los siguientes elementos: 
-        Nombre de la empresa – Nombre legal o comercial.
-        País de operación – País principal donde opera o sede.
-        Industria - Según lo anteriormente mencionado
-        Tamaño de empresa – Micro / Pequeña / Mediana / Grande / Multinacional.
-        Ubicación geográfica – Región o ciudad donde opera.
-        Modelo de negocio – Breve descripción del producto/servicio y propuesta de valor.
-        Cadena de valor – Áreas clave: producción, distribución, clientes, proveedores, etc.
-        Actividades principales – Procesos operativos clave que generan impacto ambiental o social (por ejemplo: manufactura, logística, atención al cliente).
-        Nivel de madurez ESG – ¿Se tienen reportes, artículos o informes públicos en línea? 
-        Stakeholders relevantes – Grupos de interés prioritarios: clientes, comunidades, reguladores, inversionistas, proveedores.
-        Es importante que la respuesta venga en el siguiente formato JSON y SOLO me entregues el JSON en la respuesta: {{ "nombre_empresa": "string", "pais_operacion": "string", "industria": "string", "tamano_empresa": "string", "ubicacion_geografica": "string", "modelo_negocio": "string", "cadena_valor": "string", "actividades_principales": "string", "madurez_esg": "string", "stakeholders_relevantes": "string" }}
+        Eres un analista experto en sostenibilidad y ESG.
+        Debes generar un JSON estructurado y detallado con información contextual de la empresa indicada.
+        Esta información servirá como base para el análisis de doble materialidad.
+
+        📊 Datos de entrada:
+        - Nombre de empresa: {organization_name}
+        - País: {country}
+        - Website: {website}
+
+        🧭 Instrucciones obligatorias:
+        1. Devuelve únicamente un JSON válido. No incluyas títulos, explicaciones, comentarios ni texto adicional fuera del JSON.
+        2. Usa información pública o inferida para completar cada campo con **detalle suficiente y específico**.
+        3. Si no hay información exacta disponible, infiere una descripción razonable y completa basada en el sector.
+        4. Cada campo debe cumplir estrictamente con un **mínimo de caracteres**, para garantizar un nivel adecuado de profundidad:
+           - nombre_empresa → mínimo 30 caracteres
+           - pais_operacion → mínimo 40 caracteres
+           - industria → mínimo 60 caracteres
+           - tamano_empresa → mínimo 40 caracteres
+           - ubicacion_geografica → mínimo 100 caracteres
+           - modelo_negocio → mínimo 150 caracteres
+           - cadena_valor → mínimo 200 caracteres
+           - actividades_principales → mínimo 200 caracteres
+           - madurez_esg → mínimo 100 caracteres
+           - stakeholders_relevantes → mínimo 200 caracteres
+        5. Evita respuestas genéricas como "Chile" o "e-commerce" sin contexto adicional.
+
+        🔒 Formato específico para "pais_operacion":
+        - Debe **comenzar exactamente** por: "{country}. "
+        - Después de ese punto y espacio, describe la modalidad: p. ej. "Operación local integrada al ecosistema regional de X (multipaís en LATAM)" o "Operación nacional con proyección andina", etc.
+        - **Prohibido**: descripciones geográficas del país (p.ej. "un país ubicado en..."), adjetivos turísticos o macroeconómicos generales.
+        - **Ejemplo válido** (solo como guía, NO copiar literal):
+          "{country}. Operación local integrada al ecosistema regional de MercadoLibre, Inc. (multipaís en LATAM)."
+
+        📝 Detalles esperados por campo:
+        - “industria”: incluir subsectores relevantes si aplica.
+        - “ubicacion_geografica”: detallar ciudad, región y ubicaciones operativas clave.
+        - “modelo_negocio”: describir propuesta de valor, integración de servicios o productos y modelo operativo.
+        - “cadena_valor”: desglosar en etapas claras (por ejemplo: sourcing, marketplace, pagos, logística, postventa).
+        - “actividades_principales”: describir procesos operativos que generan impactos ambientales y sociales.
+        - “stakeholders_relevantes”: listar por categorías específicas (clientes, proveedores, comunidades, reguladores, inversionistas, etc.).
+
+        ⚠️ Si la longitud de cualquier campo es menor al mínimo indicado, considera la respuesta inválida y vuelve a generarla hasta cumplir estrictamente con los mínimos.
+        ⚠️ Si “pais_operacion” no inicia con "{country}. " o incluye descripciones geográficas del país, la respuesta es inválida y debes regenerarla.
+
+        📦 Formato de salida obligatorio (sin texto adicional):
+        {{
+          "nombre_empresa": "string",
+          "pais_operacion": "string",
+          "industria": "string",
+          "tamano_empresa": "string",
+          "ubicacion_geografica": "string",
+          "modelo_negocio": "string",
+          "cadena_valor": "string",
+          "actividades_principales": "string",
+          "madurez_esg": "string",
+          "stakeholders_relevantes": "string"
+        }}
     """
 )
+
 
 # Prompt 2: Identificación de Impactos (basado en S&P)
 prompt_2 = PromptTemplate(
     name="🔹 Prompt 2: Identificación de Impactos (basado en S&P)",
     template="""
-        🔹 Prompt 2: Identificación de Impactos (basado en S&P)
-        Objetivo:
-        Relacionar las actividades de la empresa con temas materiales utilizando los Materiality Maps de S&P y construir la base de la Materiality Table.
-        Instrucciones:
-        Utilizando la tabla “1. Acciones Materiality Map S&P V2 _ Julio 2025”, identifica los sectores S&P en los que opera la empresa (columna A).
-        Si la empresa participa en más de un sector, selecciona el sector S&P más representativo, según su volumen de operación o presencia.
-        Para ese sector, extrae los temas materiales y sus atributos directamente desde el Excel en exactamente el mismo formato y orden en el que estén en el excel, sin dejar fuera ningún tema asignado para el sector seleccionado.  
-        Genera una tabla consolidada que incluya las siguientes columnas:
-            - Sector
-            - Temas
-            - Materialidad financiera
-            - Acción marginal
-            - Acción moderada
-            - Acción estructural
-        Esta tabla será la base inicial para construir la Materiality Table del análisis de doble materialidad.
-        Es importante que la respuesta: identifique todos los sectores posibles que encuentre, minimo 15 resultados; venga en el siguiente formato JSON y SOLO me entregues el JSON en la respuesta: {{
+        Eres un analista ESG especializado en materialidad sectorial. 
+        Tu tarea es identificar y listar temas materiales relevantes para el sector S&P en el que opera la empresa, utilizando la tabla “1. Acciones Materiality Map S&P V2 _ Julio 2025”.
+
+        📊 INSTRUCCIONES ESTRICTAS:
+        1. Identifica todos los temas materiales correspondientes al sector S&P más representativo de la empresa.
+        2. Para cada tema, incluye las acciones Marginal, Moderada y Estructural **exactamente** como aparecen en el Excel base (sin reformular ni resumir).
+        3. La tabla debe contener como **mínimo 15 registros (filas)**. Este es un requerimiento obligatorio.
+           - Si en la primera generación obtienes menos de 15 filas, debes **ampliar automáticamente la búsqueda**:
+             • Usa temas relacionados de subsectores cercanos o equivalentes dentro del mismo sector.  
+             • Evita repeticiones exactas.
+        4. Si tras ampliar no existen más temas disponibles en la fuente original, agrega el campo adicional `"exhausted": true` y devuelve todos los registros disponibles.
+        5. Si sí existen más temas, debes completar la tabla hasta llegar a 15 filas. **No devuelvas menos de 15 filas sin `"exhausted": true"`.**
+        6. No devuelvas texto explicativo, comentarios ni Markdown. Solo JSON válido.
+
+        📌 Estructura requerida de salida:
+        {{
             "materiality_table": [
-                {
+                {{
                     "sector": "string",
                     "tema": "string",
                     "materialidad_financiera": "string",
                     "accion_marginal": "string",
                     "accion_moderada": "string",
                     "accion_estructural": "string"
-                }
-            ]
+                }}
+            ],
+            "exhausted": false
         }}
-    """,
+
+        ⚠️ IMPORTANTE:
+        - Si la cantidad de filas es menor a 15 y no devuelves `"exhausted": true`, la respuesta será inválida.
+        - Mantén el orden exacto de las columnas.
+        - No uses sinónimos ni resumas textos de la fuente.
+        - No devuelvas nada más que el JSON requerido.
+    """
 )
+
+
 
 # Prompt 2.1: Identificación de Impactos (basado en S&P)
 prompt_2_1 = PromptTemplate(
@@ -94,18 +141,25 @@ prompt_3 = PromptTemplate(
         🔹 Prompt 3: Evaluación de Impactos
         Objetivo:
         Analizar los temas materiales identificados en la Materiality Table y evaluar el tipo y características del impacto que genera la empresa sobre cada uno.
+
         Instrucciones:
         A la tabla generada en el prompt anterior, manteniendo toda su información, agrega las siguientes columnas y asigna la respuesta más adecuada para cada tema material, basándote en el contexto y operaciones de la empresa:
-        Tipo de impacto generado por la empresa – Positivo o negativo.
-        Potencialidad del impacto – Real o potencial.
-        Horizonte del impacto – Corto o largo plazo.
-        Intencionalidad del impacto – Intencionado o no intencionado.
-        Penetración del impacto – Reversible o irreversible.
-        Grado de implicación con el impacto – Directo o indirecto.
-        Esta evaluación permitirá enriquecer la Materiality Table con una visión más precisa de la naturaleza de los impactos ESG asociados a los temas materiales de la empresa.
-        Es importante que la respuesta venga en el siguiente formato JSON y SOLO me entregues el JSON en la respuesta: {{
+
+        - Tipo de impacto generado por la empresa → Positivo o negativo.
+        - Potencialidad del impacto → Real o potencial.
+        - Horizonte del impacto → Corto o largo plazo.
+        - Intencionalidad del impacto → Intencionado o no intencionado.
+        - Penetración del impacto → Reversible o irreversible.
+        - Grado de implicación con el impacto → Directo o indirecto.
+
+        📝 Además:
+        Incluye al final del JSON un campo adicional `resumen_sector` que contenga un párrafo breve y claro (mínimo 50 caracteres) que explique por qué se seleccionó este sector S&P para la empresa analizada. 
+        Este texto debe referirse al tipo de operaciones, mercado o modelo de negocio que justifican esta selección sectorial.
+
+        📦 Formato de salida obligatorio (sin texto adicional):
+        {{
             "materiality_table": [
-                {
+                {{
                     "sector": "string",
                     "tema": "string",
                     "materialidad_financiera": "string",
@@ -118,11 +172,18 @@ prompt_3 = PromptTemplate(
                     "intencionalidad_impacto": "string",
                     "penetracion_impacto": "string",
                     "grado_implicacion": "string"
-                }
-            ]
+                }}
+            ],
+            "resumen_sector": "string"
         }}
+
+        ⚠️ Importante:
+        - No elimines columnas previas.
+        - No devuelvas texto adicional ni explicaciones fuera del JSON.
+        - El campo "resumen_sector" debe contener un texto conciso que resuma la justificación sectorial.
     """
 )
+
 
 # Prompt 4: Análisis de doble materialidad
 prompt_4 = PromptTemplate(
@@ -131,8 +192,10 @@ prompt_4 = PromptTemplate(
         🔹 Prompt 4: Evaluación de Impactos (doble materialidad)
         Objetivo:
         Priorizar los impactos asociados a cada tema material utilizando una evaluación combinada de criterios ESG y financieros.
+
         Instrucciones:
-        A la tabla generada anteriormente (Materiality Table),  manteniendo toda su información, agrega las siguientes 6 columnas y asigna el valor correspondiente a cada tema material con base en su impacto:
+        A la tabla generada anteriormente (Materiality Table), manteniendo toda su información, agrega las siguientes 6 columnas y asigna el valor correspondiente a cada tema material con base en su impacto:
+
         - Gravedad – Evalúa la severidad del impacto negativo.
         Escala:
         0 = Nada negativo
@@ -141,6 +204,7 @@ prompt_4 = PromptTemplate(
         3 = Moderadamente negativo
         4 = Muy negativo
         5 = Extremadamente negativo
+
         - Probabilidad – Evalúa qué tan probable es que ocurra el impacto.
         Escala:
         0 = Nada probable
@@ -149,6 +213,7 @@ prompt_4 = PromptTemplate(
         3 = Moderadamente probable
         4 = Muy probable
         5 = Extremadamente probable
+
         - Alcance – Evalúa qué tan amplio es el impacto en términos de personas, áreas o procesos afectados.
         Escala:
         0 = Nada de alcance
@@ -157,6 +222,7 @@ prompt_4 = PromptTemplate(
         3 = Moderado alcance
         4 = Mucho alcance
         5 = Alcance extremo
+
         - Impacto ESG – Evalúa el nivel de impacto que el tema tiene dentro o fuera de la empresa en aspectos sociales, ambientales o de gobernanza, sin considerar el efecto financiero.
         Escala:
         0 = Ningún impacto
@@ -165,14 +231,22 @@ prompt_4 = PromptTemplate(
         3 = Impacto moderado
         4 = Alto impacto
         5 = Impacto extremo
+
         - Impacto financiero – Asigna un valor numérico a partir de la columna “Materialidad financiera” de la Materiality Table:
         “Baja” = 0
         “Media” = 3
         “Alta” = 5
+
         - Puntaje total – Calcula la suma de los cinco criterios anteriores. Este puntaje será usado para priorizar los temas materiales en el siguiente paso.
-        Es importante que la respuesta venga en el siguiente formato JSON y SOLO me entregues el JSON en la respuesta: {{
+
+        📝 Además:
+        Incluye al final del JSON un campo adicional `resumen_sector` que contenga un párrafo breve y claro (mínimo 50 caracteres) que explique por qué se seleccionó este sector para la empresa analizada. 
+        Este texto debe referirse a su modelo de negocio, alcance operativo o exposición a riesgos/impactos que justifican la evaluación de doble materialidad.
+
+        📦 Formato de salida obligatorio (sin texto adicional):
+        {{
             "materiality_table": [
-                {
+                {{
                     "sector": "string",
                     "tema": "string",
                     "materialidad_financiera": "string",
@@ -191,9 +265,15 @@ prompt_4 = PromptTemplate(
                     "impacto_esg": integer,
                     "impacto_financiero": integer,
                     "puntaje_total": integer
-                }
-            ]
+                }}
+            ],
+            "resumen_sector": "string"
         }}
+
+        ⚠️ Importante:
+        - No elimines columnas previas.
+        - No devuelvas texto adicional ni explicaciones fuera del JSON.
+        - El campo "resumen_sector" debe contener un texto conciso que resuma la justificación sectorial.
     """
 )
 
@@ -366,21 +446,37 @@ prompt_8 = PromptTemplate(
 prompt_9 = PromptTemplate(
     name="🔹 Prompt 9: Tabla SASB Sectorial",
     template="""
-        🔹 Prompt 9: Tabla SASB Sectorial. Objetivo: Detallar los temas, métricas y códigos SASB aplicables a las industrias seleccionadas previamente. Instrucciones: Utilizando el documento “5. Lista estándares SASB _ Noviembre 2024”, identifica todas las filas correspondientes a las industrias SASB relevantes definidas en el paso anterior. A partir de esa información, genera una tabla que incluya las siguientes columnas tal como aparecen en el Excel: - Industria - Tema - Parámetro de contabilidad - Categoría - Unidad de medida - Código. Extrae los datos directamente del archivo, sin modificar su redacción ni estructura. Incluye todas las filas relevantes para cada industria SASB seleccionada, ya que esta tabla servirá como insumo para el siguiente paso de asignación de estándares.
-        Es importante que la respuesta venga en el siguiente formato JSON y SOLO me entregues el JSON en la respuesta: {{
+        🔹 Prompt 9: Tabla SASB Sectorial
+        Objetivo:
+        Detallar todos los temas, métricas y códigos SASB aplicables a las industrias seleccionadas previamente.
+
+        Instrucciones:
+        Utilizando el documento “5. Lista estándares SASB _ Noviembre 2024”, identifica **todas las filas correspondientes** a las industrias SASB relevantes definidas en el paso anterior (máximo 2 industrias, definidas en el Prompt 8).
+
+        ⚠️ Importante:
+        - Incluye **todas** las filas relevantes para cada industria SASB seleccionada.
+        - **No limites** la respuesta a un número específico de filas.
+        - No agrupes, resumas ni combines registros.
+        - Respeta exactamente la redacción y estructura original del Excel.
+        - El resultado debe ser extenso si hay muchos indicadores asociados.
+        - Esta tabla servirá como insumo para la asignación de estándares, por lo que debe ser completa y detallada.
+
+        📦 Formato de salida obligatorio (sin texto adicional):
+        {{
             "tabla_sasb": [
-                {
+                {{
                     "industria": "string",
                     "tema": "string",
                     "parametro_contabilidad": "string",
                     "categoria": "string",
                     "unidad_medida": "string",
                     "codigo": "string"
-                }
+                }}
             ]
         }}
     """,
 )
+
 
 #Prompt 10: Vinculación Normativa por Tema Material (GAIL)
 prompt_10 = PromptTemplate(

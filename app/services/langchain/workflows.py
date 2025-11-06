@@ -4,6 +4,8 @@ from app.services.langchain.prompts import *
 from app.utils.json_formatter import clean_and_parse_json
 from app.core.config import settings
 from langchain_community.agents.openai_assistant import OpenAIAssistantV2Runnable
+import re 
+import json 
 
 os.environ["OPENAI_API_KEY"] = settings.OPENAI_API_KEY
 
@@ -12,142 +14,195 @@ assistant = OpenAIAssistantV2Runnable(
     tools=[{"type": "code_interpreter", "file_ids": ["file-4utrNkHFDne6Egt6VZYrJK","file-NsDHe3whUTGZcEUt6k9Z5y","file-7YCPdsm2cPpGy6XLGtqbXe","file-4v5rfFJJowrhB1iTAziqRv","file-8JBPLJoGWWNTo6PAJfr22J","file-N4f3A6PBVuv8VZnGRYWaje"]}],
 )
 
-async def run_assistant_test(organization_name: str, country: str, website: str) -> str:
-    pipeline_responses = []
+MIN_LENGTHS = {
+    "nombre_empresa": 24,
+    "pais_operacion": 40,
+    "industria": 60,
+    "tamano_empresa": 40,
+    "ubicacion_geografica": 100,
+    "modelo_negocio": 150,
+    "cadena_valor": 200,
+    "actividades_principales": 200,
+    "madurez_esg": 100,
+    "stakeholders_relevantes": 200,
+}
 
-    context_response = assistant.invoke({
-        "content": prompt_1.format(organization_name=organization_name, country=country, website=website)
-    })
+MAX_RETRIES_PROMPT_2 = 10
+MIN_ROWS_PROMPT_2 = 14
 
-    context_response_content = context_response[0].content[0].text.value
-    context_response_content = clean_and_parse_json(context_response_content)
-    thread_id = context_response[0].thread_id
-    pipeline_responses.append({"context_response_content": context_response_content, "thread_id": thread_id})
+def validate_min_lengths(data: dict):
+    errors = []
+    for key, min_len in MIN_LENGTHS.items():
+        if len(data.get(key, "")) < min_len:
+            errors.append(f"{key} (len {len(data.get(key,''))} < {min_len})")
+    return errors
+
+
     
-    impact_response = assistant.invoke({
-        "content": prompt_2.template,
-        "thread_id": thread_id
+def try_fix_json(raw_text: str):
+    """
+    Intenta parsear el JSON incluso si falta una coma o hay errores menores.
+    """
+    try:
+        return json.loads(raw_text)
+    except json.JSONDecodeError as e:
+        print(f"⚠️ Error de parseo: {e}")
+        fixed = re.sub(r'"\s*([A-Za-z0-9_]+)"\s*:', r', "\1":', raw_text)
+        fixed = re.sub(r'^{\s*,', '{', fixed)
+        try:
+            return json.loads(fixed)
+        except Exception as e2:
+            print(f"❌ No se pudo corregir JSON: {e2}")
+            raise
+
+
+async def run_esg_analysis_test(organization_name: str, country: str, website: str):
+    """
+    Ejecuta solo Prompt 1 y devuelve un pipeline_data simple.
+    No genera PDF ni procesa otros prompts.
+    """
+    print(f"🚀 Ejecutando test rápido ESG para {organization_name}")
+
+    # 🧭 Prompt 1
+    response = assistant.invoke({
+        "content": prompt_1.format(
+            organization_name=organization_name,
+            country=country,
+            website=website
+        )
     })
 
-    impact_response_content = impact_response[0].content[0].text.value
-    impact_response_content = clean_and_parse_json(impact_response_content)
-    thread_id = impact_response[0].thread_id
-    pipeline_responses.append({"impact_response_content": impact_response_content, "thread_id": thread_id})
+    raw_output = response[0].content[0].text.value.strip()
+    parsed_json = clean_and_parse_json(raw_output)
+    print("✅ Prompt 1 completado")
 
-    impact_response_1 = assistant.invoke({
-        "content": prompt_2_1.template,
-        "thread_id": thread_id
-    })
-    impact_response_1_content = impact_response_1[0].content[0].text.value
-    impact_response_1_content = clean_and_parse_json(impact_response_1_content)
-    thread_id = impact_response_1[0].thread_id
-    pipeline_responses.append({"impact_response_1_content": impact_response_1_content, "thread_id": thread_id})
+    # Generamos pipeline mínimo con solo Prompt 1 y el resto vacío
+    pipeline_data = [{"name": "Prompt 1", "response_content": parsed_json}]
+    for i in range(10):
+        pipeline_data.append({"name": f"Prompt {i+2}", "response_content": {}})
 
-    # materiality_response = assistant.invoke({
-    #     "content": prompt_3.template,
-    #     "thread_id": thread_id
-    # })
-
-    # materiality_response_content = materiality_response[0].content[0].text.value
-    # thread_id = materiality_response[0].thread_id
-    # pipeline_responses.append({"materiality_response_content": materiality_response_content, "thread_id": thread_id})
-
-    return {"response_content": pipeline_responses}
-
+    return pipeline_data
 async def run_esg_analysis(organization_name: str, country: str, website: str) -> str:
     """
-    Ejecuta el análisis ESG completo con delays simples cada dos prompts.
+    Ejecuta el análisis ESG completo solo una vez.
+    ✅ Prompt 2 mantiene reintentos internos para alcanzar las filas mínimas.
+    ❌ No hay reintentos globales.
     """
     responses = []
     thread_id = None
-    
-    prompts_config = [
-        {
-            "prompt": prompt_1,
-            "content": prompt_1.format(organization_name=organization_name, country=country, website=website),
-        },
-        {
-            "prompt": prompt_2,
-            "content": prompt_2.template,
-        },
-        {
-            "prompt": prompt_3,
-            "content": prompt_3.template,
-        },
-        {
-            "prompt": prompt_4,
-            "content": prompt_4.template,
-        },
-        {
-            "prompt": prompt_5,
-            "content": prompt_5.template,
-        },
-        {
-            "prompt": prompt_6,
-            "content": prompt_6.template,
-        },
-        {
-            "prompt": prompt_7,
-            "content": prompt_7.template,
-        },
-        {
-            "prompt": prompt_8,
-            "content": prompt_8.template,
-        },
-        {
-            "prompt": prompt_9,
-            "content": prompt_9.template,
-        },
-        {
-            "prompt": prompt_10,
-            "content": prompt_10.template,
-        },
-        {
-            "prompt": prompt_11,
-            "content": prompt_11.template,
-        }
-    ]
-    
-    print(f"🚀 Iniciando análisis ESG para {organization_name}")
-    print(f"📊 Total de prompts a ejecutar: {len(prompts_config)}")
-    
-    for i, config in enumerate(prompts_config, 1):
-        prompt = config["prompt"]
-        content = config["content"]
-        
-        print(f"\n🔄 Ejecutando {prompt.name} ({i}/{len(prompts_config)})")
-        
-        try:
-            call_params = {"content": content}
-            if thread_id:
-                call_params["thread_id"] = thread_id
-            
-            response = assistant.invoke(call_params)
-            
-            response_content = clean_and_parse_json(response[0].content[0].text.value)
-            thread_id = response[0].thread_id
-            
-            response_data = {
-                "name": prompt.name,
-                "response_content": response_content,
-                "thread_id": thread_id
-            }
-            
-            responses.append(response_data)
-            print(f"✅ {prompt.name} completado exitosamente")
-            
-            if i % 2 == 0 and i < len(prompts_config):
-                delay = 30 
-                print(f"⏳ Esperando {delay} segundos antes del siguiente prompt...")
-                await asyncio.sleep(delay)
-                
-        except Exception as e:
-            print(f"❌ Error ejecutando {prompt.name}: {str(e)}")
-            print(f"🛑 Pipeline interrumpido en el prompt {i}/{len(prompts_config)}")
-            raise e
-    
-    print(f"\n🎉 Análisis ESG completado exitosamente para {organization_name}")
-    print(f"📈 Total de respuestas generadas: {len(responses)}")
-    
-    return responses
 
+    # ============================
+    # 🧭 1. Prompt 1
+    # ============================
+    print(f"\n🔹 Ejecutando Prompt 1")
+    call_params = {
+        "content": prompt_1.format(
+            organization_name=organization_name,
+            country=country,
+            website=website
+        )
+    }
+
+    response = assistant.invoke(call_params)
+    raw_output = response[0].content[0].text.value.strip()
+    parsed_json = clean_and_parse_json(raw_output)
+    errors = validate_min_lengths(parsed_json)
+    if errors:
+        raise ValueError(f"❌ Prompt 1 no cumplió: {errors}")
+
+    print(f"✅ Prompt 1 completado")
+    thread_id = response[0].thread_id
+    responses.append({
+        "name": prompt_1.name,
+        "response_content": parsed_json,
+        "thread_id": thread_id
+    })
+
+    # ============================
+    # 🧭 2. Prompt 2 (con reintentos internos)
+    # ============================
+    print(f"\n🔹 Ejecutando Prompt 2 con validación de filas mínimas (>= {MIN_ROWS_PROMPT_2})...")
+    for attempt in range(1, MAX_RETRIES_PROMPT_2 + 1):
+        print(f"🧪 Prompt 2 - intento {attempt}/{MAX_RETRIES_PROMPT_2}")
+        call_params = {"content": prompt_2.template}
+        if thread_id:
+            call_params["thread_id"] = thread_id
+
+        response = assistant.invoke(call_params)
+        raw_output = response[0].content[0].text.value.strip()
+
+        try:
+            parsed_json = clean_and_parse_json(raw_output)
+        except Exception as e:
+            print(f"❌ Error parseando JSON Prompt 2: {e}")
+            if attempt == MAX_RETRIES_PROMPT_2:
+                raise
+            continue
+
+        rows_count = len(parsed_json.get("materiality_table", []))
+        if rows_count >= MIN_ROWS_PROMPT_2:
+            print(f"✅ Prompt 2 pasó validación ({rows_count} filas)")
+            thread_id = response[0].thread_id
+            responses.append({
+                "name": prompt_2.name,
+                "response_content": parsed_json,
+                "thread_id": thread_id
+            })
+            break
+        else:
+            print(f"⚠️ Prompt 2 devolvió solo {rows_count} filas")
+            if attempt < MAX_RETRIES_PROMPT_2:
+                feedback = (
+                    f"La respuesta anterior devolvió solo {rows_count} filas. "
+                    f"Necesito al menos {MIN_ROWS_PROMPT_2} filas."
+                )
+                retry_prompt = prompt_2.template + "\n\n" + feedback
+                call_params["content"] = retry_prompt
+                continue
+            else:
+                raise ValueError(
+                    f"❌ Prompt 2 no alcanzó el mínimo de {MIN_ROWS_PROMPT_2} filas tras {MAX_RETRIES_PROMPT_2} intentos."
+                )
+
+    # ============================
+    # 🧭 3. Resto de los prompts
+    # ============================
+    remaining_prompts = [
+        prompt_3, prompt_4, prompt_5, prompt_6,
+        prompt_7, prompt_8, prompt_9, prompt_10, prompt_11
+    ]
+
+    print(f"🚀 Ejecutando prompts restantes...")
+    for i, prompt in enumerate(remaining_prompts, 1):
+        print(f"🧪 Ejecutando {prompt.name}")
+        call_params = {"content": prompt.template}
+        if thread_id:
+            call_params["thread_id"] = thread_id
+
+        response = assistant.invoke(call_params)
+
+        if not hasattr(response[0].content[0], "text"):
+            raise ValueError(f"Tipo inesperado en content: {type(response[0].content[0])}")
+
+        raw_output = response[0].content[0].text.value.strip()
+        response_content = try_fix_json(raw_output)
+
+
+        thread_id = response[0].thread_id
+        responses.append({
+            "name": prompt.name,
+            "response_content": response_content,
+            "thread_id": thread_id
+        })
+
+        print(f"✅ {prompt.name} completado exitosamente")
+
+        # ⏳ delay opcional
+        if i % 2 == 0 and i < len(remaining_prompts):
+            delay = 30
+            print(f"⏳ Esperando {delay} segundos antes del siguiente prompt...")
+            await asyncio.sleep(delay)
+
+    print(f"\n🎉 Análisis ESG completado exitosamente")
+    print(f"📈 Total de respuestas generadas: {len(responses)}")
+    return responses

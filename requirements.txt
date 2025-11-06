@@ -1,8 +1,34 @@
+# 🧠 Framework principal
 fastapi[standard]==0.116.1
+uvicorn==0.30.6
+
+# 🧭 Base de datos PostgreSQL
+psycopg2-binary==2.9.10
+SQLAlchemy==2.0.35
+alembic==1.13.2
+
+# 🧰 Supabase client
 supabase==2.18.1
+
+# 🤖 LangChain + OpenAI
 langchain[openai]>=0.3,<0.4
+langchain-community==0.3.29
+openai>=1.54.0
+
+# 🧾 Pydantic & validaciones
+pydantic>=2.11.7
+pydantic-core>=2.23.4
 pydantic-extra-types==2.10.5
 pydantic-settings==2.10.1
+
+# 🪄 Utilidades generales
+python-dotenv==1.0.1
+requests>=2.32.5
+
+# 📄 PDF generation stack (WeasyPrint + deps)
+cffi==1.17.1
+Pillow==10.4.0
 weasyprint==66.0
-langchain-community==0.3.29
-psycopg2-binary==2.9.10
+
+# ⚡ Dependencia requerida internamente por LangChain
+zstandard==0.23.0
