@@ -1,15 +1,11 @@
 from fastapi import FastAPI
 from app.api.router import api_router
 from fastapi.middleware.cors import CORSMiddleware
-from dotenv import load_dotenv
 import os
-
-load_dotenv()
-
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
 app = FastAPI(title="Adaptia API")
 
+# CORS
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -18,9 +14,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ✅ Router solo una vez
+# Rutas
 app.include_router(api_router, prefix="/api")
 
 @app.get("/")
 async def root():
-    return {"message": "Adaptia API running successfully"}
+    return {"message": "Adaptia API is running"}
+
+# Esto es clave: para que Railway vea que la app está viva
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
