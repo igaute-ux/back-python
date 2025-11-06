@@ -13,8 +13,8 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
-# Railway asigna el puerto automáticamente
-ENV PORT=${PORT:-8000}
+# Railway suele usar 8080 internamente
+ENV PORT=${PORT:-8080}
 EXPOSE $PORT
 
 # Healthcheck para que Railway sepa cuándo está lista
