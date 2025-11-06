@@ -8,21 +8,19 @@ RUN apt-get update && apt-get install -y \
     curl \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# 📦 Crear directorio de trabajo
 WORKDIR /app
 
-# 🧰 Copiar requirements e instalarlos
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 📁 Copiar todo el código
 COPY . .
 
-# ✅ Railway asigna el puerto automáticamente
+# ✅ Si Railway no define $PORT, usar 8000 por defecto
+ENV PORT=${PORT:-8000}
 EXPOSE ${PORT}
 
-# 🩺 Opcional: Healthcheck para que Railway detecte readiness
-HEALTHCHECK CMD curl -f http://localhost:${PORT} || exit 1
+# 🩺 Healthcheck con tolerancia
+HEALTHCHECK --interval=10s --timeout=5s --retries=5 CMD curl -f http://localhost:${PORT}/ || exit 1
 
-# 🚀 Comando de arranque
-CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT}"]
+# 🚀 Ejecutar FastAPI
+CMD uvicorn main:app --host 0.0.0.0 --port ${PORT}
