@@ -2,9 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends
 from fastapi.responses import Response, JSONResponse
 from app.schemas.analysis_request import AnalysisRequest
 from app.services.langchain.workflows import run_esg_analysis, run_esg_analysis_test
-from app.services.langchain.run_prompt_2_pdf import run_prompt_2_and_generate_pdf
 from app.services.pdf_generation.pdf import PDFGenerator
-from app.models.analysis import Analysis
 from app.db.session import get_db
 from sqlalchemy.orm import Session
 import base64
