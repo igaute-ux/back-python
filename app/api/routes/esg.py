@@ -75,6 +75,7 @@ async def esg_analysis(data: AnalysisRequest):
 # ==========================================================
 @router.post("/esg-analysis-with-pdf-api")
 async def esg_analysis_with_pdf_api(data: AnalysisRequest, db: Session = Depends(get_db)):
+    
     """
     Igual que /esg-analysis-test, pero para el flujo completo.
     Devuelve JSON + PDF base64 para integrarse con NestJS.

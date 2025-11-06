@@ -17,6 +17,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 📁 Copiar todo el código
 COPY . .
 
-# 🚀 Exponer el puerto y lanzar FastAPI
-EXPOSE 8000
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# ✅ Railway usa una variable de entorno PORT automáticamente (p. ej. 8000, 8080, etc.)
+# Así que mejor usar esa en el CMD
+ENV PORT=8000
+EXPOSE $PORT
+
+CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT}"]
