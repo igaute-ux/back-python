@@ -162,3 +162,7 @@ async def esg_analysis_with_pdf(data: AnalysisRequest, db: Session = Depends(get
     except Exception as e:
         print(f"❌ Error en análisis ESG con PDF: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error generando análisis ESG: {str(e)}")
+
+@app.get("/health")
+async def health():
+    return {"status": "ok"}
