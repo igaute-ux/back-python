@@ -38,7 +38,6 @@ def validate_min_lengths(data: dict):
     return errors
 
 
-    
 def try_fix_json(raw_text: str):
     """
     Intenta reparar y parsear JSON con errores comunes generados por el modelo.
@@ -62,17 +61,16 @@ def try_fix_json(raw_text: str):
     try:
         return json.loads(fixed)
     except json.JSONDecodeError as e:
-        print(f"⚠️ Error de parseo persistente: {e}")
+        print(f"⚠️ Error de parseo persistente: {e}", flush=True)
         # Intentar cerrar el JSON si está incompleto
         if not fixed.strip().endswith('}'):
             fixed += '}'
         try:
             return json.loads(fixed)
         except Exception as e2:
-            print(f"❌ No se pudo corregir JSON: {e2}")
-            print("📄 Fragmento problemático:\n", fixed[-200:])
+            print(f"❌ No se pudo corregir JSON: {e2}", flush=True)
+            print("📄 Fragmento problemático:\n", fixed[-200:], flush=True)
             raise
-
 
 
 async def run_esg_analysis(organization_name: str, country: str, website: str) -> str:
@@ -89,7 +87,7 @@ async def run_esg_analysis(organization_name: str, country: str, website: str) -
     # ============================
     # 🧭 Prompt 1
     # ============================
-    print(f"\n🔹 Ejecutando Prompt 1")
+    print(f"\n🔹 Ejecutando Prompt 1", flush=True)
     try:
         call_params = {
             "content": prompt_1.format(
@@ -105,7 +103,7 @@ async def run_esg_analysis(organization_name: str, country: str, website: str) -
         if errors:
             raise ValueError(f"❌ Prompt 1 no cumplió: {errors}")
 
-        print(f"✅ Prompt 1 completado")
+        print(f"✅ Prompt 1 completado", flush=True)
         thread_id = response[0].thread_id
         responses.append({
             "name": prompt_1.name,
@@ -113,16 +111,16 @@ async def run_esg_analysis(organization_name: str, country: str, website: str) -
             "thread_id": thread_id
         })
     except Exception as e:
-        print(f"❌ Error en Prompt 1: {e}")
+        print(f"❌ Error en Prompt 1: {e}", flush=True)
         failed_prompts.append(prompt_1)
 
     # ============================
     # 🧭 Prompt 2 (validación interna)
     # ============================
-    print(f"\n🔹 Ejecutando Prompt 2 con validación de filas mínimas (>= {MIN_ROWS_PROMPT_2})...")
+    print(f"\n🔹 Ejecutando Prompt 2 con validación de filas mínimas (>= {MIN_ROWS_PROMPT_2})...", flush=True)
     try:
         for attempt in range(1, MAX_RETRIES_PROMPT_2 + 1):
-            print(f"🧪 Prompt 2 - intento {attempt}/{MAX_RETRIES_PROMPT_2}")
+            print(f"🧪 Prompt 2 - intento {attempt}/{MAX_RETRIES_PROMPT_2}", flush=True)
             call_params = {"content": prompt_2.template}
             if thread_id:
                 call_params["thread_id"] = thread_id
@@ -133,14 +131,14 @@ async def run_esg_analysis(organization_name: str, country: str, website: str) -
             try:
                 parsed_json = clean_and_parse_json(raw_output)
             except Exception as e:
-                print(f"❌ Error parseando JSON Prompt 2: {e}")
+                print(f"❌ Error parseando JSON Prompt 2: {e}", flush=True)
                 if attempt == MAX_RETRIES_PROMPT_2:
                     raise
                 continue
 
             rows_count = len(parsed_json.get("materiality_table", []))
             if rows_count >= MIN_ROWS_PROMPT_2:
-                print(f"✅ Prompt 2 pasó validación ({rows_count} filas)")
+                print(f"✅ Prompt 2 pasó validación ({rows_count} filas)", flush=True)
                 thread_id = response[0].thread_id
                 responses.append({
                     "name": prompt_2.name,
@@ -149,13 +147,13 @@ async def run_esg_analysis(organization_name: str, country: str, website: str) -
                 })
                 break
             else:
-                print(f"⚠️ Prompt 2 devolvió solo {rows_count} filas")
+                print(f"⚠️ Prompt 2 devolvió solo {rows_count} filas", flush=True)
                 if attempt < MAX_RETRIES_PROMPT_2:
                     continue
                 else:
                     raise ValueError("❌ Prompt 2 no alcanzó el mínimo de filas.")
     except Exception as e:
-        print(f"❌ Error en Prompt 2: {e}")
+        print(f"❌ Error en Prompt 2: {e}", flush=True)
         failed_prompts.append(prompt_2)
 
     # ============================
@@ -166,10 +164,10 @@ async def run_esg_analysis(organization_name: str, country: str, website: str) -
         prompt_7, prompt_8, prompt_9, prompt_10, prompt_11
     ]
 
-    print(f"\n🚀 Ejecutando prompts restantes...")
+    print(f"\n🚀 Ejecutando prompts restantes...", flush=True)
     for i, prompt in enumerate(remaining_prompts, 1):
         try:
-            print(f"🧪 Ejecutando {prompt.name}")
+            print(f"🧪 Ejecutando {prompt.name}", flush=True)
             call_params = {"content": prompt.template}
             if thread_id:
                 call_params["thread_id"] = thread_id
@@ -189,15 +187,15 @@ async def run_esg_analysis(organization_name: str, country: str, website: str) -
                 "thread_id": thread_id
             })
 
-            print(f"✅ {prompt.name} completado exitosamente")
+            print(f"✅ {prompt.name} completado exitosamente", flush=True)
 
             if i % 2 == 0 and i < len(remaining_prompts):
                 delay = 30
-                print(f"⏳ Esperando {delay} segundos antes del siguiente prompt...")
+                print(f"⏳ Esperando {delay} segundos antes del siguiente prompt...", flush=True)
                 await asyncio.sleep(delay)
 
         except Exception as e:
-            print(f"❌ Error en {prompt.name}: {e}")
+            print(f"❌ Error en {prompt.name}: {e}", flush=True)
             failed_prompts.append(prompt)
 
     # ============================
@@ -206,12 +204,12 @@ async def run_esg_analysis(organization_name: str, country: str, website: str) -
     retries = 0
     while failed_prompts and retries < MAX_GLOBAL_RETRIES:
         retries += 1
-        print(f"\n🔁 Reintento global #{retries} - quedan {len(failed_prompts)} prompts fallidos.")
+        print(f"\n🔁 Reintento global #{retries} - quedan {len(failed_prompts)} prompts fallidos.", flush=True)
         still_failed = []
 
         for prompt in failed_prompts:
             try:
-                print(f"🔄 Reintentando {prompt.name}")
+                print(f"🔄 Reintentando {prompt.name}", flush=True)
                 call_params = {"content": prompt.template}
                 if thread_id:
                     call_params["thread_id"] = thread_id
@@ -226,27 +224,27 @@ async def run_esg_analysis(organization_name: str, country: str, website: str) -
                     "response_content": response_content,
                     "thread_id": thread_id
                 })
-                print(f"✅ {prompt.name} reintentado con éxito")
+                print(f"✅ {prompt.name} reintentado con éxito", flush=True)
 
             except Exception as e:
-                print(f"⚠️ {prompt.name} volvió a fallar: {e}")
+                print(f"⚠️ {prompt.name} volvió a fallar: {e}", flush=True)
                 still_failed.append(prompt)
 
         failed_prompts = still_failed
 
         if failed_prompts:
-            print(f"⏳ Esperando 60 segundos antes del siguiente reintento...")
+            print(f"⏳ Esperando 60 segundos antes del siguiente reintento...", flush=True)
             await asyncio.sleep(60)
 
     # ============================
     # 🏁 Resultado final
     # ============================
     if failed_prompts:
-        print(f"\n⚠️ Algunos prompts aún fallaron tras {MAX_GLOBAL_RETRIES} reintentos:")
+        print(f"\n⚠️ Algunos prompts aún fallaron tras {MAX_GLOBAL_RETRIES} reintentos:", flush=True)
         for p in failed_prompts:
-            print(f"  - {p.name}")
+            print(f"  - {p.name}", flush=True)
     else:
-        print("\n🎯 Todos los prompts completados exitosamente 🎉")
+        print("\n🎯 Todos los prompts completados exitosamente 🎉", flush=True)
 
-    print(f"📈 Total de respuestas: {len(responses)}")
+    print(f"📈 Total de respuestas: {len(responses)}", flush=True)
     return responses
