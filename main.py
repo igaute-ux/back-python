@@ -22,6 +22,9 @@ app.add_middleware(
 async def root():
     return {"message": "Adaptia API"}
 
+print("🚀 Python API iniciada en puerto:", os.getenv("PORT", "default"))
+
+
 # ✅ Nuevo endpoint de healthcheck
 @app.get("/health")
 async def health():

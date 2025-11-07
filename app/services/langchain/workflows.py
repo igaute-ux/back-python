@@ -41,47 +41,40 @@ def validate_min_lengths(data: dict):
     
 def try_fix_json(raw_text: str):
     """
-    Intenta parsear el JSON incluso si falta una coma o hay errores menores.
+    Intenta reparar y parsear JSON con errores comunes generados por el modelo.
     """
+    import re, json
+
+    raw_text = raw_text.strip()
+
+    # Si hay texto antes/después del JSON
+    json_candidate = re.search(r'\{.*\}', raw_text, re.DOTALL)
+    if json_candidate:
+        raw_text = json_candidate.group(0)
+
+    # Eliminar comas antes de cierre } o ]
+    fixed = re.sub(r',(\s*[}\]])', r'\1', raw_text)
+
+    # Corregir comillas mal balanceadas
+    fixed = fixed.replace('“', '"').replace('”', '"').replace("’", "'")
+
+    # Intentar parsear
     try:
-        return json.loads(raw_text)
+        return json.loads(fixed)
     except json.JSONDecodeError as e:
-        print(f"⚠️ Error de parseo: {e}")
-        fixed = re.sub(r'"\s*([A-Za-z0-9_]+)"\s*:', r', "\1":', raw_text)
-        fixed = re.sub(r'^{\s*,', '{', fixed)
+        print(f"⚠️ Error de parseo persistente: {e}")
+        # Intentar cerrar el JSON si está incompleto
+        if not fixed.strip().endswith('}'):
+            fixed += '}'
         try:
             return json.loads(fixed)
         except Exception as e2:
             print(f"❌ No se pudo corregir JSON: {e2}")
+            print("📄 Fragmento problemático:\n", fixed[-200:])
             raise
 
 
-async def run_esg_analysis_test(organization_name: str, country: str, website: str):
-    """
-    Ejecuta solo Prompt 1 y devuelve un pipeline_data simple.
-    No genera PDF ni procesa otros prompts.
-    """
-    print(f"🚀 Ejecutando test rápido ESG para {organization_name}")
 
-    # 🧭 Prompt 1
-    response = assistant.invoke({
-        "content": prompt_1.format(
-            organization_name=organization_name,
-            country=country,
-            website=website
-        )
-    })
-
-    raw_output = response[0].content[0].text.value.strip()
-    parsed_json = clean_and_parse_json(raw_output)
-    print("✅ Prompt 1 completado")
-
-    # Generamos pipeline mínimo con solo Prompt 1 y el resto vacío
-    pipeline_data = [{"name": "Prompt 1", "response_content": parsed_json}]
-    for i in range(10):
-        pipeline_data.append({"name": f"Prompt {i+2}", "response_content": {}})
-
-    return pipeline_data
 async def run_esg_analysis(organization_name: str, country: str, website: str) -> str:
     """
     Ejecuta el análisis ESG completo solo una vez.

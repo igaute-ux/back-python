@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from fastapi.responses import Response, JSONResponse
 from app.schemas.analysis_request import AnalysisRequest
-from app.services.langchain.workflows import run_esg_analysis, run_esg_analysis_test
+from app.services.langchain.workflows import run_esg_analysis
 from app.services.pdf_generation.pdf import PDFGenerator
 from app.db.session import get_db
 from sqlalchemy.orm import Session
@@ -10,52 +10,6 @@ import os
 
 router = APIRouter()
 
-# ==========================================================
-# 🧪 TEST: solo Prompt 1
-# ==========================================================
-@router.post("/esg-analysis-test")
-async def esg_analysis_test(data: AnalysisRequest, db: Session = Depends(get_db)):
-    """
-    Ejecuta SOLO Prompt 1 (versión de prueba rápida).
-    Devuelve el PDF (base64) + JSON para ver cómo llega a NestJS.
-    """
-    try:
-        print(f"🧪 Iniciando análisis ESG TEST para {data.organization_name}")
-
-        # 1️⃣ Ejecutar solo el primer prompt
-        pipeline_data = await run_esg_analysis_test(
-            organization_name=data.organization_name,
-            country=data.country,
-            website=data.website
-        )
-
-        # 2️⃣ Generar PDF con el pipeline de prueba
-        print("📄 Generando PDF de prueba...")
-        generator = PDFGenerator()
-        pdf_bytes = generator.generate_esg_report(pipeline_data=pipeline_data, output_path=None)
-
-        # 3️⃣ Codificar el PDF a base64
-        pdf_base64 = base64.b64encode(pdf_bytes).decode("utf-8")
-
-        # 4️⃣ Preparar filename
-        safe_name = "".join(c for c in data.organization_name if c.isalnum() or c in (' ', '-', '_')).rstrip()
-        safe_name = safe_name.replace(' ', '_').lower()
-        filename = f"esg_report_test_{safe_name}.pdf"
-
-        print(f"✅ PDF generado exitosamente ({len(pdf_bytes)} bytes)")
-
-        # 5️⃣ Devolver JSON + PDF base64
-        return JSONResponse(
-            content={
-                "filename": filename,
-                "pdf_base64": pdf_base64,
-                "analysis_json": pipeline_data
-            }
-        )
-
-    except Exception as e:
-        print(f"❌ Error en test ESG: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Error en test ESG: {str(e)}")
 
 # ==========================================================
 # 🚀 Análisis ESG completo (sin PDF)
@@ -73,92 +27,178 @@ async def esg_analysis(data: AnalysisRequest):
 # ==========================================================
 # 🧾 Análisis ESG completo con PDF (JSON + base64 + link)
 # ==========================================================
-@router.post("/esg-analysis-with-pdf-api")
-async def esg_analysis_with_pdf_api(data: AnalysisRequest, db: Session = Depends(get_db)):
-    
+async def run_esg_analysis(organization_name: str, country: str, website: str) -> str:
     """
-    Igual que /esg-analysis-test, pero para el flujo completo.
-    Devuelve JSON + PDF base64 para integrarse con NestJS.
+    Ejecuta el análisis ESG completo con tolerancia total a fallos.
+    ✅ Si un prompt falla, se salta y continúa.
+    🔁 Al final reintenta SOLO los fallidos hasta que todos pasen correctamente.
     """
+    responses = []
+    failed_prompts = []
+    thread_id = None
+    MAX_GLOBAL_RETRIES = 10
+
+    # ============================
+    # 🧭 Prompt 1
+    # ============================
+    print(f"\n🔹 Ejecutando Prompt 1")
     try:
-        print(f"🚀 Iniciando análisis ESG para {data.organization_name}")
+        call_params = {
+            "content": prompt_1.format(
+                organization_name=organization_name,
+                country=country,
+                website=website
+            )
+        }
+        response = assistant.invoke(call_params)
+        raw_output = response[0].content[0].text.value.strip()
+        parsed_json = clean_and_parse_json(raw_output)
+        errors = validate_min_lengths(parsed_json)
+        if errors:
+            raise ValueError(f"❌ Prompt 1 no cumplió: {errors}")
 
-        # 1️⃣ Ejecutar (por ahora) solo Prompt 1 — igual que el test
-        #    ⚙️ Más adelante podés volver a run_esg_analysis(...)
-        pipeline_data = await run_esg_analysis(
-            organization_name=data.organization_name,
-            country=data.country,
-            website=data.website
-        )
-
-        # 2️⃣ Generar PDF en memoria
-        print("📄 Generando PDF del reporte...")
-        generator = PDFGenerator()
-        pdf_bytes = generator.generate_esg_report(pipeline_data=pipeline_data, output_path=None)
-
-        # 3️⃣ Codificar PDF
-        pdf_base64 = base64.b64encode(pdf_bytes).decode("utf-8")
-
-        # 4️⃣ Preparar nombre
-        safe_name = "".join(c for c in data.organization_name if c.isalnum() or c in (' ', '-', '_')).rstrip()
-        safe_name = safe_name.replace(' ', '_').lower()
-        filename = f"esg_report_{safe_name}.pdf"
-
-        print(f"✅ PDF generado exitosamente ({len(pdf_bytes)} bytes)")
-
-        # 5️⃣ Devolver igual que el test
-        return JSONResponse(
-            content={
-                "filename": filename,
-                "pdf_base64": pdf_base64,
-                "analysis_json": pipeline_data
-            }
-        )
-
+        print(f"✅ Prompt 1 completado")
+        thread_id = response[0].thread_id
+        responses.append({
+            "name": prompt_1.name,
+            "response_content": parsed_json,
+            "thread_id": thread_id
+        })
     except Exception as e:
-        print(f"❌ Error en análisis ESG con PDF: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Error generando análisis ESG: {str(e)}")
+        print(f"❌ Error en Prompt 1: {e}")
+        failed_prompts.append(prompt_1)
 
-
-# ==========================================================
-# 📥 Análisis ESG con PDF (solo PDF binario descargable)
-# ==========================================================
-@router.post("/esg-analysis-with-pdf")
-async def esg_analysis_with_pdf(data: AnalysisRequest, db: Session = Depends(get_db)):
-    """
-    Ejecuta el análisis ESG completo y genera un PDF del reporte
-    """
+    # ============================
+    # 🧭 Prompt 2 (validación interna)
+    # ============================
+    print(f"\n🔹 Ejecutando Prompt 2 con validación de filas mínimas (>= {MIN_ROWS_PROMPT_2})...")
     try:
-        print(f"🚀 Iniciando análisis ESG para {data.organization_name}")
-        pipeline_data = await run_esg_analysis(
-            organization_name=data.organization_name,
-            country=data.country,
-            website=data.website
-        )
-        
-        print("📄 Generando PDF del reporte...")
-        generator = PDFGenerator()
-        
-        safe_name = "".join(c for c in data.organization_name if c.isalnum() or c in (' ', '-', '_')).rstrip()
-        safe_name = safe_name.replace(' ', '_').lower()
-        filename = f"esg_report_{safe_name}.pdf"
-        
-        pdf_bytes = generator.generate_esg_report(
-            pipeline_data=pipeline_data,
-            output_path=None
-        )
-        
-        print(f"✅ PDF generado exitosamente en memoria: {len(pdf_bytes)} bytes")
+        for attempt in range(1, MAX_RETRIES_PROMPT_2 + 1):
+            print(f"🧪 Prompt 2 - intento {attempt}/{MAX_RETRIES_PROMPT_2}")
+            call_params = {"content": prompt_2.template}
+            if thread_id:
+                call_params["thread_id"] = thread_id
 
-        return Response(
-            content=pdf_bytes,
-            media_type="application/pdf",
-            headers={
-                "Content-Disposition": f"attachment; filename={filename}",
-                "Content-Length": str(len(pdf_bytes))
-            }
-        )
-        
+            response = assistant.invoke(call_params)
+            raw_output = response[0].content[0].text.value.strip()
+
+            try:
+                parsed_json = clean_and_parse_json(raw_output)
+            except Exception as e:
+                print(f"❌ Error parseando JSON Prompt 2: {e}")
+                if attempt == MAX_RETRIES_PROMPT_2:
+                    raise
+                continue
+
+            rows_count = len(parsed_json.get("materiality_table", []))
+            if rows_count >= MIN_ROWS_PROMPT_2:
+                print(f"✅ Prompt 2 pasó validación ({rows_count} filas)")
+                thread_id = response[0].thread_id
+                responses.append({
+                    "name": prompt_2.name,
+                    "response_content": parsed_json,
+                    "thread_id": thread_id
+                })
+                break
+            else:
+                print(f"⚠️ Prompt 2 devolvió solo {rows_count} filas")
+                if attempt < MAX_RETRIES_PROMPT_2:
+                    continue
+                else:
+                    raise ValueError("❌ Prompt 2 no alcanzó el mínimo de filas.")
     except Exception as e:
-        print(f"❌ Error en análisis ESG con PDF: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Error generando análisis ESG: {str(e)}")
+        print(f"❌ Error en Prompt 2: {e}")
+        failed_prompts.append(prompt_2)
+
+    # ============================
+    # 🧭 Prompts restantes
+    # ============================
+    remaining_prompts = [
+        prompt_3, prompt_4, prompt_5, prompt_6,
+        prompt_7, prompt_8, prompt_9, prompt_10, prompt_11
+    ]
+
+    print(f"\n🚀 Ejecutando prompts restantes...")
+    for i, prompt in enumerate(remaining_prompts, 1):
+        try:
+            print(f"🧪 Ejecutando {prompt.name}")
+            call_params = {"content": prompt.template}
+            if thread_id:
+                call_params["thread_id"] = thread_id
+
+            response = assistant.invoke(call_params)
+
+            if not hasattr(response[0].content[0], "text"):
+                raise ValueError(f"Tipo inesperado en content: {type(response[0].content[0])}")
+
+            raw_output = response[0].content[0].text.value.strip()
+            response_content = try_fix_json(raw_output)
+
+            thread_id = response[0].thread_id
+            responses.append({
+                "name": prompt.name,
+                "response_content": response_content,
+                "thread_id": thread_id
+            })
+
+            print(f"✅ {prompt.name} completado exitosamente")
+
+            if i % 2 == 0 and i < len(remaining_prompts):
+                delay = 30
+                print(f"⏳ Esperando {delay} segundos antes del siguiente prompt...")
+                await asyncio.sleep(delay)
+
+        except Exception as e:
+            print(f"❌ Error en {prompt.name}: {e}")
+            failed_prompts.append(prompt)
+
+    # ============================
+    # 🔁 Reintentar SOLO fallidos
+    # ============================
+    retries = 0
+    while failed_prompts and retries < MAX_GLOBAL_RETRIES:
+        retries += 1
+        print(f"\n🔁 Reintento global #{retries} - quedan {len(failed_prompts)} prompts fallidos.")
+        still_failed = []
+
+        for prompt in failed_prompts:
+            try:
+                print(f"🔄 Reintentando {prompt.name}")
+                call_params = {"content": prompt.template}
+                if thread_id:
+                    call_params["thread_id"] = thread_id
+
+                response = assistant.invoke(call_params)
+                raw_output = response[0].content[0].text.value.strip()
+                response_content = try_fix_json(raw_output)
+
+                thread_id = response[0].thread_id
+                responses.append({
+                    "name": prompt.name,
+                    "response_content": response_content,
+                    "thread_id": thread_id
+                })
+                print(f"✅ {prompt.name} reintentado con éxito")
+
+            except Exception as e:
+                print(f"⚠️ {prompt.name} volvió a fallar: {e}")
+                still_failed.append(prompt)
+
+        failed_prompts = still_failed
+
+        if failed_prompts:
+            print(f"⏳ Esperando 60 segundos antes del siguiente reintento...")
+            await asyncio.sleep(60)
+
+    # ============================
+    # 🏁 Resultado final
+    # ============================
+    if failed_prompts:
+        print(f"\n⚠️ Algunos prompts aún fallaron tras {MAX_GLOBAL_RETRIES} reintentos:")
+        for p in failed_prompts:
+            print(f"  - {p.name}")
+    else:
+        print("\n🎯 Todos los prompts completados exitosamente 🎉")
+
+    print(f"📈 Total de respuestas: {len(responses)}")
+    return responses
