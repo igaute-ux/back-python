@@ -1,5 +1,6 @@
 import os
 import asyncio
+import time
 from app.services.langchain.prompts import *
 from app.utils.json_formatter import clean_and_parse_json
 from app.core.config import settings
@@ -29,6 +30,25 @@ MIN_LENGTHS = {
 
 MAX_RETRIES_PROMPT_2 = 10
 MIN_ROWS_PROMPT_2 = 14
+
+
+# ===============================================
+# 🔒 Nueva función: safe_invoke() con reintento
+# ===============================================
+async def safe_invoke(call_params, retries=5):
+    for attempt in range(1, retries + 1):
+        try:
+            return assistant.invoke(call_params)
+        except Exception as e:
+            if "rate_limit_exceeded" in str(e):
+                wait_time = 15 * attempt
+                print(f"⚠️ Rate limit alcanzado, esperando {wait_time}s antes de reintentar (intento {attempt}/{retries})...", flush=True)
+                time.sleep(wait_time)
+                continue
+            else:
+                raise
+    raise Exception("❌ Se superó el número máximo de reintentos por rate limit.")
+
 
 def validate_min_lengths(data: dict):
     errors = []
@@ -96,7 +116,7 @@ async def run_esg_analysis(organization_name: str, country: str, website: str) -
                 website=website
             )
         }
-        response = assistant.invoke(call_params)
+        response = await safe_invoke(call_params)
         raw_output = response[0].content[0].text.value.strip()
         parsed_json = clean_and_parse_json(raw_output)
         errors = validate_min_lengths(parsed_json)
@@ -125,7 +145,7 @@ async def run_esg_analysis(organization_name: str, country: str, website: str) -
             if thread_id:
                 call_params["thread_id"] = thread_id
 
-            response = assistant.invoke(call_params)
+            response = await safe_invoke(call_params)
             raw_output = response[0].content[0].text.value.strip()
 
             try:
@@ -172,7 +192,7 @@ async def run_esg_analysis(organization_name: str, country: str, website: str) -
             if thread_id:
                 call_params["thread_id"] = thread_id
 
-            response = assistant.invoke(call_params)
+            response = await safe_invoke(call_params)
 
             if not hasattr(response[0].content[0], "text"):
                 raise ValueError(f"Tipo inesperado en content: {type(response[0].content[0])}")
@@ -214,7 +234,7 @@ async def run_esg_analysis(organization_name: str, country: str, website: str) -
                 if thread_id:
                     call_params["thread_id"] = thread_id
 
-                response = assistant.invoke(call_params)
+                response = await safe_invoke(call_params)
                 raw_output = response[0].content[0].text.value.strip()
                 response_content = try_fix_json(raw_output)
 
