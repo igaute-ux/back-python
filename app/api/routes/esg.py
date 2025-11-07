@@ -27,6 +27,7 @@ async def esg_analysis(data: AnalysisRequest):
 # ==========================================================
 # 🧾 Análisis ESG completo con PDF (JSON + base64 + link)
 # ==========================================================
+@router.post("/esg-analysis-with-pdf-api")
 async def run_esg_analysis(organization_name: str, country: str, website: str) -> str:
     """
     Ejecuta el análisis ESG completo con tolerancia total a fallos.
