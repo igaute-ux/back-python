@@ -14,6 +14,9 @@ prompt_1 = PromptTemplate(
         - Nombre de empresa: {organization_name}
         - País: {country}
         - Website: {website}
+        - Industria de análisis: {industry}
+        - Documento adjunto (de estar disponible): {document}
+
 
         🧭 Instrucciones obligatorias:
         1. Devuelve únicamente un JSON válido. No incluyas títulos, explicaciones, comentarios ni texto adicional fuera del JSON.
@@ -67,43 +70,49 @@ prompt_1 = PromptTemplate(
 )
 
 
-# Prompt 2: Identificación de Impactos (basado en S&P)
+# ===========================
+# 🧭 Prompt 2: Identificación de Impactos (basado en S&P)
+# ===========================
 prompt_2 = PromptTemplate(
     name="🔹 Prompt 2: Identificación de Impactos (basado en S&P)",
     template="""
         Eres un analista ESG especializado en materialidad sectorial. 
-        Tu tarea es identificar y listar temas materiales relevantes para el sector S&P en el que opera la empresa, utilizando la tabla “1. Acciones Materiality Map S&P V2 _ Julio 2025”.
+        Tu tarea es identificar y listar temas materiales relevantes para el sector S&P en el que opera la empresa, utilizando la tabla “1.Acciones_Materiality_Map_SP_V3_Noviembre_2025”.
 
         📊 INSTRUCCIONES ESTRICTAS:
         1. Identifica todos los temas materiales correspondientes al sector S&P más representativo de la empresa.
         2. Para cada tema, incluye las acciones Marginal, Moderada y Estructural **exactamente** como aparecen en el Excel base (sin reformular ni resumir).
-        3. La tabla debe contener como **mínimo 15 registros (filas)**. Este es un requerimiento obligatorio.
-           - Si en la primera generación obtienes menos de 15 filas, debes **ampliar automáticamente la búsqueda**:
-             • Usa temas relacionados de subsectores cercanos o equivalentes dentro del mismo sector.  
-             • Evita repeticiones exactas.
-        4. Si tras ampliar no existen más temas disponibles en la fuente original, agrega el campo adicional `"exhausted": true` y devuelve todos los registros disponibles.
-        5. Si sí existen más temas, debes completar la tabla hasta llegar a 15 filas. **No devuelvas menos de 15 filas sin `"exhausted": true"`.**
-        6. No devuelvas texto explicativo, comentarios ni Markdown. Solo JSON válido.
+        3. La tabla debe contener como **mínimo 20 registros (filas)**. Este es un requerimiento obligatorio.Evita repeticiones exactas.
+        4. **Debes incluir obligatoriamente los tres niveles de materialidad financiera**:
+             - Al menos **un conjunto representativo de temas con materialidad financiera "Baja"**,  
+             - Al menos **un conjunto representativo con "Media"**,  
+             - Y al menos **un conjunto representativo con "Alta"**.  
+           No excluyas ninguno de los tres niveles bajo ninguna circunstancia, aunque no aparezcan con la misma frecuencia en la fuente original.
+        5. Si tras ampliar no existen más temas disponibles en la fuente original, agrega el campo adicional `"exhausted": true` y devuelve todos los registros disponibles.
+        6. Si sí existen más temas, debes completar la tabla hasta llegar a 15 filas. **No devuelvas menos de 15 filas sin `"exhausted": true"`.**
+        7. No devuelvas texto explicativo, comentarios ni Markdown. Solo JSON válido.
 
         📌 Estructura requerida de salida:
-        {{
-            "materiality_table": [
-                {{
-                    "sector": "string",
-                    "tema": "string",
-                    "materialidad_financiera": "string",
-                    "accion_marginal": "string",
-                    "accion_moderada": "string",
-                    "accion_estructural": "string"
-                }}
-            ],
-            "exhausted": false
-        }}
+            {{
+                "materiality_table": [
+                    {{
+                        "sector": "string",
+                        "tema": "string",
+                        "materialidad_financiera": "string (Baja, Media o Alta)",
+                        "valor_materialidad_financiera": "decimal (0, 2.5 o 5)",
+                        "accion_marginal": "string",
+                        "accion_moderada": "string",
+                        "accion_estructural": "string"
+                    }}
+                ],
+                "exhausted": false
+            }}
 
         ⚠️ IMPORTANTE:
         - Si la cantidad de filas es menor a 15 y no devuelves `"exhausted": true`, la respuesta será inválida.
         - Mantén el orden exacto de las columnas.
         - No uses sinónimos ni resumas textos de la fuente.
+        - **No omitas ningún nivel de materialidad financiera (Baja, Media, Alta).**
         - No devuelvas nada más que el JSON requerido.
     """
 )
@@ -118,18 +127,19 @@ prompt_2_1 = PromptTemplate(
         Objetivo:
         Continuar la identificación de impactos utilizando los Materiality Maps de S&P y construir la base de la Materiality Table.
         Instrucciones:
-        Anteriormente se generó la tabla de impactos donde te pedi un minimo de 15 resultados de ser posible, ahora se debe continuar con la identificación de impactos utilizando los Materiality Maps de S&P y a la tabla anterior agregar los resultados faltantes.
+        Anteriormente se generó la tabla de impactos donde te pedi un minimo de 20 resultados de ser posible, ahora se debe continuar con la identificación de impactos utilizando los Materiality Maps de S&P y a la tabla anterior agregar los resultados faltantes.
         Es importante que la respuesta: siga la misma estructura de la tabla de impactos anterior, venga en el siguiente formato JSON y SOLO me entregues el JSON en la respuesta: {{
-            "materiality_table": [
-                {
-                    "sector": "string",
-                    "tema": "string",
-                    "materialidad_financiera": "string",
-                    "accion_marginal": "string",
-                    "accion_moderada": "string",
-                    "accion_estructural": "string"
-                }
-            ]
+                "materiality_table": [
+                    {{
+                        "sector": "string",
+                        "tema": "string",
+                        "materialidad_financiera": "string (Baja, Media o Alta)",
+                        "valor_materialidad_financiera": "decimal (0, 2.5 o 5)",
+                        "accion_marginal": "string",
+                        "accion_moderada": "string",
+                        "accion_estructural": "string"
+                    }}
+                ],
         }}
     """
 )
@@ -163,6 +173,7 @@ prompt_3 = PromptTemplate(
                     "sector": "string",
                     "tema": "string",
                     "materialidad_financiera": "string",
+                    "valor_materialidad_financiera": "decimal",
                     "accion_marginal": "string",
                     "accion_moderada": "string",
                     "accion_estructural": "string",
@@ -178,9 +189,13 @@ prompt_3 = PromptTemplate(
         }}
 
         ⚠️ Importante:
+        - Tiene que tener la misma cantidad de columnas que en el prompt 2.
         - No elimines columnas previas.
         - No devuelvas texto adicional ni explicaciones fuera del JSON.
         - El campo "resumen_sector" debe contener un texto conciso que resuma la justificación sectorial.
+        ⚙️ Verificación final:
+        Asegúrate de que el JSON sea válido y contenga comas correctas entre cada campo.
+        No uses puntos decimales en campos declarados como enteros.
     """
 )
 
@@ -223,19 +238,9 @@ prompt_4 = PromptTemplate(
         4 = Mucho alcance
         5 = Alcance extremo
 
-        - Impacto ESG – Evalúa el nivel de impacto que el tema tiene dentro o fuera de la empresa en aspectos sociales, ambientales o de gobernanza, sin considerar el efecto financiero.
-        Escala:
-        0 = Ningún impacto
-        1 = Muy poco impacto
-        2 = Poco impacto
-        3 = Impacto moderado
-        4 = Alto impacto
-        5 = Impacto extremo
-
-        - Impacto financiero – Asigna un valor numérico a partir de la columna “Materialidad financiera” de la Materiality Table:
-        “Baja” = 0
-        “Media” = 3
-        “Alta” = 5
+        - Materialidad ESG – Calcula la suma de las columnas:
+        Valor materialidad financiera + Gravedad + Probabilidad + Alcance
+        (rango posible: 0 a 20)
 
         - Puntaje total – Calcula la suma de los cinco criterios anteriores. Este puntaje será usado para priorizar los temas materiales en el siguiente paso.
 
@@ -250,6 +255,7 @@ prompt_4 = PromptTemplate(
                     "sector": "string",
                     "tema": "string",
                     "materialidad_financiera": "string",
+                    "valor_materialidad_financiera": "decimal",
                     "accion_marginal": "string",
                     "accion_moderada": "string",
                     "accion_estructural": "string",
@@ -259,21 +265,25 @@ prompt_4 = PromptTemplate(
                     "intencionalidad_impacto": "string",
                     "penetracion_impacto": "string",
                     "grado_implicacion": "string",
-                    "gravedad": integer,
-                    "probabilidad": integer,
-                    "alcance": integer,
-                    "impacto_esg": integer,
-                    "impacto_financiero": integer,
-                    "puntaje_total": integer
+                    "gravedad": number,
+                    "probabilidad": number,
+                    "alcance": number,
+                    "impacto_esg": number,
+                    "impacto_financiero": number,
+                    "puntaje_total": number
                 }}
             ],
             "resumen_sector": "string"
         }}
 
         ⚠️ Importante:
+        - Tiene que tener la misma cantidad de columnas que en el prompt 2.
         - No elimines columnas previas.
         - No devuelvas texto adicional ni explicaciones fuera del JSON.
         - El campo "resumen_sector" debe contener un texto conciso que resuma la justificación sectorial.
+        ⚙️ Verificación final:
+        Asegúrate de que el JSON sea válido y contenga comas correctas entre cada campo.
+        No uses puntos decimales en campos declarados como enteros.
     """
 )
 
@@ -285,15 +295,16 @@ prompt_5 = PromptTemplate(
         Objetivo:
         Definir los 10 temas materiales prioritarios a partir de la evaluación de impactos previamente realizada.
         Instrucciones:
-        Ordena la tabla de la Materiality Table de mayor a menor según el valor de la columna “Puntaje total”, sin modificar ningún valor o contenido existente en las filas.
+        Ordena la tabla de la Materiality Table de mayor a menor según el valor de la columna “Materialidad ESG”, sin modificar ningún valor o contenido existente en las filas.
         Identifica los 10 temas con mayor puntaje total, los cuales serán considerados como los temas materiales priorizados del análisis.
-        Para facilitar su seguimiento en los siguientes pasos, puedes destacarlos visualmente o etiquetarlos como "Material" en una nueva columna. 
+        Para facilitar su seguimiento en los siguientes pasos, puedes destacarlos visualmente o etiquetarlos como "Tema Material" en una nueva columna. 
         Es importante que la respuesta venga en el siguiente formato JSON y SOLO me entregues el JSON en la respuesta: {{
             "materiality_table": [
                 {
                     "sector": "string",
                     "tema": "string",
                     "materialidad_financiera": "string",
+                    "valor_materialidad_financiera": "decimal",
                     "accion_marginal": "string",
                     "accion_moderada": "string",
                     "accion_estructural": "string",
@@ -303,16 +314,18 @@ prompt_5 = PromptTemplate(
                     "intencionalidad_impacto": "string",
                     "penetracion_impacto": "string",
                     "grado_implicacion": "string",
-                    "gravedad": integer,
-                    "probabilidad": integer,
-                    "alcance": integer,
-                    "impacto_esg": integer,
-                    "impacto_financiero": integer,
-                    "puntaje_total": integer,
+                    "gravedad": number,
+                    "probabilidad": number,
+                    "alcance": number,
+                    "impacto_esg": number,
+                    "impacto_financiero": number,
+                    "puntaje_total": number,
                     "prioridad": "string"
                 }
             ]
         }}
+        ⚠️ Importante:
+        - Tiene que tener la misma cantidad de columnas que en el prompt 2.
     """,
 )
 
@@ -329,7 +342,7 @@ prompt_6 = PromptTemplate(
         - ODS – El Objetivo de Desarrollo Sostenible más directamente relacionado con el tema material.
         - Meta de ODS – La meta de ese ODS más estrechamente alineada semánticamente con el tema.
         - Indicador de ODS – El indicador correspondiente a la meta seleccionada (misma fila del documento de referencia).
-        3. Utiliza únicamente el documento “2. Lista de ODS _ Adaptia _ 2025” como fuente de información.
+        3. Utiliza únicamente el documento “2._Lista_de_ODS_Adaptia_Noviembre_2025” como fuente de información.
         4. Para cada uno de los 10 temas materiales (etiquetados como “Material” en la tabla):
         - Revisa los 17 ODS completos y selecciona el que tenga la relación más fuerte y directa con el tema.
         - Una vez elegido el ODS, revisa todas sus metas y selecciona la más directamente vinculada al tema.
@@ -344,7 +357,7 @@ prompt_6 = PromptTemplate(
                 {
                     "sector": "string",
                     "tema": "string",
-                    "materialidad_financiera": "string",
+                    "valor_materialidad_financiera": "number | string",
                     "accion_marginal": "string",
                     "accion_moderada": "string",
                     "accion_estructural": "string",
@@ -354,12 +367,12 @@ prompt_6 = PromptTemplate(
                     "intencionalidad_impacto": "string",
                     "penetracion_impacto": "string",
                     "grado_implicacion": "string",
-                    "gravedad": integer,
-                    "probabilidad": integer,
-                    "alcance": integer,
-                    "impacto_esg": integer,
-                    "impacto_financiero": integer,
-                    "puntaje_total": integer,
+                    "gravedad": number,
+                    "probabilidad": number,
+                    "alcance": number,
+                    "impacto_esg": number,
+                    "impacto_financiero": number,
+                    "puntaje_total": number,
                     "prioridad": "string",
                     "ods": "string",
                     "meta_ods": "string",
@@ -371,54 +384,68 @@ prompt_6 = PromptTemplate(
 )
 
 
-#Prompt 7: Mapeo de Contenidos GRI
+# 🔹 Prompt 7: Mapeo de Contenidos GRI (versión actualizada - Noviembre 2025)
 prompt_7 = PromptTemplate(
     name="🔹 Prompt 7: Mapeo de Contenidos GRI",
     template="""
         🔹 Prompt 7: Mapeo de Contenidos GRI
-        Objetivo
-        Identificar y documentar los contenidos GRI relacionados con los 10 temas materiales priorizados en la Materiality Table, seleccionando de forma exhaustiva y fundamentada el disclosure más relevante y específico para cada tema.
-        Instrucciones
-        1. Alcance
-        Trabaja únicamente con los 10 temas con mayor puntaje total (etiquetados como “Material” en la tabla).
-        2. Fuente
-        Usa la base “3. Lista de Estándares GRI _ Adaptia _ 2025”. Ignora las filas 2 a 7 de encabezados.
-        3. Búsqueda de candidatos
-        Para cada tema material:
-        - Revisa toda la lista de estándares y disclosures GRI.
-        - Identifica todos los estándares/disclosures semánticamente relevantes (considera nombre del estándar, título del disclosure y texto del requirement).
-        4. Reglas de selección (en este orden de prioridad)
-        a) Alineación temática directa con el enunciado del tema.
-        b) Especificidad del disclosure respecto al tema (evita opciones genéricas).
-        c) Requirement más detallado y accionable como desempate.
-        d) Si hay empate entre un disclosure temático (series 300/400/200) y uno general (GRI 2), elige el temático.
-        5. Restricción explícita sobre GRI 2 (General Disclosures)
-        - No selecciones GRI 2 salvo que el tema sea de gobernanza/gestión organizacional general (p. ej., estructura, políticas generales, gobierno, participación de stakeholders).
-        - Nunca uses GRI 2-7 (Employees) para temas de salud y seguridad del cliente, productos/servicios sostenibles, riesgo de transición climática, residuos/reciclaje, privacidad/protección de datos o impactos en comunidades.
-        - Para temas de personal utiliza los estándares GRI 401–404 (empleo, formación) y GRI 403 (SST), GRI 405 (diversidad), etc., según corresponda.
-        5. Evitar duplicados
-        - Si más de un tema material se alinea con el mismo estándar y disclosure GRI, manténlo una sola vez en la tabla final.
-        - La tabla resultante debe tener solo estándares únicos, sin repeticiones.
-        6. Salida (una sola opción final por tema, sin duplicados)
-        De la lista de candidatos, selecciona solo el disclosure más alineado y completa con exactamente estas columnas y textos:
-        - Estándard GRI – Nombre completo del estándar, incluyendo número y nombre.
-        - Contenido GRI (disclosure) – Código y nombre del disclosure.
-        - Descripción del indicador (requirement) – Texto completo del requirement, tal como aparece en el documento.
-        7. Exclusiones
-        No incluyas temas que no estén priorizados como “Material”. No agregues columnas adicionales.
-        8. Control de calidad
-        Antes de cerrar: verifica que el disclosure elegido mencione explícitamente el objeto del tema o su mecanismo de impacto. Si no, vuelve al paso 4 y selecciona el disclosure más específico disponible.
-        Es importante que la respuesta venga en el siguiente formato JSON y SOLO me entregues el JSON en la respuesta: {{
-            "gri": [
-                {
-                    "estandar_gri": "string",
-                    "contenido_gri": "string",
-                    "descripcion_indicador": "string"
-                }
+
+        🎯 Objetivo:
+        Identificar y documentar los contenidos GRI vinculados con los 10 temas materiales priorizados
+        en la Materiality Table, utilizando la columna “Tema S&P” como criterio de coincidencia directa.
+
+        🧭 Alcance:
+        - Trabaja únicamente con los 10 temas materiales priorizados (los de mayor puntaje total).
+        - Cada tema material puede vincularse con múltiples contenidos GRI.
+        - La tabla de salida debe incluir todas las coincidencias encontradas, sin límite de número de filas.
+
+        📘 Fuente:
+        Usa el archivo “3._Lista_de_Est_ndares_GRI_Adaptia_Noviembre_2025”.
+        Cada fila corresponde a un contenido GRI individual y contiene las siguientes columnas clave:
+        - Columna A: Tema S&P
+        - Columna B: Estándar GRI
+        - Columna C: # de Contenido
+        - Columna D: Contenido (nombre del disclosure)
+        - Columna E: Requerimiento (texto completo del indicador)
+
+        ⚙️ Reglas generales:
+        - No utilices búsqueda semántica: la relación se basa exclusivamente en coincidencias de texto
+          en la columna A (Tema S&P).
+        - La coincidencia debe buscar por palabra o fragmento, sin distinguir mayúsculas/minúsculas.
+        - No reformules, resumas ni modifiques el texto original.
+        - No agregues ni elimines columnas.
+        - Si hay resultados compartidos entre varios temas, mantenlos una sola vez en la tabla final (sin duplicados).
+
+        🧩 Instrucciones paso a paso:
+        1. Toma los 10 temas materiales priorizados desde la tabla de materialidad (columna “Tema material”).
+        2. Revisa las 122 filas del archivo fuente.
+        3. Para cada tema:
+           - Identifica todas las filas donde la columna A (“Tema S&P”) contenga ese tema total o parcialmente.
+           - Extrae las columnas B, C, D y E de cada fila coincidente.
+        4. Asegúrate de copiar exactamente el texto del archivo fuente, sin alterar formato ni mayúsculas.
+        5. Repite el proceso para los 10 temas materiales.
+
+        📊 Salida esperada (solo JSON válido, sin texto adicional):
+        {{
+            "gri_mapping": [
+                {{
+                    "estandar_gri": "string",        # Columna B
+                    "numero_contenido": "string",    # Columna C
+                    "contenido": "string",           # Columna D
+                    "requerimiento": "string"        # Columna E
+                }}
             ]
         }}
-    """,
+
+        📋 Control de calidad:
+        - Verifica que los 10 temas materiales tengan al menos una coincidencia.
+        - Asegúrate de que no se omitieron filas relevantes (las 122 filas fueron revisadas).
+        - Confirma que el texto de las columnas B–E se copió exactamente como en el archivo fuente.
+        - Elimina duplicados en caso de coincidencias repetidas entre temas.
+        - No devuelvas texto explicativo, comentarios ni Markdown.
+    """
 )
+
 
 #Prompt 8: Mapeo SASB Sectorial
 prompt_8 = PromptTemplate(
@@ -428,7 +455,7 @@ prompt_8 = PromptTemplate(
         Objetivo:
         Identificar los temas e indicadores SASB relevantes para hasta 2 industrias asociadas.
         Instrucciones:
-        Utilizando el documento “4. Equivalencias SASB + S&P _ Junio 2025”, identifica las industrias SASB equivalentes a los sectores S&P seleccionados previamente para la empresa.
+        Utilizando el documento “4._Equivalencia_SASB_S_P_Noviembre_2025”, identifica las industrias SASB equivalentes a los sectores S&P seleccionados previamente para la empresa.
         Para cada sector S&P identificado, selecciona una sola industria SASB: la más cercana o representativa según la tabla de equivalencias.
         El resultado final debe incluir un máximo de 2 industrias SASB.
         Es importante que la respuesta venga en el siguiente formato JSON y SOLO me entregues el JSON en la respuesta: {{
@@ -451,7 +478,7 @@ prompt_9 = PromptTemplate(
         Detallar todos los temas, métricas y códigos SASB aplicables a las industrias seleccionadas previamente.
 
         Instrucciones:
-        Utilizando el documento “5. Lista estándares SASB _ Noviembre 2024”, identifica **todas las filas correspondientes** a las industrias SASB relevantes definidas en el paso anterior (máximo 2 industrias, definidas en el Prompt 8).
+        Utilizando el documento “5._Lista_de_Est_ndares_SASB__Noviembre_2025”, identifica **todas las filas correspondientes** a las industrias SASB relevantes definidas en el paso anterior (máximo 2 industrias, definidas en el Prompt 8).
 
         ⚠️ Importante:
         - Incluye **todas** las filas relevantes para cada industria SASB seleccionada.
@@ -486,24 +513,25 @@ prompt_10 = PromptTemplate(
         Objetivo
         Identificar las normativas o regulaciones nacionales o sectoriales más relevantes que se relacionan directamente con los 10 temas materiales priorizados de la empresa.
         Instrucciones
-        - Utiliza el archivo “7. Mapeo Regulatorio LATAM GAIL _ Junio 2025”.
+        - Utiliza el archivo “6._Mapeo_Regulatorio_LATAM_GAIL_Noviembre_2025”.
         - Filtra la información por el país de operación analizado (segun resultado del prompt #1).
         - Para cada uno de los 10 temas materiales priorizados:
-        1. Revisa todas las regulaciones disponibles para Chile.
-        2. Evalúa la coincidencia semántica entre el enunciado del tema material y la descripción de cada normativa.
-        3. Selecciona únicamente las 3 normativas con mayor relevancia para ese tema (máximo 3 filas por tema).
-        4. Asegúrate de cubrir todos los temas materiales priorizados, no solo los relacionados con condiciones laborales.
+        1. Revisa todas las regulaciones disponibles para el país siendo analizado.
+        2. Evalúa la coincidencia semántica entre nombre del tema material y la descripción de cada normativa (columna D - Descripción).
+        3. Selecciona únicamente una normativa con mayor relevancia para ese tema.
+        4. Asegúrate de cubrir todos los temas materiales priorizados.
         Criterios de relevancia
         - Mayor alineación temática entre el nombre del tema y la normativa.
         - Especificidad: prefiere regulaciones que hagan referencia directa al área de impacto (ej. emisiones, privacidad de datos, residuos).
         - Si varias normativas empatan en relevancia, selecciona la más reciente o de mayor aplicabilidad nacional.
+        IMPORTANTE:
+        - Si hay comillas dentro de los textos, ESCÁPALAS así: \"texto entre comillas\".
+        - No uses comillas dobles sin escapar dentro de los valores JSON.
         Salida
         Genera una tabla con las siguientes columnas:
-        - Tema material – Tal como aparece en la Materiality Table.
         - Tipo de regulación – Tal como aparece en el Excel de referencia.
         - Descripción – Tal como aparece en el Excel de referencia.
         - Vigencia –Tal como aparece en el Excel de referencia.
-        - Relevancia – Breve explicación de por qué esta normativa está directamente vinculada con el tema material.
         Es importante que la respuesta venga en el siguiente formato JSON y SOLO me entregues el JSON en la respuesta: {{
             "regulaciones": [
                 {
@@ -525,7 +553,7 @@ prompt_11 = PromptTemplate(
         Objetivo
         Generar un resumen ejecutivo en un máximo de 2 párrafos que sintetice la estrategia de sostenibilidad recomendada para la empresa, a partir de los 10 temas materiales priorizados en la Materiality Table.
         Instrucciones
-        - Utiliza como insumo las acciones marginales, moderadas y estructurales previamente definidas en la Materiality Table para los 10 temas materiales priorizados.
+        - Utiliza como insumo el contexto de la organización y las acciones marginales, moderadas y estructurales previamente definidas en la Materiality Table para los 10 temas materiales priorizados.
         - El texto debe redactarse como si fuera la recomendación de un consultor experto en sostenibilidad, evitando un tono descriptivo de hechos ya implementados.
         - Asegúrate de mencionar explícitamente que las recomendaciones están basadas en el análisis de doble materialidad realizado.
         - La redacción debe presentar las acciones como pasos estratégicos que la empresa debería seguir:
@@ -533,7 +561,7 @@ prompt_11 = PromptTemplate(
             - Acciones moderadas → procesos recomendados a integrar en el mediano plazo.
             - Acciones estructurales → transformaciones de modelo de negocio a largo plazo.
         - Mantén un tono estratégico y ejecutivo, transmitiendo visión integral y ambiciosa, sin listar ni repetir extensamente.
-        - El resultado final debe ser conciso, máximo dos párrafos.
+        - El resultado final debe ser conciso, máximo 300 palabras.
         Es importante que la respuesta venga en el siguiente formato JSON y SOLO me entregues el JSON en la respuesta: {{
             "parrafo_1": "string",
             "parrafo_2": "string"

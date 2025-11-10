@@ -1,12 +1,13 @@
 from fastapi import APIRouter, HTTPException, Depends
 from fastapi.responses import Response, JSONResponse
 from app.schemas.analysis_request import AnalysisRequest
-from app.services.langchain.workflows import run_esg_analysis
+from app.services.langchain.workflows import run_esg_analysis, run_prompts_1_to_11
 from app.services.pdf_generation.pdf import PDFGenerator
 from app.db.session import get_db
 from sqlalchemy.orm import Session
 import base64
 import os
+import json 
 
 router = APIRouter()
 
@@ -20,8 +21,11 @@ async def esg_analysis(data: AnalysisRequest):
     result = await run_esg_analysis(
         organization_name=data.organization_name,
         country=data.country,
-        website=data.website
-    )
+        website=data.website,
+        industry=data.industry,
+        document=data.document or ""
+        )
+
     return result
 
 # ==========================================================
@@ -42,7 +46,9 @@ async def esg_analysis_with_pdf_api(data: AnalysisRequest, db: Session = Depends
         pipeline_data = await run_esg_analysis(
             organization_name=data.organization_name,
             country=data.country,
-            website=data.website
+            website=data.website,
+            industry=data.industry,
+            document=data.document or ""
         )
 
         # 2️⃣ Generar PDF en memoria
@@ -72,3 +78,51 @@ async def esg_analysis_with_pdf_api(data: AnalysisRequest, db: Session = Depends
     except Exception as e:
         print(f"❌ Error en análisis ESG con PDF: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error generando análisis ESG: {str(e)}")
+
+
+
+@router.post("/esg-prompt-2")
+async def run_prompts_1_to_5_endpoint(data: AnalysisRequest, db: Session = Depends(get_db)):
+    """
+    Ejecuta exclusivamente los Prompt 1 al 5 del análisis ESG.
+    """
+    try:
+        print(f"🚀 Ejecutando Prompts 1 al 5 para {data.organization_name}", flush=True)
+
+        # 👇 Esto ahora llama al verdadero `run_prompts_1_to_5` del módulo workflows
+        responses = await run_prompts_1_to_11(
+            organization_name=data.organization_name,
+            country=data.country,
+            website=data.website,
+            industry=data.industry,
+            document=data.document or ""
+        )
+
+        if not responses or not isinstance(responses, list):
+            raise ValueError("⚠️ No se recibieron respuestas válidas del modelo")
+
+        # Buscar los prompts 1 a 5
+        prompt1_response = next((r for r in responses if r["name"].startswith("🔹 Prompt 1")), None)
+        prompt2_response = next((r for r in responses if r["name"].startswith("🔹 Prompt 2")), None)
+        prompt3_response = next((r for r in responses if r["name"].startswith("🔹 Prompt 3")), None)
+        prompt4_response = next((r for r in responses if r["name"].startswith("🔹 Prompt 4")), None)
+        prompt5_response = next((r for r in responses if r["name"].startswith("🔹 Prompt 5")), None)
+
+        print(f"✅ Prompts 1–5 completados exitosamente para {data.organization_name}", flush=True)
+
+        return JSONResponse(
+            content={
+                "organization_name": data.organization_name,
+                "country": data.country,
+                "website": data.website,
+                "prompt_1": prompt1_response["response_content"] if prompt1_response else None,
+                "prompt_2": prompt2_response["response_content"] if prompt2_response else None,
+                "prompt_3": prompt3_response["response_content"] if prompt3_response else None,
+                "prompt_4": prompt4_response["response_content"] if prompt4_response else None,
+                "prompt_5": prompt5_response["response_content"] if prompt5_response else None,
+            }
+        )
+
+    except Exception as e:
+        print(f"❌ Error ejecutando Prompts 1–5: {str(e)}", flush=True)
+        raise HTTPException(status_code=500, detail=f"Error ejecutando Prompts 1–5: {str(e)}")
