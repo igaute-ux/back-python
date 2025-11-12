@@ -26,7 +26,7 @@ assistant = OpenAIAssistantV2Runnable(
     }],
 )
 
-MIN_ROWS_PROMPT_2 = 15
+MIN_ROWS_PROMPT_2 = 10
 MAX_ROWS_PROMPT_2 = 30
 
 
@@ -103,42 +103,15 @@ async def run_esg_analysis(
     thread_id = None
 
     # ============================
-    # 🧭 Prompt 1
-    # ============================
-    print(f"\n🔹 Ejecutando Prompt 1")
-    try:
-        call_params = {
-            "content": prompt_1.format(
-                organization_name=organization_name,
-                country=country,
-                website=website,
-                industry=industry,
-                document=document or "",
-            )
-        }
-        response = await safe_invoke(call_params)
-        raw_output = response[0].content[0].text.value.strip()
-        parsed_json = clean_and_parse_json(raw_output)
-        print("✅ Prompt 1 completado")
-        thread_id = response[0].thread_id
-        responses.append({
-            "name": prompt_1.name,
-            "response_content": parsed_json,
-            "thread_id": thread_id,
-        })
-    except Exception as e:
-        print(f"❌ Error en Prompt 1: {e}")
-        failed_prompts.append(prompt_1)
-
-    # ============================
-    # 🧭 Prompt 2 (hasta 5 intentos)
+    # 🧭 Prompt 2 (máx. 2 intentos)
     # ============================
     print(f"\n🔹 Ejecutando Prompt 2 (Identificación de Impactos)")
     rows = []
     parsed_json = {}
-    for attempt in range(1, 6):
+
+    for attempt in range(1, 3):  # 👈 solo 2 intentos
         try:
-            print(f"🧪 Intento {attempt}/5 de Prompt 2…", flush=True)
+            print(f"🧪 Intento {attempt}/2 de Prompt 2…", flush=True)
             call_params = {
                 "content": prompt_2.format(
                     organization_name=organization_name,
@@ -148,6 +121,7 @@ async def run_esg_analysis(
                 ),
                 **({"thread_id": thread_id} if thread_id else {}),
             }
+
             response = await safe_invoke(call_params)
             raw_output = response[0].content[0].text.value.strip()
             parsed_json = clean_and_parse_json(raw_output)
@@ -158,49 +132,95 @@ async def run_esg_analysis(
                 print("✅ Prompt 2 alcanzó el mínimo de filas requerido.")
                 break
             else:
-                wait_time = 10 + random.randint(0, 10)
+                wait_time = 8 + random.randint(0, 6)
                 print(f"⚠️ Menos de {MIN_ROWS_PROMPT_2} filas → reintentando en {wait_time}s…")
                 await asyncio.sleep(wait_time)
 
         except Exception as e:
             print(f"❌ Error en intento {attempt} de Prompt 2: {e}")
-            await asyncio.sleep(15)
+            await asyncio.sleep(10)
 
-    # Después de 5 intentos, si sigue corto → ejecutar Prompt 2.1
-    if len(rows) < MIN_ROWS_PROMPT_2:
-        print("⚠️ Prompt 2 no alcanzó 15 filas tras 5 intentos → ejecutando Prompt 2.1…")
-        try:
-            call_params_2 = {
-                "content": prompt_2_1.format(
-                    organization_name=organization_name,
-                    country=country,
-                    website=website,
-                    industry=industry,
-                ),
-                **({"thread_id": thread_id} if thread_id else {}),
-            }
-            response_2 = await safe_invoke(call_params_2)
-            raw_output_2 = response_2[0].content[0].text.value.strip()
-            parsed_json_2 = clean_and_parse_json(raw_output_2)
-            rows_2 = parsed_json_2.get("materiality_table", [])
-            temas_existentes = {r["tema"] for r in rows if "tema" in r}
-            nuevos = [r for r in rows_2 if "tema" in r and r["tema"] not in temas_existentes]
-            merged_rows = rows + nuevos
-            print(f"🧩 Prompt 2.1 añadió {len(nuevos)} filas nuevas → total {len(merged_rows)}")
+    # ============================
+    # 🧭 Prompt 2.1 (siempre se ejecuta)
+    # ============================
+    print("\n🔹 Ejecutando Prompt 2.1 (complementario)…")
+    try:
+        call_params_2 = {
+            "content": prompt_2_1.format(
+                organization_name=organization_name,
+                country=country,
+                website=website,
+                industry=industry,
+            ),
+            **({"thread_id": thread_id} if thread_id else {}),
+        }
+        response_2 = await safe_invoke(call_params_2)
+        raw_output_2 = response_2[0].content[0].text.value.strip()
+        parsed_json_2 = clean_and_parse_json(raw_output_2)
+        rows_2 = parsed_json_2.get("materiality_table", [])
 
-            if len(merged_rows) < MIN_ROWS_PROMPT_2:
-                raise ValueError(f"❌ Ni Prompt 2 ni 2.1 alcanzaron {MIN_ROWS_PROMPT_2} filas.")
-            parsed_json["materiality_table"] = merged_rows[:MAX_ROWS_PROMPT_2]
-        except Exception as e:
-            print(f"❌ Error en Prompt 2.1: {e}")
-            print("⛔ Abortando proceso por falla crítica en Prompt 2.")
-            return {"error": str(e), "failed_prompt": "Prompt 2"}
+        # 🧩 Combinar evitando duplicados
+        temas_existentes = {r["tema"] for r in rows if "tema" in r}
+        nuevos = [r for r in rows_2 if "tema" in r and r["tema"] not in temas_existentes]
+        merged_rows = rows + nuevos
+        print(f"🧩 Prompt 2.1 añadió {len(nuevos)} filas nuevas → total {len(merged_rows)}")
+
+        parsed_json["materiality_table"] = merged_rows[:MAX_ROWS_PROMPT_2]
+
+    except Exception as e:
+        print(f"❌ Error en Prompt 2.1: {e}")
+        print("⚠️ Continuando sin datos adicionales de Prompt 2.1…")
 
     responses.append({
         "name": prompt_2.name,
         "response_content": parsed_json,
         "thread_id": thread_id,
     })
+
+    # ============================
+    # 🧭 Prompts 3 → 11
+    # ============================
+    remaining_prompts = [
+        prompt_3, prompt_4, prompt_5, prompt_6,
+        prompt_7, prompt_8, prompt_9, prompt_10, prompt_11,
+    ]
+
+    print(f"\n🚀 Ejecutando prompts restantes…")
+    for i, prompt in enumerate(remaining_prompts, 1):
+        try:
+            print(f"🧪 Ejecutando {prompt.name}")
+            call_params = {"content": prompt.template}
+            if thread_id:
+                call_params["thread_id"] = thread_id
+            response = await safe_invoke(call_params)
+            raw_output = response[0].content[0].text.value.strip()
+            response_content = try_fix_json(raw_output)
+            thread_id = response[0].thread_id
+            responses.append({
+                "name": prompt.name,
+                "response_content": response_content,
+                "thread_id": thread_id,
+            })
+            print(f"✅ {prompt.name} completado")
+
+            if i % 2 == 0 and i < len(remaining_prompts):
+                delay = random.randint(25, 40)
+                print(f"⏳ Esperando {delay}s…")
+                await asyncio.sleep(delay)
+
+        except Exception as e:
+            print(f"❌ Error en {prompt.name}: {e}")
+            failed_prompts.append(prompt)
+
+    print(f"\n🎯 Proceso completado con {len(responses)} respuestas totales")
+
+    status = "complete" if len(failed_prompts) == 0 else "incomplete"
+
+    return {
+        "status": status,
+        "responses": responses,
+        "failed_prompts": [p.name for p in failed_prompts],
+    }
 
     # ============================
     # 🧭 Prompts 3 → 11

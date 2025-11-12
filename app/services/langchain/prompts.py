@@ -10,7 +10,7 @@ prompt_1 = PromptTemplate(
         Debes generar un JSON estructurado y detallado con información contextual de la empresa indicada.
         Esta información servirá como base para el análisis de doble materialidad.
 
-        📊 Datos de entrada:
+        Datos de entrada:
         - Nombre de empresa: {organization_name}
         - País: {country}
         - Website: {website}
@@ -18,7 +18,7 @@ prompt_1 = PromptTemplate(
         - Documento adjunto (de estar disponible): {document}
 
 
-        🧭 Instrucciones obligatorias:
+        Instrucciones obligatorias:
         1. Devuelve únicamente un JSON válido. No incluyas títulos, explicaciones, comentarios ni texto adicional fuera del JSON.
         2. Usa información pública o inferida para completar cada campo con **detalle suficiente y específico**.
         3. Si no hay información exacta disponible, infiere una descripción razonable y completa basada en el sector.
@@ -35,14 +35,14 @@ prompt_1 = PromptTemplate(
            - stakeholders_relevantes → mínimo 200 caracteres
         5. Evita respuestas genéricas como "Chile" o "e-commerce" sin contexto adicional.
 
-        🔒 Formato específico para "pais_operacion":
+        Formato específico para "pais_operacion":
         - Debe **comenzar exactamente** por: "{country}. "
         - Después de ese punto y espacio, describe la modalidad: p. ej. "Operación local integrada al ecosistema regional de X (multipaís en LATAM)" o "Operación nacional con proyección andina", etc.
         - **Prohibido**: descripciones geográficas del país (p.ej. "un país ubicado en..."), adjetivos turísticos o macroeconómicos generales.
         - **Ejemplo válido** (solo como guía, NO copiar literal):
           "{country}. Operación local integrada al ecosistema regional de MercadoLibre, Inc. (multipaís en LATAM)."
 
-        📝 Detalles esperados por campo:
+        Detalles esperados por campo:
         - “industria”: incluir subsectores relevantes si aplica.
         - “ubicacion_geografica”: detallar ciudad, región y ubicaciones operativas clave.
         - “modelo_negocio”: describir propuesta de valor, integración de servicios o productos y modelo operativo.
@@ -50,10 +50,10 @@ prompt_1 = PromptTemplate(
         - “actividades_principales”: describir procesos operativos que generan impactos ambientales y sociales.
         - “stakeholders_relevantes”: listar por categorías específicas (clientes, proveedores, comunidades, reguladores, inversionistas, etc.).
 
-        ⚠️ Si la longitud de cualquier campo es menor al mínimo indicado, considera la respuesta inválida y vuelve a generarla hasta cumplir estrictamente con los mínimos.
-        ⚠️ Si “pais_operacion” no inicia con "{country}. " o incluye descripciones geográficas del país, la respuesta es inválida y debes regenerarla.
+        Si la longitud de cualquier campo es menor al mínimo indicado, considera la respuesta inválida y vuelve a generarla hasta cumplir estrictamente con los mínimos.
+        Si “pais_operacion” no inicia con "{country}. " o incluye descripciones geográficas del país, la respuesta es inválida y debes regenerarla.
 
-        📦 Formato de salida obligatorio (sin texto adicional):
+        Formato de salida obligatorio (sin texto adicional):
         {{
           "nombre_empresa": "string",
           "pais_operacion": "string",
@@ -79,10 +79,10 @@ prompt_2 = PromptTemplate(
         Eres un analista ESG especializado en materialidad sectorial. 
         Tu tarea es identificar y listar temas materiales relevantes para el sector S&P en el que opera la empresa, utilizando la tabla “1.Acciones_Materiality_Map_SP_V3_Noviembre_2025”.
 
-        📊 INSTRUCCIONES ESTRICTAS:
+        INSTRUCCIONES ESTRICTAS:
         1. Identifica todos los temas materiales correspondientes al sector S&P más representativo de la empresa.
         2. Para cada tema, incluye las acciones Marginal, Moderada y Estructural **exactamente** como aparecen en el Excel base (sin reformular ni resumir).
-        3. La tabla debe contener como **mínimo 15 registros (filas)**. Este es un requerimiento obligatorio.Evita repeticiones exactas.
+        3. La tabla debe contener como **mínimo 10 registros (filas)**. Este es un requerimiento obligatorio.Evita repeticiones exactas.
         4. **Debes incluir obligatoriamente los tres niveles de materialidad financiera**:
              - Al menos **un conjunto representativo de temas con materialidad financiera "Baja"**,  
              - Al menos **un conjunto representativo con "Media"**,  
@@ -92,7 +92,7 @@ prompt_2 = PromptTemplate(
         6. Si sí existen más temas, debes completar la tabla hasta llegar a 15 filas. **No devuelvas menos de 15 filas sin `"exhausted": true"`.**
         7. No devuelvas texto explicativo, comentarios ni Markdown. Solo JSON válido.
 
-        📌 Estructura requerida de salida:
+        Estructura requerida de salida:
             {{
                 "materiality_table": [
                     {{
@@ -108,8 +108,8 @@ prompt_2 = PromptTemplate(
                 "exhausted": false
             }}
 
-        ⚠️ IMPORTANTE:
-        - Dvuelve mas de 15 filas sin excepcion.
+        IMPORTANTE:
+        - Devuelve mas de 10 filas sin excepcion.
         - Mantén el orden exacto de las columnas.
         - No uses sinónimos ni resumas textos de la fuente.
         - **No omitas ningún nivel de materialidad financiera (Baja, Media, Alta).**
@@ -127,7 +127,8 @@ prompt_2_1 = PromptTemplate(
         Objetivo:
         Continuar la identificación de impactos utilizando los Materiality Maps de S&P y construir la base de la Materiality Table.
         Instrucciones:
-        Anteriormente se generó la tabla de impactos donde te pedi un minimo de 20 resultados de ser posible, ahora se debe continuar con la identificación de impactos utilizando los Materiality Maps de S&P y a la tabla anterior agregar los resultados faltantes.
+        Anteriormente se generó la tabla de impactos donde te pedi un minimo de 10 resultados de ser posible, ahora se debe continuar con la identificación de impactos utilizando los Materiality Maps de S&P, tenes que agragar
+        a la tabla anterior agregando minimo 5 resultados.
         Es importante que la respuesta: siga la misma estructura de la tabla de impactos anterior, venga en el siguiente formato JSON y SOLO me entregues el JSON en la respuesta: {{
                 "materiality_table": [
                     {{
@@ -141,6 +142,8 @@ prompt_2_1 = PromptTemplate(
                     }}
                 ],
         }}
+        IMPORTANTE:
+        - Devuelve mas de 5 filas sin excepcion.
     """
 )
 
