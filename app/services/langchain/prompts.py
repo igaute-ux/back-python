@@ -82,7 +82,7 @@ prompt_2 = PromptTemplate(
         📊 INSTRUCCIONES ESTRICTAS:
         1. Identifica todos los temas materiales correspondientes al sector S&P más representativo de la empresa.
         2. Para cada tema, incluye las acciones Marginal, Moderada y Estructural **exactamente** como aparecen en el Excel base (sin reformular ni resumir).
-        3. La tabla debe contener como **mínimo 20 registros (filas)**. Este es un requerimiento obligatorio.Evita repeticiones exactas.
+        3. La tabla debe contener como **mínimo 15 registros (filas)**. Este es un requerimiento obligatorio.Evita repeticiones exactas.
         4. **Debes incluir obligatoriamente los tres niveles de materialidad financiera**:
              - Al menos **un conjunto representativo de temas con materialidad financiera "Baja"**,  
              - Al menos **un conjunto representativo con "Media"**,  
@@ -109,7 +109,7 @@ prompt_2 = PromptTemplate(
             }}
 
         ⚠️ IMPORTANTE:
-        - Si la cantidad de filas es menor a 15 y no devuelves `"exhausted": true`, la respuesta será inválida.
+        - Dvuelve mas de 15 filas sin excepcion.
         - Mantén el orden exacto de las columnas.
         - No uses sinónimos ni resumas textos de la fuente.
         - **No omitas ningún nivel de materialidad financiera (Baja, Media, Alta).**
