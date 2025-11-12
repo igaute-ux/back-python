@@ -103,6 +103,34 @@ async def run_esg_analysis(
     thread_id = None
 
     # ============================
+    # 🧭 Prompt 1
+    # ============================
+    print(f"\n🔹 Ejecutando Prompt 1")
+    try:
+        call_params = {
+            "content": prompt_1.format(
+                organization_name=organization_name,
+                country=country,
+                website=website,
+                industry=industry,
+                document=document or "",
+            )
+        }
+        response = await safe_invoke(call_params)
+        raw_output = response[0].content[0].text.value.strip()
+        parsed_json = clean_and_parse_json(raw_output)
+        print("✅ Prompt 1 completado correctamente")
+        thread_id = response[0].thread_id
+        responses.append({
+            "name": prompt_1.name,
+            "response_content": parsed_json,
+            "thread_id": thread_id,
+        })
+    except Exception as e:
+        print(f"❌ Error en Prompt 1: {e}")
+        failed_prompts.append(prompt_1)
+
+    # ============================
     # 🧭 Prompt 2 (máx. 2 intentos)
     # ============================
     print(f"\n🔹 Ejecutando Prompt 2 (Identificación de Impactos)")
@@ -221,49 +249,3 @@ async def run_esg_analysis(
         "responses": responses,
         "failed_prompts": [p.name for p in failed_prompts],
     }
-
-    # ============================
-    # 🧭 Prompts 3 → 11
-    # ============================
-    remaining_prompts = [
-        prompt_3, prompt_4, prompt_5, prompt_6,
-        prompt_7, prompt_8, prompt_9, prompt_10, prompt_11,
-    ]
-
-    print(f"\n🚀 Ejecutando prompts restantes…")
-    for i, prompt in enumerate(remaining_prompts, 1):
-        try:
-            print(f"🧪 Ejecutando {prompt.name}")
-            call_params = {"content": prompt.template}
-            if thread_id:
-                call_params["thread_id"] = thread_id
-            response = await safe_invoke(call_params)
-            raw_output = response[0].content[0].text.value.strip()
-            response_content = try_fix_json(raw_output)
-            thread_id = response[0].thread_id
-            responses.append({
-                "name": prompt.name,
-                "response_content": response_content,
-                "thread_id": thread_id,
-            })
-            print(f"✅ {prompt.name} completado")
-
-            if i % 2 == 0 and i < len(remaining_prompts):
-                delay = random.randint(25, 40)
-                print(f"⏳ Esperando {delay}s…")
-                await asyncio.sleep(delay)
-
-        except Exception as e:
-            print(f"❌ Error en {prompt.name}: {e}")
-            failed_prompts.append(prompt)
-
-    print(f"\n🎯 Proceso completado con {len(responses)} respuestas totales")
-
-    status = "complete" if len(failed_prompts) == 0 else "incomplete"
-
-    return {
-        "status": status,
-        "responses": responses,
-        "failed_prompts": [p.name for p in failed_prompts],
-    }
-
