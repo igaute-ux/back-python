@@ -194,16 +194,45 @@ async def run_esg_analysis(
     if p1:
         responses.append({"name": prompt_1.name, "response_content": p1, "thread_id": thread_id})
 
-    # ==================================================
-    # 🧭 Prompt 2 (solo 2 intentos + STOP si falla)
+      # ==================================================
+    # 🧭 Prompt 2 (solo 2 intentos)
     # ==================================================
     print("\n🔹 Ejecutando Prompt 2 (máx 2 intentos)")
     rows = []
     p2 = None
 
-    for attempt in range(1, 3):
+    def extract_materiality_table(raw_text: str):
+        """
+        Permite rescatar la tabla incluso si el JSON está roto.
+        """
+        raw_text = sanitize_quotes(raw_text)
 
-        p2 = await run_prompt(
+        # Buscar manualmente el array materiality_table
+        match = re.search(
+            r'"materiality_table"\s*:\s*\[(.*?)\]',
+            raw_text,
+            re.DOTALL
+        )
+
+        if not match:
+            return None
+
+        content = match.group(1)
+
+        # Intentar envolver en JSON válido
+        try:
+            cleaned = "[" + content + "]"
+            cleaned = cleaned.replace("\n", " ").replace("\t", " ")
+            cleaned = sanitize_quotes(cleaned)
+            arr = json.loads(cleaned)
+            return arr
+        except:
+            return None
+
+    for attempt in range(1, 3):
+        print(f"\n🧪 Prompt 2 — Intento {attempt}/2")
+
+        result = await run_prompt(
             prompt_2,
             prompt_2.format(
                 organization_name=organization_name,
@@ -214,15 +243,21 @@ async def run_esg_analysis(
             name=f"Prompt 2 — Intento {attempt}/2"
         )
 
-        # ❌ JSON inválido o vacío → reintentar
-        if not p2:
+        if not result:
             print("❌ Prompt 2 devolvió None → reintentando…")
             await asyncio.sleep(10)
             continue
 
-        rows = p2.get("materiality_table", [])
+        # Si viene JSON válido → perfecto
+        rows = result.get("materiality_table", [])
 
-        # 🟢 Cumplió condiciones mínimas
+        # Si viene vacío → intentar extracción manual
+        if not rows:
+            print("⚠️ Intentando recuperación manual tabla...")
+            rows = extract_materiality_table(
+                raw_text=run_prompt.last_raw  # ← guardamos raw en run_prompt
+            ) or []
+
         if len(rows) >= MIN_ROWS_PROMPT_2:
             print("✅ Prompt 2 alcanzó el mínimo de filas")
             break
@@ -230,50 +265,15 @@ async def run_esg_analysis(
         print("⚠️ Prompt 2 corto → esperando 10s…")
         await asyncio.sleep(10)
 
-    # ❌ Luego de 2 intentos NO alcanzó mínimos → ABORTAR
-    if not p2 or len(rows) < MIN_ROWS_PROMPT_2:
+    # Si después de los 2 intentos sigue fallado → ABORTAR
+    if len(rows) < MIN_ROWS_PROMPT_2:
         print("⛔ Prompt 2 falló definitivamente → abortando pipeline.")
         return {
             "status": "failed",
-            "responses": responses,
-            "failed_prompts": ["Prompt 2"]
+            "failed_prompts": ["Prompt 2"],
+            "responses": responses
         }
 
-    # ==================================================
-    # 🧭 Prompt 2.1 — obligatorio, STOP si falla
-    # ==================================================
-    p21 = await run_prompt(
-        prompt_2_1,
-        prompt_2_1.format(
-            organization_name=organization_name,
-            country=country,
-            website=website,
-            industry=industry,
-        ),
-        name="Prompt 2.1"
-    )
-
-    if not p21:
-        print("⛔ Prompt 2.1 falló → abortando pipeline.")
-        return {
-            "status": "failed",
-            "responses": responses,
-            "failed_prompts": ["Prompt 2.1"]
-        }
-
-    # Merge normal
-    extras = p21.get("materiality_table", [])
-    temas = {r["tema"] for r in rows}
-    nuevos = [r for r in extras if r.get("tema") not in temas]
-    rows.extend(nuevos)
-
-    p2 = {"materiality_table": rows[:MAX_ROWS_PROMPT_2]}
-
-    responses.append({
-        "name": prompt_2.name,
-        "response_content": p2,
-        "thread_id": thread_id
-    })
 
     # ==================================================
     # 🧭 Prompts 3 → 11
