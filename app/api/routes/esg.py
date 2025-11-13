@@ -31,23 +31,20 @@ async def esg_analysis(data: AnalysisRequest):
 # ==========================================================
 # 🧾 Análisis ESG completo con PDF (JSON + base64 + link)
 # ==========================================================
-
-@router.post("/esg-analysis-with-pdf-api")
-async def esg_analysis_with_pdf_api(
-    data: AnalysisRequest, 
+@router.post("/esg-analysis-api")
+async def esg_analysis_api(
+    data: AnalysisRequest,
     db: Session = Depends(get_db)
 ):
     """
     Ejecuta el flujo completo del análisis ESG.
-    Devuelve:
-    - JSON con el estado ("complete" | "incomplete" | "failed")
-    - PDF base64 si se pudo generar
-    - Errores y prompts fallidos
+    Devuelve solo:
+    - status: "complete" | "incomplete" | "failed"
+    - analysis_json: respuestas de todos los prompts
+    - failed_prompts: lista de prompts fallidos
     """
     print(f"🚀 Iniciando análisis ESG para {data.organization_name}")
-    
-    pdf_base64 = None
-    filename = None
+
     pipeline_result = None
 
     try:
@@ -67,36 +64,12 @@ async def esg_analysis_with_pdf_api(
         failed_prompts = pipeline_result.get("failed_prompts", [])
 
         # ===========================
-        # 2️⃣ Intentar generar PDF (solo si hay respuestas)
-        # ===========================
-        if responses:
-            try:
-                print("📄 Generando PDF del reporte...")
-                generator = PDFGenerator()
-                pdf_bytes = generator.generate_esg_report(
-                    pipeline_data=pipeline_result,
-                    output_path=None
-                )
-                pdf_base64 = base64.b64encode(pdf_bytes).decode("utf-8")
-
-                safe_name = "".join(
-                    c for c in data.organization_name if c.isalnum() or c in (' ', '-', '_')
-                ).rstrip().replace(' ', '_').lower()
-                filename = f"esg_report_{safe_name}.pdf"
-                print(f"✅ PDF generado exitosamente ({len(pdf_bytes)} bytes)")
-            except Exception as pdf_err:
-                print(f"⚠️ No se pudo generar PDF: {pdf_err}")
-                pdf_base64 = None
-
-        # ===========================
-        # 3️⃣ Devolver respuesta a NestJS
+        # 2️⃣ Devolver SOLO JSON
         # ===========================
         return JSONResponse(
-            status_code=200 if status == "complete" else 207,  # 207: multi-status/parcial
+            status_code=200 if status == "complete" else 207,
             content={
-                "status": status,  # "complete" o "incomplete"
-                "filename": filename,
-                "pdf_base64": pdf_base64,
+                "status": status,
                 "analysis_json": responses,
                 "failed_prompts": failed_prompts,
             },
@@ -104,9 +77,9 @@ async def esg_analysis_with_pdf_api(
 
     except Exception as e:
         # ===========================
-        # 4️⃣ Error crítico → devolver parcial si existe
+        # 3️⃣ Error crítico → devolver parcial si existe
         # ===========================
-        print(f"❌ Error en análisis ESG con PDF: {str(e)}")
+        print(f"❌ Error en análisis ESG: {str(e)}")
 
         return JSONResponse(
             status_code=500,

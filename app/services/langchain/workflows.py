@@ -29,42 +29,72 @@ assistant = OpenAIAssistantV2Runnable(
 MIN_ROWS_PROMPT_2 = 10
 MAX_ROWS_PROMPT_2 = 30
 
+# ==================================================
+# 🧽 SANITIZADOR DE JSON — CRÍTICO PARA Prompt 2
+# ==================================================
+
+def sanitize_quotes(raw: str) -> str:
+    """Repara comillas internas que rompen el JSON."""
+    if not raw:
+        return raw
+
+    raw = raw.replace("“", '"').replace("”", '"').replace("’", "'")
+
+    # Caso más crítico: "algo "texto" algo"
+    raw = re.sub(
+        r'"([^"]*?)"([^"]*?)"',
+        r'"\1\"\2"',
+        raw
+    )
+
+    # Caso específico del ESG: privacy by design
+    raw = raw.replace('"privacy by design"', '\\"privacy by design\\"')
+
+    return raw
+
+
+# ==================================================
+# 🧰 FIX JSON GENERAL
+# ==================================================
 
 def try_fix_json(raw_text: str):
-    raw_text = raw_text.strip()
+    raw_text = sanitize_quotes(raw_text.strip())
     json_candidate = re.search(r"\{.*\}", raw_text, re.DOTALL)
+
     if json_candidate:
         raw_text = json_candidate.group(0)
+
     fixed = re.sub(r",(\s*[}\]])", r"\1", raw_text)
-    fixed = fixed.replace("“", '"').replace("”", '"').replace("’", "'")
     fixed = fixed.replace("\n", " ").replace("\t", " ")
     fixed = re.sub(r"(\d+),(\d+)", r"\1.\2", fixed)
+
+    # Intento directo
     try:
         return json.loads(fixed)
-    except json.JSONDecodeError:
-        return clean_and_parse_json(fixed)
+    except Exception:
+        pass
 
+    # Intento con tu reparador viejo
+    try:
+        return clean_and_parse_json(fixed)
+    except Exception:
+        return {}
+
+
+# ==================================================
+# 🔒 INVOCACIÓN CON RECUPERACIÓN DE THREAD LIMPIO
+# ==================================================
 
 async def safe_invoke(call_params, retries=5, base_wait=15):
-    """
-    Ejecuta una llamada al Assistant con:
-    - Manejo real de rate limits
-    - Regeneración automática de un thread limpio
-    - Reintentos progresivos
-    """
-
     for attempt in range(1, retries + 1):
         try:
             result = assistant.invoke(call_params)
-
-            # El assistant devuelve un array con un "run"
             run = result[0]
 
-            # ❌ Si el run está fallado o expirado → no sirve, regenerar thread
             if hasattr(run, "status") and run.status in ["expired", "failed"]:
-                print(f"⚠️ Run inválido: {run.status} → regenerando thread…")
-                if "thread_id" in call_params:
-                    del call_params["thread_id"]
+                print(f"⚠️ Run inválido ({run.status}) → regenerando thread…")
+                call_params.pop("thread_id", None)
+                await asyncio.sleep(3)
                 continue
 
             return result
@@ -72,43 +102,28 @@ async def safe_invoke(call_params, retries=5, base_wait=15):
         except Exception as e:
             err = str(e).lower()
 
-            # 🟥 Créditos agotados → abortar
-            if "insufficient_quota" in err or "exceeded your current quota" in err:
-                raise RuntimeError(
-                    "❌ Créditos agotados. No se puede continuar hasta recargar."
-                )
+            if "insufficient_quota" in err:
+                raise RuntimeError("❌ Créditos agotados.")
 
-            # 🟡 Rate limit real → esperar y regenerar thread limpio
-            if any(x in err for x in ["rate_limit", "tokens per minute", "too many requests"]):
-                wait_time = 180  # 3 minutos
-                print(f"⏳ Rate limit detectado — esperando {wait_time//60} minutos…")
-                await asyncio.sleep(wait_time)
+            if any(x in err for x in ["rate_limit", "tokens per minute"]):
+                print("⏳ Rate limit → esperando 3 minutos…")
+                await asyncio.sleep(180)
+                call_params.pop("thread_id", None)
+                continue
 
-                print("🧼 Eliminando thread_id para crear un run completamente nuevo.")
-                if "thread_id" in call_params:
-                    del call_params["thread_id"]
-
-                continue  # reintentar
-
-            # 🔵 Timeout o errores de red
             if "timeout" in err or "connection" in err:
                 wait_time = base_wait * attempt
-                print(f"🌐 Error de red — reintentando en {wait_time}s…")
+                print(f"🌐 Timeout → reintentando en {wait_time}s…")
                 await asyncio.sleep(wait_time)
                 continue
 
-            # 🔴 Otros errores → no reintentables
             raise
 
-    raise RuntimeError("No se pudo completar la llamada a OpenAI tras múltiples intentos.")
-
+    raise RuntimeError("❌ No se pudo completar llamada tras múltiples intentos.")
 
 
 # ==================================================
-# 🚀 Proceso principal con Prompt 2 iterativo
-# ==================================================
-# ==================================================
-# 🚀 PIPELINE ESG DEFINITIVO (con recuperación y thread limpio)
+# 🚀 PIPELINE ESG
 # ==================================================
 
 async def run_esg_analysis(
@@ -117,62 +132,51 @@ async def run_esg_analysis(
     website: str,
     industry: str,
     document: Optional[str] = None
-) -> str:
+):
     print("\n🚀 Iniciando análisis ESG para", organization_name)
-    
+
     responses = []
     failed_prompts = []
     thread_id = None
 
     # -------------------------------------------------
-    # 🧠 Helper: ejecutar un prompt con auto-recovery
+    # Helper interno
     # -------------------------------------------------
-    async def run_prompt(prompt, formatted_content, name=None, use_thread=True, retries=4):
+    async def run_prompt(prompt, content, name=None, retries=4, use_thread=True):
         nonlocal thread_id
-        
+
         for attempt in range(1, retries + 1):
             print(f"\n🧪 Ejecutando {name or prompt.name} (Intento {attempt}/{retries})")
-            
-            call_params = {"content": formatted_content}
 
-            # Usar thread solo si está permitido
+            params = {"content": content}
             if use_thread and thread_id:
-                call_params["thread_id"] = thread_id
+                params["thread_id"] = thread_id
 
             try:
-                result = await safe_invoke(call_params)
+                result = await safe_invoke(params)
                 run = result[0]
 
-                # Guardar nuevo thread_id
                 if hasattr(run, "thread_id"):
                     thread_id = run.thread_id
 
-                raw_output = run.content[0].text.value.strip()
-                parsed = try_fix_json(raw_output)
+                raw = run.content[0].text.value.strip()
+                parsed = try_fix_json(raw)
 
                 print(f"✅ {name or prompt.name} completado")
                 return parsed
 
             except Exception as e:
-                err = str(e).lower()
+                print(f"⚠️ Error recuperable en {name}: {e}")
+                thread_id = None
+                await asyncio.sleep(5)
+                continue
 
-                # ❌ Error recuperable → regenerar thread y reintentar
-                if any(k in err for k in ["expired", "failed", "rate_limit"]):
-                    print("⚠️ Error recuperable, limpiando thread…")
-                    thread_id = None
-                    await asyncio.sleep(5)
-                    continue
-
-                # ❌ Error no recuperable
-                print(f"❌ Error en {name or prompt.name}: {e}")
-                return None
-
-        print(f"⛔ {name or prompt.name} falló todos los intentos")
+        print(f"⛔ {name or prompt.name} falló TODOS los intentos")
         failed_prompts.append(prompt)
         return None
 
     # ==================================================
-    # 🧭 Prompt 1 — SIEMPRE inicia con thread limpio
+    # 🧭 Prompt 1 — thread limpio
     # ==================================================
     p1 = await run_prompt(
         prompt_1,
@@ -188,20 +192,17 @@ async def run_esg_analysis(
     )
 
     if p1:
-        responses.append({
-            "name": prompt_1.name,
-            "response_content": p1,
-            "thread_id": thread_id,
-        })
+        responses.append({"name": prompt_1.name, "response_content": p1, "thread_id": thread_id})
 
     # ==================================================
-    # 🧭 Prompt 2 — máx. 2 intentos
+    # 🧭 Prompt 2 (solo 2 intentos + STOP si falla)
     # ==================================================
     print("\n🔹 Ejecutando Prompt 2 (máx 2 intentos)")
     rows = []
     p2 = None
 
     for attempt in range(1, 3):
+
         p2 = await run_prompt(
             prompt_2,
             prompt_2.format(
@@ -210,21 +211,36 @@ async def run_esg_analysis(
                 website=website,
                 industry=industry,
             ),
-            name=f"Prompt 2 — Intento {attempt}/2",
-            use_thread=True
+            name=f"Prompt 2 — Intento {attempt}/2"
         )
 
-        if p2:
-            rows = p2.get("materiality_table", [])
-            if len(rows) >= MIN_ROWS_PROMPT_2:
-                print("✅ Prompt 2 alcanzó el mínimo de filas")
-                break
+        # ❌ JSON inválido o vacío → reintentar
+        if not p2:
+            print("❌ Prompt 2 devolvió None → reintentando…")
+            await asyncio.sleep(10)
+            continue
 
-        print("⚠️ Prompt 2 corto → esperando 10s antes de reintentar…")
+        rows = p2.get("materiality_table", [])
+
+        # 🟢 Cumplió condiciones mínimas
+        if len(rows) >= MIN_ROWS_PROMPT_2:
+            print("✅ Prompt 2 alcanzó el mínimo de filas")
+            break
+
+        print("⚠️ Prompt 2 corto → esperando 10s…")
         await asyncio.sleep(10)
 
+    # ❌ Luego de 2 intentos NO alcanzó mínimos → ABORTAR
+    if not p2 or len(rows) < MIN_ROWS_PROMPT_2:
+        print("⛔ Prompt 2 falló definitivamente → abortando pipeline.")
+        return {
+            "status": "failed",
+            "responses": responses,
+            "failed_prompts": ["Prompt 2"]
+        }
+
     # ==================================================
-    # 🧭 Prompt 2.1 — SIEMPRE se ejecuta
+    # 🧭 Prompt 2.1 — obligatorio, STOP si falla
     # ==================================================
     p21 = await run_prompt(
         prompt_2_1,
@@ -234,46 +250,48 @@ async def run_esg_analysis(
             website=website,
             industry=industry,
         ),
-        name="Prompt 2.1",
-        use_thread=True
+        name="Prompt 2.1"
     )
 
-    if p21:
-        extra_rows = p21.get("materiality_table", [])
-        temas_existentes = {r["tema"] for r in rows if "tema" in r}
-        nuevos = [r for r in extra_rows if r.get("tema") not in temas_existentes]
-        rows.extend(nuevos)
-        p2 = {"materiality_table": rows[:MAX_ROWS_PROMPT_2]}
+    if not p21:
+        print("⛔ Prompt 2.1 falló → abortando pipeline.")
+        return {
+            "status": "failed",
+            "responses": responses,
+            "failed_prompts": ["Prompt 2.1"]
+        }
+
+    # Merge normal
+    extras = p21.get("materiality_table", [])
+    temas = {r["tema"] for r in rows}
+    nuevos = [r for r in extras if r.get("tema") not in temas]
+    rows.extend(nuevos)
+
+    p2 = {"materiality_table": rows[:MAX_ROWS_PROMPT_2]}
 
     responses.append({
         "name": prompt_2.name,
         "response_content": p2,
-        "thread_id": thread_id,
+        "thread_id": thread_id
     })
 
     # ==================================================
-    # 🧭 Prompts 3 → 11 con recuperación automática
+    # 🧭 Prompts 3 → 11
     # ==================================================
-    prompts = [
-        prompt_3, prompt_4, prompt_5, prompt_6,
-        prompt_7, prompt_8, prompt_9, prompt_10, prompt_11,
-    ]
+    for i, p in enumerate(
+        [prompt_3, prompt_4, prompt_5, prompt_6,
+         prompt_7, prompt_8, prompt_9, prompt_10, prompt_11], 1
+    ):
 
-    for i, p in enumerate(prompts, 1):
         parsed = await run_prompt(
             p,
             p.template,
             name=p.name,
-            use_thread=True,
-            retries=3  # prompts pesados
+            retries=3
         )
 
         if parsed:
-            responses.append({
-                "name": p.name,
-                "response_content": parsed,
-                "thread_id": thread_id,
-            })
+            responses.append({"name": p.name, "response_content": parsed, "thread_id": thread_id})
         else:
             failed_prompts.append(p)
 
@@ -281,14 +299,10 @@ async def run_esg_analysis(
             await asyncio.sleep(random.randint(20, 40))
 
     # ==================================================
-    # ✔️ Resultado final
+    # 🎯 RESULTADO FINAL
     # ==================================================
-
-    print("\n🎯 ESG Analysis finalizado.")
-    print("Prompts fallados:", [p.name for p in failed_prompts])
-
     return {
         "status": "complete" if not failed_prompts else "incomplete",
         "responses": responses,
-        "failed_prompts": [p.name for p in failed_prompts],
+        "failed_prompts": [p.name for p in failed_prompts]
     }
