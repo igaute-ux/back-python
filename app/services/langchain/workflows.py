@@ -47,43 +47,59 @@ def try_fix_json(raw_text: str):
 
 async def safe_invoke(call_params, retries=5, base_wait=15):
     """
-    Llama al assistant con tolerancia a rate limits y fallos de red.
-    - Si es un rate limit de tokens/minuto → espera 3 min y reintenta.
-    - Si es un error de cuota agotada → aborta inmediatamente.
-    - Otros errores → reintentos progresivos normales.
+    Ejecuta una llamada al Assistant con:
+    - Manejo real de rate limits
+    - Regeneración automática de un thread limpio
+    - Reintentos progresivos
     """
+
     for attempt in range(1, retries + 1):
         try:
-            return assistant.invoke(call_params)
+            result = assistant.invoke(call_params)
+
+            # El assistant devuelve un array con un "run"
+            run = result[0]
+
+            # ❌ Si el run está fallado o expirado → no sirve, regenerar thread
+            if hasattr(run, "status") and run.status in ["expired", "failed"]:
+                print(f"⚠️ Run inválido: {run.status} → regenerando thread…")
+                if "thread_id" in call_params:
+                    del call_params["thread_id"]
+                continue
+
+            return result
 
         except Exception as e:
             err = str(e).lower()
 
-            # 🚫 Si no hay más crédito (no sirve esperar)
+            # 🟥 Créditos agotados → abortar
             if "insufficient_quota" in err or "exceeded your current quota" in err:
                 raise RuntimeError(
-                    "❌ Créditos de OpenAI agotados o sin plan activo. "
-                    "No se puede continuar hasta recargar o cambiar API key."
+                    "❌ Créditos agotados. No se puede continuar hasta recargar."
                 )
 
-            # ⚠️ Si es un rate limit por tokens/minuto (TPM)
+            # 🟡 Rate limit real → esperar y regenerar thread limpio
             if any(x in err for x in ["rate_limit", "tokens per minute", "too many requests"]):
-                wait_time = 180  # 3 minutos fijos
-                print(f"⚠️ Rate limit por tokens/minuto detectado — esperando {wait_time//60} minutos antes de reintentar...")
+                wait_time = 180  # 3 minutos
+                print(f"⏳ Rate limit detectado — esperando {wait_time//60} minutos…")
                 await asyncio.sleep(wait_time)
-                continue  # vuelve a intentar el mismo prompt después del cooldown
 
-            # 🌐 Errores de red o conexión temporal
+                print("🧼 Eliminando thread_id para crear un run completamente nuevo.")
+                if "thread_id" in call_params:
+                    del call_params["thread_id"]
+
+                continue  # reintentar
+
+            # 🔵 Timeout o errores de red
             if "timeout" in err or "connection" in err:
                 wait_time = base_wait * attempt
-                print(f"🌐 Error de conexión ({err}) — reintentando en {wait_time}s...")
+                print(f"🌐 Error de red — reintentando en {wait_time}s…")
                 await asyncio.sleep(wait_time)
                 continue
 
-            # 🚫 Otros errores no recuperables
+            # 🔴 Otros errores → no reintentables
             raise
 
-    # Si después de todos los intentos sigue fallando, abortar con mensaje claro
     raise RuntimeError("No se pudo completar la llamada a OpenAI tras múltiples intentos.")
 
 
@@ -91,6 +107,10 @@ async def safe_invoke(call_params, retries=5, base_wait=15):
 # ==================================================
 # 🚀 Proceso principal con Prompt 2 iterativo
 # ==================================================
+# ==================================================
+# 🚀 PIPELINE ESG DEFINITIVO (con recuperación y thread limpio)
+# ==================================================
+
 async def run_esg_analysis(
     organization_name: str,
     country: str,
@@ -98,154 +118,177 @@ async def run_esg_analysis(
     industry: str,
     document: Optional[str] = None
 ) -> str:
+    print("\n🚀 Iniciando análisis ESG para", organization_name)
+    
     responses = []
     failed_prompts = []
     thread_id = None
 
-    # ============================
-    # 🧭 Prompt 1
-    # ============================
-    print(f"\n🔹 Ejecutando Prompt 1")
-    try:
-        call_params = {
-            "content": prompt_1.format(
-                organization_name=organization_name,
-                country=country,
-                website=website,
-                industry=industry,
-                document=document or "",
-            )
-        }
-        response = await safe_invoke(call_params)
-        raw_output = response[0].content[0].text.value.strip()
-        parsed_json = clean_and_parse_json(raw_output)
-        print("✅ Prompt 1 completado correctamente")
-        thread_id = response[0].thread_id
+    # -------------------------------------------------
+    # 🧠 Helper: ejecutar un prompt con auto-recovery
+    # -------------------------------------------------
+    async def run_prompt(prompt, formatted_content, name=None, use_thread=True, retries=4):
+        nonlocal thread_id
+        
+        for attempt in range(1, retries + 1):
+            print(f"\n🧪 Ejecutando {name or prompt.name} (Intento {attempt}/{retries})")
+            
+            call_params = {"content": formatted_content}
+
+            # Usar thread solo si está permitido
+            if use_thread and thread_id:
+                call_params["thread_id"] = thread_id
+
+            try:
+                result = await safe_invoke(call_params)
+                run = result[0]
+
+                # Guardar nuevo thread_id
+                if hasattr(run, "thread_id"):
+                    thread_id = run.thread_id
+
+                raw_output = run.content[0].text.value.strip()
+                parsed = try_fix_json(raw_output)
+
+                print(f"✅ {name or prompt.name} completado")
+                return parsed
+
+            except Exception as e:
+                err = str(e).lower()
+
+                # ❌ Error recuperable → regenerar thread y reintentar
+                if any(k in err for k in ["expired", "failed", "rate_limit"]):
+                    print("⚠️ Error recuperable, limpiando thread…")
+                    thread_id = None
+                    await asyncio.sleep(5)
+                    continue
+
+                # ❌ Error no recuperable
+                print(f"❌ Error en {name or prompt.name}: {e}")
+                return None
+
+        print(f"⛔ {name or prompt.name} falló todos los intentos")
+        failed_prompts.append(prompt)
+        return None
+
+    # ==================================================
+    # 🧭 Prompt 1 — SIEMPRE inicia con thread limpio
+    # ==================================================
+    p1 = await run_prompt(
+        prompt_1,
+        prompt_1.format(
+            organization_name=organization_name,
+            country=country,
+            website=website,
+            industry=industry,
+            document=document or "",
+        ),
+        name="Prompt 1",
+        use_thread=False
+    )
+
+    if p1:
         responses.append({
             "name": prompt_1.name,
-            "response_content": parsed_json,
+            "response_content": p1,
             "thread_id": thread_id,
         })
-    except Exception as e:
-        print(f"❌ Error en Prompt 1: {e}")
-        failed_prompts.append(prompt_1)
 
-    # ============================
-    # 🧭 Prompt 2 (máx. 2 intentos)
-    # ============================
-    print(f"\n🔹 Ejecutando Prompt 2 (Identificación de Impactos)")
+    # ==================================================
+    # 🧭 Prompt 2 — máx. 2 intentos
+    # ==================================================
+    print("\n🔹 Ejecutando Prompt 2 (máx 2 intentos)")
     rows = []
-    parsed_json = {}
+    p2 = None
 
-    for attempt in range(1, 3):  # 👈 solo 2 intentos
-        try:
-            print(f"🧪 Intento {attempt}/2 de Prompt 2…", flush=True)
-            call_params = {
-                "content": prompt_2.format(
-                    organization_name=organization_name,
-                    country=country,
-                    website=website,
-                    industry=industry,
-                ),
-                **({"thread_id": thread_id} if thread_id else {}),
-            }
-
-            response = await safe_invoke(call_params)
-            raw_output = response[0].content[0].text.value.strip()
-            parsed_json = clean_and_parse_json(raw_output)
-            rows = parsed_json.get("materiality_table", [])
-            print(f"📊 Prompt 2 devolvió {len(rows)} filas")
-
-            if len(rows) >= MIN_ROWS_PROMPT_2:
-                print("✅ Prompt 2 alcanzó el mínimo de filas requerido.")
-                break
-            else:
-                wait_time = 8 + random.randint(0, 6)
-                print(f"⚠️ Menos de {MIN_ROWS_PROMPT_2} filas → reintentando en {wait_time}s…")
-                await asyncio.sleep(wait_time)
-
-        except Exception as e:
-            print(f"❌ Error en intento {attempt} de Prompt 2: {e}")
-            await asyncio.sleep(10)
-
-    # ============================
-    # 🧭 Prompt 2.1 (siempre se ejecuta)
-    # ============================
-    print("\n🔹 Ejecutando Prompt 2.1 (complementario)…")
-    try:
-        call_params_2 = {
-            "content": prompt_2_1.format(
+    for attempt in range(1, 3):
+        p2 = await run_prompt(
+            prompt_2,
+            prompt_2.format(
                 organization_name=organization_name,
                 country=country,
                 website=website,
                 industry=industry,
             ),
-            **({"thread_id": thread_id} if thread_id else {}),
-        }
-        response_2 = await safe_invoke(call_params_2)
-        raw_output_2 = response_2[0].content[0].text.value.strip()
-        parsed_json_2 = clean_and_parse_json(raw_output_2)
-        rows_2 = parsed_json_2.get("materiality_table", [])
+            name=f"Prompt 2 — Intento {attempt}/2",
+            use_thread=True
+        )
 
-        # 🧩 Combinar evitando duplicados
+        if p2:
+            rows = p2.get("materiality_table", [])
+            if len(rows) >= MIN_ROWS_PROMPT_2:
+                print("✅ Prompt 2 alcanzó el mínimo de filas")
+                break
+
+        print("⚠️ Prompt 2 corto → esperando 10s antes de reintentar…")
+        await asyncio.sleep(10)
+
+    # ==================================================
+    # 🧭 Prompt 2.1 — SIEMPRE se ejecuta
+    # ==================================================
+    p21 = await run_prompt(
+        prompt_2_1,
+        prompt_2_1.format(
+            organization_name=organization_name,
+            country=country,
+            website=website,
+            industry=industry,
+        ),
+        name="Prompt 2.1",
+        use_thread=True
+    )
+
+    if p21:
+        extra_rows = p21.get("materiality_table", [])
         temas_existentes = {r["tema"] for r in rows if "tema" in r}
-        nuevos = [r for r in rows_2 if "tema" in r and r["tema"] not in temas_existentes]
-        merged_rows = rows + nuevos
-        print(f"🧩 Prompt 2.1 añadió {len(nuevos)} filas nuevas → total {len(merged_rows)}")
-
-        parsed_json["materiality_table"] = merged_rows[:MAX_ROWS_PROMPT_2]
-
-    except Exception as e:
-        print(f"❌ Error en Prompt 2.1: {e}")
-        print("⚠️ Continuando sin datos adicionales de Prompt 2.1…")
+        nuevos = [r for r in extra_rows if r.get("tema") not in temas_existentes]
+        rows.extend(nuevos)
+        p2 = {"materiality_table": rows[:MAX_ROWS_PROMPT_2]}
 
     responses.append({
         "name": prompt_2.name,
-        "response_content": parsed_json,
+        "response_content": p2,
         "thread_id": thread_id,
     })
 
-    # ============================
-    # 🧭 Prompts 3 → 11
-    # ============================
-    remaining_prompts = [
+    # ==================================================
+    # 🧭 Prompts 3 → 11 con recuperación automática
+    # ==================================================
+    prompts = [
         prompt_3, prompt_4, prompt_5, prompt_6,
         prompt_7, prompt_8, prompt_9, prompt_10, prompt_11,
     ]
 
-    print(f"\n🚀 Ejecutando prompts restantes…")
-    for i, prompt in enumerate(remaining_prompts, 1):
-        try:
-            print(f"🧪 Ejecutando {prompt.name}")
-            call_params = {"content": prompt.template}
-            if thread_id:
-                call_params["thread_id"] = thread_id
-            response = await safe_invoke(call_params)
-            raw_output = response[0].content[0].text.value.strip()
-            response_content = try_fix_json(raw_output)
-            thread_id = response[0].thread_id
+    for i, p in enumerate(prompts, 1):
+        parsed = await run_prompt(
+            p,
+            p.template,
+            name=p.name,
+            use_thread=True,
+            retries=3  # prompts pesados
+        )
+
+        if parsed:
             responses.append({
-                "name": prompt.name,
-                "response_content": response_content,
+                "name": p.name,
+                "response_content": parsed,
                 "thread_id": thread_id,
             })
-            print(f"✅ {prompt.name} completado")
+        else:
+            failed_prompts.append(p)
 
-            if i % 2 == 0 and i < len(remaining_prompts):
-                delay = random.randint(25, 40)
-                print(f"⏳ Esperando {delay}s…")
-                await asyncio.sleep(delay)
+        if i % 2 == 0:
+            await asyncio.sleep(random.randint(20, 40))
 
-        except Exception as e:
-            print(f"❌ Error en {prompt.name}: {e}")
-            failed_prompts.append(prompt)
+    # ==================================================
+    # ✔️ Resultado final
+    # ==================================================
 
-    print(f"\n🎯 Proceso completado con {len(responses)} respuestas totales")
-
-    status = "complete" if len(failed_prompts) == 0 else "incomplete"
+    print("\n🎯 ESG Analysis finalizado.")
+    print("Prompts fallados:", [p.name for p in failed_prompts])
 
     return {
-        "status": status,
+        "status": "complete" if not failed_prompts else "incomplete",
         "responses": responses,
         "failed_prompts": [p.name for p in failed_prompts],
     }
