@@ -13,119 +13,87 @@ os.environ["OPENAI_API_KEY"] = settings.OPENAI_API_KEY
 
 assistant = OpenAIAssistantV2Runnable(
     assistant_id="asst_uN6jjvZ9s4Yv2PFmV1J4iRJB",
-    tools=[{
-        "type": "code_interpreter",
-        "file_ids": [
-            "file-LzzGj4YJdW1T4bsNp9EcCD",
-            "file-96uwnReXqbEbh97miBRJd5",
-            "file-6UCacZ7WF2eGxcuZuqPnuD",
-            "file-4dixqFDgMjDU39mAEewmRw",
-            "file-Sy8QSZkhRsZdkG7oMU3xNZ",
-            "file-WucnFWVfve87jhWqW9DH4"
-        ]
-    }],
+    tools=[
+        {
+            "type": "file_search",
+            "vector_store_ids": ["vs_68c18287fbbc81919a024e80eb9d58b6"]
+        },
+        {"type": "code_interpreter"}
+    ]
 )
 
 MIN_ROWS_PROMPT_2 = 10
 MAX_ROWS_PROMPT_2 = 30
 
-# ==================================================
-# 🧽 SANITIZADOR DE JSON — CRÍTICO PARA Prompt 2
-# ==================================================
-
-def sanitize_quotes(raw: str) -> str:
-    """Repara comillas internas que rompen el JSON."""
-    if not raw:
-        return raw
-
-    raw = raw.replace("“", '"').replace("”", '"').replace("’", "'")
-
-    # Caso más crítico: "algo "texto" algo"
-    raw = re.sub(
-        r'"([^"]*?)"([^"]*?)"',
-        r'"\1\"\2"',
-        raw
-    )
-
-    # Caso específico del ESG: privacy by design
-    raw = raw.replace('"privacy by design"', '\\"privacy by design\\"')
-
-    return raw
-
 
 # ==================================================
-# 🧰 FIX JSON GENERAL
+# 🧽 FIX JSON — devuelve None si no se puede parsear
 # ==================================================
-
 def try_fix_json(raw_text: str):
-    raw_text = sanitize_quotes(raw_text.strip())
-    json_candidate = re.search(r"\{.*\}", raw_text, re.DOTALL)
+    raw_text = raw_text.replace("“", '"').replace("”", '"').replace("’", "'")
 
+    # Buscar bloque JSON
+    json_candidate = re.search(r"\{.*\}", raw_text, re.DOTALL)
     if json_candidate:
         raw_text = json_candidate.group(0)
 
-    fixed = re.sub(r",(\s*[}\]])", r"\1", raw_text)
-    fixed = fixed.replace("\n", " ").replace("\t", " ")
-    fixed = re.sub(r"(\d+),(\d+)", r"\1.\2", fixed)
+    raw_text = raw_text.replace("\n", " ").replace("\t", " ")
+    raw_text = re.sub(r",(\s*[}\]])", r"\1", raw_text)
 
-    # Intento directo
     try:
-        return json.loads(fixed)
-    except Exception:
-        pass
-
-    # Intento con tu reparador viejo
-    try:
-        return clean_and_parse_json(fixed)
-    except Exception:
-        return {}
-
-
-# ==================================================
-# 🔒 INVOCACIÓN CON RECUPERACIÓN DE THREAD LIMPIO
-# ==================================================
-
-async def safe_invoke(call_params, retries=5, base_wait=15):
-    for attempt in range(1, retries + 1):
+        return json.loads(raw_text)
+    except:
         try:
-            result = assistant.invoke(call_params)
-            run = result[0]
+            return clean_and_parse_json(raw_text)
+        except:
+            return None   # ← importante: None, no {}
 
-            if hasattr(run, "status") and run.status in ["expired", "failed"]:
-                print(f"⚠️ Run inválido ({run.status}) → regenerando thread…")
-                call_params.pop("thread_id", None)
-                await asyncio.sleep(3)
-                continue
 
-            return result
+# ==================================================
+# 🛟 Rescate manual de arrays en prompts con JSON roto
+# ==================================================
+def extract_array_from_key(raw_text: str, key: str):
+    try:
+        match = re.search(rf'"{key}"\s*:\s*\[(.*?)\]', raw_text, re.DOTALL)
+        if not match:
+            return None
+        arr = "[" + match.group(1) + "]"
+        return json.loads(arr)
+    except:
+        return None
 
+
+# ==================================================
+# 🔒 INVOCACIÓN SEGURA
+# ==================================================
+async def safe_invoke(params):
+    for _ in range(5):
+        try:
+            return assistant.invoke(params)
         except Exception as e:
             err = str(e).lower()
 
             if "insufficient_quota" in err:
                 raise RuntimeError("❌ Créditos agotados.")
 
-            if any(x in err for x in ["rate_limit", "tokens per minute"]):
-                print("⏳ Rate limit → esperando 3 minutos…")
+            if "rate_limit" in err or "tokens per minute" in err:
+                print("⏳ Rate limit. Esperando 3 minutos…")
                 await asyncio.sleep(180)
-                call_params.pop("thread_id", None)
+                params.pop("thread_id", None)
                 continue
 
-            if "timeout" in err or "connection" in err:
-                wait_time = base_wait * attempt
-                print(f"🌐 Timeout → reintentando en {wait_time}s…")
-                await asyncio.sleep(wait_time)
+            if "timeout" in err:
+                await asyncio.sleep(10)
                 continue
 
             raise
 
-    raise RuntimeError("❌ No se pudo completar llamada tras múltiples intentos.")
+    raise RuntimeError("❌ Falló la llamada después de múltiples intentos.")
 
 
 # ==================================================
-# 🚀 PIPELINE ESG
+# 🧠 PIPELINE ESG
 # ==================================================
-
 async def run_esg_analysis(
     organization_name: str,
     country: str,
@@ -139,11 +107,12 @@ async def run_esg_analysis(
     failed_prompts = []
     thread_id = None
 
-    # -------------------------------------------------
-    # Helper interno
-    # -------------------------------------------------
+    # ==================================================
+    # Helper interno — GUARDA RAW OUTPUT
+    # ==================================================
     async def run_prompt(prompt, content, name=None, retries=4, use_thread=True):
         nonlocal thread_id
+        last_raw = ""
 
         for attempt in range(1, retries + 1):
             print(f"\n🧪 Ejecutando {name or prompt.name} (Intento {attempt}/{retries})")
@@ -159,8 +128,10 @@ async def run_esg_analysis(
                 if hasattr(run, "thread_id"):
                     thread_id = run.thread_id
 
-                raw = run.content[0].text.value.strip()
-                parsed = try_fix_json(raw)
+                last_raw = run.content[0].text.value
+                run_prompt.last_raw = last_raw
+
+                parsed = try_fix_json(last_raw)
 
                 print(f"✅ {name or prompt.name} completado")
                 return parsed
@@ -169,14 +140,13 @@ async def run_esg_analysis(
                 print(f"⚠️ Error recuperable en {name}: {e}")
                 thread_id = None
                 await asyncio.sleep(5)
-                continue
 
         print(f"⛔ {name or prompt.name} falló TODOS los intentos")
         failed_prompts.append(prompt)
         return None
 
     # ==================================================
-    # 🧭 Prompt 1 — thread limpio
+    # PROMPT 1
     # ==================================================
     p1 = await run_prompt(
         prompt_1,
@@ -192,47 +162,32 @@ async def run_esg_analysis(
     )
 
     if p1:
-        responses.append({"name": prompt_1.name, "response_content": p1, "thread_id": thread_id})
-
-      # ==================================================
-    # 🧭 Prompt 2 (solo 2 intentos)
-    # ==================================================
-    print("\n🔹 Ejecutando Prompt 2 (máx 2 intentos)")
-    rows = []
-    p2 = None
-
-    def extract_materiality_table(raw_text: str):
-        """
-        Permite rescatar la tabla incluso si el JSON está roto.
-        """
-        raw_text = sanitize_quotes(raw_text)
-
-        # Buscar manualmente el array materiality_table
-        match = re.search(
-            r'"materiality_table"\s*:\s*\[(.*?)\]',
-            raw_text,
-            re.DOTALL
+        responses.append(
+            {"name": prompt_1.name, "response_content": p1, "thread_id": thread_id}
         )
 
-        if not match:
-            return None
-
-        content = match.group(1)
-
-        # Intentar envolver en JSON válido
+    # ==================================================
+    # PROMPT 2 (con rescate de tabla + extensión con 2.1)
+    # ==================================================
+    def extract_table(raw_text: str):
         try:
-            cleaned = "[" + content + "]"
-            cleaned = cleaned.replace("\n", " ").replace("\t", " ")
-            cleaned = sanitize_quotes(cleaned)
-            arr = json.loads(cleaned)
-            return arr
+            match = re.search(r'"materiality_table"\s*:\s*\[(.*?)\]', raw_text, re.DOTALL)
+            if not match:
+                return None
+            arr = "[" + match.group(1) + "]"
+            return json.loads(arr)
         except:
             return None
 
-    for attempt in range(1, 3):
-        print(f"\n🧪 Prompt 2 — Intento {attempt}/2")
+    print("\n🔹 Ejecutando Prompt 2 (máx 2 intentos)")
 
-        result = await run_prompt(
+    rows = []
+    exhausted = False
+    raw_p2 = None
+
+    # 👉 Primeras llamadas a Prompt 2
+    for attempt in range(1, 3):
+        p2 = await run_prompt(
             prompt_2,
             prompt_2.format(
                 organization_name=organization_name,
@@ -240,58 +195,112 @@ async def run_esg_analysis(
                 website=website,
                 industry=industry,
             ),
-            name=f"Prompt 2 — Intento {attempt}/2"
+            name="Prompt 2",
         )
 
-        if not result:
-            print("❌ Prompt 2 devolvió None → reintentando…")
-            await asyncio.sleep(10)
-            continue
+        raw_p2 = run_prompt.last_raw
 
-        # Si viene JSON válido → perfecto
-        rows = result.get("materiality_table", [])
+        if p2 and "materiality_table" in p2:
+            rows = p2["materiality_table"]
+            exhausted = p2.get("exhausted", False)
+        else:
+            extracted = extract_table(raw_p2)
+            rows = extracted or []
+            exhausted = False
 
-        # Si viene vacío → intentar extracción manual
-        if not rows:
-            print("⚠️ Intentando recuperación manual tabla...")
-            rows = extract_materiality_table(
-                raw_text=run_prompt.last_raw  # ← guardamos raw en run_prompt
-            ) or []
-
-        if len(rows) >= MIN_ROWS_PROMPT_2:
-            print("✅ Prompt 2 alcanzó el mínimo de filas")
+        if exhausted:
+            print("⚠️ Prompt 2 marcó exhausted → deteniendo reintentos.")
             break
 
-        print("⚠️ Prompt 2 corto → esperando 10s…")
-        await asyncio.sleep(10)
+        if len(rows) >= MIN_ROWS_PROMPT_2:
+            print(f"✅ Prompt 2 OK con {len(rows)} filas (>= {MIN_ROWS_PROMPT_2}).")
+            break
 
-    # Si después de los 2 intentos sigue fallado → ABORTAR
+        print(
+            f"⚠️ Prompt 2 devolvió solo {len(rows)} filas (< {MIN_ROWS_PROMPT_2}) → reintentando…"
+        )
+        await asyncio.sleep(8)
+
+    # 👉 Si después de Prompt 2 aún no llegamos al mínimo y NO está exhausted,
+    # usamos Prompt 2.1 para completar hasta MIN_ROWS_PROMPT_2 (o más).
+    if len(rows) < MIN_ROWS_PROMPT_2 and not exhausted:
+        print(
+            f"⚠ Prompt 2 terminó con {len(rows)} filas (< {MIN_ROWS_PROMPT_2}) → ejecutando Prompt 2.1 para extender la tabla…"
+        )
+
+        p21 = await run_prompt(
+            prompt_2_1,
+            prompt_2_1.format(prev_rows=json.dumps(rows, ensure_ascii=False)),
+            name="Prompt 2.1",
+            retries=3,
+        )
+
+        if p21 and "materiality_table" in p21:
+            extra_rows = p21["materiality_table"]
+            print(f"✅ Prompt 2.1 devolvió {len(extra_rows)} filas adicionales.")
+            rows.extend(extra_rows)
+        else:
+            print("⛔ Prompt 2.1 no pudo devolver filas adicionales.")
+
+    # Log final de filas de Prompt 2 (+ 2.1)
     if len(rows) < MIN_ROWS_PROMPT_2:
-        print("⛔ Prompt 2 falló definitivamente → abortando pipeline.")
-        return {
-            "status": "failed",
-            "failed_prompts": ["Prompt 2"],
-            "responses": responses
-        }
+        print(
+            f"⚠️ Aún después de Prompt 2.1 hay solo {len(rows)} filas (< {MIN_ROWS_PROMPT_2})."
+        )
+    else:
+        print(
+            f"✅ Tabla final de Prompt 2 tiene {len(rows)} filas (antes de recortar a MAX_ROWS_PROMPT_2={MAX_ROWS_PROMPT_2})."
+        )
 
+    # Recortar al máximo permitido
+    rows = rows[:MAX_ROWS_PROMPT_2]
+
+    responses.append(
+        {
+            "name": prompt_2.name,
+            "response_content": {
+                "materiality_table": rows,
+                "exhausted": exhausted,
+            },
+            "thread_id": thread_id,
+        }
+    )
 
     # ==================================================
-    # 🧭 Prompts 3 → 11
+    # PROMPTS 3 → 11 (con rescate especial 7 y 10)
     # ==================================================
     for i, p in enumerate(
-        [prompt_3, prompt_4, prompt_5, prompt_6,
-         prompt_7, prompt_8, prompt_9, prompt_10, prompt_11], 1
+        [prompt_3, prompt_4, prompt_5, prompt_6, prompt_7, prompt_8, prompt_9, prompt_10, prompt_11],
+        1,
     ):
-
         parsed = await run_prompt(
             p,
             p.template,
             name=p.name,
-            retries=3
+            retries=3,
         )
 
+        raw = getattr(run_prompt, "last_raw", "")
+
+        # 🔍 si falla y es prompt 7 o 10 → intentar rescatar arrays
+        if not parsed and (p is prompt_7 or p is prompt_10):
+            print(f"\n⚠️ JSON inválido en {p.name}, RAW:")
+            print(raw[:2000])
+
+            if p is prompt_7:
+                arr = extract_array_from_key(raw, "gri_mapping")
+                if arr:
+                    parsed = {"gri_mapping": arr}
+
+            if p is prompt_10:
+                arr = extract_array_from_key(raw, "regulaciones")
+                if arr:
+                    parsed = {"regulaciones": arr}
+
         if parsed:
-            responses.append({"name": p.name, "response_content": parsed, "thread_id": thread_id})
+            responses.append(
+                {"name": p.name, "response_content": parsed, "thread_id": thread_id}
+            )
         else:
             failed_prompts.append(p)
 
@@ -299,10 +308,12 @@ async def run_esg_analysis(
             await asyncio.sleep(random.randint(20, 40))
 
     # ==================================================
-    # 🎯 RESULTADO FINAL
+    # RESULTADO FINAL
     # ==================================================
+    status = "complete" if not failed_prompts else "incomplete"
+
     return {
-        "status": "complete" if not failed_prompts else "incomplete",
+        "status": status,
         "responses": responses,
-        "failed_prompts": [p.name for p in failed_prompts]
+        "failed_prompts": [p.name for p in failed_prompts],
     }
