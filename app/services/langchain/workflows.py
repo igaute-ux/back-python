@@ -241,7 +241,7 @@ async def run_esg_analysis(
         )
 
     # ==================================================
-    # PROMPT 2 (con rescate de tabla + extensión con 2.1)
+    # PROMPT 2 (con rescate de tabla + extensión 2.1)
     # ==================================================
     def extract_table(raw_text: str):
         try:
@@ -259,7 +259,6 @@ async def run_esg_analysis(
     exhausted = False
     raw_p2 = None
 
-    # 👉 Primeras llamadas a Prompt 2
     for attempt in range(1, 3):
         p2 = await run_prompt(
             prompt_2,
@@ -308,6 +307,25 @@ async def run_esg_analysis(
             "thread_id": thread_id,
         }
     )
+
+    # ==================================================
+    # PROMPTS 3 → 6  (ANTES iban después, ahora están donde corresponde)
+    # ==================================================
+    for p in [prompt_3, prompt_4, prompt_5, prompt_6]:
+        parsed = await run_prompt(
+            p,
+            p.template,
+            name=p.name,
+            retries=3,
+        )
+
+        if parsed:
+            responses.append(
+                {"name": p.name, "response_content": parsed, "thread_id": thread_id}
+            )
+        else:
+            failed_prompts.append(p)
+
     # ==================================================
     # PROMPT 8 (LLM) → mapeo sector S&P → industria SASB
     # ==================================================
@@ -335,9 +353,8 @@ async def run_esg_analysis(
         "response_content": p8_json
     })
 
-
     # ==================================================
-    # PROMPT 9 (CSV local) → reemplaza al LLM
+    # PROMPT 9 (CSV local)
     # ==================================================
     print("\n📌 Ejecutando Prompt 9 local (desde CSV)…")
 
@@ -358,14 +375,10 @@ async def run_esg_analysis(
         }
     })
 
-
     # ==================================================
-    # PROMPTS 3 → 11 (con rescate especial 7 y 10)
+    # PROMPTS 10 → 11
     # ==================================================
-    for i, p in enumerate(
-        [prompt_3, prompt_4, prompt_5, prompt_6, prompt_10, prompt_11],
-        1,
-    ):
+    for p in [prompt_10, prompt_11]:
 
         parsed = await run_prompt(
             p,
@@ -376,20 +389,14 @@ async def run_esg_analysis(
 
         raw = getattr(run_prompt, "last_raw", "")
 
-        # 🔍 si falla y es prompt 7 o 10 → intentar rescatar arrays
-        if not parsed and (p is prompt_7 or p is prompt_10):
+        # Rescate especial SOLO para Prompt 10
+        if not parsed and p is prompt_10:
             print(f"\n⚠️ JSON inválido en {p.name}, RAW:")
             print(raw[:2000])
 
-            if p is prompt_7:
-                arr = extract_array_from_key(raw, "gri_mapping")
-                if arr:
-                    parsed = {"gri_mapping": arr}
-
-            if p is prompt_10:
-                arr = extract_array_from_key(raw, "regulaciones")
-                if arr:
-                    parsed = {"regulaciones": arr}
+            arr = extract_array_from_key(raw, "regulaciones")
+            if arr:
+                parsed = {"regulaciones": arr}
 
         if parsed:
             responses.append(
@@ -397,9 +404,6 @@ async def run_esg_analysis(
             )
         else:
             failed_prompts.append(p)
-
-        if i % 2 == 0:
-            await asyncio.sleep(random.randint(20, 40))
 
     # ==================================================
     # RESULTADO FINAL
