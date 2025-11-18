@@ -1,888 +1,1119 @@
 [
-  {
-    "name": "🔹 Prompt 1: Contexto organizacional y Sectorial",
-    "thread_id": "thread_Mi9GpZmaQeS1sfoOFHIVWAwS",
-    "response_content": {
-      "industria": "Tecnología Hardware y Semiconductores, específicamente en el ámbito del comercio electrónico y soluciones digitales que permiten la compra y venta de productos y servicios a través de plataformas tecnológicas.",
-      "madurez_esg": "Mercado Libre ha mostrado un compromiso creciente hacia la sostenibilidad y la responsabilidad social, implementando políticas y prácticas que abordan temas ambientales, sociales y de gobernanza. La empresa ha comenzado a integrar criterios ESG en su modelo de negocio, aunque aún enfrenta desafíos en la medición y reporte de su impacto.",
-      "cadena_valor": "La cadena de valor de Mercado Libre incluye la captación de usuarios a través de marketing digital, la creación de una plataforma intuitiva para la compra y venta, la gestión de pagos seguros mediante Mercado Pago, y la logística de entrega a través de Mercado Envíos. Esta cadena de valor se enfoca en mejorar la experiencia del usuario y optimizar cada paso del proceso de compra y venta.",
-      "modelo_negocio": "El modelo de negocio de Mercado Libre se basa en la creación de una plataforma que conecta a compradores y vendedores, permitiendo la compra y venta de una amplia gama de productos y servicios. Además, ofrece servicios adicionales como Mercado Pago, que facilita los pagos en línea, y Mercado Envíos, que optimiza la logística y entrega de productos.",
-      "nombre_empresa": "Mercado Libre Chile Ltda",
-      "pais_operacion": "Chile. Mercado Libre opera en el país como una plataforma de comercio electrónico que conecta a compradores y vendedores, facilitando transacciones en línea y ofreciendo servicios de logística y pagos.",
-      "tamano_empresa": "Mercado Libre es una de las empresas más grandes de comercio electrónico en América Latina, con una fuerte presencia en Chile y otros países de la región, empleando miles de personas y generando un impacto significativo en la economía local.",
-      "ubicacion_geografica": "Mercado Libre Chile Ltda tiene su sede en Santiago, la capital de Chile, que es un centro económico y comercial clave en el país. La empresa opera en diversas regiones del país, facilitando el acceso a su plataforma a través de internet y ofreciendo servicios de entrega en varias localidades.",
-      "actividades_principales": "Las actividades principales de Mercado Libre Chile Ltda incluyen el desarrollo y mantenimiento de su plataforma de comercio electrónico, la gestión de transacciones entre compradores y vendedores, la implementación de soluciones de pago a través de Mercado Pago, y la coordinación de servicios de logística y entrega mediante Mercado Envíos, asegurando que los productos lleguen a los consumidores de manera eficiente y segura.",
-      "stakeholders_relevantes": "Los stakeholders relevantes de Mercado Libre incluyen a los usuarios de la plataforma (compradores y vendedores), empleados, inversores, proveedores de servicios logísticos, reguladores gubernamentales y organizaciones no gubernamentales que abogan por prácticas comerciales sostenibles. La empresa también interactúa con la comunidad local y busca fomentar relaciones positivas con todos sus grupos de interés."
-    }
-  },
-  {
-    "name": "🔹 Prompt 2: Identificación de Impactos (basado en S&P)",
-    "thread_id": "thread_Mi9GpZmaQeS1sfoOFHIVWAwS",
-    "response_content": {
-      "exhausted": false,
-      "materiality_table": [
-        {
-          "tema": "Productos y servicios sostenibles",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "Riesgos": "(1) Pérdida de competitividad por materiales contaminantes o no reciclables. (2) Riesgo de exclusión de licitaciones verdes o reguladas.",
-          "Oportunidades": "(1) Acceso a mercados premium y sostenibles. (2) Fidelización de clientes con criterios ESG.",
-          "accion_marginal": "Evaluación de impacto del portafolio; Descripción: Levantar indicadores sobre huella de carbono, reciclabilidad y durabilidad de productos.",
-          "accion_moderada": "Sustitución progresiva de materiales; Descripción: Reemplazar insumos de alto impacto por alternativas más sostenibles.",
-          "accion_estructural": "Rediseño circular del portafolio; Descripción: Crear productos regenerativos, reciclados y con baja huella de carbono.",
-          "materialidad_financiera": "Alta",
-          "valor_materialidad_financiera": 5
-        },
-        {
-          "tema": "Acceso y asequibilidad",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "Riesgos": "(1) Exclusión de pequeños constructores o cooperativas por precios elevados. (2) Pérdida de oportunidades en mercados emergentes.",
-          "Oportunidades": "(1) Expansión de mercado hacia sectores no atendidos. (2) Contribución a vivienda digna y desarrollo social sostenible.",
-          "accion_marginal": "Accesibilidad comercial; Descripción: Ofrecer productos adaptados a distintos tamaños de obra y presupuestos.",
-          "accion_moderada": "Alianzas público-sociales; Descripción: Colaborar con gobiernos o fundaciones para proveer materiales a precios subsidiados.",
-          "accion_estructural": "Rediseño inclusivo del modelo de negocio; Descripción: Incorporar estrategias de distribución equitativa, financiamiento y accesibilidad territorial.",
-          "materialidad_financiera": "Alta",
-          "valor_materialidad_financiera": 5
-        },
-        {
-          "tema": "Riesgo climático físico",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "Riesgos": "(1) Interrupción operativa y pérdidas económicas por fenómenos climáticos extremos. (2) Deterioro de activos y menor resiliencia logística.",
-          "Oportunidades": "(1) Aumentar resiliencia y continuidad operativa. (2) Reducir costos por daños y mejorar capacidad de respuesta.",
-          "accion_marginal": "Evaluación de vulnerabilidad climática; Descripción: Analizar la exposición de rutas, estaciones y centros logísticos ante lluvias, calor extremo y deslizamientos.",
-          "accion_moderada": "Protocolos alternativos ante desastres; Descripción: Diseñar planes de respuesta rápida y rutas alternativas en caso de eventos extremos.",
-          "accion_estructural": "Infraestructura logística resiliente; Descripción: Rediseñar redes de transporte y operaciones bajo criterios de adaptación climática.",
-          "materialidad_financiera": "Alta",
-          "valor_materialidad_financiera": 5
-        },
-        {
-          "tema": "Contaminación",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "Riesgos": "(1) Riesgos de sanciones y costos operativos por emisiones o residuos contaminantes. (2) Pérdida de credibilidad en políticas ambientales del banco.",
-          "Oportunidades": "(1) Reducir la huella ambiental y mejorar la eficiencia operativa. (2) Obtener certificaciones verdes y ventajas reputacionales.",
-          "accion_marginal": "Control básico de emisiones; Descripción: Sustituir tóneres, químicos y climatización obsoleta por tecnologías limpias.",
-          "accion_moderada": "Medición de impacto ambiental; Descripción: Calcular y reportar emisiones y residuos indirectos.",
-          "accion_estructural": "Infraestructura cero emisiones; Descripción: Rediseñar edificios y sucursales con eficiencia energética y materiales sostenibles.",
-          "materialidad_financiera": "Media",
-          "valor_materialidad_financiera": 2.5
-        },
-        {
-          "tema": "Residuos y reciclaje",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "Riesgos": "(1) Riesgo de contaminación por manejo inadecuado de hardware y e-waste. (2) Costos legales y pérdida de imagen por incumplimiento en gestión de residuos.",
-          "Oportunidades": "(1) Ahorro mediante reutilización y reciclaje tecnológico. (2) Reputación positiva por economía circular aplicada.",
-          "accion_marginal": "Gestionar disposición de hardware; Descripción: Clasificar y eliminar equipos obsoletos mediante proveedores de reciclaje certificados.",
-          "accion_moderada": "Renovación tecnológica sostenible; Descripción: Crear política de renovación y reciclaje que maximice la vida útil de los equipos.",
-          "accion_estructural": "Rediseñar ciclos tecnológicos; Descripción: Implementar un modelo circular de reutilización y reventa de hardware, con trazabilidad y métricas de impacto.",
-          "materialidad_financiera": "Baja",
-          "valor_materialidad_financiera": 1
-        },
-        {
-          "tema": "Agua",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "Riesgos": "(1) Riesgo de sobreconsumo de agua en enfriamiento y operaciones de centros de datos. (2) Escasez hídrica que afecte continuidad o imagen corporativa.",
-          "Oportunidades": "(1) Reducción de costos y consumo mediante eficiencia hídrica. (2) Posicionamiento como líder tecnológico sostenible.",
-          "accion_marginal": "Reducir consumo de agua; Descripción: Instalar medidores y ajustar prácticas de limpieza y mantenimiento para minimizar consumo en oficinas y centros de datos.",
-          "accion_moderada": "Implementar tecnologías de eficiencia hídrica; Descripción: Adoptar sistemas de reúso y reciclaje de agua en operaciones.",
-          "accion_estructural": "Desarrollar un plan de gestión hídrica; Descripción: Crear un sistema integral de monitoreo y optimización del uso del agua.",
-          "materialidad_financiera": "Baja",
-          "valor_materialidad_financiera": 1
-        },
-        {
-          "tema": "Biodiversidad y uso de recursos",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "Riesgos": "(1) Impactos negativos en ecosistemas locales por expansión o extracción de materiales. (2) Pérdida de licencia social o sanciones regulatorias.",
-          "Oportunidades": "(1) Reforzar relaciones comunitarias y regulatorias. (2) Mejorar reputación e integrar prácticas de economía regenerativa.",
-          "accion_marginal": "Prevención de impactos sobre áreas sensibles; Descripción: Evitar intervenciones en zonas protegidas o de valor ecológico.",
-          "accion_moderada": "Selección responsable de materias primas; Descripción: Priorizar materiales certificados y trazables en toda la cadena de suministro.",
-          "accion_estructural": "Implementar programas de restauración ecológica; Descripción: Desarrollar iniciativas que promuevan la recuperación de ecosistemas afectados.",
-          "materialidad_financiera": "Media",
-          "valor_materialidad_financiera": 2.5
-        },
-        {
-          "tema": "Condiciones laborales",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "Riesgos": "(1) Rotación alta y pérdida de talento clave por falta de bienestar. (2) Riesgos legales por incumplimiento de normas laborales.",
-          "Oportunidades": "(1) Aumentar la satisfacción y retención de empleados. (2) Mejorar la reputación de la empresa como empleador responsable.",
-          "accion_marginal": "Formalización de contratos; Descripción: Asegurar que todo el personal, incluido el temporal, cuente con contratos legales y condiciones seguras.",
-          "accion_moderada": "Auditoría laboral integral; Descripción: Evaluar condiciones de trabajo de contratistas y subcontratistas con auditorías externas.",
-          "accion_estructural": "Trazabilidad social con reclamos efectivos; Descripción: Desarrollar un sistema digital para trazabilidad laboral y mecanismos de denuncia supervisados por terceros.",
-          "materialidad_financiera": "Media",
-          "valor_materialidad_financiera": 2.5
-        },
-        {
-          "tema": "Marketing responsable y etiquetado",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "Riesgos": "(1) Sanciones y pérdida de credibilidad por uso engañoso de claims ambientales. (2) Riesgo de greenwashing y erosión de confianza en consumidores e inversionistas.",
-          "Oportunidades": "(1) Posicionar la marca como transparente y responsable. (2) Acceder a mercados que exigen trazabilidad y verificación ambiental.",
-          "accion_marginal": "Validación de claims ambientales; Descripción: Revisar etiquetas y mensajes publicitarios para eliminar afirmaciones sin respaldo técnico.",
-          "accion_moderada": "Certificación de etiquetado y comunicación; Descripción: Obtener certificaciones reconocidas para etiquetas ambientales y sociales.",
-          "accion_estructural": "Rediseño integral de comunicación ESG; Descripción: Replantear la narrativa de marca con transparencia total del ciclo de vida.",
-          "materialidad_financiera": "Media",
-          "valor_materialidad_financiera": 2.5
-        },
-        {
-          "tema": "Salud y seguridad del cliente",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "riesgos": "(1) Riesgo de lesiones o reclamaciones por dispositivos que generen exposición a ondas o calor excesivo; (2) Pérdida de confianza y sanciones regulatorias por falta de pruebas de seguridad.",
-          "oportunidades": "(1) Mayor confianza del consumidor mediante validación independiente; (2) Diferenciación de marca como referente en seguridad y responsabilidad.",
-          "accion_marginal": "Publicar manuales y advertencias de uso; Descripción: Crear manuales de usuario claros sobre riesgos de calor, ondas o radiación, y asegurar que se entreguen con todos los productos.",
-          "accion_moderada": "Realizar evaluaciones de seguridad; Descripción: Encargar pruebas independientes de seguridad y compatibilidad electromagnética para todos los dispositivos.",
-          "accion_estructural": "Diseñar dispositivos seguros y monitoreados; Descripción: Incorporar sensores y sistemas que controlen temperatura, radiación y exposición, garantizando seguridad activa del usuario.",
-          "materialidad_financiera": "Baja",
-          "valor_materialidad_financiera": 1
-        },
-        {
-          "tema": "Impacto en las comunidades",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "riesgos": "(1) Riesgo de conflictos sociales o desconfianza por falta de vinculación local; (2) Reputación negativa por operar sin generar valor comunitario.",
-          "oportunidades": "(1) Reputación fortalecida y relaciones positivas con comunidades; (2) Acceso a talento y aliados locales mediante inclusión tecnológica.",
-          "accion_marginal": "Realizar talleres STEM en comunidades; Descripción: Implementar talleres de ciencia y tecnología para jóvenes en zonas cercanas a plantas industriales.",
-          "accion_moderada": "Crear alianzas educativas; Descripción: Desarrollar convenios con instituciones técnicas y universidades para promover formación local en habilidades tecnológicas.",
-          "accion_estructural": "Implementar programas de responsabilidad social; Descripción: Desarrollar iniciativas que generen impacto positivo en comunidades locales mediante inversión y colaboración.",
-          "materialidad_financiera": "Baja",
-          "valor_materialidad_financiera": 1
-        },
-        {
-          "tema": "Riesgo climático físico",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "riesgos": "(1) Riesgo de daños a infraestructura crítica por eventos climáticos extremos; (2) Pérdida de producción o interrupciones prolongadas.",
-          "oportunidades": "(1) Continuidad operativa garantizada mediante infraestructura resiliente; (2) Mayor confianza de clientes e inversionistas.",
-          "accion_marginal": "Identificar vulnerabilidad de centros críticos; Descripción: Evaluar la exposición de plantas y centros logísticos a eventos climáticos mediante estudios de riesgo.",
-          "accion_moderada": "Establecer protocolos de contingencia; Descripción: Diseñar planes de respuesta y protección de equipos e inventarios ante fenómenos climáticos.",
-          "accion_estructural": "Rediseñar plantas resilientes; Descripción: Reubicar o fortalecer instalaciones críticas con diseño antisísmico, drenaje reforzado y respaldo energético.",
-          "materialidad_financiera": "Media",
-          "valor_materialidad_financiera": 2.5
-        },
-        {
-          "tema": "Agua",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "riesgos": "(1) Riesgo de escasez hídrica y suspensión de operaciones por alto consumo industrial; (2) Sanciones por descargas contaminantes no tratadas.",
-          "oportunidades": "(1) Ahorro operativo y reputación fortalecida como industria sostenible; (2) Reducción de dependencia de recursos hídricos externos.",
-          "accion_marginal": "Medir consumo hídrico; Descripción: Instalar medidores y sistemas de monitoreo en procesos de limpieza y enfriamiento.",
-          "accion_moderada": "Recircular y tratar aguas residuales; Descripción: Establecer sistemas de recirculación y tratamiento interno de aguas industriales.",
-          "accion_estructural": "Implementar un sistema de gestión hídrica; Descripción: Desarrollar un plan integral que considere la eficiencia y sostenibilidad en el uso del agua.",
-          "materialidad_financiera": "Media",
-          "valor_materialidad_financiera": 2.5
-        },
-        {
-          "tema": "Contaminación",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "riesgos": "(1) Riesgo de sanciones regulatorias por emisiones químicas o ruidos industriales; (2) Impacto negativo en comunidades cercanas y reputación corporativa.",
-          "oportunidades": "(1) Reducción de costos energéticos y pasivos ambientales; (2) Reputación fortalecida por gestión ambiental responsable.",
-          "accion_marginal": "Controlar emisiones químicas y ruido; Descripción: Implementar controles de emisiones y aislamiento acústico en zonas de producción.",
-          "accion_moderada": "Establecer monitoreo ambiental continuo; Descripción: Crear sistemas de monitoreo y reporte transparente de emisiones a autoridades y partes interesadas.",
-          "accion_estructural": "Sustituir sustancias y rediseñar procesos; Descripción: Reemplazar químicos peligrosos y rediseñar los procesos industriales para eliminar fuentes de contaminación desde el origen.",
-          "materialidad_financiera": "Baja",
-          "valor_materialidad_financiera": 1
-        }
-      ]
-    }
-  },
-  {
-    "name": "🔹 Prompt 3: Evaluación de Impactos",
-    "thread_id": "thread_Mi9GpZmaQeS1sfoOFHIVWAwS",
-    "response_content": {
-      "resumen_sector": "El sector de Tecnología Hardware y Semiconductores es clave para la innovación y sostenibilidad, impactando en la producción y consumo responsable.",
-      "materiality_table": [
-        {
-          "tema": "Productos y servicios sostenibles",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "tipo_impacto": "Positivo",
-          "accion_marginal": "Evaluación de impacto del portafolio; Descripción: Levantar indicadores sobre huella de carbono, reciclabilidad y durabilidad de productos.",
-          "accion_moderada": "Sustitución progresiva de materiales; Descripción: Reemplazar insumos de alto impacto por alternativas más sostenibles.",
-          "grado_implicacion": "Directo",
-          "horizonte_impacto": "Corto",
-          "accion_estructural": "Rediseño circular del portafolio; Descripción: Crear productos regenerativos, reciclados y con baja huella de carbono.",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "Intencionado",
-          "materialidad_financiera": "Alta",
-          "valor_materialidad_financiera": 5
-        },
-        {
-          "tema": "Acceso y asequibilidad",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "tipo_impacto": "Positivo",
-          "accion_marginal": "Accesibilidad comercial; Descripción: Ofrecer productos adaptados a distintos tamaños de obra y presupuestos.",
-          "accion_moderada": "Alianzas público-sociales; Descripción: Colaborar con gobiernos o fundaciones para proveer materiales a precios subsidiados.",
-          "grado_implicacion": "Directo",
-          "horizonte_impacto": "Corto",
-          "accion_estructural": "Rediseño inclusivo del modelo de negocio; Descripción: Incorporar estrategias de distribución equitativa, financiamiento y accesibilidad territorial.",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "Intencionado",
-          "materialidad_financiera": "Alta",
-          "valor_materialidad_financiera": 5
-        },
-        {
-          "tema": "Riesgo climático físico",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "tipo_impacto": "Negativo",
-          "accion_marginal": "Evaluación de vulnerabilidad climática; Descripción: Analizar la exposición de rutas, estaciones y centros logísticos ante lluvias, calor extremo y deslizamientos.",
-          "accion_moderada": "Protocolos alternativos ante desastres; Descripción: Diseñar planes de respuesta rápida y rutas alternativas en caso de eventos extremos.",
-          "grado_implicacion": "Indirecto",
-          "horizonte_impacto": "Corto",
-          "accion_estructural": "Infraestructura logística resiliente; Descripción: Rediseñar redes de transporte y operaciones bajo criterios de adaptación climática.",
-          "penetracion_impacto": "Irreversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "No intencionado",
-          "materialidad_financiera": "Alta",
-          "valor_materialidad_financiera": 5
-        },
-        {
-          "tema": "Contaminación",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "tipo_impacto": "Negativo",
-          "accion_marginal": "Control básico de emisiones; Descripción: Sustituir tóneres, químicos y climatización obsoleta por tecnologías limpias.",
-          "accion_moderada": "Medición de impacto ambiental; Descripción: Calcular y reportar emisiones y residuos indirectos.",
-          "grado_implicacion": "Indirecto",
-          "horizonte_impacto": "Corto",
-          "accion_estructural": "Infraestructura cero emisiones; Descripción: Rediseñar edificios y sucursales con eficiencia energética y materiales sostenibles.",
-          "penetracion_impacto": "Irreversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "No intencionado",
-          "materialidad_financiera": "Media",
-          "valor_materialidad_financiera": 2.5
-        },
-        {
-          "tema": "Residuos y reciclaje",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "tipo_impacto": "Positivo",
-          "accion_marginal": "Gestionar disposición de hardware; Descripción: Clasificar y eliminar equipos obsoletos mediante proveedores de reciclaje certificados.",
-          "accion_moderada": "Renovación tecnológica sostenible; Descripción: Crear política de renovación y reciclaje que maximice la vida útil de los equipos.",
-          "grado_implicacion": "Directo",
-          "horizonte_impacto": "Corto",
-          "accion_estructural": "Rediseñar ciclos tecnológicos; Descripción: Implementar un modelo circular de reutilización y reventa de hardware, con trazabilidad y métricas de impacto.",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "Intencionado",
-          "materialidad_financiera": "Baja",
-          "valor_materialidad_financiera": 1
-        },
-        {
-          "tema": "Agua",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "tipo_impacto": "Negativo",
-          "accion_marginal": "Reducir consumo de agua; Descripción: Instalar medidores y ajustar prácticas de limpieza y mantenimiento para minimizar consumo en oficinas y centros de datos.",
-          "accion_moderada": "Implementar tecnologías de eficiencia hídrica; Descripción: Adoptar sistemas de reúso y reciclaje de agua en operaciones.",
-          "grado_implicacion": "Indirecto",
-          "horizonte_impacto": "Largo",
-          "accion_estructural": "Desarrollar un plan de gestión hídrica; Descripción: Crear un sistema integral de monitoreo y optimización del uso del agua.",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Potencial",
-          "intencionalidad_impacto": "No intencionado",
-          "materialidad_financiera": "Baja",
-          "valor_materialidad_financiera": 1
-        },
-        {
-          "tema": "Biodiversidad y uso de recursos",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "tipo_impacto": "Negativo",
-          "accion_marginal": "Prevención de impactos sobre áreas sensibles; Descripción: Evitar intervenciones en zonas protegidas o de valor ecológico.",
-          "accion_moderada": "Selección responsable de materias primas; Descripción: Priorizar materiales certificados y trazables en toda la cadena de suministro.",
-          "grado_implicacion": "Indirecto",
-          "horizonte_impacto": "Largo",
-          "accion_estructural": "Implementar programas de restauración ecológica; Descripción: Desarrollar iniciativas que promuevan la recuperación de ecosistemas afectados.",
-          "penetracion_impacto": "Irreversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "No intencionado",
-          "materialidad_financiera": "Media",
-          "valor_materialidad_financiera": 2.5
-        },
-        {
-          "tema": "Condiciones laborales",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "tipo_impacto": "Positivo",
-          "accion_marginal": "Formalización de contratos; Descripción: Asegurar que todo el personal, incluido el temporal, cuente con contratos legales y condiciones seguras.",
-          "accion_moderada": "Auditoría laboral integral; Descripción: Evaluar condiciones de trabajo de contratistas y subcontratistas con auditorías externas.",
-          "grado_implicacion": "Directo",
-          "horizonte_impacto": "Corto",
-          "accion_estructural": "Trazabilidad social con reclamos efectivos; Descripción: Desarrollar un sistema digital para trazabilidad laboral y mecanismos de denuncia supervisados por terceros.",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "Intencionado",
-          "materialidad_financiera": "Media",
-          "valor_materialidad_financiera": 2.5
-        },
-        {
-          "tema": "Marketing responsable y etiquetado",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "tipo_impacto": "Positivo",
-          "accion_marginal": "Validación de claims ambientales; Descripción: Revisar etiquetas y mensajes publicitarios para eliminar afirmaciones sin respaldo técnico.",
-          "accion_moderada": "Certificación de etiquetado y comunicación; Descripción: Obtener certificaciones reconocidas para etiquetas ambientales y sociales.",
-          "grado_implicacion": "Directo",
-          "horizonte_impacto": "Corto",
-          "accion_estructural": "Rediseño integral de comunicación ESG; Descripción: Replantear la narrativa de marca con transparencia total del ciclo de vida.",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "Intencionado",
-          "materialidad_financiera": "Media",
-          "valor_materialidad_financiera": 2.5
-        }
-      ]
-    }
-  },
-  {
-    "name": "🔹 Prompt 4: Evaluación de Impactos (doble materialidad)",
-    "thread_id": "thread_Mi9GpZmaQeS1sfoOFHIVWAwS",
-    "response_content": {
-      "resumen_sector": "El sector de Tecnología Hardware y Semiconductores es fundamental para la innovación y sostenibilidad, impactando en la producción y consumo responsable.",
-      "materiality_table": [
-        {
-          "tema": "Productos y servicios sostenibles",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 5,
-          "gravedad": 2,
-          "probabilidad": 4,
-          "tipo_impacto": "Positivo",
-          "materialidad_esg": 16,
-          "grado_implicacion": "Directo",
-          "horizonte_impacto": "Corto",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "Intencionado"
-        },
-        {
-          "tema": "Acceso y asequibilidad",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 5,
-          "gravedad": 3,
-          "probabilidad": 4,
-          "tipo_impacto": "Positivo",
-          "materialidad_esg": 17,
-          "grado_implicacion": "Directo",
-          "horizonte_impacto": "Corto",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "Intencionado"
-        },
-        {
-          "tema": "Riesgo climático físico",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 4,
-          "gravedad": 5,
-          "probabilidad": 4,
-          "tipo_impacto": "Negativo",
-          "materialidad_esg": 18,
-          "grado_implicacion": "Indirecto",
-          "horizonte_impacto": "Corto",
-          "penetracion_impacto": "Irreversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "No intencionado"
-        },
-        {
-          "tema": "Contaminación",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 5,
-          "gravedad": 4,
-          "probabilidad": 3,
-          "tipo_impacto": "Negativo",
-          "materialidad_esg": 15,
-          "grado_implicacion": "Indirecto",
-          "horizonte_impacto": "Corto",
-          "penetracion_impacto": "Irreversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "No intencionado"
-        },
-        {
-          "tema": "Residuos y reciclaje",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 4,
-          "gravedad": 2,
-          "probabilidad": 3,
-          "tipo_impacto": "Positivo",
-          "materialidad_esg": 10,
-          "grado_implicacion": "Directo",
-          "horizonte_impacto": "Corto",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "Intencionado"
-        },
-        {
-          "tema": "Agua",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 3,
-          "gravedad": 3,
-          "probabilidad": 3,
-          "tipo_impacto": "Negativo",
-          "materialidad_esg": 10,
-          "grado_implicacion": "Indirecto",
-          "horizonte_impacto": "Largo",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Potencial",
-          "intencionalidad_impacto": "No intencionado"
-        },
-        {
-          "tema": "Biodiversidad y uso de recursos",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 4,
-          "gravedad": 4,
-          "probabilidad": 2,
-          "tipo_impacto": "Negativo",
-          "materialidad_esg": 14,
-          "grado_implicacion": "Indirecto",
-          "horizonte_impacto": "Largo",
-          "penetracion_impacto": "Irreversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "No intencionado"
-        },
-        {
-          "tema": "Condiciones laborales",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 4,
-          "gravedad": 2,
-          "probabilidad": 5,
-          "tipo_impacto": "Positivo",
-          "materialidad_esg": 13,
-          "grado_implicacion": "Directo",
-          "horizonte_impacto": "Corto",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "Intencionado"
-        },
-        {
-          "tema": "Marketing responsable y etiquetado",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 3,
-          "gravedad": 2,
-          "probabilidad": 4,
-          "tipo_impacto": "Positivo",
-          "materialidad_esg": 12,
-          "grado_implicacion": "Directo",
-          "horizonte_impacto": "Corto",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "Intencionado"
-        }
-      ]
-    }
-  },
-  {
-    "name": "🔹 Prompt 5: Priorización de Temas",
-    "thread_id": "thread_Mi9GpZmaQeS1sfoOFHIVWAwS",
-    "response_content": {
-      "materiality_table": [
-        {
-          "tema": "Riesgo climático físico",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 4,
-          "gravedad": 5,
-          "probabilidad": 4,
-          "tipo_impacto": "Negativo",
-          "materialidad_esg": 18,
-          "grado_implicacion": "Indirecto",
-          "horizonte_impacto": "Corto",
-          "penetracion_impacto": "Irreversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "No intencionado"
-        },
-        {
-          "tema": "Acceso y asequibilidad",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 5,
-          "gravedad": 3,
-          "probabilidad": 4,
-          "tipo_impacto": "Positivo",
-          "materialidad_esg": 17,
-          "grado_implicacion": "Directo",
-          "horizonte_impacto": "Corto",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "Intencionado"
-        },
-        {
-          "tema": "Productos y servicios sostenibles",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 5,
-          "gravedad": 2,
-          "probabilidad": 4,
-          "tipo_impacto": "Positivo",
-          "materialidad_esg": 16,
-          "grado_implicacion": "Directo",
-          "horizonte_impacto": "Corto",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "Intencionado"
-        },
-        {
-          "tema": "Contaminación",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 5,
-          "gravedad": 4,
-          "probabilidad": 3,
-          "tipo_impacto": "Negativo",
-          "materialidad_esg": 15,
-          "grado_implicacion": "Indirecto",
-          "horizonte_impacto": "Corto",
-          "penetracion_impacto": "Irreversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "No intencionado"
-        },
-        {
-          "tema": "Biodiversidad y uso de recursos",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 4,
-          "gravedad": 4,
-          "probabilidad": 2,
-          "tipo_impacto": "Negativo",
-          "materialidad_esg": 14,
-          "grado_implicacion": "Indirecto",
-          "horizonte_impacto": "Largo",
-          "penetracion_impacto": "Irreversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "No intencionado"
-        },
-        {
-          "tema": "Condiciones laborales",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 4,
-          "gravedad": 2,
-          "probabilidad": 5,
-          "tipo_impacto": "Positivo",
-          "materialidad_esg": 13,
-          "grado_implicacion": "Directo",
-          "horizonte_impacto": "Corto",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "Intencionado"
-        },
-        {
-          "tema": "Marketing responsable y etiquetado",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 3,
-          "gravedad": 2,
-          "probabilidad": 4,
-          "tipo_impacto": "Positivo",
-          "materialidad_esg": 12,
-          "grado_implicacion": "Directo",
-          "horizonte_impacto": "Corto",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "Intencionado"
-        },
-        {
-          "tema": "Agua",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 3,
-          "gravedad": 3,
-          "probabilidad": 3,
-          "tipo_impacto": "Negativo",
-          "materialidad_esg": 10,
-          "grado_implicacion": "Indirecto",
-          "horizonte_impacto": "Largo",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Potencial",
-          "intencionalidad_impacto": "No intencionado"
-        },
-        {
-          "tema": "Residuos y reciclaje",
-          "sector": "Tecnología Hardware y Semiconductores",
-          "alcance": 4,
-          "gravedad": 2,
-          "probabilidad": 3,
-          "tipo_impacto": "Positivo",
-          "materialidad_esg": 10,
-          "grado_implicacion": "Directo",
-          "horizonte_impacto": "Corto",
-          "penetracion_impacto": "Reversible",
-          "potencialidad_impacto": "Real",
-          "intencionalidad_impacto": "Intencionado"
-        }
-      ]
-    }
-  },
-  {
-    "name": "🔹 Prompt 6: Vínculo con Objetivos de Desarrollo Sostenible (ODS)",
-    "thread_id": "thread_Mi9GpZmaQeS1sfoOFHIVWAwS",
-    "response_content": {
-      "materiality_table": [
-        {
-          "tema": "Riesgo climático físico",
-          "meta_ods": "13.1. Mejorar la educación, la concienciación y la capacidad sobre la mitigación del cambio climático, la adaptación, la reducción de sus efectos y la alerta temprana.",
-          "prioridad": "Objetivo de desarrollo sostenible 13: Acción por el clima",
-          "indicador_ods": "13.1.1. Número de países que han integrado medidas de cambio climático en sus estrategias y planes de desarrollo."
-        },
-        {
-          "tema": "Acceso y asequibilidad",
-          "meta_ods": "7.1. Asegurar el acceso universal a servicios de energía asequibles, fiables y modernos.",
-          "prioridad": "Objetivo de desarrollo sostenible 7: Energía asequible y no contaminante",
-          "indicador_ods": "7.1.1. Proporción de la población que tiene acceso a electricidad."
-        },
-        {
-          "tema": "Productos y servicios sostenibles",
-          "meta_ods": "12.2. Lograr la gestión sostenible y el uso eficiente de los recursos naturales.",
-          "prioridad": "Objetivo de desarrollo sostenible 12: Producción y consumo responsables",
-          "indicador_ods": "12.2.1. Material utilizado por unidad de PIB."
-        },
-        {
-          "tema": "Contaminación",
-          "meta_ods": "14.1. Prevenir y reducir significativamente la contaminación marina de todo tipo.",
-          "prioridad": "Objetivo de desarrollo sostenible 14: Vida submarina",
-          "indicador_ods": "14.1.1. Índice de contaminación marina."
-        },
-        {
-          "tema": "Biodiversidad y uso de recursos",
-          "meta_ods": "15.1. Asegurar la conservación, restauración y uso sostenible de los ecosistemas terrestres.",
-          "prioridad": "Objetivo de desarrollo sostenible 15: Vida de ecosistemas terrestres",
-          "indicador_ods": "15.1.1. Proporción de áreas protegidas en relación con la superficie terrestre total."
-        },
-        {
-          "tema": "Condiciones laborales",
-          "meta_ods": "8.5. Lograr el empleo pleno y productivo y el trabajo decente para todas las mujeres y hombres.",
-          "prioridad": "Objetivo de desarrollo sostenible 8: Trabajo decente y crecimiento económico",
-          "indicador_ods": "8.5.1. Tasa de desempleo total, desglosada por sexo, edad y personas con discapacidad."
-        },
-        {
-          "tema": "Marketing responsable y etiquetado",
-          "meta_ods": "12.8. Promover prácticas de compra pública sostenibles.",
-          "prioridad": "Objetivo de desarrollo sostenible 12: Producción y consumo responsables",
-          "indicador_ods": "12.8.1. Número de países que han adoptado políticas de compra pública sostenible."
-        },
-        {
-          "tema": "Agua",
-          "meta_ods": "6.4. Aumentar la eficiencia del uso del agua en todos los sectores.",
-          "prioridad": "Objetivo de desarrollo sostenible 6: Agua limpia y saneamiento",
-          "indicador_ods": "6.4.1. Cambio en la disponibilidad de agua dulce por persona."
-        },
-        {
-          "tema": "Residuos y reciclaje",
-          "meta_ods": "12.5. Reducir sustancialmente la generación de residuos mediante la prevención, la reducción, el reciclado y la reutilización.",
-          "prioridad": "Objetivo de desarrollo sostenible 12: Producción y consumo responsables",
-          "indicador_ods": "12.5.1. Tasa de reciclaje de residuos."
-        }
-      ]
-    }
-  },
-  {
-    "name": "🔹 Prompt 7: Mapeo de Contenidos GRI",
-    "thread_id": "thread_Mi9GpZmaQeS1sfoOFHIVWAwS",
-    "response_content": {
-      "gri_mapping": [
-        {
-          "contenido": "(1) Riesgo de apropiación cultural, estereotipos negativos o falta de legitimidad social; (2) Rechazo comunitario y pérdida de licencias sociales.",
-          "estandar_gri": "ADA.11.06",
-          "requerimiento": "(1) Generación de valor social, empleo y pertenencia cultural; (2) Fortalecimiento de alianzas territoriales y confianza social.",
-          "numero_contenido": "Impacto en las comunidades"
-        },
-        {
-          "contenido": "(1) Riesgo de sanciones por desinformación, adicciones digitales o exposición a contenido sensible; (2) Pérdida de confianza y reputación de la marca.",
-          "estandar_gri": "ADA.11.05",
-          "requerimiento": "(1) Posicionamiento como medio responsable y confiable; (2) Aumento del engagement a través de contenidos seguros y éticos.",
-          "numero_contenido": "Salud y seguridad del cliente"
-        },
-        {
-          "contenido": "(1) Riesgo de sanciones y pérdida de permisos por contaminación acústica, lumínica o de emisiones; (2) Afectación a comunidades cercanas y reputación corporativa.",
-          "estandar_gri": "ADA.11.13",
-          "requerimiento": "(1) Reducción de costos operativos y cumplimiento regulatorio; (2) Reputación positiva como industria verde.",
-          "numero_contenido": "Contaminación"
-        },
-        {
-          "contenido": "(1) Riesgo de pérdida de competitividad ante exigencias ambientales; (2) Críticas públicas por producciones de alto impacto ambiental.",
-          "estandar_gri": "ADA.11.04",
-          "requerimiento": "(1) Reputación fortalecida como referente de producción sostenible; (2) Acceso a incentivos fiscales y nuevos mercados verdes.",
-          "numero_contenido": "Productos y servicios sostenibles"
-        },
-        {
-          "contenido": "(1) Riesgo de incumplimiento normativo, demandas o conflictos sindicales; (2) Pérdida de reputación por abusos o explotación laboral.",
-          "estandar_gri": "ADA.11.02",
-          "requerimiento": "(1) Mayor transparencia y confianza con sindicatos y stakeholders; (2) Alineación a estándares internacionales de producción ética.",
-          "numero_contenido": "Prácticas laborales"
-        },
-        {
-          "contenido": "(1) Riesgo de interrupción de producciones y pérdida de activos por desastres naturales; (2) Deterioro de infraestructura tecnológica y física.",
-          "estandar_gri": "ADA.11.01",
-          "requerimiento": "(1) Mejora en resiliencia operativa y continuidad creativa; (2) Atractivo para inversionistas y aseguradoras sostenibles.",
-          "numero_contenido": "Riesgo climático físico"
-        },
-        {
-          "contenido": "(1) Riesgo de filtración de datos personales de talentos y usuarios; (2) Sanciones regulatorias y pérdida de confianza pública.",
-          "estandar_gri": "ADA.11.03",
-          "requerimiento": "(1) Fortalecimiento de la confianza y fidelidad de usuarios; (2) Acceso a certificaciones internacionales de privacidad.",
-          "numero_contenido": "Protección de la privacidad"
-        },
-        {
-          "contenido": "(1) Generación excesiva de residuos en producciones y eventos; (2) Riesgo de sanciones ambientales y mala imagen pública.",
-          "estandar_gri": "ADA.11.12",
-          "requerimiento": "(1) Reducción de costos y residuos; (2) Reputación fortalecida como referente de economía circular en el sector cultural.",
-          "numero_contenido": "Residuos y reciclaje"
-        },
-        {
-          "contenido": "(1) Daños irreversibles a ecosistemas por extracción no controlada; (2) Riesgos reputacionales y sanciones ambientales.",
-          "estandar_gri": "ADA.11.11",
-          "requerimiento": "(1) Fortalecer licencias ambientales y relaciones con stakeholders; (2) Acceder a nuevos contratos y mercados sostenibles.",
-          "numero_contenido": "Biodiversidad y uso de recursos"
-        },
-        {
-          "contenido": "(1) Riesgo de sobreconsumo de agua en enfriamiento y operaciones de centros de datos; (2) Escasez hídrica que afecte continuidad o imagen corporativa.",
-          "estandar_gri": "ADA.11.10",
-          "requerimiento": "(1) Reducción de costos y consumo mediante eficiencia hídrica; (2) Posicionamiento como líder tecnológico sostenible.",
-          "numero_contenido": "Agua"
-        }
-      ]
-    }
-  },
-  {
-    "name": "🔹 Prompt 8: Mapeo SASB Sectorial",
-    "thread_id": "thread_Mi9GpZmaQeS1sfoOFHIVWAwS",
-    "response_content": {
-      "mapeo_sasb": [
-        {
-          "sector_s&p": "Tecnología Hardware y Semiconductores",
-          "industria_sasb": "Tecnología de la Información"
-        }
-      ]
-    }
-  },
-  {
-    "name": "🔹 Prompt 9: Tabla SASB Sectorial",
-    "thread_id": "thread_Mi9GpZmaQeS1sfoOFHIVWAwS",
-    "response_content": {
-      "tabla_sasb": [
-        {
-          "tema": "Riesgo climático físico",
-          "codigo": "IF-EN-130a.1",
-          "categoria": "Energía",
-          "industria": "Tecnología de la Información",
-          "unidad_medida": "MWh",
-          "parametro_contabilidad": "Energía"
-        },
-        {
-          "tema": "Riesgo de transición climática",
-          "codigo": "IF-EN-130a.2",
-          "categoria": "Emisiones",
-          "industria": "Tecnología de la Información",
-          "unidad_medida": "tCO2e",
-          "parametro_contabilidad": "Emisiones"
-        },
-        {
-          "tema": "Salud y seguridad del cliente",
-          "codigo": "IF-SI-250a.1",
-          "categoria": "Salud y Seguridad",
-          "industria": "Tecnología de la Información",
-          "unidad_medida": "Número de incidentes",
-          "parametro_contabilidad": "Incidentes"
-        },
-        {
-          "tema": "Productos y servicios sostenibles",
-          "codigo": "IF-EN-140a.1",
-          "categoria": "Sostenibilidad",
-          "industria": "Tecnología de la Información",
-          "unidad_medida": "Porcentaje",
-          "parametro_contabilidad": "Sostenibilidad"
-        },
-        {
-          "tema": "Acceso y asequibilidad",
-          "codigo": "IF-EN-140a.2",
-          "categoria": "Acceso",
-          "industria": "Tecnología de la Información",
-          "unidad_medida": "Número de usuarios",
-          "parametro_contabilidad": "Acceso"
-        },
-        {
-          "tema": "Biodiversidad y uso de recursos",
-          "codigo": "IF-EN-150a.1",
-          "categoria": "Recursos",
-          "industria": "Tecnología de la Información",
-          "unidad_medida": "Porcentaje",
-          "parametro_contabilidad": "Recursos"
-        },
-        {
-          "tema": "Contaminación",
-          "codigo": "IF-EN-160a.1",
-          "categoria": "Contaminantes",
-          "industria": "Tecnología de la Información",
-          "unidad_medida": "t",
-          "parametro_contabilidad": "Contaminantes"
-        },
-        {
-          "tema": "Condiciones laborales",
-          "codigo": "IF-LA-230a.1",
-          "categoria": "Laboral",
-          "industria": "Tecnología de la Información",
-          "unidad_medida": "Número de incidentes",
-          "parametro_contabilidad": "Condiciones laborales"
-        }
-      ]
-    }
-  },
-  {
-    "name": "🔹 Prompt 10: Vinculación Normativa por Tema Material (GAIL)",
-    "thread_id": "thread_Mi9GpZmaQeS1sfoOFHIVWAwS",
-    "response_content": {
-      "regulaciones": [
-        {
-          "vigencia": "2021",
-          "descripcion": "Regula la gestión de residuos y su impacto ambiental, estableciendo obligaciones para la reducción, reciclaje y disposición final de residuos.",
-          "tipo_regulacion": "Ley 21.300"
-        },
-        {
-          "vigencia": "2010",
-          "descripcion": "Establece normas sobre la protección de datos personales y la privacidad de los usuarios en el ámbito digital.",
-          "tipo_regulacion": "Ley 20.417"
-        },
-        {
-          "vigencia": "2019",
-          "descripcion": "Regula la reducción de emisiones de gases de efecto invernadero y establece metas de descarbonización para las industrias.",
-          "tipo_regulacion": "Ley 21.055"
-        },
-        {
-          "vigencia": "1994",
-          "descripcion": "Establece la protección del medio ambiente y regula las actividades que puedan afectar la biodiversidad y los ecosistemas.",
-          "tipo_regulacion": "Ley 19.300"
-        },
-        {
-          "vigencia": "2020",
-          "descripcion": "Regula la gestión del agua y establece normas para el uso eficiente y sostenible de los recursos hídricos.",
-          "tipo_regulacion": "Ley 21.364"
-        },
-        {
-          "vigencia": "2009",
-          "descripcion": "Establece normas sobre la responsabilidad penal de las personas jurídicas en delitos ambientales.",
-          "tipo_regulacion": "Ley 20.393"
-        },
-        {
-          "vigencia": "2013",
-          "descripcion": "Regula el etiquetado de productos alimenticios y establece requisitos para la información nutricional y de ingredientes.",
-          "tipo_regulacion": "Ley 21.020"
-        },
-        {
-          "vigencia": "2020",
-          "descripcion": "Establece la regulación de la publicidad y el marketing responsable, especialmente en relación con productos dirigidos a menores.",
-          "tipo_regulacion": "Ley 21.235"
-        },
-        {
-          "vigencia": "2012",
-          "descripcion": "Regula la igualdad de derechos y la no discriminación en el ámbito laboral.",
-          "tipo_regulacion": "Ley 20.609"
-        },
-        {
-          "vigencia": "2019",
-          "descripcion": "Regula el uso de tecnologías de la información y la comunicación en el ámbito educativo y su impacto en la privacidad.",
-          "tipo_regulacion": "Ley 21.145"
-        }
-      ]
-    }
-  },
-  {
-    "name": "🔹 Prompt 11: Estrategia de Sostenibilidad (Resumen Ejecutivo)",
-    "thread_id": "thread_Mi9GpZmaQeS1sfoOFHIVWAwS",
-    "response_content": {
-      "parrafo_1": "El análisis de doble materialidad realizado para Mercado Libre Chile Ltda ha permitido identificar y priorizar 10 temas materiales clave que impactan tanto en la sostenibilidad de la empresa como en su desempeño financiero. Estos temas incluyen el riesgo climático físico, el acceso y asequibilidad, y la contaminación, entre otros. Las acciones propuestas abarcan desde medidas marginales, como la evaluación de impacto del portafolio y la gestión de residuos, hasta acciones estructurales, como la implementación de un modelo circular de negocio y la integración de criterios ESG en la estrategia corporativa. Estas iniciativas no solo buscan mitigar riesgos, sino también capitalizar oportunidades de mercado, alineándose con las expectativas de los stakeholders y contribuyendo a la creación de valor a largo plazo.",
-      "parrafo_2": "La estrategia de sostenibilidad de Mercado Libre se fundamenta en la necesidad de adaptarse a un entorno regulatorio y social en constante evolución. Las acciones moderadas, como la mejora de la transparencia en la comunicación de productos y servicios sostenibles, complementan los esfuerzos para fortalecer la reputación de la marca. Asimismo, la empresa debe priorizar la capacitación y el bienestar de sus empleados, garantizando condiciones laborales justas y equitativas. Este enfoque integral no solo posiciona a Mercado Libre como un líder en la industria de tecnología y comercio electrónico, sino que también refuerza su compromiso con la sostenibilidad y la responsabilidad social, asegurando su competitividad en el mercado chileno y más allá."
-    }
-  }
-]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      {
+          "name": "🔹 Prompt 1: Contexto organizacional y Sectorial",
+          "response_content": {
+              "nombre_empresa": "Mercado Libre, una plataforma de comercio electrónico líder en América Latina.",
+              "pais_operacion": "Chile. Mercado Libre opera en Chile como un proveedor de servicios de comercio electrónico, facilitando la compra y venta de productos a través de su plataforma digital.",
+              "industria": "Software y servicios tecnológicos, enfocado en comercio electrónico, fintech y logística, proporcionando soluciones integrales para el comercio en línea.",
+              "tamano_empresa": "Mercado Libre es una de las empresas más grandes de comercio electrónico en América Latina, con millones de usuarios y una extensa red de operaciones en varios países.",
+              "ubicacion_geografica": "Mercado Libre tiene su sede en Buenos Aires, Argentina, pero opera en múltiples países de América Latina, incluyendo Chile, donde ofrece servicios de compra y venta en línea, así como soluciones de pago y logística.",
+              "modelo_negocio": "El modelo de negocio de Mercado Libre se basa en la creación de un ecosistema de comercio electrónico que incluye una plataforma de marketplace, servicios de pago a través de Mercado Pago, y soluciones logísticas que facilitan la entrega de productos. La empresa genera ingresos a través de comisiones por ventas, tarifas de publicidad y servicios financieros.",
+              "cadena_valor": "La cadena de valor de Mercado Libre abarca desde la captación de usuarios y vendedores en su plataforma, la promoción de productos a través de publicidad digital, hasta la gestión de pagos y logística. Esto incluye la optimización de la experiencia del cliente, el desarrollo de tecnología para mejorar la seguridad y la eficiencia, y la implementación de prácticas sostenibles en sus operaciones.",
+              "actividades_principales": "Las actividades principales de Mercado Libre incluyen la gestión de su plataforma de comercio electrónico, la facilitación de pagos a través de Mercado Pago, el desarrollo de soluciones logísticas para la entrega de productos, y la implementación de iniciativas de sostenibilidad y responsabilidad social en sus operaciones.",
+              "madurez_esg": "Mercado Libre ha demostrado un compromiso creciente con la sostenibilidad y la responsabilidad social, implementando prácticas ESG en su modelo de negocio, aunque aún enfrenta desafíos en la transparencia y la medición de su impacto ambiental.",
+              "stakeholders_relevantes": "Los stakeholders relevantes de Mercado Libre incluyen a sus usuarios (compradores y vendedores), empleados, inversores, reguladores, comunidades locales, y organizaciones no gubernamentales que se enfocan en temas de sostenibilidad y responsabilidad social.",
+              "sector_sp": "Consumer Discretionary"
+          },
+          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
+      },
+      {
+          "name": "🔹 Prompt 2: Identificación de Impactos (basado en S&P)",
+          "response_content": {
+              "materiality_table": [
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Prácticas laborales",
+                      "materialidad_financiera": "Alta",
+                      "valor_materialidad_financiera": 5,
+                      "Riesgos": "Riesgo de alta rotación de personal y falta de talento calificado.",
+                      "Oportunidades": "Mejora en la productividad y satisfacción del empleado.",
+                      "accion_marginal": "Implementar programas de capacitación.",
+                      "accion_moderada": "Establecer políticas de retención de talento.",
+                      "accion_estructural": "Desarrollar una cultura organizacional inclusiva."
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Protección de la privacidad",
+                      "materialidad_financiera": "Alta",
+                      "valor_materialidad_financiera": 5,
+                      "Riesgos": "Posibles sanciones por incumplimiento de normativas de protección de datos.",
+                      "Oportunidades": "Generar confianza en los usuarios y clientes.",
+                      "accion_marginal": "Realizar auditorías de privacidad.",
+                      "accion_moderada": "Implementar protocolos de seguridad de datos.",
+                      "accion_estructural": "Crear un departamento de cumplimiento normativo."
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Impacto en las comunidades",
+                      "materialidad_financiera": "Alta",
+                      "valor_materialidad_financiera": 5,
+                      "Riesgos": "Reacciones negativas de la comunidad ante prácticas empresariales.",
+                      "Oportunidades": "Fortalecer la relación con la comunidad y mejorar la imagen de marca.",
+                      "accion_marginal": "Realizar eventos comunitarios.",
+                      "accion_moderada": "Establecer programas de responsabilidad social.",
+                      "accion_estructural": "Incorporar la sostenibilidad en la estrategia empresarial."
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Productos y servicios sostenibles",
+                      "materialidad_financiera": "Media",
+                      "valor_materialidad_financiera": 2.5,
+                      "Riesgos": "Desactualización frente a la competencia que adopta prácticas sostenibles.",
+                      "Oportunidades": "Acceso a nuevos mercados y clientes conscientes del medio ambiente.",
+                      "accion_marginal": "Desarrollar productos con menor impacto ambiental.",
+                      "accion_moderada": "Certificar productos con estándares de sostenibilidad.",
+                      "accion_estructural": "Integrar la sostenibilidad en el ciclo de vida del producto."
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Acceso y asequibilidad",
+                      "materialidad_financiera": "Media",
+                      "valor_materialidad_financiera": 2.5,
+                      "Riesgos": "Limitaciones en el acceso a tecnología para ciertos segmentos de la población.",
+                      "Oportunidades": "Expansión de mercado al ofrecer soluciones accesibles.",
+                      "accion_marginal": "Crear versiones de productos a bajo costo.",
+                      "accion_moderada": "Establecer asociaciones con organizaciones sin fines de lucro.",
+                      "accion_estructural": "Desarrollar iniciativas de inclusión digital."
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Riesgo climático físico",
+                      "materialidad_financiera": "Media",
+                      "valor_materialidad_financiera": 2.5,
+                      "Riesgos": "Interrupciones en la operación debido a eventos climáticos extremos.",
+                      "Oportunidades": "Implementar soluciones tecnológicas que mitiguen riesgos climáticos.",
+                      "accion_marginal": "Realizar un análisis de vulnerabilidad climática.",
+                      "accion_moderada": "Desarrollar un plan de continuidad de negocio.",
+                      "accion_estructural": "Invertir en infraestructura resiliente."
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Riesgo de transición climática",
+                      "materialidad_financiera": "Media",
+                      "valor_materialidad_financiera": 2.5,
+                      "Riesgos": "Costos asociados a la transición hacia una economía baja en carbono.",
+                      "Oportunidades": "Adopción de tecnologías limpias que mejoren la eficiencia.",
+                      "accion_marginal": "Evaluar la huella de carbono de las operaciones.",
+                      "accion_moderada": "Implementar prácticas de eficiencia energética.",
+                      "accion_estructural": "Desarrollar una estrategia de sostenibilidad a largo plazo."
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Salud y seguridad del cliente",
+                      "materialidad_financiera": "Media",
+                      "valor_materialidad_financiera": 2.5,
+                      "Riesgos": "Posibles fallos en la seguridad que comprometan la información del cliente.",
+                      "Oportunidades": "Mejorar la confianza del cliente a través de prácticas seguras.",
+                      "accion_marginal": "Capacitar al personal en prácticas de seguridad.",
+                      "accion_moderada": "Implementar protocolos de seguridad de la información.",
+                      "accion_estructural": "Establecer un sistema de gestión de la seguridad de la información."
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Salud y seguridad de los trabajadores",
+                      "materialidad_financiera": "Media",
+                      "valor_materialidad_financiera": 2.5,
+                      "Riesgos": "Aumento de problemas de salud mental debido a la carga laboral.",
+                      "Oportunidades": "Mejorar la satisfacción y productividad del empleado.",
+                      "accion_marginal": "Ofrecer programas de bienestar laboral.",
+                      "accion_moderada": "Implementar políticas de trabajo flexible.",
+                      "accion_estructural": "Desarrollar una cultura organizacional centrada en el bienestar."
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Condiciones laborales",
+                      "materialidad_financiera": "Media",
+                      "valor_materialidad_financiera": 2.5,
+                      "Riesgos": "Problemas de cumplimiento con normativas laborales.",
+                      "Oportunidades": "Atraer y retener talento mediante buenas condiciones laborales.",
+                      "accion_marginal": "Realizar encuestas de satisfacción laboral.",
+                      "accion_moderada": "Establecer un código de conducta laboral.",
+                      "accion_estructural": "Implementar un sistema de gestión de recursos humanos."
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Contaminación",
+                      "materialidad_financiera": "Baja",
+                      "valor_materialidad_financiera": 1,
+                      "Riesgos": "Impacto ambiental negativo por desechos electrónicos.",
+                      "Oportunidades": "Desarrollar programas de reciclaje y reducción de desechos.",
+                      "accion_marginal": "Fomentar la reducción de papel en las operaciones.",
+                      "accion_moderada": "Implementar un programa de reciclaje de equipos.",
+                      "accion_estructural": "Desarrollar una política de sostenibilidad ambiental."
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Residuos y reciclaje",
+                      "materialidad_financiera": "Baja",
+                      "valor_materialidad_financiera": 1,
+                      "Riesgos": "Costos asociados al manejo inadecuado de residuos.",
+                      "Oportunidades": "Mejorar la reputación a través de prácticas de reciclaje.",
+                      "accion_marginal": "Fomentar el uso de productos reciclables.",
+                      "accion_moderada": "Implementar un programa de gestión de residuos.",
+                      "accion_estructural": "Establecer alianzas con empresas de reciclaje."
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Agua",
+                      "materialidad_financiera": "Baja",
+                      "valor_materialidad_financiera": 1,
+                      "Riesgos": "Impacto en operaciones por escasez de agua.",
+                      "Oportunidades": "Implementar prácticas de conservación de agua.",
+                      "accion_marginal": "Monitorear el consumo de agua.",
+                      "accion_moderada": "Establecer metas de reducción de consumo.",
+                      "accion_estructural": "Desarrollar una estrategia de gestión del agua."
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Biodiversidad y uso de recursos",
+                      "materialidad_financiera": "Baja",
+                      "valor_materialidad_financiera": 1,
+                      "Riesgos": "Impacto negativo en la biodiversidad por operaciones.",
+                      "Oportunidades": "Desarrollar iniciativas de conservación.",
+                      "accion_marginal": "Fomentar el uso responsable de recursos.",
+                      "accion_moderada": "Realizar auditorías de impacto ambiental.",
+                      "accion_estructural": "Incorporar la biodiversidad en la planificación estratégica."
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Marketing responsable y etiquetado",
+                      "materialidad_financiera": "Baja",
+                      "valor_materialidad_financiera": 1,
+                      "Riesgos": "Reputación negativa por prácticas de marketing engañosas.",
+                      "Oportunidades": "Aumentar la lealtad del cliente mediante marketing transparente.",
+                      "accion_marginal": "Revisar las campañas de marketing.",
+                      "accion_moderada": "Establecer un código de ética de marketing.",
+                      "accion_estructural": "Desarrollar políticas de comunicación responsable."
+                  }
+              ],
+              "exhausted": false
+          },
+          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
+      },
+      {
+          "name": "🔹 Prompt 3: Evaluación de Impactos",
+          "response_content": {
+              "materiality_table": [
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Prácticas laborales",
+                      "materialidad_financiera": "Alta",
+                      "valor_materialidad_financiera": 5,
+                      "accion_marginal": "Implementar programas de capacitación.",
+                      "accion_moderada": "Establecer políticas de retención de talento.",
+                      "accion_estructural": "Desarrollar una cultura organizacional inclusiva.",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Directo"
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Protección de la privacidad",
+                      "materialidad_financiera": "Alta",
+                      "valor_materialidad_financiera": 5,
+                      "accion_marginal": "Realizar auditorías de privacidad.",
+                      "accion_moderada": "Implementar protocolos de seguridad de datos.",
+                      "accion_estructural": "Crear un departamento de cumplimiento normativo.",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto"
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Impacto en las comunidades",
+                      "materialidad_financiera": "Alta",
+                      "valor_materialidad_financiera": 5,
+                      "accion_marginal": "Realizar eventos comunitarios.",
+                      "accion_moderada": "Establecer programas de responsabilidad social.",
+                      "accion_estructural": "Incorporar la sostenibilidad en la estrategia empresarial.",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Largo",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Directo"
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Productos y servicios sostenibles",
+                      "materialidad_financiera": "Media",
+                      "valor_materialidad_financiera": 2.5,
+                      "accion_marginal": "Desarrollar productos con menor impacto ambiental.",
+                      "accion_moderada": "Certificar productos con estándares de sostenibilidad.",
+                      "accion_estructural": "Integrar la sostenibilidad en el ciclo de vida del producto.",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Potencial",
+                      "horizonte_impacto": "Largo",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto"
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Acceso y asequibilidad",
+                      "materialidad_financiera": "Media",
+                      "valor_materialidad_financiera": 2.5,
+                      "accion_marginal": "Crear versiones de productos a bajo costo.",
+                      "accion_moderada": "Establecer asociaciones con organizaciones sin fines de lucro.",
+                      "accion_estructural": "Desarrollar iniciativas de inclusión digital.",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Directo"
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Riesgo climático físico",
+                      "materialidad_financiera": "Media",
+                      "valor_materialidad_financiera": 2.5,
+                      "accion_marginal": "Realizar un análisis de vulnerabilidad climática.",
+                      "accion_moderada": "Desarrollar un plan de continuidad de negocio.",
+                      "accion_estructural": "Invertir en infraestructura resiliente.",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Potencial",
+                      "horizonte_impacto": "Largo",
+                      "intencionalidad_impacto": "No intencionado",
+                      "penetracion_impacto": "Irreversible",
+                      "grado_implicacion": "Indirecto"
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Riesgo de transición climática",
+                      "materialidad_financiera": "Media",
+                      "valor_materialidad_financiera": 2.5,
+                      "accion_marginal": "Evaluar la huella de carbono de las operaciones.",
+                      "accion_moderada": "Implementar prácticas de eficiencia energética.",
+                      "accion_estructural": "Desarrollar una estrategia de sostenibilidad a largo plazo.",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Potencial",
+                      "horizonte_impacto": "Largo",
+                      "intencionalidad_impacto": "No intencionado",
+                      "penetracion_impacto": "Irreversible",
+                      "grado_implicacion": "Indirecto"
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Salud y seguridad del cliente",
+                      "materialidad_financiera": "Media",
+                      "valor_materialidad_financiera": 2.5,
+                      "accion_marginal": "Capacitar al personal en prácticas de seguridad.",
+                      "accion_moderada": "Implementar protocolos de seguridad de la información.",
+                      "accion_estructural": "Establecer un sistema de gestión de la seguridad de la información.",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto"
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Salud y seguridad de los trabajadores",
+                      "materialidad_financiera": "Media",
+                      "valor_materialidad_financiera": 2.5,
+                      "accion_marginal": "Ofrecer programas de bienestar laboral.",
+                      "accion_moderada": "Implementar políticas de trabajo flexible.",
+                      "accion_estructural": "Desarrollar una cultura organizacional centrada en el bienestar.",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Directo"
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Condiciones laborales",
+                      "materialidad_financiera": "Media",
+                      "valor_materialidad_financiera": 2.5,
+                      "accion_marginal": "Realizar encuestas de satisfacción laboral.",
+                      "accion_moderada": "Establecer un código de conducta laboral.",
+                      "accion_estructural": "Implementar un sistema de gestión de recursos humanos.",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Directo"
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Contaminación",
+                      "materialidad_financiera": "Baja",
+                      "valor_materialidad_financiera": 1,
+                      "accion_marginal": "Fomentar la reducción de papel en las operaciones.",
+                      "accion_moderada": "Implementar un programa de reciclaje de equipos.",
+                      "accion_estructural": "Desarrollar una política de sostenibilidad ambiental.",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "No intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto"
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Residuos y reciclaje",
+                      "materialidad_financiera": "Baja",
+                      "valor_materialidad_financiera": 1,
+                      "accion_marginal": "Fomentar el uso de productos reciclables.",
+                      "accion_moderada": "Implementar un programa de gestión de residuos.",
+                      "accion_estructural": "Establecer alianzas con empresas de reciclaje.",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "No intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto"
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Agua",
+                      "materialidad_financiera": "Baja",
+                      "valor_materialidad_financiera": 1,
+                      "accion_marginal": "Monitorear el consumo de agua.",
+                      "accion_moderada": "Establecer metas de reducción de consumo.",
+                      "accion_estructural": "Desarrollar una estrategia de gestión del agua.",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Potencial",
+                      "horizonte_impacto": "Largo",
+                      "intencionalidad_impacto": "No intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto"
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Biodiversidad y uso de recursos",
+                      "materialidad_financiera": "Baja",
+                      "valor_materialidad_financiera": 1,
+                      "accion_marginal": "Fomentar el uso responsable de recursos.",
+                      "accion_moderada": "Realizar auditorías de impacto ambiental.",
+                      "accion_estructural": "Incorporar la biodiversidad en la planificación estratégica.",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Potencial",
+                      "horizonte_impacto": "Largo",
+                      "intencionalidad_impacto": "No intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto"
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Marketing responsable y etiquetado",
+                      "materialidad_financiera": "Baja",
+                      "valor_materialidad_financiera": 1,
+                      "accion_marginal": "Revisar las campañas de marketing.",
+                      "accion_moderada": "Establecer un código de ética de marketing.",
+                      "accion_estructural": "Desarrollar políticas de comunicación responsable.",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "No intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto"
+                  }
+              ],
+              "resumen_sector": "El sector de Software y servicios tecnológicos es crucial para la innovación y la transformación digital, impactando positivamente en la economía y en la vida cotidiana."
+          },
+          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
+      },
+      {
+          "name": "🔹 Prompt 4: Evaluación de Impactos (doble materialidad)",
+          "response_content": {
+              "materiality_table": [
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Prácticas laborales",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Directo",
+                      "gravedad": 2,
+                      "probabilidad": 4,
+                      "alcance": 3,
+                      "materialidad_esg": 14
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Protección de la privacidad",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto",
+                      "gravedad": 5,
+                      "probabilidad": 5,
+                      "alcance": 4,
+                      "materialidad_esg": 19
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Impacto en las comunidades",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Largo",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Directo",
+                      "gravedad": 3,
+                      "probabilidad": 3,
+                      "alcance": 5,
+                      "materialidad_esg": 16
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Productos y servicios sostenibles",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Potencial",
+                      "horizonte_impacto": "Largo",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto",
+                      "gravedad": 3,
+                      "probabilidad": 2,
+                      "alcance": 3,
+                      "materialidad_esg": 11
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Acceso y asequibilidad",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Directo",
+                      "gravedad": 2,
+                      "probabilidad": 3,
+                      "alcance": 4,
+                      "materialidad_esg": 13
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Riesgo climático físico",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Potencial",
+                      "horizonte_impacto": "Largo",
+                      "intencionalidad_impacto": "No intencionado",
+                      "penetracion_impacto": "Irreversible",
+                      "grado_implicacion": "Indirecto",
+                      "gravedad": 4,
+                      "probabilidad": 4,
+                      "alcance": 5,
+                      "materialidad_esg": 20
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Riesgo de transición climática",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Potencial",
+                      "horizonte_impacto": "Largo",
+                      "intencionalidad_impacto": "No intencionado",
+                      "penetracion_impacto": "Irreversible",
+                      "grado_implicacion": "Indirecto",
+                      "gravedad": 4,
+                      "probabilidad": 3,
+                      "alcance": 4,
+                      "materialidad_esg": 19
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Salud y seguridad del cliente",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto",
+                      "gravedad": 5,
+                      "probabilidad": 4,
+                      "alcance": 3,
+                      "materialidad_esg": 17
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Salud y seguridad de los trabajadores",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Directo",
+                      "gravedad": 3,
+                      "probabilidad": 3,
+                      "alcance": 4,
+                      "materialidad_esg": 15
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Condiciones laborales",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Directo",
+                      "gravedad": 3,
+                      "probabilidad": 3,
+                      "alcance": 4,
+                      "materialidad_esg": 15
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Contaminación",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "No intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto",
+                      "gravedad": 4,
+                      "probabilidad": 2,
+                      "alcance": 3,
+                      "materialidad_esg": 10
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Residuos y reciclaje",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "No intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto",
+                      "gravedad": 3,
+                      "probabilidad": 2,
+                      "alcance": 3,
+                      "materialidad_esg": 9
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Agua",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Potencial",
+                      "horizonte_impacto": "Largo",
+                      "intencionalidad_impacto": "No intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto",
+                      "gravedad": 2,
+                      "probabilidad": 3,
+                      "alcance": 4,
+                      "materialidad_esg": 10
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Biodiversidad y uso de recursos",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Potencial",
+                      "horizonte_impacto": "Largo",
+                      "intencionalidad_impacto": "No intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto",
+                      "gravedad": 3,
+                      "probabilidad": 2,
+                      "alcance": 3,
+                      "materialidad_esg": 9
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Marketing responsable y etiquetado",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "No intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto",
+                      "gravedad": 2,
+                      "probabilidad": 3,
+                      "alcance": 3,
+                      "materialidad_esg": 9
+                  }
+              ]
+          },
+          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
+      },
+      {
+          "name": "🔹 Prompt 5: Priorización de Temas",
+          "response_content": {
+              "materiality_table": [
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Riesgo climático físico",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Potencial",
+                      "horizonte_impacto": "Largo",
+                      "intencionalidad_impacto": "No intencionado",
+                      "penetracion_impacto": "Irreversible",
+                      "grado_implicacion": "Indirecto",
+                      "gravedad": 4,
+                      "probabilidad": 4,
+                      "alcance": 5,
+                      "materialidad_esg": 20
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Protección de la privacidad",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto",
+                      "gravedad": 5,
+                      "probabilidad": 5,
+                      "alcance": 4,
+                      "materialidad_esg": 19
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Riesgo de transición climática",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Potencial",
+                      "horizonte_impacto": "Largo",
+                      "intencionalidad_impacto": "No intencionado",
+                      "penetracion_impacto": "Irreversible",
+                      "grado_implicacion": "Indirecto",
+                      "gravedad": 4,
+                      "probabilidad": 3,
+                      "alcance": 4,
+                      "materialidad_esg": 19
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Salud y seguridad del cliente",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto",
+                      "gravedad": 5,
+                      "probabilidad": 4,
+                      "alcance": 3,
+                      "materialidad_esg": 17
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Impacto en las comunidades",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Largo",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Directo",
+                      "gravedad": 3,
+                      "probabilidad": 3,
+                      "alcance": 5,
+                      "materialidad_esg": 16
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Salud y seguridad de los trabajadores",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Directo",
+                      "gravedad": 3,
+                      "probabilidad": 3,
+                      "alcance": 4,
+                      "materialidad_esg": 15
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Condiciones laborales",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Directo",
+                      "gravedad": 3,
+                      "probabilidad": 3,
+                      "alcance": 4,
+                      "materialidad_esg": 15
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Acceso y asequibilidad",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Directo",
+                      "gravedad": 2,
+                      "probabilidad": 3,
+                      "alcance": 4,
+                      "materialidad_esg": 13
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Prácticas laborales",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Directo",
+                      "gravedad": 2,
+                      "probabilidad": 4,
+                      "alcance": 3,
+                      "materialidad_esg": 14
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Productos y servicios sostenibles",
+                      "tipo_impacto": "Positivo",
+                      "potencialidad_impacto": "Potencial",
+                      "horizonte_impacto": "Largo",
+                      "intencionalidad_impacto": "Intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto",
+                      "gravedad": 3,
+                      "probabilidad": 2,
+                      "alcance": 3,
+                      "materialidad_esg": 11
+                  },
+                  {
+                      "sector": "Software y servicios tecnológicos",
+                      "tema": "Contaminación",
+                      "tipo_impacto": "Negativo",
+                      "potencialidad_impacto": "Real",
+                      "horizonte_impacto": "Corto",
+                      "intencionalidad_impacto": "No intencionado",
+                      "penetracion_impacto": "Reversible",
+                      "grado_implicacion": "Indirecto",
+                      "gravedad": 4,
+                      "probabilidad": 2,
+                      "alcance": 3,
+                      "materialidad_esg": 10
+                  }
+              ]
+          },
+          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
+      },
+      {
+          "name": "🔹 Prompt 6: Vínculo con Objetivos de Desarrollo Sostenible (ODS)",
+          "response_content": {
+              "materiality_table": [
+                  {
+                      "tema": "Riesgo climático físico",
+                      "prioridad": "Riesgo climático físico",
+                      "ods": "13. Acción por el clima",
+                      "meta_ods": "Mejorar la educación, la concienciación y la capacidad sobre la mitigación del cambio climático, la adaptación, la reducción de sus efectos y la alerta temprana.",
+                      "indicador_ods": "13.3.1 Número de países que adoptan y aplican estrategias nacionales de reducción del riesgo de desastres en consonancia con las estrategias nacionales de reducción del riesgo de desastres."
+                  },
+                  {
+                      "tema": "Protección de la privacidad",
+                      "prioridad": "Protección de la privacidad",
+                      "ods": "16. Paz, justicia e instituciones sólidas",
+                      "meta_ods": "Promover el estado de derecho en los planos nacional e internacional y garantizar la igualdad de acceso a la justicia para todos.",
+                      "indicador_ods": "16.3.2 Proporción de personas que han sido víctimas de delitos en los últimos 12 meses."
+                  },
+                  {
+                      "tema": "Riesgo de transición climática",
+                      "prioridad": "Riesgo de transición climática",
+                      "ods": "13. Acción por el clima",
+                      "meta_ods": "Fortalecer la resiliencia y la capacidad de adaptación a los riesgos relacionados con el clima en todos los países.",
+                      "indicador_ods": "13.1.1 Número de muertes, desaparecidos y afectados directamente atribuidos a desastres por cada 100,000 personas."
+                  },
+                  {
+                      "tema": "Salud y seguridad del cliente",
+                      "prioridad": "Salud y seguridad del cliente",
+                      "ods": "3. Salud y bienestar",
+                      "meta_ods": "Asegurar el acceso universal a servicios de salud sexual y reproductiva, incluidos los de planificación familiar, información y educación.",
+                      "indicador_ods": "3.7.1 Proporción de mujeres de edad fértil que tienen necesidad insatisfecha de planificación familiar."
+                  },
+                  {
+                      "tema": "Impacto en las comunidades",
+                      "prioridad": "Impacto en las comunidades",
+                      "ods": "11. Ciudades y comunidades sostenibles",
+                      "meta_ods": "Lograr que las ciudades y los asentamientos humanos sean inclusivos, seguros, resilientes y sostenibles.",
+                      "indicador_ods": "11.1.1 Proporción de la población urbana que vive en barrios marginales."
+                  },
+                  {
+                      "tema": "Salud y seguridad de los trabajadores",
+                      "prioridad": "Salud y seguridad de los trabajadores",
+                      "ods": "8. Trabajo decente y crecimiento económico",
+                      "meta_ods": "Promover el crecimiento económico sostenido, inclusivo y sostenible, el empleo pleno y productivo y el trabajo decente para todos.",
+                      "indicador_ods": "8.5.1 Tasa de empleo de personas de 15 a 24 años en relación con la población total de esa misma franja de edad."
+                  },
+                  {
+                      "tema": "Condiciones laborales",
+                      "prioridad": "Condiciones laborales",
+                      "ods": "8. Trabajo decente y crecimiento económico",
+                      "meta_ods": "Proporcionar trabajo decente y productivo para todos, incluidos las mujeres y los jóvenes.",
+                      "indicador_ods": "8.5.2 Proporción de personas ocupadas que reciben un salario igual o superior al salario mínimo."
+                  },
+                  {
+                      "tema": "Acceso y asequibilidad",
+                      "prioridad": "Acceso y asequibilidad",
+                      "ods": "10. Reducción de las desigualdades",
+                      "meta_ods": "Lograr la igualdad de oportunidades y reducir las desigualdades de resultados, en particular mediante el empoderamiento social, económico y político de todas las personas.",
+                      "indicador_ods": "10.2.1 Proporción de la población que vive por debajo de la línea de pobreza nacional."
+                  },
+                  {
+                      "tema": "Prácticas laborales",
+                      "prioridad": "Prácticas laborales",
+                      "ods": "8. Trabajo decente y crecimiento económico",
+                      "meta_ods": "Promover políticas orientadas al desarrollo que apoyen actividades productivas, la creación de empleo decente, el emprendimiento y la innovación.",
+                      "indicador_ods": "8.3.1 Tasa de crecimiento del PIB real por persona ocupada."
+                  },
+                  {
+                      "tema": "Productos y servicios sostenibles",
+                      "prioridad": "Productos y servicios sostenibles",
+                      "ods": "12. Producción y consumo responsables",
+                      "meta_ods": "Lograr que los consumidores y los productores adopten prácticas sostenibles y que integren la sostenibilidad en sus procesos de desarrollo.",
+                      "indicador_ods": "12.8.1 Grado en que i) la educación para la ciudadanía mundial y ii) la educación para el desarrollo sostenible se incorporan en a) las políticas nacionales de educación."
+                  }
+              ]
+          },
+          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
+      },
+      {
+          "name": "🔹 Prompt 7: Mapeo de Contenidos GRI",
+          "response_content": {
+              "gri_mapping": [
+                  {
+                      "estandar_gri": "GRI 2: Contenidos Generales 2021",
+                      "numero_contenido": "2-9",
+                      "contenido": "Estructura de gobernanza y composición",
+                      "requerimiento": "La organización debe: a. describir su estructura de gobernanza, incluidos los comités del máximo órgano de gobierno; b. enumerar los comités del máximo órgano de gobierno encargados de la toma de decisiones y de la supervisión de la gestión de los impactos de la organización sobre la economía, el medio ambiente y las personas; c. describir la composición del máximo órgano de gobierno y sus comités según: i. el número de miembros ejecutivos y no ejecutivos; ii. independencia; iii. la antigüedad de los miembros en el órgano de gobierno; iv. el número de otros cargos y compromisos significativos de cada miembro y la naturaleza de los compromisos; v. género; vi. los grupos sociales infrarrepresentados; vii. las competencias relevantes para los impactos de la organización; viii. la representación de los grupos de interés."
+                  },
+                  {
+                      "estandar_gri": "GRI 2: Contenidos Generales 2021",
+                      "numero_contenido": "2-24",
+                      "contenido": "Integración de la política o los compromisos",
+                      "requerimiento": "La organización debe: a. describir cómo incorpora cada uno de sus compromisos o políticas para una conducta empresarial responsable en todas sus actividades y relaciones comerciales, lo que incluye: i. cómo asigna responsabilidades para aplicar los compromisos en los diferentes niveles de la organización; ii. cómo integra los compromisos en las estrategias organizativas y las políticas y los procedimientos operativos; iii. cómo aplica sus compromisos con sus relaciones comerciales y a través de ellas; iv. la formación sobre la aplicación de los compromisos que imparte la organización."
+                  },
+                  {
+                      "estandar_gri": "GRI 2: Contenidos Generales 2021",
+                      "numero_contenido": "2-25",
+                      "contenido": "Procesos para remediar los impactos negativos",
+                      "requerimiento": "La organización debe: a. describir sus compromisos para proporcionar o colaborar en la remediación de los impactos negativos que la organización reconoce que ha ocasionado o a los que ha contribuido; b. describir su enfoque para identificar y abordar las reclamaciones, incluidos los mecanismos de quejas y reclamación que ha instaurado o en los que participa; c. describir otros procesos mediante los que proporciona o colabora en la remediación de los impactos negativos que la organización reconoce que ha ocasionado o a los que ha contribuido."
+                  },
+                  {
+                      "estandar_gri": "GRI 101: Biodiversidad 2024",
+                      "numero_contenido": "101-1",
+                      "contenido": "Políticas para detener y revertir la pérdida de biodiversidad",
+                      "requerimiento": "La organización debe: a. describir sus políticas o compromisos para detener y revertir la pérdida de biodiversidad, y cómo se fundamentan en los Objetivos para 2050 y en las Metas para 2030 del Marco Mundial de Biodiversidad de Kunming-Montreal; b. presentar información sobre la medida en que estas políticas o compromisos aplican a las actividades de la organización y a sus relaciones comerciales; c. informar los objetivos y las metas para detener y revertir la pérdida de biodiversidad, si se basan en el consenso científico, el año base y los indicadores empleados para evaluar el progreso."
+                  },
+                  {
+                      "estandar_gri": "GRI 101: Biodiversidad 2024",
+                      "numero_contenido": "101-2",
+                      "contenido": "Gestión de los impactos sobre la biodiversidad",
+                      "requerimiento": "La organización debe: a. presentar información sobre cómo aplica la jerarquía de mitigación mediante la descripción de: i. las medidas adoptadas para evitar los impactos negativos sobre la biodiversidad; ii. las medidas adoptadas para minimizar los impactos negativos sobre la biodiversidad que no se pudieron evitar; iii. las medidas adoptadas para restaurar y rehabilitar los ecosistemas afectados, incluidos los objetivos de restauración y rehabilitación, además de cómo participan los grupos de interés en las medidas de restauración y rehabilitación."
+                  },
+                  {
+                      "estandar_gri": "GRI 305: Emisiones 2016",
+                      "numero_contenido": "305-1",
+                      "contenido": "Emisiones directas de GEI (alcance 1)",
+                      "requerimiento": "La organización informante debe presentar la siguiente información: a. Valor bruto de las emisiones directas de GEI (alcance 1) en toneladas métricas de CO■ equivalente. b. Gases incluidos en el cálculo: CO■, CH■, N■O, HFC, PFC, SF■, NF■ o todos. c. Año base para el cálculo, si procede, incluidos: i. la justificación de la selección; ii. las emisiones en el año base; iii. el contexto de cualquier cambio significativo en las emisiones que haya dado lugar a nuevos cálculos de las emisiones en el año base."
+                  },
+                  {
+                      "estandar_gri": "GRI 305: Emisiones 2016",
+                      "numero_contenido": "305-3",
+                      "contenido": "Otras emisiones indirectas de GEI (alcance 3)",
+                      "requerimiento": "La organización informante debe presentar la siguiente información: a. Valor bruto de las otras emisiones indirectas de GEI (alcance 3) en toneladas métricas de CO■ equivalente. b. Si están disponibles, los gases incluidos en el cálculo: CO■, CH■, N■O, HFC, PFC, SF■, NF■ o todos."
+                  },
+                  {
+                      "estandar_gri": "GRI 102: Cambio Climático 2025",
+                      "numero_contenido": "102-1",
+                      "contenido": "Plan de transición para la mitigación del cambio climático",
+                      "requerimiento": "La organización debe: a. describir su plan de transición, incluidas las políticas y las acciones para mitigar el cambio climático; b. describir cómo el plan de transición está alineado con las evidencias científicas más recientes sobre el esfuerzo global necesario para limitar el calentamiento global a 1,5 °C, incluida la fuente de los escenarios de cambio climático usados y las metodologías y los supuestos empleados para elaborar el plan de transición."
+                  },
+                  {
+                      "estandar_gri": "GRI 102: Cambio Climático 2025",
+                      "numero_contenido": "102-8",
+                      "contenido": "Intensidad de las emisiones de GEI",
+                      "requerimiento": "La organización debe: a. indicar la(s) ratio(s) de intensidad de las emisiones de GEI, incluidas las emisiones brutas de GEI en toneladas métricas de CO■ equivalente (numerador) y el parámetro específico de la organización (denominador) elegido para calcular la(s) ratio(s); b. indicar el alcance de las emisiones de GEI incluidas en la(s) ratio(s) de intensidad, ya sean de Alcance 1, Alcance 2 o Alcance 3."
+                  },
+                  {
+                      "estandar_gri": "GRI 103: Energía 2025",
+                      "numero_contenido": "103-1",
+                      "contenido": "Políticas y compromisos en materia de energía",
+                      "requerimiento": "La organización debe: a. describir cómo sus políticas y compromisos en materia de energía contribuyen a la reducción del consumo de energía, la eficiencia energética y la transición hacia fuentes de energía renovables; b. describir los impactos sobre la economía, el medio ambiente y las personas que pueden derivar de su consumo de energía y de la transición hacia fuentes de energía renovables."
+                  }
+              ]
+          },
+          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
+      },
+      {
+          "name": "🔹 Prompt 8: Mapeo SASB Sectorial",
+          "response_content": {
+              "mapeo_sasb": [
+                  {
+                      "sector_s&p": "Software y servicios tecnológicos",
+                      "industria_sasb": "Software"
+                  }
+              ]
+          },
+          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
+      },
+      {
+          "name": "🔹 Prompt 9: Tabla SASB Sectorial",
+          "response_content": {
+              "tabla_sasb": [
+                  {
+                      "industria": "Software",
+                      "tema": "Data Security",
+                      "parametro_contabilidad": "Total number of data breaches",
+                      "categoria": "Risk Management",
+                      "unidad_medida": "Number",
+                      "codigo": "TC-SW-230a.1"
+                  },
+                  {
+                      "industria": "Software",
+                      "tema": "Data Security",
+                      "parametro_contabilidad": "Percentage of data breaches involving personally identifiable information (PII)",
+                      "categoria": "Risk Management",
+                      "unidad_medida": "Percentage",
+                      "codigo": "TC-SW-230a.2"
+                  },
+                  {
+                      "industria": "Software",
+                      "tema": "Employee Diversity",
+                      "parametro_contabilidad": "Percentage of employees by gender and race/ethnicity",
+                      "categoria": "Workforce",
+                      "unidad_medida": "Percentage",
+                      "codigo": "TC-SW-330a.1"
+                  },
+                  {
+                      "industria": "Software",
+                      "tema": "Employee Diversity",
+                      "parametro_contabilidad": "Percentage of new hires from underrepresented groups",
+                      "categoria": "Workforce",
+                      "unidad_medida": "Percentage",
+                      "codigo": "TC-SW-330a.2"
+                  },
+                  {
+                      "industria": "Software",
+                      "tema": "Environmental Footprint",
+                      "parametro_contabilidad": "Total energy consumed",
+                      "categoria": "Energy Management",
+                      "unidad_medida": "Gigajoules (GJ)",
+                      "codigo": "TC-SW-130a.1"
+                  },
+                  {
+                      "industria": "Software",
+                      "tema": "Environmental Footprint",
+                      "parametro_contabilidad": "Percentage of energy consumed from renewable sources",
+                      "categoria": "Energy Management",
+                      "unidad_medida": "Percentage",
+                      "codigo": "TC-SW-130a.2"
+                  },
+                  {
+                      "industria": "Software",
+                      "tema": "Environmental Footprint",
+                      "parametro_contabilidad": "Total greenhouse gas (GHG) emissions",
+                      "categoria": "Emissions",
+                      "unidad_medida": "Metric tons CO2e",
+                      "codigo": "TC-SW-110a.1"
+                  },
+                  {
+                      "industria": "Software",
+                      "tema": "Environmental Footprint",
+                      "parametro_contabilidad": "Percentage of emissions from Scope 1, Scope 2, and Scope 3",
+                      "categoria": "Emissions",
+                      "unidad_medida": "Percentage",
+                      "codigo": "TC-SW-110a.2"
+                  },
+                  {
+                      "industria": "Software",
+                      "tema": "Supply Chain Management",
+                      "parametro_contabilidad": "Percentage of suppliers assessed for environmental impact",
+                      "categoria": "Supply Chain",
+                      "unidad_medida": "Percentage",
+                      "codigo": "TC-SW-440a.1"
+                  },
+                  {
+                      "industria": "Software",
+                      "tema": "Supply Chain Management",
+                      "parametro_contabilidad": "Percentage of suppliers meeting sustainability criteria",
+                      "categoria": "Supply Chain",
+                      "unidad_medida": "Percentage",
+                      "codigo": "TC-SW-440a.2"
+                  }
+              ]
+          },
+          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
+      },
+      {
+          "name": "🔹 Prompt 10: Vinculación Normativa por Tema Material (GAIL)",
+          "response_content": {
+              "regulaciones": [
+                  {
+                      "tipo_regulacion": "Ley General de Equilibrio Ecológico y la Protección al Ambiente",
+                      "descripcion": "La legislación reglamentaria de las disposiciones constitucionales mexicanas relativas a la preservación y restauración del equilibrio ecológico, así como a la protección del ambiente, abarca tanto el territorio nacional como las zonas bajo la soberanía y jurisdicción de la nación.",
+                      "vigencia": "Publicada el 28 de enero de 1988"
+                  },
+                  {
+                      "tipo_regulacion": "Ley General para la Prevención y Gestión Integral de los Residuos",
+                      "descripcion": "Esta ley tiene como objetivo regular la prevención y gestión integral de los residuos, promoviendo su reducción, reutilización y reciclaje, así como la responsabilidad compartida entre los diferentes niveles de gobierno y la sociedad.",
+                      "vigencia": "Publicada el 8 de octubre de 2003"
+                  },
+                  {
+                      "tipo_regulacion": "Ley Federal del Trabajo",
+                      "descripcion": "Las normas laborales buscan alcanzar un equilibrio armónico entre los diversos factores de la producción y promover la justicia social. Su objetivo central es fomentar el trabajo digno y decente en todas las relaciones laborales.",
+                      "vigencia": "Publicada el 1 de abril de 1970"
+                  },
+                  {
+                      "tipo_regulacion": "Ley de Protección de Datos Personales en Posesión de los Particulares",
+                      "descripcion": "Esta ley tiene como objetivo regular el tratamiento de datos personales por parte de particulares, garantizando la privacidad y protección de los datos de las personas.",
+                      "vigencia": "Publicada el 5 de julio de 2010"
+                  },
+                  {
+                      "tipo_regulacion": "Ley de Aguas Nacionales",
+                      "descripcion": "El propósito central de esta legislación es normar de manera efectiva la explotación, uso o aprovechamiento de los recursos hídricos, abarcando aspectos cruciales como su distribución y control.",
+                      "vigencia": "Publicada el 1 de diciembre de 1992"
+                  },
+                  {
+                      "tipo_regulacion": "Ley General de Vida Silvestre",
+                      "descripcion": "El propósito fundamental de esta legislación es instituir la colaboración entre el Gobierno Federal, los gobiernos estatales y municipales, en lo que concierne a la conservación y aprovechamiento sostenible de la vida silvestre y sus hábitats.",
+                      "vigencia": "Publicada el 3 de julio de 2000"
+                  },
+                  {
+                      "tipo_regulacion": "Ley de Bioseguridad de Organismos Genéticamente Modificados",
+                      "descripcion": "La legislación se centra en la regulación detallada de diversas actividades relacionadas con organismos genéticamente modificados (OGM), desde su utilización confinada hasta la liberación comercial.",
+                      "vigencia": "Publicada el 18 de marzo de 2005"
+                  },
+                  {
+                      "tipo_regulacion": "Ley de Protección al Consumidor",
+                      "descripcion": "Esta ley tiene como objetivo proteger los derechos de los consumidores, asegurando prácticas comerciales justas y la transparencia en la información proporcionada a los consumidores.",
+                      "vigencia": "Publicada el 5 de marzo de 1992"
+                  },
+                  {
+                      "tipo_regulacion": "Ley General de Salud",
+                      "descripcion": "La ley establece las bases para la promoción, protección y recuperación de la salud, así como para la regulación de los servicios de salud en el país.",
+                      "vigencia": "Publicada el 7 de febrero de 1984"
+                  },
+                  {
+                      "tipo_regulacion": "Ley de Protección y Defensa al Usuario de Servicios Financieros",
+                      "descripcion": "Esta ley busca proteger los derechos e intereses de los usuarios de servicios financieros, promoviendo la transparencia y la competencia en el sector.",
+                      "vigencia": "Publicada el 1 de enero de 1999"
+                  }
+              ]
+          },
+          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
+      },
+      {
+          "name": "🔹 Prompt 11: Estrategia de Sostenibilidad (Resumen Ejecutivo)",
+          "response_content": {
+              "parrafo_1": "El análisis de doble materialidad realizado para Mercado Libre ha identificado diez temas materiales prioritarios que son fundamentales para su estrategia de sostenibilidad. Estos incluyen la protección de la privacidad, la salud y seguridad del cliente, y la gestión de la diversidad en el lugar de trabajo, entre otros. Las acciones marginales, como la implementación de programas de capacitación en diversidad y la mejora de protocolos de seguridad de datos, son esenciales para abordar los riesgos inmediatos. A su vez, las acciones moderadas, que incluyen la creación de políticas de retención de talento y la promoción de prácticas sostenibles en la cadena de suministro, permitirán a la empresa avanzar hacia un modelo de negocio más resiliente y responsable. Finalmente, las acciones estructurales, como el desarrollo de un plan de transición hacia energías renovables y la integración de la sostenibilidad en la estrategia organizacional, son cruciales para asegurar un impacto positivo a largo plazo en la comunidad y el medio ambiente.",
+              "parrafo_2": "La estrategia de sostenibilidad de Mercado Libre, basada en este análisis, busca no solo mitigar riesgos, sino también aprovechar oportunidades que fortalezcan su posición en el mercado. La alineación con los Objetivos de Desarrollo Sostenible (ODS) y el cumplimiento de regulaciones nacionales refuerzan su compromiso con la responsabilidad social y empresarial. A medida que la empresa avanza en su camino hacia la sostenibilidad, será fundamental monitorear y evaluar continuamente el progreso en estos temas materiales, asegurando que las iniciativas implementadas generen un valor tangible tanto para la organización como para sus grupos de interés."
+          },
+          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
+      }
+  ]

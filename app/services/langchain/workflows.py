@@ -3,6 +3,7 @@ import asyncio
 import random
 import json
 import re
+import csv
 from typing import Optional
 from app.services.langchain.prompts import *
 from app.utils.json_formatter import clean_and_parse_json
@@ -89,6 +90,79 @@ async def safe_invoke(params):
             raise
 
     raise RuntimeError("❌ Falló la llamada después de múltiples intentos.")
+
+
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CSV_SASB_PATH = os.path.join(BASE_DIR, "data", "lista_sasb.csv")
+
+def load_sasb_rows_by_industry(industria_sasb: str):
+    rows = []
+    with open(CSV_SASB_PATH, mode="r", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if row["INDUSTRIA"].strip() == industria_sasb.strip():
+                rows.append({
+                    "industria": row["INDUSTRIA"],
+                    "tema": row["TEMA"],
+                    "parametro_contabilidad": row["PARÁMETRO DE CONTABILIDAD"],
+                    "categoria": row["CATEGORÍA"],
+                    "unidad_medida": row["UNIDAD DE MEDIDA"],
+                    "codigo": row["CÓDIGO"],
+                })
+    return rows
+
+
+
+async def run_sasb_mapping_and_table(industry: str):
+    print("\n🚀 Ejecutando pipeline SASB (Prompt 8 + CSV)…")
+
+    # ---------------------------------------------------------
+    # 1) Ejecutar PROMPT 8 — mapear Sector S&P → Industria SASB
+    # ---------------------------------------------------------
+    print("\n📌 Ejecutando Prompt 8 (mapeo SASB)…")
+
+    p8_raw = await safe_invoke({
+        "content": prompt_8.format(industry=industry)
+    })
+
+    try:
+        p8_text = p8_raw[0].content[0].text.value
+    except Exception:
+        raise RuntimeError("❌ No se pudo leer la salida del Prompt 8")
+
+    p8_json = try_fix_json(p8_text)
+
+    if not p8_json or "mapeo_sasb" not in p8_json:
+        raise RuntimeError(f"❌ Prompt 8 devolvió un JSON inválido:\n{p8_text}")
+
+    industria_sasb = p8_json["mapeo_sasb"][0]["industria_sasb"]
+    print(f"✅ Industria SASB detectada por Prompt 8: {industria_sasb}")
+
+    # ---------------------------------------------------------
+    # 2) En vez de Prompt 9 → Leemos directamente el CSV local
+    # ---------------------------------------------------------
+    print("\n📌 Cargando filas de la industria desde lista_sasb.csv…")
+
+    tabla_sasb = load_sasb_rows_by_industry(industria_sasb)
+
+    print(f"✅ CSV devolvió {len(tabla_sasb)} filas SASB para '{industria_sasb}'")
+
+    if len(tabla_sasb) == 0:
+        raise RuntimeError(
+            f"❌ No se encontraron filas SASB para la industria '{industria_sasb}'. "
+            "Revisá si está bien escrita en el CSV."
+        )
+
+    # ---------------------------------------------------------
+    # 3) Resultado final unificado
+    # ---------------------------------------------------------
+    return {
+        "industry_input": industry,
+        "industria_sasb": industria_sasb,
+        "tabla_sasb": tabla_sasb
+    }
+
 
 
 # ==================================================
@@ -221,37 +295,6 @@ async def run_esg_analysis(
         )
         await asyncio.sleep(8)
 
-    # 👉 Si después de Prompt 2 aún no llegamos al mínimo y NO está exhausted,
-    # usamos Prompt 2.1 para completar hasta MIN_ROWS_PROMPT_2 (o más).
-    if len(rows) < MIN_ROWS_PROMPT_2 and not exhausted:
-        print(
-            f"⚠ Prompt 2 terminó con {len(rows)} filas (< {MIN_ROWS_PROMPT_2}) → ejecutando Prompt 2.1 para extender la tabla…"
-        )
-
-        p21 = await run_prompt(
-            prompt_2_1,
-            prompt_2_1.format(prev_rows=json.dumps(rows, ensure_ascii=False)),
-            name="Prompt 2.1",
-            retries=3,
-        )
-
-        if p21 and "materiality_table" in p21:
-            extra_rows = p21["materiality_table"]
-            print(f"✅ Prompt 2.1 devolvió {len(extra_rows)} filas adicionales.")
-            rows.extend(extra_rows)
-        else:
-            print("⛔ Prompt 2.1 no pudo devolver filas adicionales.")
-
-    # Log final de filas de Prompt 2 (+ 2.1)
-    if len(rows) < MIN_ROWS_PROMPT_2:
-        print(
-            f"⚠️ Aún después de Prompt 2.1 hay solo {len(rows)} filas (< {MIN_ROWS_PROMPT_2})."
-        )
-    else:
-        print(
-            f"✅ Tabla final de Prompt 2 tiene {len(rows)} filas (antes de recortar a MAX_ROWS_PROMPT_2={MAX_ROWS_PROMPT_2})."
-        )
-
     # Recortar al máximo permitido
     rows = rows[:MAX_ROWS_PROMPT_2]
 
@@ -265,14 +308,65 @@ async def run_esg_analysis(
             "thread_id": thread_id,
         }
     )
+    # ==================================================
+    # PROMPT 8 (LLM) → mapeo sector S&P → industria SASB
+    # ==================================================
+    print("\n📌 Ejecutando Prompt 8 (mapeo SASB)…")
+
+    p8_raw = await safe_invoke({
+        "content": prompt_8.format(industry=industry)
+    })
+
+    try:
+        p8_text = p8_raw[0].content[0].text.value
+    except Exception:
+        raise RuntimeError("❌ No se pudo leer la salida del Prompt 8")
+
+    p8_json = try_fix_json(p8_text)
+
+    if not p8_json or "mapeo_sasb" not in p8_json:
+        raise RuntimeError(f"❌ Prompt 8 devolvió JSON inválido:\n{p8_text}")
+
+    industria_sasb = p8_json["mapeo_sasb"][0]["industria_sasb"]
+    print(f"✅ Industria SASB detectada por Prompt 8: {industria_sasb}")
+
+    responses.append({
+        "name": prompt_8.name,
+        "response_content": p8_json
+    })
+
+
+    # ==================================================
+    # PROMPT 9 (CSV local) → reemplaza al LLM
+    # ==================================================
+    print("\n📌 Ejecutando Prompt 9 local (desde CSV)…")
+
+    tabla_sasb = load_sasb_rows_by_industry(industria_sasb)
+
+    print(f"✅ CSV devolvió {len(tabla_sasb)} filas SASB para '{industria_sasb}'")
+
+    if len(tabla_sasb) == 0:
+        raise RuntimeError(
+            f"❌ No se encontraron filas SASB para '{industria_sasb}'. "
+            "Revisá si existe en lista_sasb.csv."
+        )
+
+    responses.append({
+        "name": "Prompt 9 (CSV)",
+        "response_content": {
+            "tabla_sasb": tabla_sasb
+        }
+    })
+
 
     # ==================================================
     # PROMPTS 3 → 11 (con rescate especial 7 y 10)
     # ==================================================
     for i, p in enumerate(
-        [prompt_3, prompt_4, prompt_5, prompt_6, prompt_7, prompt_8, prompt_9, prompt_10, prompt_11],
+        [prompt_3, prompt_4, prompt_5, prompt_6, prompt_10, prompt_11],
         1,
     ):
+
         parsed = await run_prompt(
             p,
             p.template,

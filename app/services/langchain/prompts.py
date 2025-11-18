@@ -62,57 +62,64 @@ prompt_1 = PromptTemplate(
 prompt_2 = PromptTemplate(
     name="🔹 Prompt 2: Identificación de Impactos (basado en S&P)",
     template="""
-        INSTRUCCIONES GLOBALES DE FORMATO (OBLIGATORIAS)
-        Devuelve únicamente un JSON válido.
-        No incluyas texto antes ni después del JSON.
-        Si usas comillas internas, escápalas así: \\"texto\\".
 
+        INSTRUCCIONES GLOBALES DE FORMATO
+        - Devuelve únicamente un JSON válido.
+        - No incluyas texto antes ni después del JSON.
+        - Escapa comillas internas como: \\"texto\\".
 
-        Objetivo:  
-        Relacionar las actividades de la empresa con temas materiales utilizando los Materiality Maps de S&P y construir la base de la Materiality Table.
-        Asegúrate de que todas las comas, llaves y valores sean válidos JSON.
+        🎯 Objetivo  
+        Extraer del PDF “materiality_map_sp_nuevo.pdf” **todas las filas** asociadas al sector S&P que coincida con la industria:
+        **{industry}**
 
-        INSTRUCCIONES ESTRICTAS:
-        1. Utilizando la tabla “materiality_map_sp”, identifica ellos sectores S&P en los que opera la empresa (columna BA) tal y como fue definido en el prompt #1.
-        2. El análisis debe de realizarse de solamente 1 sector - el que fue definido en el prompt #1.
-        3. La tabla debe contener como **mínimo 10 registros (filas)**. Este es un requerimiento obligatorio.Evita repeticiones exactas.
-        4. Para ese sector, extrae los temas materiales y sus atributos directamente desde el PDF en exactamente el mismo formato y orden en el que estén en el PDF, sin dejar fuera ningún tema asignado para el sector seleccionado.
-        4. **Debes incluir obligatoriamente los tres niveles de materialidad financiera**:
-             - Al menos **un conjunto representativo de temas con materialidad financiera "Baja"**,  
-             - Al menos **un conjunto representativo con "Media"**,  
-             - Y al menos **un conjunto representativo con "Alta"**.  
-           No excluyas ninguno de los tres niveles bajo ninguna circunstancia, aunque no aparezcan con la misma frecuencia en la fuente original.
-        5. Si tras ampliar no existen más temas disponibles en la fuente original, agrega el campo adicional `"exhausted": true` y devuelve todos los registros disponibles.
-        6. Si sí existen más temas, debes completar la tabla hasta llegar a 10 filas. **No devuelvas menos de 10 filas sin `"exhausted": true"`.**
-        7. No devuelvas texto explicativo, comentarios ni Markdown. Solo JSON válido.
+        🧩 INSTRUCCIONES ESTRICTAS
+        1. Usa file_search para buscar el PDF “materiality_map_sp_nuevo.pdf”.  
+           Debes leer el contenido completo del PDF.  
+        2. Trae exactamente todas las filas cuyo sector tenga el mismo valor a: **{industry}**  
+           (coincidencia literal o parcial, sin inventar nada).  
+        3. Extrae exactamente los valores del PDF:
+           - sector  
+           - tema  
+           - materialidad_financiera  
+           - valor_materialidad_financiera  
+           - Riesgos  
+           - Oportunidades  
+           - accion_marginal  
+           - accion_moderada  
+           - accion_estructural  
+        4. Respeta literalmente el texto del PDF.  
+           ⛔ No inventes  
+           ⛔ No completes con lógica  
+           ⛔ No resumas  
+           ⛔ No rellenes campos  
+        5. Trae **todas** las filas del sector.  
+        6. Si ya no hay más filas, agrega `"exhausted": true`.  
 
-        Estructura requerida de salida:
-            {{
-                "materiality_table": [
+        📦 Estructura de salida obligatoria:
+        {{
+            "materiality_table": [
+                {{
                     "sector": "string",
                     "tema": "string",
                     "materialidad_financiera": "string (Baja, Media o Alta)",
-                    "valor_materialidad_financiera": "decimal (0, 2.5 o 5)",
+                    "valor_materialidad_financiera": "number (0, 2.5 o 5)",
                     "Riesgos": "string",
                     "Oportunidades": "string",
                     "accion_marginal": "string",
                     "accion_moderada": "string",
                     "accion_estructural": "string"
-                    }}
-                ],
-                "exhausted": false
-            }}
+                }}
+            ],
+            "exhausted": false
+        }}
 
         IMPORTANTE:
-        - No inventes datos, solo trae lo que te pido del PDF "1.materiality_map_sp."
-        - Devuelve mas de 10 filas sin excepcion.
-        - Mantén el orden exacto de las columnas.
-        - No uses sinónimos ni resumas textos de la fuente.
-        - **No omitas ningún nivel de materialidad financiera (Baja, Media, Alta).**
-        - No devuelvas nada más que el JSON requerido.
+        - Usa EXCLUSIVAMENTE el PDF.  
+        - Si no encuentras filas para {industry}, devuelve:
+          {{"error": "no_data_found", "materiality_table": [], "exhausted": true}}
+        - No inventes nada en ningún caso.
     """
 )
-
 
 
 
@@ -123,32 +130,63 @@ prompt_2_1 = PromptTemplate(
     ⚠️ INSTRUCCIONES GLOBALES DE FORMATO (OBLIGATORIAS)
     Devuelve únicamente un JSON válido.
     No incluyas texto antes ni después del JSON.
+    No uses markdown ni explicaciones.
     Si usas comillas internas, escápalas así: \"texto\".
     Asegúrate de que todas las comas, llaves y valores sean válidos JSON.
+    Si el JSON no es válido, regenera la respuesta antes de enviarla.
 
-    --- INSTRUCCIONES ---
-    Continúa la tabla generada anteriormente.
-    Ya tienes estas filas previas:
+    --- CONTEXTO ---
+    Ya tienes una tabla parcial de materialidad con este contenido previo:
     {prev_rows}
 
-    Genera **al menos 5 filas adicionales**, siguiendo exactamente la misma estructura y estilo.
+    Esta tabla previa ya contiene una lista de filas bajo la clave "materiality_table".
+    Cada fila tiene, al menos, la columna "tema".
 
-    Formato obligatorio:
-    {{
+    --- OBJETIVO ---
+    Continuar la tabla generada anteriormente SOLO si todavía quedan temas/materialidades relevantes que no hayan sido cubiertos.
+    
+    - Revisa cuidadosamente los "tema" ya presentes en la tabla previa.
+    - NO debes repetir ni duplicar ningún tema ni ninguna fila equivalente.
+    - Si consideras que el prompt anterior ya trajo todas las filas relevantes posibles (es decir, no hay más temas nuevos que agregar),
+      entonces NO agregues nada más y devuelve exactamente:
+      {
+        "materiality_table": []
+      }
+
+    --- REGLAS DE CANTIDAD ---
+    - Si identificas que todavía hay temas adicionales relevantes:
+      - Genera al menos 5 filas nuevas, intentando no superar 15 filas nuevas.
+      - Mantén la coherencia con el sector y estilo del Prompt 2.
+    - Nunca dupliques un "tema" que ya esté en las filas previas.
+    - Si al intentar generar nuevas filas descubres que terminarías repitiendo temas, devuelve igualmente:
+      {
+        "materiality_table": []
+      }
+
+    --- FORMATO OBLIGATORIO ---
+    Devuelve SIEMPRE un JSON con esta forma:
+
+    {
         "materiality_table": [
-            {{
+            {
                 "sector": "string",
                 "tema": "string",
                 "materialidad_financiera": "string (Baja, Media o Alta)",
-                "valor_materialidad_financiera": "decimal (0, 2.5 o 5)",
-                "riesgos": "string",
-                "oportunidades": "string",
+                "valor_materialidad_financiera": "number (0, 2.5 o 5)",
+                "Riesgos": "string",
+                "Oportunidades": "string",
                 "accion_marginal": "string",
                 "accion_moderada": "string",
                 "accion_estructural": "string"
-            }}
+            }
         ]
-    }}
+    }
+
+    Requisitos adicionales:
+    - Usa exactamente las claves anteriores, incluyendo mayúsculas en "Riesgos" y "Oportunidades".
+    - "sector" debe ser consistente con el sector de la tabla previa.
+    - No inventes sectores que no sean coherentes con el análisis inicial.
+    - Respeta el mismo tono, estructura y nivel de detalle que en las filas ya existentes.
     """
 )
 
@@ -247,8 +285,6 @@ prompt_4 = PromptTemplate(
 
         - Materialidad ESG – Suma: valor_materialidad_financiera + gravedad + probabilidad + alcance
 
-        Además:
-        Incluye un campo adicional `resumen_sector` (mínimo 50 caracteres) explicando por qué se seleccionó este sector para la empresa analizada.
 
         📦 Formato de salida obligatorio:
         {
@@ -257,6 +293,7 @@ prompt_4 = PromptTemplate(
                     "sector": "string",
                     "tema": "string",
                     "tipo_impacto": "string",
+                    "materialidad_financiera": "string (Baja, Media o Alta)",
                     "potencialidad_impacto": "string",
                     "horizonte_impacto": "string",
                     "intencionalidad_impacto": "string",
@@ -268,14 +305,12 @@ prompt_4 = PromptTemplate(
                     "materialidad_esg": number
                 }
             ],
-            "resumen_sector": "string"
         }
 
         ⚠️ Importante:
         - Tiene que tener la misma cantidad de columnas que en el prompt 2.
         - No elimines columnas previas.
         - No devuelvas texto adicional ni explicaciones fuera del JSON.
-        - El campo "resumen_sector" debe contener un texto conciso que resuma la justificación sectorial.
 
         ⚙️ Verificación final:
         Asegúrate de que el JSON sea válido y contenga todas las comas necesarias.
@@ -303,7 +338,6 @@ prompt_5 = PromptTemplate(
 
     --- INSTRUCCIONES ESPECÍFICAS DEL PROMPT ---
 
-        🔹 Prompt 5: Priorización de Temas
         Objetivo:
         Definir los 10 temas materiales prioritarios a partir de la evaluación de impactos previamente realizada.
 
@@ -319,6 +353,7 @@ prompt_5 = PromptTemplate(
                     "sector": "string",
                     "tema": "string",
                     "tipo_impacto": "string",
+                    "materialidad_financiera": "string (Baja, Media o Alta)",
                     "potencialidad_impacto": "string",
                     "horizonte_impacto": "string",
                     "intencionalidad_impacto": "string",
@@ -331,9 +366,6 @@ prompt_5 = PromptTemplate(
                 }
             ]
         }
-
-        ⚠️ Importante:
-        - Tiene que tener la misma cantidad de columnas que en el prompt 2.
     """
 )
 
@@ -357,24 +389,20 @@ prompt_6 = PromptTemplate(
     --- INSTRUCCIONES ESPECÍFICAS DEL PROMPT ---
 
         Objetivo:
-        Relacionar los 10 temas materiales priorizados con el ODS, meta e indicador más relevantes.
-
-        . Antes de comenzar, usa el pdf “2._Lista_de_ODS_Adaptia_Noviembre_2025”.
-        . No inventes ningún contenido.
+        Relacionar los 10 temas materiales priorizados con el Objetivo de Desarrollo Sostenible (ODS), su meta e indicador más directamente asociados.
 
         Instrucciones:
         1. Mantén intacta la tabla de la Materiality Table: no elimines columnas ni modifiques su contenido existente.
         2. Agrega estas columnas al final:
             - "ods" – El Objetivo de Desarrollo Sostenible más directamente relacionado con el tema material.
             - "meta_ods" – La meta de ese ODS más estrechamente alineada semánticamente con el tema.
+        3. Utiliza únicamente el documento “lista_ods_adaptia.pdf” como fuente de información. 
             - "indicador_ods" – El indicador correspondiente a la meta seleccionada (misma fila del documento de referencia).
-        3. Para cada uno de los 10 temas materiales (etiquetados como “Material” en la tabla):
+        4. Para cada uno de los 10 temas materiales (etiquetados como “Material” en la tabla):
             - Revisa los 17 ODS completos y selecciona el que tenga la relación más fuerte y directa con el tema.
             - Una vez elegido el ODS, revisa todas sus metas y selecciona la más directamente vinculada al tema.
             - Copia también el indicador que corresponde a esa meta (misma fila del documento de referencia).
-        4. Para los temas NO priorizados:
-            - coloca "NA" en las tres columnas nuevas.
-        .5 Para los temas que no están priorizados como “Material”:
+        5.  Para los temas que no están priorizados como “Material”:
         - No los elimines.
         - Completa las tres nuevas columnas con “NA” para indicar que no fueron analizados en esta dimensión.
 
@@ -400,212 +428,179 @@ prompt_6 = PromptTemplate(
 )
 
 
-# 🔹 Prompt 7: Mapeo de Contenidos GRI (versión actualizada - Noviembre 2025)
 prompt_7 = PromptTemplate(
     name="🔹 Prompt 7: Mapeo de Contenidos GRI",
-   template="""
-    INSTRUCCIONES GLOBALES DE FORMATO (OBLIGATORIAS)
-
-    Devuelve únicamente un JSON válido.
-    No incluyas texto antes ni después del JSON.
-    No incluyas explicaciones, títulos, markdown, comentarios ni caracteres adicionales.
-    Si usas comillas internas, escápalas así: \"texto\".
-    No uses saltos de línea innecesarios dentro de valores extensos.
-    Si detectas que el JSON no es válido, regenera automáticamente la respuesta antes de enviarla.
-    Prohibido usar cualquier tipo de markdown (incluyendo triple backticks, #, negritas, etc.).
-    Asegúrate de que todas las comas, llaves y corchetes estén correctamente colocados.
-    Si no puedes cumplir el formato, vuelve a generar la respuesta hasta que sea válida.
-
-
+    template="""
     --- INSTRUCCIONES ESPECÍFICAS DEL PROMPT ---
 
-        . Antes de comenzar, usa el pdf “3._Lista_de_Est_ndares_GRI_Adaptia_Noviembre_2025”.
-        . No inventes ningún contenido.
+    . Antes de comenzar, usa exclusivamente el PDF: “lista_adaptia_gri_blocks.pdf”.
+    . No inventes ningún contenido.
+    . Recibes como entrada la tabla JSON generada por Prompt 5 (materiality_table_priorizada).
 
-        Objetivo:
-        Identificar y documentar los contenidos GRI vinculados con los 10 temas materiales priorizados
-        en la Materiality Table, utilizando la columna “Tema S&P” como criterio de coincidencia directa.
+    Objetivo:
+    A partir de los 10 temas materiales priorizados en Prompt 5 (campo: "tema"),
+    realizar una búsqueda exhaustiva en el PDF y recuperar TODOS los contenidos GRI relacionados.
 
-        Alcance:
-        - Trabaja únicamente con los 10 temas materiales priorizados (los de mayor puntaje total).
-        - Cada tema material puede vincularse con múltiples contenidos GRI.
-        - La tabla de salida debe incluir todas las coincidencias encontradas, sin límite de número de filas.
+    Lo que recibes (ejemplo estructural):
+    {
+        "materiality_table_priorizada": [
+            { "tema": "Riesgo climático físico", ... },
+            { "tema": "Protección de la privacidad", ... },
+            ...
+            (10 temas)
+        ]
+    }
 
-        Estructura:
-        Cada fila contiene:
-        - Tema S&P (col A)
-        - Estándar GRI (col B)
-        - # de Contenido (col C)
-        - Contenido (col D)
-        - Requerimiento (col E)
+    Alcance:
+    - Procesar exactamente los 10 temas materiales recibidos.
+    - Por cada tema, buscar coincidencias en la columna A del PDF (Tema S&P).
+    - La búsqueda debe ser:
+        • NO sensible a mayúsculas/minúsculas  
+        • por coincidencia total o parcial  
+        • permite buscar por palabras clave o fragmentos del tema  
+    - Extraer TODAS las filas coincidentes (no un máximo de 1), incluso si son 20, 30 o más.
 
-        Instrucciones
-        - Toma los 10 temas materiales priorizados desde la tabla de materialidad (columna “Tema material”).
-        - Para cada tema, revisa las 122 filas del archivo fuente.
-        - Identifica todas las filas donde la columna A (Tema S&P) contenga ese tema material, total o parcialmente (búsqueda por palabra o fragmento coincidente, sin distinguir mayúsculas/minúsculas).
-        - Extrae las columnas B, C, D y E de todas las filas coincidentes.
-        - No modifiques el texto ni el formato original.
-        - No renombres las columnas.
-        - Repite este proceso para los 10 temas materiales.
+    Estructura del PDF (columnas):
+        A → Tema S&P  
+        B → Estándar GRI  
+        C → # de Contenido  
+        D → Contenido  
+        E → Requerimiento  
 
+    Instrucciones:
+    1. Itera cada uno de los 10 temas recibidos en materiality_table_priorizada.
+    2. Para cada tema:
+        - Buscar en TODAS las filas del PDF.
+        - Identificar cuales filas tienen coincidencias con el texto del “tema”.
+        - Extraer columnas B, C, D y E.
+        - NO modificar el texto, respetar 100% lo que dice el PDF.
+    3. Agregar todos los resultados a un solo arreglo final
+       (sin repetir filas idénticas).
+    4. Verificar que cada uno de los 10 temas tenga al menos una coincidencia.
+       Si no hay coincidencias, incluir:
+         { "estandar_gri": "no_matches_for_this_topic" }
+       para ese tema, pero NO inventar contenido.
 
-        Formato obligatorio de salida:
-        {
-            "gri_mapping": [
-                {
-                    "estandar_gri": "string",
-                    "numero_contenido": "string",
-                    "contenido": "string",
-                    "requerimiento": "string"
-                }
-            ]
-        }
+    Formato de salida obligatorio:
+    {
+        "gri_mapping": [
+            {
+                "estandar_gri": "string",
+                "numero_contenido": "string",
+                "contenido": "string",
+                "requerimiento": "string"
+            }
+        ]
+    }
 
-        Salida esperada:
-        - Genera una tabla con las siguientes columnas, en el mismo orden y nombres exactos del archivo fuente:
-          | Estándar GRI | # de Contenido | Contenido | Requerimiento |
-        - Cada fila corresponde a un contenido GRI identificado como vinculado a alguno de los temas materiales.
-        - Incluye todas las coincidencias encontradas (pueden existir repeticiones entre temas).
-        - No agregues columnas ni resúmenes adicionales.
-
-        Control de calidad:
-        Antes de cerrar, verifica que:
-        - Todos los 10 temas materiales tienen al menos una coincidencia.
-        - No se omitieron filas relevantes (la búsqueda revisó las 122 filas del archivo).
-        - El texto de las columnas B–E se copió exactamente como aparece en el archivo fuente.
-        - Si hay resultados compartidos entre varios temas, elimina los duplicados y solamente manten el resultado una vez. 
-
+    Control de calidad:
+    - Revisar todas las filas (122 o más, según PDF).
+    - Respetar texto EXACTO.
+    - Eliminar duplicados.
+    - Debe haber resultados para los 10 temas.
     """
 )
 
 
-#Prompt 8: Mapeo SASB Sectorial
 prompt_8 = PromptTemplate(
     name="🔹 Prompt 8: Mapeo SASB Sectorial",
-   template="""
-    ⚠️ INSTRUCCIONES GLOBALES DE FORMATO (OBLIGATORIAS)
+    template="""
 
-    Devuelve únicamente un JSON válido.
-    No incluyas texto antes ni después del JSON.
-    No incluyas explicaciones, títulos, markdown, comentarios ni caracteres adicionales.
-    Si usas comillas internas, escápalas así: \"texto\".
-    No uses saltos de línea innecesarios dentro de valores extensos.
-    Si detectas que el JSON no es válido, regenera automáticamente la respuesta antes de enviarla.
-    Prohibido usar cualquier tipo de markdown (incluyendo triple backticks, #, negritas, etc.).
-    Asegúrate de que todas las comas, llaves y corchetes estén correctamente colocados.
-    Si no puedes cumplir el formato, vuelve a generar la respuesta hasta que sea válida.
+    --- INSTRUCCIONES ESPECÍFICAS DEL PROMPT (RESPONDE SOLO JSON) ---
 
+    Objetivo:
+    A partir del SECTOR S&P recibido, seleccionar EXACTAMENTE UNA industria SASB,
+    utilizando EXCLUSIVAMENTE la columna “industria” del archivo:
 
-    --- INSTRUCCIONES ESPECÍFICAS DEL PROMPT ---
+        ➜ “equivalencia_sasbs_adaptia.pdf”
 
-        🔹 Prompt 8: Mapeo SASB Sectorial  
-        Objetivo:
-        Identificar los temas e indicadores SASB relevantes para una industriaa asociada.
+    IMPORTANTE:
+    - El valor devuelto en “industria_sasb” debe coincidir EXACTAMENTE con
+      el contenido de la columna “industria”.
+    - NO inventes variaciones, NO traduzcas, NO infieras nada.
+    - NO uses similitud semántica.
+    - Si el sector S&P coincide con varias filas, elige SOLO la coincidencia exacta.
+    - Máximo 1 industria SASB.
 
-        Instrucciones:
-        - Usa el documento “4._Equivalencia_SASB_S_P_Noviembre_2025”.
-        - Identifica las industrias SASB equivalentes a los sectores S&P seleccionados previamente para la empresa.
-        - Para cada sector S&P identificado, selecciona una sola industria SASB. Si hay más de una industria equivalente, selecciona la más cercana o representativa según la tabla de equivalencias y el contexto organizacional.
-        - El resultado final debe incluir un máximo de una2 industrias SASB.
-        - No inventes industrias adicionales.
-        - No modifiques los nombres del archivo fuente.
+    Entrada:
+        sector_s&p_recibido = "{industry}"
 
-        Formato obligatorio de salida:
-        {
-            "mapeo_sasb": [
-                {
-                    "sector_s&p": "string",
-                    "industria_sasb": "string"
-                }
-            ]
-        }
+    Formato obligatorio de salida (SOLO JSON):
+    {{
+        "mapeo_sasb": [
+            {{
+                "sector_s&p": "{industry}",
+                "industria_sasb": "VALOR EXACTO DE LA COLUMNA industria"
+            }}
+        ]
+    }}
     """
 )
 
-#Prompt 9: Tabla SASB Sectorial
+
 prompt_9 = PromptTemplate(
     name="🔹 Prompt 9: Tabla SASB Sectorial",
-   template="""
-    ⚠️ INSTRUCCIONES GLOBALES DE FORMATO (OBLIGATORIAS)
+    template="""
 
-    Devuelve únicamente un JSON válido.
-    No incluyas texto antes ni después del JSON.
-    No incluyas explicaciones, títulos, markdown, comentarios ni caracteres adicionales.
-    Si usas comillas internas, escápalas así: \"texto\".
-    No uses saltos de línea innecesarios dentro de valores extensos.
-    Si detectas que el JSON no es válido, regenera automáticamente la respuesta antes de enviarla.
-    Prohibido usar cualquier tipo de markdown (incluyendo triple backticks, #, negritas, etc.).
-    Asegúrate de que todas las comas, llaves y corchetes estén correctamente colocados.
-    Si no puedes cumplir el formato, vuelve a generar la respuesta hasta que sea válida.
+    --- INSTRUCCIONES ESPECÍFICAS DEL PROMPT (RESPONDE SOLO JSON) ---
 
+    🔹 Prompt 9: Tabla SASB Sectorial  
+    Objetivo:
+    Extraer **TODAS** las paginas cuya "INDUSTRIA" coincida con:
 
-    --- INSTRUCCIONES ESPECÍFICAS DEL PROMPT ---
+    👉 **{industry}**
 
-        🔹 Prompt 9: Tabla SASB Sectorial
-        Objetivo:
-        Detallar todos los temas, métricas y códigos SASB aplicables a las industrias seleccionadas previamente.
+    Archivo a usar obligatoriamente: **“list_sasb_adaptia.pdf”**
 
-        Instrucciones:
-        Utilizando el documento “5._Lista_de_Est_ndares_SASB__Noviembre_2025”, identifica **todas las filas correspondientes** a las industrias SASB relevantes definidas en el paso anterior (máximo 2 industrias).
+    REGLAS IMPORTANTES (SEGUIR AL 100%):
+    - Coincidencia **EXACTA** (sensible a espacios, acentos y mayúsculas).
+    - Si NO coincide exactamente, **NO** devuelvas nada.
+    - NO utilices coincidencias parciales, semánticas ni aproximadas.
+    - NO traduzcas, NO resumas, NO inventes textos.
+    - Todo debe estar **en español**, exactamente como en el PDF.
+    - Incluye absolutamente **todas** las paginas donde la "INDUSTRIA"
+      sea exactamente igual a **{industry}**.
+    - NO mezcles otras industrias (ej: no mezclar hardware si no coincide).
 
-        Instrucciones:
-        - Incluye **todas** las filas relevantes.
-        - NO limites la respuesta a un número específico de filas.
-        - No agrupes ni combines registros.
-        - Copia EXACTAMENTE los textos de la fuente.
-        - No elimines columnas.
-        - Si hay muchos indicadores → la tabla debe ser extensa.
+    Formato de salida OBLIGATORIO (SOLO JSON):
+    {{
+        "tabla_sasb": [
+            {{
+                "industria": "string",
+                "tema": "string",
+                "parametro_contabilidad": "string",
+                "categoria": "string",
+                "unidad_medida": "string",
+                "codigo": "string"
+            }}
+        ]
+    }}
+    Importante:
+    - Una vez que termines verifica en el pdf si traes todos los registros de esa industria, no puede faltar ninguna.
 
-        📦 Formato obligatorio:
-        {
-            "tabla_sasb": [
-                {
-                    "industria": "string",
-                    "tema": "string",
-                    "parametro_contabilidad": "string",
-                    "categoria": "string",
-                    "unidad_medida": "string",
-                    "codigo": "string"
-                }
-            ]
-        }
-        Importante:
-        - Extrae los datos directamente del archivo, sin modificar su redacción ni estructura. Incluye todas las filas relevantes para lacada industria SASB seleccionada.
-        
     """
 )
+
 
 
 #Prompt 10: Vinculación Normativa por Tema Material (GAIL)
 prompt_10 = PromptTemplate(
     name="🔹 Prompt 10: Vinculación Normativa por Tema Material (GAIL)",
    template="""
-    ⚠️ INSTRUCCIONES GLOBALES DE FORMATO (OBLIGATORIAS)
-
-    Devuelve únicamente un JSON válido.
-    No incluyas texto antes ni después del JSON.
-    No incluyas explicaciones, títulos, markdown, comentarios ni caracteres adicionales.
-    Si usas comillas internas, escápalas así: \"texto\".
-    No uses saltos de línea innecesarios dentro de valores extensos.
-    Si detectas que el JSON no es válido, regenera automáticamente la respuesta antes de enviarla.
-    Prohibido usar cualquier tipo de markdown (incluyendo triple backticks, #, negritas, etc.).
-    Asegúrate de que todas las comas, llaves y corchetes estén correctamente colocados.
-    Si no puedes cumplir el formato, vuelve a generar la respuesta hasta que sea válida.
-
-
     --- INSTRUCCIONES ESPECÍFICAS DEL PROMPT ---
 
         Objetivo:
         Identificar regulaciones nacionales/sectoriales relevantes para los 10 temas materiales priorizados.
 
         Instrucciones:
-        - Usa “6._Mapeo_Regulatorio_LATAM_GAIL_Noviembre_2025”.
+        - Usa “mapeo_regulatorio_adaptia.pdf”.
         - Filtra la información por el país de operación analizado (según resultado del prompt #1).
         - Para cada uno de los 10 temas materiales priorizados:
             1. Revisa todas las regulaciones disponibles para el país siendo analizado.
-            2. Evalúa la coincidencia semántica entre nombre del tema material y la descripción de cada normativa (columna D - Descripción).
+            2. Evalúa la coincidencia semántica entre nombre del tema material y la descripción de cada normativa (Descripción).
             3. Selecciona SOLO una normativa, la de mayor relevancia para este tema.
         - Asegúrate de cubrir todos los temas materiales priorizados.
+        - No inventes palabras, no recortes palabras, solo saca la informacion completa obtenida del pdf.
 
         Criterios de relevancia:
         - Mayor alineación temática entre el nombre del tema y la normativa.

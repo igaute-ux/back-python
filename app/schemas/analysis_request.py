@@ -8,3 +8,8 @@ class AnalysisRequest(BaseModel):
     website: str
     industry: str
     document: Optional[str] = None
+
+
+
+class IndustryRequest(BaseModel):
+    industry: str
