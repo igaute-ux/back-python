@@ -114,57 +114,6 @@ def load_sasb_rows_by_industry(industria_sasb: str):
 
 
 
-async def run_sasb_mapping_and_table(industry: str):
-    print("\n🚀 Ejecutando pipeline SASB (Prompt 8 + CSV)…")
-
-    # ---------------------------------------------------------
-    # 1) Ejecutar PROMPT 8 — mapear Sector S&P → Industria SASB
-    # ---------------------------------------------------------
-    print("\n📌 Ejecutando Prompt 8 (mapeo SASB)…")
-
-    p8_raw = await safe_invoke({
-        "content": prompt_8.format(industry=industry)
-    })
-
-    try:
-        p8_text = p8_raw[0].content[0].text.value
-    except Exception:
-        raise RuntimeError("❌ No se pudo leer la salida del Prompt 8")
-
-    p8_json = try_fix_json(p8_text)
-
-    if not p8_json or "mapeo_sasb" not in p8_json:
-        raise RuntimeError(f"❌ Prompt 8 devolvió un JSON inválido:\n{p8_text}")
-
-    industria_sasb = p8_json["mapeo_sasb"][0]["industria_sasb"]
-    print(f"✅ Industria SASB detectada por Prompt 8: {industria_sasb}")
-
-    # ---------------------------------------------------------
-    # 2) En vez de Prompt 9 → Leemos directamente el CSV local
-    # ---------------------------------------------------------
-    print("\n📌 Cargando filas de la industria desde lista_sasb.csv…")
-
-    tabla_sasb = load_sasb_rows_by_industry(industria_sasb)
-
-    print(f"✅ CSV devolvió {len(tabla_sasb)} filas SASB para '{industria_sasb}'")
-
-    if len(tabla_sasb) == 0:
-        raise RuntimeError(
-            f"❌ No se encontraron filas SASB para la industria '{industria_sasb}'. "
-            "Revisá si está bien escrita en el CSV."
-        )
-
-    # ---------------------------------------------------------
-    # 3) Resultado final unificado
-    # ---------------------------------------------------------
-    return {
-        "industry_input": industry,
-        "industria_sasb": industria_sasb,
-        "tabla_sasb": tabla_sasb
-    }
-
-
-
 # ==================================================
 # 🧠 PIPELINE ESG
 # ==================================================
@@ -240,9 +189,22 @@ async def run_esg_analysis(
             {"name": prompt_1.name, "response_content": p1, "thread_id": thread_id}
         )
 
-    # ==================================================
-    # PROMPT 2 (con rescate de tabla + extensión 2.1)
-    # ==================================================
+    # ====================================================
+    # PROMPT 2 — Code Interpreter
+    # ====================================================
+    print("\n🧪 Ejecutando Prompt 2...")
+    raw, thread_id = await execute(
+        "Prompt 2",
+        prompt_2.format(
+            organization_name=organization_name,
+            country=country,
+            website=website,
+            industry=industry,
+        ),
+        thread_id,
+        use_tool=True
+    )
+
     def extract_table(raw_text: str):
         try:
             match = re.search(r'"materiality_table"\s*:\s*\[(.*?)\]', raw_text, re.DOTALL)
@@ -253,60 +215,45 @@ async def run_esg_analysis(
         except:
             return None
 
-    print("\n🔹 Ejecutando Prompt 2 (máx 2 intentos)")
+    rows = extract_table(raw or "")
+    count = len(rows) if rows else 0
 
-    rows = []
-    exhausted = False
-    raw_p2 = None
+    print(f"📊 Prompt 2 devolvió {count} filas")
 
-    for attempt in range(1, 3):
-        p2 = await run_prompt(
-            prompt_2,
+    # ─────────────────────────────────────────────
+    # SI TRAE MENOS DEL MÍNIMO → UN SOLO REINTENTO
+    # ─────────────────────────────────────────────
+    if count < MIN_ROWS_PROMPT_2:
+        print(f"⚠️ Prompt 2 devolvió menos filas del mínimo ({MIN_ROWS_PROMPT_2}). Reintentando 1 vez más…")
+
+        raw, thread_id = await execute(
+            "Prompt 2",
             prompt_2.format(
                 organization_name=organization_name,
                 country=country,
                 website=website,
                 industry=industry,
             ),
-            name="Prompt 2",
+            thread_id,
+            use_tool=True
         )
+        
 
-        raw_p2 = run_prompt.last_raw
+        rows = extract_table(raw or "")
+        count = len(rows) if rows else 0
 
-        if p2 and "materiality_table" in p2:
-            rows = p2["materiality_table"]
-            exhausted = p2.get("exhausted", False)
-        else:
-            extracted = extract_table(raw_p2)
-            rows = extracted or []
-            exhausted = False
+        print(f"📊 Segundo intento de Prompt 2 devolvió {count} filas")
 
-        if exhausted:
-            print("⚠️ Prompt 2 marcó exhausted → deteniendo reintentos.")
-            break
+        if count < MIN_ROWS_PROMPT_2:
+            print("❌ Prompt 2 falló definitivamente — muy pocas filas.")
+            return {"status": "failed", "error": f"Prompt 2 devolvió solo {count} filas"}
 
-        if len(rows) >= MIN_ROWS_PROMPT_2:
-            print(f"✅ Prompt 2 OK con {len(rows)} filas (>= {MIN_ROWS_PROMPT_2}).")
-            break
-
-        print(
-            f"⚠️ Prompt 2 devolvió solo {len(rows)} filas (< {MIN_ROWS_PROMPT_2}) → reintentando…"
-        )
-        await asyncio.sleep(8)
-
-    # Recortar al máximo permitido
     rows = rows[:MAX_ROWS_PROMPT_2]
 
-    responses.append(
-        {
-            "name": prompt_2.name,
-            "response_content": {
-                "materiality_table": rows,
-                "exhausted": exhausted,
-            },
-            "thread_id": thread_id,
-        }
-    )
+    responses.append({
+        "name": prompt_2.name,
+        "response_content": {"materiality_table": rows}
+    })
 
     # ==================================================
     # PROMPTS 3 → 6  (ANTES iban después, ahora están donde corresponde)

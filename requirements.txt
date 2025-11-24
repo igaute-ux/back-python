@@ -32,3 +32,6 @@ weasyprint==66.0
 
 # ⚡ Dependencia requerida internamente por LangChain
 zstandard==0.23.0
+
+pandas
+openpyxl

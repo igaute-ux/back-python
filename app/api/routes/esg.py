@@ -1,7 +1,7 @@
 from fastapi import APIRouter, HTTPException, Depends
 from fastapi.responses import Response, JSONResponse
 from app.schemas.analysis_request import AnalysisRequest, IndustryRequest
-from app.services.langchain.workflows import run_esg_analysis, run_sasb_mapping_and_table
+from app.services.langchain.work import run_esg_analysis_prompt1_5
 from app.services.pdf_generation.pdf import PDFGenerator
 from app.db.session import get_db
 from sqlalchemy.orm import Session
@@ -18,7 +18,7 @@ router = APIRouter()
 @router.post("/esg-analysis")
 async def esg_analysis(data: AnalysisRequest):
     print(data)
-    result = await run_esg_analysis(
+    result = await run_esg_analysis_prompt1_5(
         organization_name=data.organization_name,
         country=data.country,
         website=data.website,
@@ -39,7 +39,7 @@ async def esg_analysis(data: IndustryRequest):
 # 🧾 Análisis ESG completo con PDF (JSON + base64 + link)
 # ==========================================================
 @router.post("/esg-analysis-api")
-async def esg_analysis_api(
+async def run_esg_analysis_esg(
     data: AnalysisRequest,
     db: Session = Depends(get_db)
 ):
