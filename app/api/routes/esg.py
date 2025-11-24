@@ -58,7 +58,7 @@ async def run_esg_analysis_esg(
         # ===========================
         # 1️⃣ Ejecutar análisis completo
         # ===========================
-        pipeline_result = await run_esg_analysis(
+        pipeline_result = await run_esg_analysis_prompt1_5(
             organization_name=data.organization_name,
             country=data.country,
             website=data.website,
