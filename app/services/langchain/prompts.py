@@ -360,8 +360,8 @@ prompt_6 = PromptTemplate(
        Si alguna no existe, crearla con el valor por defecto "NA".
 
     3. Leer el Excel de ODS que ya está montado en /mnt/data:
-       - Ruta fija: "/mnt/data/file-Eceg692hogX3yQy99m7FXE"
-       - Usar `ods_df = pd.read_excel("/mnt/data/file-Eceg692hogX3yQy99m7FXE")` para cargarlo.
+       - Ruta fija: "/mnt/data/file-LaYZZWTh9mzsG2ni3RkpKm"
+       - Usar `ods_df = pd.read_excel("/mnt/data/file-LaYZZWTh9mzsG2ni3RkpKm")` para cargarlo.
        - Considera que la primera fila de `ods_df` contiene encabezados del tipo
          "Objetivo de Desarrollo Sostenible", "Meta", "Indicador".
        - Debes crear SIEMPRE un DataFrame solo con filas de datos (sin encabezados):
@@ -561,7 +561,7 @@ prompt_8 = PromptTemplate(
     import json
 
     # 1) Ruta FIJA del CSV de equivalencias SASB
-    csv_path = "/mnt/data/file-7tumiz5jNSdZs2ZCkAJPN6"
+    csv_path = "/mnt/data/file-72jxPHfYvtiA6DFfqShuhL"
 
     if not os.path.exists(csv_path):
         result = {
@@ -611,24 +611,41 @@ prompt_8 = PromptTemplate(
     target_raw = "{industry}"
     target_norm = _norm_text(target_raw)
 
-    # 5) Buscar coincidencia (primero EXACTA normalizada)
+    # 5) Buscar coincidencias (primero EXACTAS normalizadas)
     df["sector_norm"] = df[col_sector].apply(_norm_text)
 
     exact_matches = df[df["sector_norm"] == target_norm]
 
-    if len(exact_matches) == 0:
+    if len(exact_matches) > 0:
+        matches_df = exact_matches
+    else:
         # Si no hay match exacto, intentar "contiene" (subcadena)
         contains_matches = df[df["sector_norm"].str.contains(target_norm, na=False)]
         if len(contains_matches) > 0:
-            match = contains_matches.iloc[0]
+            matches_df = contains_matches
         else:
             result = {
                 "mapeo_sasb": []
             }
             print(json.dumps(result, ensure_ascii=False))
             raise SystemExit()
+
+    # 6) Si hay varias filas para el mismo sector S&P,
+    #    elegir la industria SASB más representativa:
+    #    la que más veces aparece en la tabla.
+    matches_df["industria_norm"] = matches_df[col_industria].apply(_norm_text)
+
+    if matches_df["industria_norm"].nunique() == 1:
+        # Solo una industria posible → tomar la primera
+        match = matches_df.iloc[0]
     else:
-        match = exact_matches.iloc[0]
+        # Varias industrias SASB candidatas:
+        # seleccionar la de mayor frecuencia (más representativa)
+        counts = matches_df["industria_norm"].value_counts()
+        best_industria_norm = counts.index[0]
+
+        subset = matches_df[matches_df["industria_norm"] == best_industria_norm]
+        match = subset.iloc[0]
 
     sector_sp = str(match[col_sector])
     industria_sasb = str(match[col_industria])
@@ -661,6 +678,7 @@ prompt_8 = PromptTemplate(
     }
     """
 )
+
 
 
 prompt_9 = PromptTemplate(
