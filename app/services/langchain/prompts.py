@@ -23,17 +23,17 @@ prompt_1 = PromptTemplate(
         Ignora cualquier archivo asociado al thread y responde solo usando texto generado.
         3. Usa información pública o inferida para completar cada campo con **detalle suficiente y específico**.
         4. Si no hay información exacta disponible, infiere una descripción razonable y completa basada en el sector.
-        5. Cada campo debe cumplir estrictamente con un **mínimo de caracteres**:
-           - nombre_empresa → mínimo 400 caracteres
-           - pais_operacion → mínimo 400 caracteres
-           - industria → mínimo 500 caracteres
-           - tamano_empresa → mínimo 500 caracteres
-           - ubicacion_geografica → mínimo 500 caracteres
-           - modelo_negocio → mínimo 50 caracteres
-           - cadena_valor → mínimo 50 caracteres
-           - actividades_principales → mínimo 800 caracteres
-           - madurez_esg → mínimo 800 caracteres
-           - stakeholders_relevantes → mínimo 4000 caracteres
+        5. Cada campo debe cumplir estrictamente con un **mínimo de palabras**:
+           - nombre_empresa → mínimo 100 palabras
+           - pais_operacion → mínimo 100 palabras
+           - industria → mínimo 100 palabras
+           - tamano_empresa → mínimo 100 palabras
+           - ubicacion_geografica → mínimo 100 palabras
+           - modelo_negocio → mínimo 50 palabras
+           - cadena_valor → mínimo 300 palabras
+           - actividades_principales → mínimo 300 palabras
+           - madurez_esg → mínimo 300 palabras
+           - stakeholders_relevantes → mínimo 100 palabras
         5. Evita respuestas genéricas.
 
         Formato específico para "pais_operacion":
@@ -319,7 +319,6 @@ prompt_5 = PromptTemplate(
         - No expliques nada.
     """
 )
-
 prompt_6 = PromptTemplate(
     name="🔹 Prompt 6: Vínculo con Objetivos de Desarrollo Sostenible (ODS)",
     template="""
@@ -339,11 +338,13 @@ prompt_6 = PromptTemplate(
     </INPUT_MATERIALITY>
 
     IMPORTANTE:
-    - El JSON de entrada contiene EXACTAMENTE 10 temas materiales ya priorizados.
+    - El JSON de entrada contiene al menos 10 temas, de los cuales algunos
+      pueden estar marcados explícitamente como "Tema Material".
     - No debes eliminar ni agregar filas.
-    - Esos 10 temas materiales deben terminar con valores completos en las columnas
-      "ods", "meta_ods" e "indicador_ods" (no se aceptan "NA" para esos 10 temas,
-      salvo que el Excel de ODS esté vacío o no se pueda leer).
+    - Solo las filas marcadas como "Tema Material" deben terminar con valores
+      completos en las columnas "ods", "meta_ods" e "indicador_ods".
+    - Para las filas que NO sean "Tema Material", debes dejar "ods",
+      "meta_ods" e "indicador_ods" en "NA".
 
     --- TAREA CON CODE INTERPRETER (PYTHON OBLIGATORIO) ---
 
@@ -359,7 +360,40 @@ prompt_6 = PromptTemplate(
        - "indicador_ods"
        Si alguna no existe, crearla con el valor por defecto "NA".
 
-    3. Leer el Excel de ODS que ya está montado en /mnt/data:
+    3. IDENTIFICAR QUÉ FILAS SON "TEMA MATERIAL":
+
+       - Normaliza nombres de columnas a minúsculas:
+           `mat_df.columns = [str(c).strip().lower() for c in mat_df.columns]`
+
+       - Busca una columna que indique tema material. Puede llamarse, por ejemplo:
+           - "tema_material"
+           - "temamaterial"
+           - "tema material"
+           - "material"
+         Selecciona la que coincida mejor por nombre (en minúsculas).
+
+       - Si encuentras esta columna (por ejemplo "tema_material"):
+
+           * Crea una serie `is_material` así:
+               - Toma el valor de esa columna, conviértelo a string, minúsculas y strip.
+               - Considera material si el valor está en:
+                 ["tema material", "material", "true", "1", "sí", "si"].
+
+           * SOLO las filas con `is_material == True` deben ser tratadas
+             como temas materiales (para ellas buscarás ODS/meta/indicador).
+
+           * TODAS las filas con `is_material == False` deben conservar
+             "ods", "meta_ods" e "indicador_ods" = "NA" (no debes rellenar nada).
+
+       - Si NO encuentras ninguna columna que marque "Tema Material":
+
+           * Como caso de respaldo:
+             - Considera que TODAS las filas del DataFrame son temas materiales.
+             - Es decir, crea `is_material = pd.Series([True] * len(mat_df))`.
+             - En este caso, deberás intentar asignar ODS/meta/indicador a todas
+               las filas.
+
+    4. Leer el Excel de ODS que ya está montado en /mnt/data:
        - Ruta fija: "/mnt/data/file-LaYZZWTh9mzsG2ni3RkpKm"
        - Usar `ods_df = pd.read_excel("/mnt/data/file-LaYZZWTh9mzsG2ni3RkpKm")` para cargarlo.
        - Considera que la primera fila de `ods_df` contiene encabezados del tipo
@@ -376,24 +410,22 @@ prompt_6 = PromptTemplate(
          de la fila de encabezados, por ejemplo:
          "Objetivo de Desarrollo Sostenible", "Meta", "Indicador".
 
-    4. (Opcional para tu análisis interno, pero recomendado) Convertir `ods_data` a lista:
+    5. (Opcional para tu análisis interno, pero recomendado) Convertir `ods_data` a lista:
        - `ods_records = ods_data.to_dict(orient="records")`
        Esto te permite inspeccionar mentalmente todos los ODS, metas e indicadores.
 
-    5. Para cada fila de `mat_df`:
+    6. Para cada fila de `mat_df`:
 
-       5.1 Identificar si es un "tema material" usando la columna "Tema Material" o "tema_material".
-           - Considerar material si el valor (normalizado a minúsculas) es uno de:
-             "tema material", "true", "1", "sí", "si".
-           - Si NO es material:
-             - Mantener "ods", "meta_ods" e "indicador_ods" como "NA" y pasar a la siguiente fila.
+       6.1 Si `is_material` es False para esa fila:
+           - No cambies nada en "ods", "meta_ods" e "indicador_ods"
+             (deben permanecer como "NA" si estaban en "NA").
+           - Pasa a la siguiente fila.
 
-       5.2 ANÁLISIS GUIADO SOBRE LOS 10 TEMAS MATERIALES (USANDO TEXTO DEL EXCEL):
+       6.2 Si `is_material` es True (fila MATERIAL):
 
-           - Para cada fila MATERIAL:
-             - Tomar el texto del tema desde `row["tema"]` o, si no existe, desde `row["temas"]`.
-             - Normalizar a minúsculas y quitar espacios extra.
-             - Guardar también el tema completo en una variable, por ejemplo `tema_full`.
+           - Tomar el texto del tema desde `row["tema"]` o, si no existe, desde `row["temas"]`.
+           - Normalizar a minúsculas y quitar espacios extra.
+           - Guardar también el tema completo en una variable, por ejemplo `tema_full`.
 
            - Construir previamente en Python:
              - `ods_col = ods_data.iloc[:, 0].astype(str).str.lower()`
@@ -441,7 +473,7 @@ prompt_6 = PromptTemplate(
 
            - Implementación sugerida:
 
-             1) Para cada tema, determina su familia (clima, residuos, salud, trabajo, etc.)
+             1) Para cada tema material, determina su familia (clima, residuos, salud, trabajo, etc.)
                 en base a las palabras clave (usando `in` sobre `tema_full`).
 
              2) Según la familia, genera un filtro booleano sobre `ods_col`:
@@ -451,46 +483,44 @@ prompt_6 = PromptTemplate(
              3) Obtén los índices candidatos:
                   `candidate_indices = [i for i, ok in enumerate(mask) if ok]`.
 
-             4) Elige el PRIMER índice de `candidate_indices` que:
-                  - no esté ya en `used_indices`, y
-                  - cuyo texto de ODS/Meta/Indicador tenga sentido con el tema.
-                Si todos los candidatos están usados, puedes usar el siguiente candidato.
-                Solo si no hay candidatos para esa familia, busca en otros ODS cercanos
-                (por ejemplo, si no hay nada en 13 para clima, intenta con 7 o 12, etc.).
+             4) Crea un conjunto `used_indices = set()` (antes del bucle) para registrar qué índices
+                de `ods_data` ya fueron asignados a otros temas materiales.
 
-           - Crea un conjunto `used_indices = set()` para registrar qué índices
-             de `ods_data` ya fueron asignados a otros temas materiales.
+                Para cada tema material:
+                  - Elige el PRIMER índice de `candidate_indices` que:
+                      * no esté ya en `used_indices`, y
+                      * cuyo texto de ODS/Meta/Indicador tenga sentido con el tema.
+                  - Si todos los candidatos están usados, puedes usar el siguiente candidato razonable.
+                  - Solo si no hay candidatos para esa familia, busca en otros ODS cercanos
+                    (por ejemplo, si no hay nada en 13 para clima, intenta con 7 o 12, etc.).
 
-           - Está TERMINANTEMENTE PROHIBIDO:
-             - usar patrones tipo `idx = i`, `idx = i + 1`, `idx = i + k` que asignen
-               filas consecutivas según la posición del tema en la tabla;
-             - ignorar el contenido de las columnas y seleccionar filas solo por orden.
+             5) Si aun así no hay candidatos:
+                  - Elige cualquier fila de `ods_data` que tenga descripción no vacía y que
+                    aún no esté en `used_indices`.
+                  - Solo si `len(ods_data) == 0` puedes dejar "NA" para ese tema material.
 
-           - Una vez decidido el índice final `idx_definitivo` para el tema:
-             - añadirlo a `used_indices`,
-             - definir `match_row = ods_data.iloc[idx_definitivo]`.
+             6) Una vez decidido el índice final `idx_definitivo`:
+                  - añádelo a `used_indices`,
+                  - define `match_row = ods_data.iloc[idx_definitivo]`.
 
-           - Verificación final OBLIGATORIA:
-             - Antes de devolver el resultado, recorre todas las filas MATERIALES de `mat_df`.
-             - Si alguna tiene "ods", "meta_ods" o "indicador_ods" en "NA" o vacío:
-                 * si `len(ods_data) > 0`, debes forzar una asignación usando cualquier fila
-                   de `ods_data` que aún no esté en `used_indices` (y, si no quedan filas
-                   libres, reutilizar alguna razonable).
-                 * Después de este paso, NINGÚN tema material puede permanecer con "ods",
-                   "meta_ods" o "indicador_ods" = "NA", salvo que `ods_data` esté realmente
-                   vacío o la lectura del Excel haya fallado.
+             7) Asignación final (solo desde `match_row`, SIN inventar textos):
+                - A partir de `match_row`, escribir en `mat_df`:
+                    - "ods"           = valor literal de la columna 0 de esa fila
+                    - "meta_ods"      = valor literal de la columna 1 de esa fila
+                    - "indicador_ods" = valor literal de la columna 2 de esa fila
+                - Está TERMINANTEMENTE PROHIBIDO usar textos genéricos que no provengan
+                  de celdas de datos válidas del Excel, como:
+                  "Objetivo de Desarrollo Sostenible", "Meta", "Indicador",
+                  u otros placeholders. Solo se permiten valores exactos de celdas de `ods_data`.
 
-           d) Asignación final (solo desde `match_row`, SIN inventar textos):
-              - A partir de `match_row`, escribir en `mat_df`:
-                  - "ods"           = valor literal de la columna 0 de esa fila
-                  - "meta_ods"      = valor literal de la columna 1 de esa fila
-                  - "indicador_ods" = valor literal de la columna 2 de esa fila
-              - Está TERMINANTEMENTE PROHIBIDO usar textos genéricos que no provengan
-                de celdas de datos válidas del Excel, como:
-                "Objetivo de Desarrollo Sostenible", "Meta", "Indicador",
-                u otros placeholders. Solo se permiten valores exactos de celdas de `ods_data`.
+    7. Verificación final OBLIGATORIA:
+       - Recorre todas las filas MATERIALES de `mat_df` (donde `is_material` sea True).
+       - Si alguna tiene "ods", "meta_ods" o "indicador_ods" en "NA" o vacío y
+         `len(ods_data) > 0`, debes forzar una asignación usando cualquier fila
+         de `ods_data` que aún no esté en `used_indices` (y, si no quedan filas
+         libres, reutilizar alguna razonable).
 
-    6. Al final:
+    8. Al final:
        - Convertir `mat_df` a lista de registros con `to_dict(orient="records")`.
 
     --- FORMATO OBLIGATORIO DE SALIDA ---
@@ -516,17 +546,8 @@ prompt_6 = PromptTemplate(
     - NO escribas texto fuera del bloque <JSON>...</JSON>.
 
     - Para TODOS los temas marcados como materiales ("Tema Material"):
-      - El input contiene exactamente 10 temas materiales priorizados, por lo que
-        los 10 deben terminar con valores completos en "ods", "meta_ods" e "indicador_ods".
-      - NO se permite que "ods", "meta_ods" o "indicador_ods" queden con "NA"
-        en esos 10 temas, salvo que el Excel de ODS esté vacío o no se haya podido leer.
-      - NO se permite usar como valores de salida textos que sean solo encabezados
-        o genéricos como "Objetivo de Desarrollo Sostenible", "Meta" o "Indicador".
-        Esos textos deben ser ignorados si aparecen como encabezados.
-      - NO se permite asignar la MISMA fila exacta de `ods_data` (mismo ODS, misma meta,
-        mismo indicador) a más de un tema material, salvo en el caso extremo en que
-        el número de filas de `ods_data` sea menor que 10 y no exista ninguna otra
-        opción razonable disponible.
+      - No se permite que "ods", "meta_ods" o "indicador_ods" queden con "NA"
+        si `len(ods_data) > 0`.
 
     - Si ocurre algún error (por ejemplo al leer el Excel), devuelve:
 
@@ -1198,18 +1219,18 @@ prompt_11 = PromptTemplate(
     El texto debe redactarse como si fuera la recomendación de un consultor experto en sostenibilidad, evitando un tono descriptivo de hechos ya implementados.
     Asegúrate de mencionar explícitamente que las recomendaciones están basadas en el análisis de doble materialidad realizado.
     La redacción debe presentar las acciones como pasos estratégicos que la empresa debería seguir:
-    - Acciones marginales → recomendaciones inmediatas de ajuste operativo.
+    - Acciones iniciales → recomendaciones inmediatas de ajuste operativo.
     - Acciones moderadas → procesos recomendados a integrar en el mediano plazo.
     - Acciones estructurales → transformaciones de modelo de negocio a largo plazo.
     Mantén un tono estratégico y ejecutivo, transmitiendo visión integral y ambiciosa, sin listar ni repetir extensamente. 
 
     Instrucciones:
+    - Que el resumen sea enfocado en los 10 temas materiales, no solo en 2.
     - Usa el contexto del análisis ESG previo.
     - Redacta como consultor experto.
     - Menciona explícitamente que se basa en análisis de doble materialidad.
-    - Relaciona acciones marginales, moderadas y estructurales.
-    - Minimo 400 palabras.
-    - Máximo 500 palabras.
+    - Relaciona acciones iniciales, moderadas y estructurales.
+    - Minimo 600 palabras.
     - Tono estratégico, ejecutivo y conciso.
 
     Formato obligatorio (estructura del JSON):

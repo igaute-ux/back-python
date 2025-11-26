@@ -400,6 +400,45 @@ def load_sasb_rows_by_industry(industria_sasb: str):
                 })
     return rows
 
+def build_materiality_with_flag(p4, p5):
+    """
+    A partir de:
+      - p4: JSON completo del Prompt 4 (materiality_table con TODAS las filas)
+      - p5: JSON del Prompt 5 (materiality_table con SOLO los 10 temas materiales)
+    construye una materiality_table completa con una columna 'tema_material'
+    que marca cuáles son los 10 temas priorizados.
+    """
+    full_rows = (p4 or {}).get("materiality_table") or []
+    top_rows = (p5 or {}).get("materiality_table") or []
+
+    def _safe(s):
+        if s is None:
+            return ""
+        return str(s)
+
+    def _key(row):
+        # Usamos combinación de sector + tema para identificar filas
+        sector = _safe(row.get("sector", row.get("Sector")))
+        tema = _safe(row.get("tema", row.get("Tema", row.get("temas", ""))))
+        return normalize_text(sector) + "|||" + normalize_text(tema)
+
+    top_keys = { _key(r) for r in top_rows }
+
+    result = []
+    for row in full_rows:
+        new_row = dict(row)  # copia
+        if _key(row) in top_keys:
+            new_row["tema_material"] = "Tema Material"
+        else:
+            # Marcamos explícitamente como no material / NA
+            new_row.setdefault("tema_material", "NA")
+        result.append(new_row)
+
+    print(f"✅ Filas totales en tabla completa: {len(result)}")
+    print(f"✅ Filas marcadas como 'Tema Material': {len(top_keys)} (según Prompt 5)")
+    return result
+
+
 
 # ==================================================
 # FUNCIÓN PRINCIPAL
@@ -541,10 +580,20 @@ async def run_esg_analysis_prompt1_5(
             "failed_prompts": failed_prompts,
         }
 
-   # ========= PROMPT 6 (Code Interpreter + Excel ODS) =========
+    # ========= PROMPT 6 (Code Interpreter + Excel ODS) =========
     print("\n📌 Ejecutando Prompt 6")
 
-    p5_json = json.dumps(p5, ensure_ascii=False)
+    # 1) Construir tabla COMPLETA (Prompt 4) + flag 'tema_material' según Prompt 5
+    materiality_with_flag = build_materiality_with_flag(p4, p5)
+
+    materiality_with_flag_json = json.dumps(
+        {"materiality_table": materiality_with_flag},
+        ensure_ascii=False,
+    )
+    print(
+        "Contenido de materiality_table_json antes de Prompt 6:",
+        materiality_with_flag_json[:500],
+    )
 
     try:
         # ⚠ En vez de usar prompt_6.format(...), tomamos el template crudo
@@ -554,7 +603,8 @@ async def run_esg_analysis_prompt1_5(
             raw_template = str(prompt_6)
 
         # 👇 Reemplazo directo del placeholder, sin tocar el resto de llaves del JSON
-        p6_raw = raw_template.replace("{materiality_table_json}", p5_json)
+        p6_raw = raw_template.replace("{materiality_table_json}", materiality_with_flag_json)
+        print("Prompt 6 formateado (primeros 500 chars):", p6_raw[:500])
     except Exception as e:
         print("Error al preparar el prompt 6:", e)
         failed_prompts.append(prompt_6.name)
@@ -568,7 +618,9 @@ async def run_esg_analysis_prompt1_5(
             "failed_prompts": failed_prompts,
         }
 
+    # Prompt 6 usa Code Interpreter
     p6_text = await run_prompt_assistant(p6_raw, use_tools=True)
+    print("Respuesta RAW de Prompt 6 (repr):", repr(p6_text))
 
     p6 = try_fix_json_prompt6(p6_text) if p6_text else None
 
