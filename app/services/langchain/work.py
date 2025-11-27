@@ -530,6 +530,7 @@ async def run_esg_analysis_prompt1_5(
             "failed_prompts": failed_prompts,
         }
 
+
     # ========= PROMPT 4 (usa salida de Prompt 3) =========
     print("\n📌 Ejecutando Prompt 4")
     p3_json = json.dumps(p3, ensure_ascii=False)
@@ -580,20 +581,10 @@ async def run_esg_analysis_prompt1_5(
             "failed_prompts": failed_prompts,
         }
 
-    # ========= PROMPT 6 (Code Interpreter + Excel ODS) =========
+   # ========= PROMPT 6 (Code Interpreter + Excel ODS) =========
     print("\n📌 Ejecutando Prompt 6")
 
-    # 1) Construir tabla COMPLETA (Prompt 4) + flag 'tema_material' según Prompt 5
-    materiality_with_flag = build_materiality_with_flag(p4, p5)
-
-    materiality_with_flag_json = json.dumps(
-        {"materiality_table": materiality_with_flag},
-        ensure_ascii=False,
-    )
-    print(
-        "Contenido de materiality_table_json antes de Prompt 6:",
-        materiality_with_flag_json[:500],
-    )
+    p5_json = json.dumps(p5, ensure_ascii=False)
 
     try:
         # ⚠ En vez de usar prompt_6.format(...), tomamos el template crudo
@@ -603,8 +594,7 @@ async def run_esg_analysis_prompt1_5(
             raw_template = str(prompt_6)
 
         # 👇 Reemplazo directo del placeholder, sin tocar el resto de llaves del JSON
-        p6_raw = raw_template.replace("{materiality_table_json}", materiality_with_flag_json)
-        print("Prompt 6 formateado (primeros 500 chars):", p6_raw[:500])
+        p6_raw = raw_template.replace("{materiality_table_json}", p5_json)
     except Exception as e:
         print("Error al preparar el prompt 6:", e)
         failed_prompts.append(prompt_6.name)
@@ -618,9 +608,7 @@ async def run_esg_analysis_prompt1_5(
             "failed_prompts": failed_prompts,
         }
 
-    # Prompt 6 usa Code Interpreter
     p6_text = await run_prompt_assistant(p6_raw, use_tools=True)
-    print("Respuesta RAW de Prompt 6 (repr):", repr(p6_text))
 
     p6 = try_fix_json_prompt6(p6_text) if p6_text else None
 

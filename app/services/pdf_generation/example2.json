@@ -1,1119 +1,1269 @@
 [
-      {
-          "name": "🔹 Prompt 1: Contexto organizacional y Sectorial",
-          "response_content": {
-              "nombre_empresa": "Mercado Libre, una plataforma de comercio electrónico líder en América Latina.",
-              "pais_operacion": "Chile. Mercado Libre opera en Chile como un proveedor de servicios de comercio electrónico, facilitando la compra y venta de productos a través de su plataforma digital.",
-              "industria": "Software y servicios tecnológicos, enfocado en comercio electrónico, fintech y logística, proporcionando soluciones integrales para el comercio en línea.",
-              "tamano_empresa": "Mercado Libre es una de las empresas más grandes de comercio electrónico en América Latina, con millones de usuarios y una extensa red de operaciones en varios países.",
-              "ubicacion_geografica": "Mercado Libre tiene su sede en Buenos Aires, Argentina, pero opera en múltiples países de América Latina, incluyendo Chile, donde ofrece servicios de compra y venta en línea, así como soluciones de pago y logística.",
-              "modelo_negocio": "El modelo de negocio de Mercado Libre se basa en la creación de un ecosistema de comercio electrónico que incluye una plataforma de marketplace, servicios de pago a través de Mercado Pago, y soluciones logísticas que facilitan la entrega de productos. La empresa genera ingresos a través de comisiones por ventas, tarifas de publicidad y servicios financieros.",
-              "cadena_valor": "La cadena de valor de Mercado Libre abarca desde la captación de usuarios y vendedores en su plataforma, la promoción de productos a través de publicidad digital, hasta la gestión de pagos y logística. Esto incluye la optimización de la experiencia del cliente, el desarrollo de tecnología para mejorar la seguridad y la eficiencia, y la implementación de prácticas sostenibles en sus operaciones.",
-              "actividades_principales": "Las actividades principales de Mercado Libre incluyen la gestión de su plataforma de comercio electrónico, la facilitación de pagos a través de Mercado Pago, el desarrollo de soluciones logísticas para la entrega de productos, y la implementación de iniciativas de sostenibilidad y responsabilidad social en sus operaciones.",
-              "madurez_esg": "Mercado Libre ha demostrado un compromiso creciente con la sostenibilidad y la responsabilidad social, implementando prácticas ESG en su modelo de negocio, aunque aún enfrenta desafíos en la transparencia y la medición de su impacto ambiental.",
-              "stakeholders_relevantes": "Los stakeholders relevantes de Mercado Libre incluyen a sus usuarios (compradores y vendedores), empleados, inversores, reguladores, comunidades locales, y organizaciones no gubernamentales que se enfocan en temas de sostenibilidad y responsabilidad social.",
-              "sector_sp": "Consumer Discretionary"
-          },
-          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
-      },
-      {
-          "name": "🔹 Prompt 2: Identificación de Impactos (basado en S&P)",
-          "response_content": {
-              "materiality_table": [
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Prácticas laborales",
-                      "materialidad_financiera": "Alta",
-                      "valor_materialidad_financiera": 5,
-                      "Riesgos": "Riesgo de alta rotación de personal y falta de talento calificado.",
-                      "Oportunidades": "Mejora en la productividad y satisfacción del empleado.",
-                      "accion_marginal": "Implementar programas de capacitación.",
-                      "accion_moderada": "Establecer políticas de retención de talento.",
-                      "accion_estructural": "Desarrollar una cultura organizacional inclusiva."
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Protección de la privacidad",
-                      "materialidad_financiera": "Alta",
-                      "valor_materialidad_financiera": 5,
-                      "Riesgos": "Posibles sanciones por incumplimiento de normativas de protección de datos.",
-                      "Oportunidades": "Generar confianza en los usuarios y clientes.",
-                      "accion_marginal": "Realizar auditorías de privacidad.",
-                      "accion_moderada": "Implementar protocolos de seguridad de datos.",
-                      "accion_estructural": "Crear un departamento de cumplimiento normativo."
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Impacto en las comunidades",
-                      "materialidad_financiera": "Alta",
-                      "valor_materialidad_financiera": 5,
-                      "Riesgos": "Reacciones negativas de la comunidad ante prácticas empresariales.",
-                      "Oportunidades": "Fortalecer la relación con la comunidad y mejorar la imagen de marca.",
-                      "accion_marginal": "Realizar eventos comunitarios.",
-                      "accion_moderada": "Establecer programas de responsabilidad social.",
-                      "accion_estructural": "Incorporar la sostenibilidad en la estrategia empresarial."
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Productos y servicios sostenibles",
-                      "materialidad_financiera": "Media",
-                      "valor_materialidad_financiera": 2.5,
-                      "Riesgos": "Desactualización frente a la competencia que adopta prácticas sostenibles.",
-                      "Oportunidades": "Acceso a nuevos mercados y clientes conscientes del medio ambiente.",
-                      "accion_marginal": "Desarrollar productos con menor impacto ambiental.",
-                      "accion_moderada": "Certificar productos con estándares de sostenibilidad.",
-                      "accion_estructural": "Integrar la sostenibilidad en el ciclo de vida del producto."
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Acceso y asequibilidad",
-                      "materialidad_financiera": "Media",
-                      "valor_materialidad_financiera": 2.5,
-                      "Riesgos": "Limitaciones en el acceso a tecnología para ciertos segmentos de la población.",
-                      "Oportunidades": "Expansión de mercado al ofrecer soluciones accesibles.",
-                      "accion_marginal": "Crear versiones de productos a bajo costo.",
-                      "accion_moderada": "Establecer asociaciones con organizaciones sin fines de lucro.",
-                      "accion_estructural": "Desarrollar iniciativas de inclusión digital."
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Riesgo climático físico",
-                      "materialidad_financiera": "Media",
-                      "valor_materialidad_financiera": 2.5,
-                      "Riesgos": "Interrupciones en la operación debido a eventos climáticos extremos.",
-                      "Oportunidades": "Implementar soluciones tecnológicas que mitiguen riesgos climáticos.",
-                      "accion_marginal": "Realizar un análisis de vulnerabilidad climática.",
-                      "accion_moderada": "Desarrollar un plan de continuidad de negocio.",
-                      "accion_estructural": "Invertir en infraestructura resiliente."
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Riesgo de transición climática",
-                      "materialidad_financiera": "Media",
-                      "valor_materialidad_financiera": 2.5,
-                      "Riesgos": "Costos asociados a la transición hacia una economía baja en carbono.",
-                      "Oportunidades": "Adopción de tecnologías limpias que mejoren la eficiencia.",
-                      "accion_marginal": "Evaluar la huella de carbono de las operaciones.",
-                      "accion_moderada": "Implementar prácticas de eficiencia energética.",
-                      "accion_estructural": "Desarrollar una estrategia de sostenibilidad a largo plazo."
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Salud y seguridad del cliente",
-                      "materialidad_financiera": "Media",
-                      "valor_materialidad_financiera": 2.5,
-                      "Riesgos": "Posibles fallos en la seguridad que comprometan la información del cliente.",
-                      "Oportunidades": "Mejorar la confianza del cliente a través de prácticas seguras.",
-                      "accion_marginal": "Capacitar al personal en prácticas de seguridad.",
-                      "accion_moderada": "Implementar protocolos de seguridad de la información.",
-                      "accion_estructural": "Establecer un sistema de gestión de la seguridad de la información."
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Salud y seguridad de los trabajadores",
-                      "materialidad_financiera": "Media",
-                      "valor_materialidad_financiera": 2.5,
-                      "Riesgos": "Aumento de problemas de salud mental debido a la carga laboral.",
-                      "Oportunidades": "Mejorar la satisfacción y productividad del empleado.",
-                      "accion_marginal": "Ofrecer programas de bienestar laboral.",
-                      "accion_moderada": "Implementar políticas de trabajo flexible.",
-                      "accion_estructural": "Desarrollar una cultura organizacional centrada en el bienestar."
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Condiciones laborales",
-                      "materialidad_financiera": "Media",
-                      "valor_materialidad_financiera": 2.5,
-                      "Riesgos": "Problemas de cumplimiento con normativas laborales.",
-                      "Oportunidades": "Atraer y retener talento mediante buenas condiciones laborales.",
-                      "accion_marginal": "Realizar encuestas de satisfacción laboral.",
-                      "accion_moderada": "Establecer un código de conducta laboral.",
-                      "accion_estructural": "Implementar un sistema de gestión de recursos humanos."
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Contaminación",
-                      "materialidad_financiera": "Baja",
-                      "valor_materialidad_financiera": 1,
-                      "Riesgos": "Impacto ambiental negativo por desechos electrónicos.",
-                      "Oportunidades": "Desarrollar programas de reciclaje y reducción de desechos.",
-                      "accion_marginal": "Fomentar la reducción de papel en las operaciones.",
-                      "accion_moderada": "Implementar un programa de reciclaje de equipos.",
-                      "accion_estructural": "Desarrollar una política de sostenibilidad ambiental."
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Residuos y reciclaje",
-                      "materialidad_financiera": "Baja",
-                      "valor_materialidad_financiera": 1,
-                      "Riesgos": "Costos asociados al manejo inadecuado de residuos.",
-                      "Oportunidades": "Mejorar la reputación a través de prácticas de reciclaje.",
-                      "accion_marginal": "Fomentar el uso de productos reciclables.",
-                      "accion_moderada": "Implementar un programa de gestión de residuos.",
-                      "accion_estructural": "Establecer alianzas con empresas de reciclaje."
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Agua",
-                      "materialidad_financiera": "Baja",
-                      "valor_materialidad_financiera": 1,
-                      "Riesgos": "Impacto en operaciones por escasez de agua.",
-                      "Oportunidades": "Implementar prácticas de conservación de agua.",
-                      "accion_marginal": "Monitorear el consumo de agua.",
-                      "accion_moderada": "Establecer metas de reducción de consumo.",
-                      "accion_estructural": "Desarrollar una estrategia de gestión del agua."
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Biodiversidad y uso de recursos",
-                      "materialidad_financiera": "Baja",
-                      "valor_materialidad_financiera": 1,
-                      "Riesgos": "Impacto negativo en la biodiversidad por operaciones.",
-                      "Oportunidades": "Desarrollar iniciativas de conservación.",
-                      "accion_marginal": "Fomentar el uso responsable de recursos.",
-                      "accion_moderada": "Realizar auditorías de impacto ambiental.",
-                      "accion_estructural": "Incorporar la biodiversidad en la planificación estratégica."
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Marketing responsable y etiquetado",
-                      "materialidad_financiera": "Baja",
-                      "valor_materialidad_financiera": 1,
-                      "Riesgos": "Reputación negativa por prácticas de marketing engañosas.",
-                      "Oportunidades": "Aumentar la lealtad del cliente mediante marketing transparente.",
-                      "accion_marginal": "Revisar las campañas de marketing.",
-                      "accion_moderada": "Establecer un código de ética de marketing.",
-                      "accion_estructural": "Desarrollar políticas de comunicación responsable."
-                  }
-              ],
-              "exhausted": false
-          },
-          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
-      },
-      {
-          "name": "🔹 Prompt 3: Evaluación de Impactos",
-          "response_content": {
-              "materiality_table": [
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Prácticas laborales",
-                      "materialidad_financiera": "Alta",
-                      "valor_materialidad_financiera": 5,
-                      "accion_marginal": "Implementar programas de capacitación.",
-                      "accion_moderada": "Establecer políticas de retención de talento.",
-                      "accion_estructural": "Desarrollar una cultura organizacional inclusiva.",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Directo"
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Protección de la privacidad",
-                      "materialidad_financiera": "Alta",
-                      "valor_materialidad_financiera": 5,
-                      "accion_marginal": "Realizar auditorías de privacidad.",
-                      "accion_moderada": "Implementar protocolos de seguridad de datos.",
-                      "accion_estructural": "Crear un departamento de cumplimiento normativo.",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto"
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Impacto en las comunidades",
-                      "materialidad_financiera": "Alta",
-                      "valor_materialidad_financiera": 5,
-                      "accion_marginal": "Realizar eventos comunitarios.",
-                      "accion_moderada": "Establecer programas de responsabilidad social.",
-                      "accion_estructural": "Incorporar la sostenibilidad en la estrategia empresarial.",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Largo",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Directo"
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Productos y servicios sostenibles",
-                      "materialidad_financiera": "Media",
-                      "valor_materialidad_financiera": 2.5,
-                      "accion_marginal": "Desarrollar productos con menor impacto ambiental.",
-                      "accion_moderada": "Certificar productos con estándares de sostenibilidad.",
-                      "accion_estructural": "Integrar la sostenibilidad en el ciclo de vida del producto.",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Potencial",
-                      "horizonte_impacto": "Largo",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto"
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Acceso y asequibilidad",
-                      "materialidad_financiera": "Media",
-                      "valor_materialidad_financiera": 2.5,
-                      "accion_marginal": "Crear versiones de productos a bajo costo.",
-                      "accion_moderada": "Establecer asociaciones con organizaciones sin fines de lucro.",
-                      "accion_estructural": "Desarrollar iniciativas de inclusión digital.",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Directo"
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Riesgo climático físico",
-                      "materialidad_financiera": "Media",
-                      "valor_materialidad_financiera": 2.5,
-                      "accion_marginal": "Realizar un análisis de vulnerabilidad climática.",
-                      "accion_moderada": "Desarrollar un plan de continuidad de negocio.",
-                      "accion_estructural": "Invertir en infraestructura resiliente.",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Potencial",
-                      "horizonte_impacto": "Largo",
-                      "intencionalidad_impacto": "No intencionado",
-                      "penetracion_impacto": "Irreversible",
-                      "grado_implicacion": "Indirecto"
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Riesgo de transición climática",
-                      "materialidad_financiera": "Media",
-                      "valor_materialidad_financiera": 2.5,
-                      "accion_marginal": "Evaluar la huella de carbono de las operaciones.",
-                      "accion_moderada": "Implementar prácticas de eficiencia energética.",
-                      "accion_estructural": "Desarrollar una estrategia de sostenibilidad a largo plazo.",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Potencial",
-                      "horizonte_impacto": "Largo",
-                      "intencionalidad_impacto": "No intencionado",
-                      "penetracion_impacto": "Irreversible",
-                      "grado_implicacion": "Indirecto"
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Salud y seguridad del cliente",
-                      "materialidad_financiera": "Media",
-                      "valor_materialidad_financiera": 2.5,
-                      "accion_marginal": "Capacitar al personal en prácticas de seguridad.",
-                      "accion_moderada": "Implementar protocolos de seguridad de la información.",
-                      "accion_estructural": "Establecer un sistema de gestión de la seguridad de la información.",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto"
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Salud y seguridad de los trabajadores",
-                      "materialidad_financiera": "Media",
-                      "valor_materialidad_financiera": 2.5,
-                      "accion_marginal": "Ofrecer programas de bienestar laboral.",
-                      "accion_moderada": "Implementar políticas de trabajo flexible.",
-                      "accion_estructural": "Desarrollar una cultura organizacional centrada en el bienestar.",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Directo"
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Condiciones laborales",
-                      "materialidad_financiera": "Media",
-                      "valor_materialidad_financiera": 2.5,
-                      "accion_marginal": "Realizar encuestas de satisfacción laboral.",
-                      "accion_moderada": "Establecer un código de conducta laboral.",
-                      "accion_estructural": "Implementar un sistema de gestión de recursos humanos.",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Directo"
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Contaminación",
-                      "materialidad_financiera": "Baja",
-                      "valor_materialidad_financiera": 1,
-                      "accion_marginal": "Fomentar la reducción de papel en las operaciones.",
-                      "accion_moderada": "Implementar un programa de reciclaje de equipos.",
-                      "accion_estructural": "Desarrollar una política de sostenibilidad ambiental.",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "No intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto"
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Residuos y reciclaje",
-                      "materialidad_financiera": "Baja",
-                      "valor_materialidad_financiera": 1,
-                      "accion_marginal": "Fomentar el uso de productos reciclables.",
-                      "accion_moderada": "Implementar un programa de gestión de residuos.",
-                      "accion_estructural": "Establecer alianzas con empresas de reciclaje.",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "No intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto"
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Agua",
-                      "materialidad_financiera": "Baja",
-                      "valor_materialidad_financiera": 1,
-                      "accion_marginal": "Monitorear el consumo de agua.",
-                      "accion_moderada": "Establecer metas de reducción de consumo.",
-                      "accion_estructural": "Desarrollar una estrategia de gestión del agua.",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Potencial",
-                      "horizonte_impacto": "Largo",
-                      "intencionalidad_impacto": "No intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto"
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Biodiversidad y uso de recursos",
-                      "materialidad_financiera": "Baja",
-                      "valor_materialidad_financiera": 1,
-                      "accion_marginal": "Fomentar el uso responsable de recursos.",
-                      "accion_moderada": "Realizar auditorías de impacto ambiental.",
-                      "accion_estructural": "Incorporar la biodiversidad en la planificación estratégica.",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Potencial",
-                      "horizonte_impacto": "Largo",
-                      "intencionalidad_impacto": "No intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto"
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Marketing responsable y etiquetado",
-                      "materialidad_financiera": "Baja",
-                      "valor_materialidad_financiera": 1,
-                      "accion_marginal": "Revisar las campañas de marketing.",
-                      "accion_moderada": "Establecer un código de ética de marketing.",
-                      "accion_estructural": "Desarrollar políticas de comunicación responsable.",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "No intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto"
-                  }
-              ],
-              "resumen_sector": "El sector de Software y servicios tecnológicos es crucial para la innovación y la transformación digital, impactando positivamente en la economía y en la vida cotidiana."
-          },
-          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
-      },
-      {
-          "name": "🔹 Prompt 4: Evaluación de Impactos (doble materialidad)",
-          "response_content": {
-              "materiality_table": [
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Prácticas laborales",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Directo",
-                      "gravedad": 2,
-                      "probabilidad": 4,
-                      "alcance": 3,
-                      "materialidad_esg": 14
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Protección de la privacidad",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto",
-                      "gravedad": 5,
-                      "probabilidad": 5,
-                      "alcance": 4,
-                      "materialidad_esg": 19
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Impacto en las comunidades",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Largo",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Directo",
-                      "gravedad": 3,
-                      "probabilidad": 3,
-                      "alcance": 5,
-                      "materialidad_esg": 16
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Productos y servicios sostenibles",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Potencial",
-                      "horizonte_impacto": "Largo",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto",
-                      "gravedad": 3,
-                      "probabilidad": 2,
-                      "alcance": 3,
-                      "materialidad_esg": 11
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Acceso y asequibilidad",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Directo",
-                      "gravedad": 2,
-                      "probabilidad": 3,
-                      "alcance": 4,
-                      "materialidad_esg": 13
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Riesgo climático físico",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Potencial",
-                      "horizonte_impacto": "Largo",
-                      "intencionalidad_impacto": "No intencionado",
-                      "penetracion_impacto": "Irreversible",
-                      "grado_implicacion": "Indirecto",
-                      "gravedad": 4,
-                      "probabilidad": 4,
-                      "alcance": 5,
-                      "materialidad_esg": 20
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Riesgo de transición climática",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Potencial",
-                      "horizonte_impacto": "Largo",
-                      "intencionalidad_impacto": "No intencionado",
-                      "penetracion_impacto": "Irreversible",
-                      "grado_implicacion": "Indirecto",
-                      "gravedad": 4,
-                      "probabilidad": 3,
-                      "alcance": 4,
-                      "materialidad_esg": 19
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Salud y seguridad del cliente",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto",
-                      "gravedad": 5,
-                      "probabilidad": 4,
-                      "alcance": 3,
-                      "materialidad_esg": 17
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Salud y seguridad de los trabajadores",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Directo",
-                      "gravedad": 3,
-                      "probabilidad": 3,
-                      "alcance": 4,
-                      "materialidad_esg": 15
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Condiciones laborales",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Directo",
-                      "gravedad": 3,
-                      "probabilidad": 3,
-                      "alcance": 4,
-                      "materialidad_esg": 15
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Contaminación",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "No intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto",
-                      "gravedad": 4,
-                      "probabilidad": 2,
-                      "alcance": 3,
-                      "materialidad_esg": 10
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Residuos y reciclaje",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "No intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto",
-                      "gravedad": 3,
-                      "probabilidad": 2,
-                      "alcance": 3,
-                      "materialidad_esg": 9
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Agua",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Potencial",
-                      "horizonte_impacto": "Largo",
-                      "intencionalidad_impacto": "No intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto",
-                      "gravedad": 2,
-                      "probabilidad": 3,
-                      "alcance": 4,
-                      "materialidad_esg": 10
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Biodiversidad y uso de recursos",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Potencial",
-                      "horizonte_impacto": "Largo",
-                      "intencionalidad_impacto": "No intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto",
-                      "gravedad": 3,
-                      "probabilidad": 2,
-                      "alcance": 3,
-                      "materialidad_esg": 9
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Marketing responsable y etiquetado",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "No intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto",
-                      "gravedad": 2,
-                      "probabilidad": 3,
-                      "alcance": 3,
-                      "materialidad_esg": 9
-                  }
-              ]
-          },
-          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
-      },
-      {
-          "name": "🔹 Prompt 5: Priorización de Temas",
-          "response_content": {
-              "materiality_table": [
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Riesgo climático físico",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Potencial",
-                      "horizonte_impacto": "Largo",
-                      "intencionalidad_impacto": "No intencionado",
-                      "penetracion_impacto": "Irreversible",
-                      "grado_implicacion": "Indirecto",
-                      "gravedad": 4,
-                      "probabilidad": 4,
-                      "alcance": 5,
-                      "materialidad_esg": 20
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Protección de la privacidad",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto",
-                      "gravedad": 5,
-                      "probabilidad": 5,
-                      "alcance": 4,
-                      "materialidad_esg": 19
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Riesgo de transición climática",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Potencial",
-                      "horizonte_impacto": "Largo",
-                      "intencionalidad_impacto": "No intencionado",
-                      "penetracion_impacto": "Irreversible",
-                      "grado_implicacion": "Indirecto",
-                      "gravedad": 4,
-                      "probabilidad": 3,
-                      "alcance": 4,
-                      "materialidad_esg": 19
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Salud y seguridad del cliente",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto",
-                      "gravedad": 5,
-                      "probabilidad": 4,
-                      "alcance": 3,
-                      "materialidad_esg": 17
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Impacto en las comunidades",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Largo",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Directo",
-                      "gravedad": 3,
-                      "probabilidad": 3,
-                      "alcance": 5,
-                      "materialidad_esg": 16
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Salud y seguridad de los trabajadores",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Directo",
-                      "gravedad": 3,
-                      "probabilidad": 3,
-                      "alcance": 4,
-                      "materialidad_esg": 15
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Condiciones laborales",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Directo",
-                      "gravedad": 3,
-                      "probabilidad": 3,
-                      "alcance": 4,
-                      "materialidad_esg": 15
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Acceso y asequibilidad",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Directo",
-                      "gravedad": 2,
-                      "probabilidad": 3,
-                      "alcance": 4,
-                      "materialidad_esg": 13
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Prácticas laborales",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Directo",
-                      "gravedad": 2,
-                      "probabilidad": 4,
-                      "alcance": 3,
-                      "materialidad_esg": 14
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Productos y servicios sostenibles",
-                      "tipo_impacto": "Positivo",
-                      "potencialidad_impacto": "Potencial",
-                      "horizonte_impacto": "Largo",
-                      "intencionalidad_impacto": "Intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto",
-                      "gravedad": 3,
-                      "probabilidad": 2,
-                      "alcance": 3,
-                      "materialidad_esg": 11
-                  },
-                  {
-                      "sector": "Software y servicios tecnológicos",
-                      "tema": "Contaminación",
-                      "tipo_impacto": "Negativo",
-                      "potencialidad_impacto": "Real",
-                      "horizonte_impacto": "Corto",
-                      "intencionalidad_impacto": "No intencionado",
-                      "penetracion_impacto": "Reversible",
-                      "grado_implicacion": "Indirecto",
-                      "gravedad": 4,
-                      "probabilidad": 2,
-                      "alcance": 3,
-                      "materialidad_esg": 10
-                  }
-              ]
-          },
-          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
-      },
-      {
-          "name": "🔹 Prompt 6: Vínculo con Objetivos de Desarrollo Sostenible (ODS)",
-          "response_content": {
-              "materiality_table": [
-                  {
-                      "tema": "Riesgo climático físico",
-                      "prioridad": "Riesgo climático físico",
-                      "ods": "13. Acción por el clima",
-                      "meta_ods": "Mejorar la educación, la concienciación y la capacidad sobre la mitigación del cambio climático, la adaptación, la reducción de sus efectos y la alerta temprana.",
-                      "indicador_ods": "13.3.1 Número de países que adoptan y aplican estrategias nacionales de reducción del riesgo de desastres en consonancia con las estrategias nacionales de reducción del riesgo de desastres."
-                  },
-                  {
-                      "tema": "Protección de la privacidad",
-                      "prioridad": "Protección de la privacidad",
-                      "ods": "16. Paz, justicia e instituciones sólidas",
-                      "meta_ods": "Promover el estado de derecho en los planos nacional e internacional y garantizar la igualdad de acceso a la justicia para todos.",
-                      "indicador_ods": "16.3.2 Proporción de personas que han sido víctimas de delitos en los últimos 12 meses."
-                  },
-                  {
-                      "tema": "Riesgo de transición climática",
-                      "prioridad": "Riesgo de transición climática",
-                      "ods": "13. Acción por el clima",
-                      "meta_ods": "Fortalecer la resiliencia y la capacidad de adaptación a los riesgos relacionados con el clima en todos los países.",
-                      "indicador_ods": "13.1.1 Número de muertes, desaparecidos y afectados directamente atribuidos a desastres por cada 100,000 personas."
-                  },
-                  {
-                      "tema": "Salud y seguridad del cliente",
-                      "prioridad": "Salud y seguridad del cliente",
-                      "ods": "3. Salud y bienestar",
-                      "meta_ods": "Asegurar el acceso universal a servicios de salud sexual y reproductiva, incluidos los de planificación familiar, información y educación.",
-                      "indicador_ods": "3.7.1 Proporción de mujeres de edad fértil que tienen necesidad insatisfecha de planificación familiar."
-                  },
-                  {
-                      "tema": "Impacto en las comunidades",
-                      "prioridad": "Impacto en las comunidades",
-                      "ods": "11. Ciudades y comunidades sostenibles",
-                      "meta_ods": "Lograr que las ciudades y los asentamientos humanos sean inclusivos, seguros, resilientes y sostenibles.",
-                      "indicador_ods": "11.1.1 Proporción de la población urbana que vive en barrios marginales."
-                  },
-                  {
-                      "tema": "Salud y seguridad de los trabajadores",
-                      "prioridad": "Salud y seguridad de los trabajadores",
-                      "ods": "8. Trabajo decente y crecimiento económico",
-                      "meta_ods": "Promover el crecimiento económico sostenido, inclusivo y sostenible, el empleo pleno y productivo y el trabajo decente para todos.",
-                      "indicador_ods": "8.5.1 Tasa de empleo de personas de 15 a 24 años en relación con la población total de esa misma franja de edad."
-                  },
-                  {
-                      "tema": "Condiciones laborales",
-                      "prioridad": "Condiciones laborales",
-                      "ods": "8. Trabajo decente y crecimiento económico",
-                      "meta_ods": "Proporcionar trabajo decente y productivo para todos, incluidos las mujeres y los jóvenes.",
-                      "indicador_ods": "8.5.2 Proporción de personas ocupadas que reciben un salario igual o superior al salario mínimo."
-                  },
-                  {
-                      "tema": "Acceso y asequibilidad",
-                      "prioridad": "Acceso y asequibilidad",
-                      "ods": "10. Reducción de las desigualdades",
-                      "meta_ods": "Lograr la igualdad de oportunidades y reducir las desigualdades de resultados, en particular mediante el empoderamiento social, económico y político de todas las personas.",
-                      "indicador_ods": "10.2.1 Proporción de la población que vive por debajo de la línea de pobreza nacional."
-                  },
-                  {
-                      "tema": "Prácticas laborales",
-                      "prioridad": "Prácticas laborales",
-                      "ods": "8. Trabajo decente y crecimiento económico",
-                      "meta_ods": "Promover políticas orientadas al desarrollo que apoyen actividades productivas, la creación de empleo decente, el emprendimiento y la innovación.",
-                      "indicador_ods": "8.3.1 Tasa de crecimiento del PIB real por persona ocupada."
-                  },
-                  {
-                      "tema": "Productos y servicios sostenibles",
-                      "prioridad": "Productos y servicios sostenibles",
-                      "ods": "12. Producción y consumo responsables",
-                      "meta_ods": "Lograr que los consumidores y los productores adopten prácticas sostenibles y que integren la sostenibilidad en sus procesos de desarrollo.",
-                      "indicador_ods": "12.8.1 Grado en que i) la educación para la ciudadanía mundial y ii) la educación para el desarrollo sostenible se incorporan en a) las políticas nacionales de educación."
-                  }
-              ]
-          },
-          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
-      },
-      {
-          "name": "🔹 Prompt 7: Mapeo de Contenidos GRI",
-          "response_content": {
-              "gri_mapping": [
-                  {
-                      "estandar_gri": "GRI 2: Contenidos Generales 2021",
-                      "numero_contenido": "2-9",
-                      "contenido": "Estructura de gobernanza y composición",
-                      "requerimiento": "La organización debe: a. describir su estructura de gobernanza, incluidos los comités del máximo órgano de gobierno; b. enumerar los comités del máximo órgano de gobierno encargados de la toma de decisiones y de la supervisión de la gestión de los impactos de la organización sobre la economía, el medio ambiente y las personas; c. describir la composición del máximo órgano de gobierno y sus comités según: i. el número de miembros ejecutivos y no ejecutivos; ii. independencia; iii. la antigüedad de los miembros en el órgano de gobierno; iv. el número de otros cargos y compromisos significativos de cada miembro y la naturaleza de los compromisos; v. género; vi. los grupos sociales infrarrepresentados; vii. las competencias relevantes para los impactos de la organización; viii. la representación de los grupos de interés."
-                  },
-                  {
-                      "estandar_gri": "GRI 2: Contenidos Generales 2021",
-                      "numero_contenido": "2-24",
-                      "contenido": "Integración de la política o los compromisos",
-                      "requerimiento": "La organización debe: a. describir cómo incorpora cada uno de sus compromisos o políticas para una conducta empresarial responsable en todas sus actividades y relaciones comerciales, lo que incluye: i. cómo asigna responsabilidades para aplicar los compromisos en los diferentes niveles de la organización; ii. cómo integra los compromisos en las estrategias organizativas y las políticas y los procedimientos operativos; iii. cómo aplica sus compromisos con sus relaciones comerciales y a través de ellas; iv. la formación sobre la aplicación de los compromisos que imparte la organización."
-                  },
-                  {
-                      "estandar_gri": "GRI 2: Contenidos Generales 2021",
-                      "numero_contenido": "2-25",
-                      "contenido": "Procesos para remediar los impactos negativos",
-                      "requerimiento": "La organización debe: a. describir sus compromisos para proporcionar o colaborar en la remediación de los impactos negativos que la organización reconoce que ha ocasionado o a los que ha contribuido; b. describir su enfoque para identificar y abordar las reclamaciones, incluidos los mecanismos de quejas y reclamación que ha instaurado o en los que participa; c. describir otros procesos mediante los que proporciona o colabora en la remediación de los impactos negativos que la organización reconoce que ha ocasionado o a los que ha contribuido."
-                  },
-                  {
-                      "estandar_gri": "GRI 101: Biodiversidad 2024",
-                      "numero_contenido": "101-1",
-                      "contenido": "Políticas para detener y revertir la pérdida de biodiversidad",
-                      "requerimiento": "La organización debe: a. describir sus políticas o compromisos para detener y revertir la pérdida de biodiversidad, y cómo se fundamentan en los Objetivos para 2050 y en las Metas para 2030 del Marco Mundial de Biodiversidad de Kunming-Montreal; b. presentar información sobre la medida en que estas políticas o compromisos aplican a las actividades de la organización y a sus relaciones comerciales; c. informar los objetivos y las metas para detener y revertir la pérdida de biodiversidad, si se basan en el consenso científico, el año base y los indicadores empleados para evaluar el progreso."
-                  },
-                  {
-                      "estandar_gri": "GRI 101: Biodiversidad 2024",
-                      "numero_contenido": "101-2",
-                      "contenido": "Gestión de los impactos sobre la biodiversidad",
-                      "requerimiento": "La organización debe: a. presentar información sobre cómo aplica la jerarquía de mitigación mediante la descripción de: i. las medidas adoptadas para evitar los impactos negativos sobre la biodiversidad; ii. las medidas adoptadas para minimizar los impactos negativos sobre la biodiversidad que no se pudieron evitar; iii. las medidas adoptadas para restaurar y rehabilitar los ecosistemas afectados, incluidos los objetivos de restauración y rehabilitación, además de cómo participan los grupos de interés en las medidas de restauración y rehabilitación."
-                  },
-                  {
-                      "estandar_gri": "GRI 305: Emisiones 2016",
-                      "numero_contenido": "305-1",
-                      "contenido": "Emisiones directas de GEI (alcance 1)",
-                      "requerimiento": "La organización informante debe presentar la siguiente información: a. Valor bruto de las emisiones directas de GEI (alcance 1) en toneladas métricas de CO■ equivalente. b. Gases incluidos en el cálculo: CO■, CH■, N■O, HFC, PFC, SF■, NF■ o todos. c. Año base para el cálculo, si procede, incluidos: i. la justificación de la selección; ii. las emisiones en el año base; iii. el contexto de cualquier cambio significativo en las emisiones que haya dado lugar a nuevos cálculos de las emisiones en el año base."
-                  },
-                  {
-                      "estandar_gri": "GRI 305: Emisiones 2016",
-                      "numero_contenido": "305-3",
-                      "contenido": "Otras emisiones indirectas de GEI (alcance 3)",
-                      "requerimiento": "La organización informante debe presentar la siguiente información: a. Valor bruto de las otras emisiones indirectas de GEI (alcance 3) en toneladas métricas de CO■ equivalente. b. Si están disponibles, los gases incluidos en el cálculo: CO■, CH■, N■O, HFC, PFC, SF■, NF■ o todos."
-                  },
-                  {
-                      "estandar_gri": "GRI 102: Cambio Climático 2025",
-                      "numero_contenido": "102-1",
-                      "contenido": "Plan de transición para la mitigación del cambio climático",
-                      "requerimiento": "La organización debe: a. describir su plan de transición, incluidas las políticas y las acciones para mitigar el cambio climático; b. describir cómo el plan de transición está alineado con las evidencias científicas más recientes sobre el esfuerzo global necesario para limitar el calentamiento global a 1,5 °C, incluida la fuente de los escenarios de cambio climático usados y las metodologías y los supuestos empleados para elaborar el plan de transición."
-                  },
-                  {
-                      "estandar_gri": "GRI 102: Cambio Climático 2025",
-                      "numero_contenido": "102-8",
-                      "contenido": "Intensidad de las emisiones de GEI",
-                      "requerimiento": "La organización debe: a. indicar la(s) ratio(s) de intensidad de las emisiones de GEI, incluidas las emisiones brutas de GEI en toneladas métricas de CO■ equivalente (numerador) y el parámetro específico de la organización (denominador) elegido para calcular la(s) ratio(s); b. indicar el alcance de las emisiones de GEI incluidas en la(s) ratio(s) de intensidad, ya sean de Alcance 1, Alcance 2 o Alcance 3."
-                  },
-                  {
-                      "estandar_gri": "GRI 103: Energía 2025",
-                      "numero_contenido": "103-1",
-                      "contenido": "Políticas y compromisos en materia de energía",
-                      "requerimiento": "La organización debe: a. describir cómo sus políticas y compromisos en materia de energía contribuyen a la reducción del consumo de energía, la eficiencia energética y la transición hacia fuentes de energía renovables; b. describir los impactos sobre la economía, el medio ambiente y las personas que pueden derivar de su consumo de energía y de la transición hacia fuentes de energía renovables."
-                  }
-              ]
-          },
-          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
-      },
-      {
-          "name": "🔹 Prompt 8: Mapeo SASB Sectorial",
-          "response_content": {
-              "mapeo_sasb": [
-                  {
-                      "sector_s&p": "Software y servicios tecnológicos",
-                      "industria_sasb": "Software"
-                  }
-              ]
-          },
-          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
-      },
-      {
-          "name": "🔹 Prompt 9: Tabla SASB Sectorial",
-          "response_content": {
-              "tabla_sasb": [
-                  {
-                      "industria": "Software",
-                      "tema": "Data Security",
-                      "parametro_contabilidad": "Total number of data breaches",
-                      "categoria": "Risk Management",
-                      "unidad_medida": "Number",
-                      "codigo": "TC-SW-230a.1"
-                  },
-                  {
-                      "industria": "Software",
-                      "tema": "Data Security",
-                      "parametro_contabilidad": "Percentage of data breaches involving personally identifiable information (PII)",
-                      "categoria": "Risk Management",
-                      "unidad_medida": "Percentage",
-                      "codigo": "TC-SW-230a.2"
-                  },
-                  {
-                      "industria": "Software",
-                      "tema": "Employee Diversity",
-                      "parametro_contabilidad": "Percentage of employees by gender and race/ethnicity",
-                      "categoria": "Workforce",
-                      "unidad_medida": "Percentage",
-                      "codigo": "TC-SW-330a.1"
-                  },
-                  {
-                      "industria": "Software",
-                      "tema": "Employee Diversity",
-                      "parametro_contabilidad": "Percentage of new hires from underrepresented groups",
-                      "categoria": "Workforce",
-                      "unidad_medida": "Percentage",
-                      "codigo": "TC-SW-330a.2"
-                  },
-                  {
-                      "industria": "Software",
-                      "tema": "Environmental Footprint",
-                      "parametro_contabilidad": "Total energy consumed",
-                      "categoria": "Energy Management",
-                      "unidad_medida": "Gigajoules (GJ)",
-                      "codigo": "TC-SW-130a.1"
-                  },
-                  {
-                      "industria": "Software",
-                      "tema": "Environmental Footprint",
-                      "parametro_contabilidad": "Percentage of energy consumed from renewable sources",
-                      "categoria": "Energy Management",
-                      "unidad_medida": "Percentage",
-                      "codigo": "TC-SW-130a.2"
-                  },
-                  {
-                      "industria": "Software",
-                      "tema": "Environmental Footprint",
-                      "parametro_contabilidad": "Total greenhouse gas (GHG) emissions",
-                      "categoria": "Emissions",
-                      "unidad_medida": "Metric tons CO2e",
-                      "codigo": "TC-SW-110a.1"
-                  },
-                  {
-                      "industria": "Software",
-                      "tema": "Environmental Footprint",
-                      "parametro_contabilidad": "Percentage of emissions from Scope 1, Scope 2, and Scope 3",
-                      "categoria": "Emissions",
-                      "unidad_medida": "Percentage",
-                      "codigo": "TC-SW-110a.2"
-                  },
-                  {
-                      "industria": "Software",
-                      "tema": "Supply Chain Management",
-                      "parametro_contabilidad": "Percentage of suppliers assessed for environmental impact",
-                      "categoria": "Supply Chain",
-                      "unidad_medida": "Percentage",
-                      "codigo": "TC-SW-440a.1"
-                  },
-                  {
-                      "industria": "Software",
-                      "tema": "Supply Chain Management",
-                      "parametro_contabilidad": "Percentage of suppliers meeting sustainability criteria",
-                      "categoria": "Supply Chain",
-                      "unidad_medida": "Percentage",
-                      "codigo": "TC-SW-440a.2"
-                  }
-              ]
-          },
-          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
-      },
-      {
-          "name": "🔹 Prompt 10: Vinculación Normativa por Tema Material (GAIL)",
-          "response_content": {
-              "regulaciones": [
-                  {
-                      "tipo_regulacion": "Ley General de Equilibrio Ecológico y la Protección al Ambiente",
-                      "descripcion": "La legislación reglamentaria de las disposiciones constitucionales mexicanas relativas a la preservación y restauración del equilibrio ecológico, así como a la protección del ambiente, abarca tanto el territorio nacional como las zonas bajo la soberanía y jurisdicción de la nación.",
-                      "vigencia": "Publicada el 28 de enero de 1988"
-                  },
-                  {
-                      "tipo_regulacion": "Ley General para la Prevención y Gestión Integral de los Residuos",
-                      "descripcion": "Esta ley tiene como objetivo regular la prevención y gestión integral de los residuos, promoviendo su reducción, reutilización y reciclaje, así como la responsabilidad compartida entre los diferentes niveles de gobierno y la sociedad.",
-                      "vigencia": "Publicada el 8 de octubre de 2003"
-                  },
-                  {
-                      "tipo_regulacion": "Ley Federal del Trabajo",
-                      "descripcion": "Las normas laborales buscan alcanzar un equilibrio armónico entre los diversos factores de la producción y promover la justicia social. Su objetivo central es fomentar el trabajo digno y decente en todas las relaciones laborales.",
-                      "vigencia": "Publicada el 1 de abril de 1970"
-                  },
-                  {
-                      "tipo_regulacion": "Ley de Protección de Datos Personales en Posesión de los Particulares",
-                      "descripcion": "Esta ley tiene como objetivo regular el tratamiento de datos personales por parte de particulares, garantizando la privacidad y protección de los datos de las personas.",
-                      "vigencia": "Publicada el 5 de julio de 2010"
-                  },
-                  {
-                      "tipo_regulacion": "Ley de Aguas Nacionales",
-                      "descripcion": "El propósito central de esta legislación es normar de manera efectiva la explotación, uso o aprovechamiento de los recursos hídricos, abarcando aspectos cruciales como su distribución y control.",
-                      "vigencia": "Publicada el 1 de diciembre de 1992"
-                  },
-                  {
-                      "tipo_regulacion": "Ley General de Vida Silvestre",
-                      "descripcion": "El propósito fundamental de esta legislación es instituir la colaboración entre el Gobierno Federal, los gobiernos estatales y municipales, en lo que concierne a la conservación y aprovechamiento sostenible de la vida silvestre y sus hábitats.",
-                      "vigencia": "Publicada el 3 de julio de 2000"
-                  },
-                  {
-                      "tipo_regulacion": "Ley de Bioseguridad de Organismos Genéticamente Modificados",
-                      "descripcion": "La legislación se centra en la regulación detallada de diversas actividades relacionadas con organismos genéticamente modificados (OGM), desde su utilización confinada hasta la liberación comercial.",
-                      "vigencia": "Publicada el 18 de marzo de 2005"
-                  },
-                  {
-                      "tipo_regulacion": "Ley de Protección al Consumidor",
-                      "descripcion": "Esta ley tiene como objetivo proteger los derechos de los consumidores, asegurando prácticas comerciales justas y la transparencia en la información proporcionada a los consumidores.",
-                      "vigencia": "Publicada el 5 de marzo de 1992"
-                  },
-                  {
-                      "tipo_regulacion": "Ley General de Salud",
-                      "descripcion": "La ley establece las bases para la promoción, protección y recuperación de la salud, así como para la regulación de los servicios de salud en el país.",
-                      "vigencia": "Publicada el 7 de febrero de 1984"
-                  },
-                  {
-                      "tipo_regulacion": "Ley de Protección y Defensa al Usuario de Servicios Financieros",
-                      "descripcion": "Esta ley busca proteger los derechos e intereses de los usuarios de servicios financieros, promoviendo la transparencia y la competencia en el sector.",
-                      "vigencia": "Publicada el 1 de enero de 1999"
-                  }
-              ]
-          },
-          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
-      },
-      {
-          "name": "🔹 Prompt 11: Estrategia de Sostenibilidad (Resumen Ejecutivo)",
-          "response_content": {
-              "parrafo_1": "El análisis de doble materialidad realizado para Mercado Libre ha identificado diez temas materiales prioritarios que son fundamentales para su estrategia de sostenibilidad. Estos incluyen la protección de la privacidad, la salud y seguridad del cliente, y la gestión de la diversidad en el lugar de trabajo, entre otros. Las acciones marginales, como la implementación de programas de capacitación en diversidad y la mejora de protocolos de seguridad de datos, son esenciales para abordar los riesgos inmediatos. A su vez, las acciones moderadas, que incluyen la creación de políticas de retención de talento y la promoción de prácticas sostenibles en la cadena de suministro, permitirán a la empresa avanzar hacia un modelo de negocio más resiliente y responsable. Finalmente, las acciones estructurales, como el desarrollo de un plan de transición hacia energías renovables y la integración de la sostenibilidad en la estrategia organizacional, son cruciales para asegurar un impacto positivo a largo plazo en la comunidad y el medio ambiente.",
-              "parrafo_2": "La estrategia de sostenibilidad de Mercado Libre, basada en este análisis, busca no solo mitigar riesgos, sino también aprovechar oportunidades que fortalezcan su posición en el mercado. La alineación con los Objetivos de Desarrollo Sostenible (ODS) y el cumplimiento de regulaciones nacionales refuerzan su compromiso con la responsabilidad social y empresarial. A medida que la empresa avanza en su camino hacia la sostenibilidad, será fundamental monitorear y evaluar continuamente el progreso en estos temas materiales, asegurando que las iniciativas implementadas generen un valor tangible tanto para la organización como para sus grupos de interés."
-          },
-          "thread_id": "thread_hO41Umu9He1pEKjv2xvzGB2R"
+    {
+      "name": "🔹 Prompt 1: Contexto organizacional y Sectorial",
+      "response_content": {
+        "industria": "Walmart de México y C. A. se ubica dentro de la industria de la venta minorista, específicamente en el segmento de venta de productos no alimenticios. Esta industria se caracteriza por su alta competitividad y su constante evolución debido a los cambios en los hábitos de consumo y las preferencias de los clientes. En esta categoría se encuentran no solo productos de uso diario como ropa, electrodomésticos, y artículos para el hogar, sino también productos electrónicos y de tecnología. La industria ha visto un crecimiento significativo en el comercio electrónico, especialmente impulsado por la pandemia de COVID-19, donde los consumidores se han visto forzados a adaptarse y considerar la compra online como una opción viable. Este entorno también ha generado la necesidad de que los retailers desarrollen soluciones logísticas eficientes y enfoques centrados en el cliente que les permitan alcanzar su meta de ventas. La adopción de tecnologías digitales es crucial para el éxito en esta industria, y Walmex ha estado a la vanguardia de esta tendencia, empleando herramientas innovadoras para mejorar la experiencia de compra y manejar su vasta red de operaciones.",
+        "madurez_esg": "Walmart de México y C. A. presenta un nivel de madurez ESG que se ha ido desarrollando a lo largo del tiempo. La empresa ha implementado políticas y prácticas que buscan no solo minimizar su impacto ambiental, sino también promover prácticas sociales y de gobernanza efectivas. En el ámbito ambiental, Walmart de México ha llevado a cabo iniciativas enfocadas en la reducción de emisiones y el uso responsable de recursos, como el agua y la energía, comprometiéndose a alcanzar objetivos concretos de sostenibilidad para el futuro. Además, se trabaja en la promoción de productos sostenibles y el abastecimiento responsable, lo que ayuda a construir una cadena de suministro que apoya a comunidades locales y respeta el medio ambiente. En lo que respecta a la dimensión social, Walmart de México ha abordado temas de diversidad e inclusión en su fuerza laboral, implementando programas de capacitación y desarrollo, lo que refleja un compromiso con el bienestar de sus empleados. También se enfoca en la seguridad y salud laboral, asegurando condiciones seguras para todos sus trabajadores. La gobernanza empresarial en Walmart de México incluye una estructura de gestión clara que promueve la transparencia y la ética en todos los niveles de la organización. La compañía realiza informes regulares sobre su desempeño ESG, permitiendo a los stakeholders evaluar sus objetivos y logros. Sin embargo, la empresa enfrenta desafíos, como la necesidad de continuar mejorando su responsabilidad social en comunidades donde opera y la adaptación a las expectativas cambiantes de consumidores cada vez más informados. En los próximos años, Walmart de México reconocerá la importancia de asegurar que sus prácticas ESG se integren en toda la organización, alineándose con las mejores prácticas globales y estableciendo metas ambiciosas que reflejen su compromiso a largo plazo con la sostenibilidad y la responsabilidad social.",
+        "cadena_valor": "La cadena de valor de Walmart de México y C. A. se fundamenta en varias actividades interconectadas que generan valor desde la adquisición hasta la venta de productos al consumidor final. Comienza con la adquisición y gestión de proveedores, donde se busca establecer relaciones colaborativas con marcas y productores que cumplan con los estándares de calidad y sostenibilidad de la empresa. Esto incluye un enfoque en la compra de productos locales, que no solo apoya a la economía local, sino que también reduce las emisiones de carbono asociadas al transporte de mercancías. Una vez que los productos son adquiridos, la empresa optimiza su cadena de suministro mediante sistemas logísticos avanzados y tecnología que permite un manejo eficiente de inventarios y distribución. También invierte en infraestructura, como centros de distribución que están ubicados estratégicamente para maximizar el alcance a los puntos de venta. A nivel de venta, Walmart de México utiliza múltiples formatos de tiendas, lo que le permite atender de manera efectiva a diferentes segmentos de mercado y adaptarse rápidamente a cambios en la demanda del consumidor. La empresa integra una mezcla de estrategias de marketing, atención al cliente y e-commerce que optimizan la experiencia de compra para sus clientes. Además, Walmart de México busca generar valor a través de su compromiso con la sostenibilidad, implementando prácticas que promueven el respeto al medio ambiente, y buscando constantemente la mejora en sus operaciones para reducir el impacto ambiental. Al final de la cadena de valor, la atención y satisfacción del cliente son prioritarias, lo que implica un sistema de retroalimentación que permite a la empresa responder ante las necesidades y expectativas de los consumidores, asegurando así su lealtad y contribuyendo al crecimiento continuo de la compañía.",
+        "modelo_negocio": "Walmart de México y C. A. adopta un modelo de negocio de venta al por menor que se centra en la distribución y venta de productos de consumo masivo a precios competitivos. Utiliza una estrategia de precios bajos todos los días, lo que atrae a un amplia base de clientes en el país. La compañía combina tiendas físicas con un robusto componente de comercio electrónico, lo que permite a los consumidores comprar tanto en persona como online. Su enfoque también incluye promociones y descuentos especiales para atraer a los consumidores. Walmart de México ha invertido significativamente en su infraestructura logística para optimizar la cadena de suministro y garantizar la disponibilidad de productos en sus estanterías. Asimismo, busca la sostenibilidad a través de sus prácticas de aprovisionamiento responsable y el compromiso con iniciativas de reducción de residuos. El modelo de negocio de Walmart de México se basa en un enfoque integral que aborda tanto la satisfacción del cliente como la creación de valor a largo plazo para todas las partes interesadas, esforzándose por mantener un equilibrio entre la rentabilidad y la responsabilidad social.",
+        "nombre_empresa": "Walmart de México y C. A. es una de las cadenas de retail más grande e influyente en México, perteneciente al grupo Walmart, que se reconoció a nivel mundial como líder en la venta minorista. La empresa se estableció en 1991 y ha crecido de manera significativa a lo largo de las décadas, hasta convertirse en un pilar fundamental de la economía mexicana. Walmart de México opera con la misión de ser el minorista más confiable, ofreciendo una amplia variedad de productos y precios competitivos a sus consumidores. Además de su enfoque en precios bajos, la empresa también busca generar un impacto social positivo a través de su compromiso con la sostenibilidad y la integración de prácticas responsables en su modelo de negocio. A través de innovaciones tecnológicas y un enfoque centrado en el cliente, Walmart de México sigue adaptándose a un entorno retail en constante cambio, mejorando continuamente la experiencia de compra y la eficiencia operativa. La compañía se enfrenta a la competencia de otros retailers, pero su sólida presencia y profundo conocimiento del mercado mexicano la posicionan como líder en el sector.",
+        "pais_operacion": "México. Walmart de México y C. A. opera en un entorno dominante de retail en el país, donde se ha posicionado como el líder del sector a través de una vasta red de tiendas que incluyen supermercados, tiendas de membresía, y tiendas de descuento. La empresa adopta una modalidad operativa que se centra en la eficiencia logística y la transparencia en la cadena de suministro, lo que le permite ofrecer una amplia gama de productos a precios competitivos. Con un fuerte énfasis en la digitalización y el uso de tecnología, Walmart de México se adapta a las nuevas tendencias del mercado y a las demandas cambiantes de los consumidores. La empresa también ha implementado iniciativas para mejorar su sostenibilidad, promoviendo prácticas responsables en sus operaciones y generando valor para sus clientes y comunidades. De esta manera, Walmart de México se asegura de mantener su posición relevante en el mercado, satisfaciendo las expectativas de los consumidores y contribuyendo al desarrollo sostenible del país.",
+        "tamano_empresa": "Walmart de México y C. A. tiene un tamaño considerable, siendo una de las empresas más grandes en el sector retail de México. En términos de ingresos, Walmart de México reportó ventas por miles de millones de pesos anualmente, lo que refleja su capacidad de penetración en el mercado y la lealtad de sus clientes. La compañía emplea a más de 200,000 personas en el país, lo que la convierte en un empleador clave en el mercado laboral mexicano. Además, Walmart de México cuenta con múltiples formatos de tiendas, que incluyen más de 3,000 unidades de diversos tipos en el territorio nacional, desde tiendas de autoservicio hasta supermercados y clubes de precios. La escala de operaciones de Walmart de México le permite aprovechar economías de escala y establecer relaciones sólidas con proveedores, lo que contribuye a su competitividad en el mercado. A medida que la firma continúa expandiendo su oferta y mejorando su logística, se mantiene en una posición privilegiada dentro de la industria.",
+        "ubicacion_geografica": "Walmart de México y C. A. opera en todo el territorio mexicano, con tiendas en prácticamente todos los estados y muchas de las principales ciudades del país. Su red de distribución está optimizada para asegurar que los productos llegan a los consumidores de manera eficiente, y las ubicaciones de las tiendas están estratégicamente seleccionadas para maximizar el acceso de los clientes. La empresa también ha comenzado a integrar cada vez más el comercio electrónico en sus operaciones, facilitando servicios de entrega a domicilio y recogida en las tiendas. Esto le permite a Walmart de México adaptarse a las necesidades de los consumidores contemporáneos, que buscan comodidad y rapidez en sus compras. Además, la empresa se enfrenta a diferentes realidades socioeconómicas en las diversas regiones del país, lo que la obliga a ajustar su oferta y prácticas comerciales para satisfacer las demandas específicas de cada comunidad. En resumen, la ubicación geográfica de Walmart de México es un factor clave en su éxito y en su capacidad de ofrecer servicios de calidad a millones de consumidores en el país.",
+        "actividades_principales": "Las actividades principales de Walmart de México y C. A. son diversas y abarcan todas las fases de su operación como retailer. Primero, la empresa se enfoca en la planificación y abastecimiento de productos de consumo, lo cual incluye colaborar con proveedores para asegurar la calidad y sostenibilidad de los productos. Esto implica la identificación de tendencias de consumo y la adaptación de su oferta para satisfacer estas demandas. En términos de logística, Walmart de México invierte en infraestructura moderna y eficiente que le permite mantener un sistema de distribución robusto, facilitando la entrega oportuna a sus puntos de venta. Sus operaciones de venta al por menor se caracterizan por una experiencia de compra integral en donde se combina la experiencia física con el comercio electrónico, dando a los clientes opciones flexibles para adquirir productos. Además, la gestión del punto de venta incluye la atención al cliente, personal capacitado y servicios adicionales como entregas a domicilio. También se realizan actividades enfocadas a la comunicación y promoción, donde Walmart de México utiliza campañas de marketing tanto tradicionales como digitales, adaptándose a las preferencias de su audiencia. Otra área vital es la responsabilidad social y sostenibilidad, donde se implementan programas y prácticas para reducir el impacto ambiental y fomentar una cultura de responsabilidad dentro de la organización. Por último, la recopilación y análisis de datos de clientes son cruciales para desarrollar estrategias de negocio, fortalecer la relación con los consumidores y anticipar sus necesidades, lo que contribuye a la lealtad y rentabilidad a largo plazo de la empresa.",
+        "stakeholders_relevantes": "Walmart de México y C. A. tiene una amplia gama de stakeholders relevantes que impactan y son impactados por las operaciones de la empresa. Entre los más destacados se encuentran los clientes, quienes son el centro de su modelo de negocio y a quienes debe satisfacer en términos de calidad, precio y experiencia de compra. Los empleados también son fundamentales, ya que la compañía depende de su talento y dedicación para operar eficazmente y cumplir sus objetivos comerciales. Además, los proveedores forman una parte vital de su cadena de suministro, y Walmart busca establecer relaciones de colaboración con ellos para asegurar la calidad y sostenibilidad de los productos. A los reguladores y organismos gubernamentales les interesa la compliance y el impacto social y ambiental de la empresa, lo que influye en las políticas y prácticas que Walmart de México implementa. Finalmente, las comunidades donde opera son stakeholders cruciales, dado que la empresa tiene un efecto significativo en su entorno social y económico. Walmart de México está obligada a mantener relaciones transparentes y se espera su contribución al desarrollo local, por lo que su interacción con estos grupos es esencial para asegurar su éxito y el de sus iniciativas de sostenibilidad."
       }
+    },
+    {
+      "name": "🔹 Prompt 2: Identificación de Impactos (basado en S&P)",
+      "response_content": {
+        "exhausted": false,
+        "materiality_table": [
+          {
+            "temas": "Condiciones laborales",
+            "sector": "Venta minorista - No alimenticios",
+            "riesgos": "(1) Riesgo de desmotivación y alta rotación de personal por falta de bienestar o reconocimiento; (2) Pérdida de productividad y reputación ante malas condiciones de trabajo.",
+            "oportunidades": "(1) Incremento de satisfacción y desempeño al promover bienestar laboral; (2) Reducción de rotación y fortalecimiento del compromiso del personal.",
+            "accióninicial": "Acción: Realizar encuestas de satisfacción laboral; Descripción: Aplicar encuestas semestrales en tiendas y bodegas para conocer el nivel de satisfacción, clima laboral y liderazgo percibido. Pasos: 1) Diseñar cuestionario confidencial; 2) Analizar resultados por área; 3) Comunicar acciones derivadas. Resultado esperado: Diagnóstico continuo del clima laboral y mejora en motivación del equipo.",
+            "acciónmoderada": "Acción: Establecer metas e indicadores de bienestar; Descripción: Crear un sistema de metas ligadas al bienestar laboral y monitorearlas como parte de los objetivos de desempeño de cada área. Pasos: 1) Definir KPIs de bienestar; 2) Incluirlos en evaluaciones; 3) Reportar avances trimestralmente. Resultado esperado: Cultura orientada al bienestar medible.",
+            "acciónestructural": "Acción: Diseñar modelo integral de gestión laboral; Descripción: Implementar un modelo que combine flexibilidad, participación activa y beneficios diferenciados según las necesidades del personal. Pasos: 1) Levantar diagnóstico de necesidades; 2) Diseñar programa de beneficios; 3) Evaluar impacto anual. Resultado esperado: Entorno laboral saludable y sostenible.",
+            "materialidadfinanciera": "Alta",
+            "valormaterialidadfinanciera": 5
+          },
+          {
+            "temas": "Prácticas laborales",
+            "sector": "Venta minorista - No alimenticios",
+            "riesgos": "(1) Riesgo legal y reputacional por contratos irregulares o falta de cumplimiento en subcontratistas; (2) Aumento de conflictos laborales y rotación por falta de claridad en derechos.",
+            "oportunidades": "(1) Reputación fortalecida por condiciones laborales transparentes; (2) Estabilidad operativa al asegurar cumplimiento en toda la cadena.",
+            "accióninicial": "Acción: Formalizar contratos y jornadas; Descripción: Garantizar contratos escritos para personal temporal, asegurando transparencia en jornadas, descansos y remuneraciones. Pasos: 1) Revisar contratos existentes; 2) Actualizar políticas internas; 3) Supervisar cumplimiento. Resultado esperado: Cumplimiento legal y relaciones laborales estables.",
+            "acciónmoderada": "Acción: Auditar contratistas y proveedores laborales; Descripción: Realizar auditorías a proveedores y contratistas logísticos para verificar cumplimiento de normas laborales y de seguridad. Pasos: 1) Definir criterios de evaluación; 2) Ejecutar auditorías periódicas; 3) Implementar planes correctivos. Resultado esperado: Cadena laboral responsable y verificable.",
+            "acciónestructural": "Acción: Implementar trazabilidad laboral integral; Descripción: Desarrollar un sistema digital que rastree condiciones laborales en toda la cadena de suministro, incluyendo contratistas. Pasos: 1) Crear base de datos integrada; 2) Cargar evidencias de cumplimiento; 3) Publicar reportes anuales. Resultado esperado: Transparencia laboral y liderazgo ético en el sector.",
+            "materialidadfinanciera": "Alta",
+            "valormaterialidadfinanciera": 5
+          },
+          {
+            "temas": "Salud y seguridad del cliente",
+            "sector": "Venta minorista - No alimenticios",
+            "riesgos": "(1) Riesgo de accidentes o lesiones de clientes en tiendas por señalización inadecuada o emergencias mal gestionadas; (2) Pérdida de reputación y sanciones legales por incumplimiento de normas de seguridad.",
+            "oportunidades": "(1) Reputación fortalecida como marca segura y confiable; (2) Reducción de incidentes y costos asociados a indemnizaciones.",
+            "accióninicial": "Acción: Reforzar protocolos de seguridad en tiendas; Descripción: Actualizar los protocolos de seguridad en áreas de alto tránsito, incluyendo señalización y mantenimiento preventivo. Pasos: 1) Inspeccionar puntos críticos; 2) Actualizar señalética; 3) Comunicar protocolos al personal. Resultado esperado: Prevención efectiva de accidentes y cumplimiento normativo.",
+            "acciónmoderada": "Acción: Capacitar personal en emergencias; Descripción: Formar al personal en atención de emergencias y primeros auxilios para reaccionar de manera rápida y efectiva ante incidentes. Pasos: 1) Desarrollar plan de capacitación; 2) Ejecutar talleres prácticos; 3) Evaluar desempeño en simulacros. Resultado esperado: Personal preparado y respuesta ágil ante emergencias.",
+            "acciónestructural": "Acción: Diseñar tiendas seguras y accesibles; Descripción: Rediseñar los espacios comerciales considerando accesibilidad universal, seguridad y experiencia del cliente. Pasos: 1) Evaluar diseño actual; 2) Incorporar mejoras arquitectónicas; 3) Certificar tiendas seguras. Resultado esperado: Entornos inclusivos y seguros que fortalecen la confianza del consumidor.",
+            "materialidadfinanciera": "Alta",
+            "valormaterialidadfinanciera": 5
+          },
+          {
+            "temas": "Productos y servicios sostenibles",
+            "sector": "Venta minorista - No alimenticios",
+            "riesgos": "(1) Riesgo de pérdida de competitividad ante consumidores conscientes si no se amplía la oferta sostenible; (2) Riesgo reputacional por no demostrar trazabilidad ambiental.",
+            "oportunidades": "(1) Diferenciación de marca y atracción de nuevos segmentos de consumidores sostenibles; (2) Acceso a mercados preferenciales y certificaciones verdes.",
+            "accióninicial": "Acción: Etiquetar productos con atributos sostenibles; Descripción: Incluir etiquetas visibles que destaquen materiales reciclados, comercio justo o bajo impacto ambiental para sensibilizar a los consumidores. Pasos: 1) Identificar productos elegibles; 2) Diseñar etiquetas estandarizadas; 3) Comunicar atributos en punto de venta. Resultado esperado: Mayor visibilidad de productos responsables y educación al consumidor.",
+            "acciónmoderada": "Acción: Aumentar surtido de productos certificados; Descripción: Ampliar la oferta de productos con certificaciones sostenibles (FSC, Ecolabel, Comercio Justo) y priorizar proveedores comprometidos con buenas prácticas. Pasos: 1) Identificar categorías potenciales; 2) Negociar con nuevos proveedores; 3) Lanzar campañas de promoción. Resultado esperado: Portafolio diversificado y sostenible.",
+            "acciónestructural": "Acción: Desarrollar marcas propias sostenibles; Descripción: Crear líneas de marca propia con trazabilidad ambiental y social desde su diseño, involucrando productores locales y auditorías externas. Pasos: 1) Definir criterios de sostenibilidad; 2) Diseñar procesos de trazabilidad; 3) Auditar resultados anualmente. Resultado esperado: Marcas diferenciadas con impacto positivo medible.",
+            "materialidadfinanciera": "Alta",
+            "valormaterialidadfinanciera": 5
+          },
+          {
+            "temas": "Marketing responsable y etiquetado",
+            "sector": "Venta minorista - No alimenticios",
+            "riesgos": "(1) Riesgo de sanciones regulatorias o pérdida de confianza por mensajes engañosos; (2) Reputación afectada por campañas sin ética o alineación con sostenibilidad.",
+            "oportunidades": "(1) Fidelización del cliente al comunicar con transparencia; (2) Fortalecimiento del posicionamiento de marca como referente ético.",
+            "accióninicial": "Acción: Verificar cumplimiento normativo en promociones; Descripción: Revisar campañas y materiales promocionales para asegurar cumplimiento legal y evitar declaraciones falsas o ambiguas. Pasos: 1) Auditar material publicitario; 2) Validar con asesoría legal; 3) Registrar aprobación antes de lanzamiento. Resultado esperado: Comunicación responsable y cumplimiento normativo.",
+            "acciónmoderada": "Acción: Crear política de marketing responsable; Descripción: Establecer una política corporativa que regule la comunicación con enfoque ético, salud mental e inclusión. Pasos: 1) Redactar la política; 2) Capacitar equipos de marketing; 3) Publicar en sitio web corporativo. Resultado esperado: Estrategia coherente y respetuosa con los valores de la empresa.",
+            "acciónestructural": "Acción: Rediseñar estrategia de marca sostenible; Descripción: Reposicionar la marca integrando sostenibilidad, diversidad y bienestar como pilares centrales de comunicación. Pasos: 1) Analizar percepciones actuales; 2) Redefinir mensajes clave; 3) Medir impacto reputacional. Resultado esperado: Marca inspiradora y alineada con valores contemporáneos.",
+            "materialidadfinanciera": "Media",
+            "valormaterialidadfinanciera": 2.5
+          },
+          {
+            "temas": "Riesgo de transición climática",
+            "sector": "Venta minorista - No alimenticios",
+            "riesgos": "(1) Aumento de costos por energía no renovable y regulaciones de carbono; (2) Pérdida de contratos con clientes o inversionistas que exigen descarbonización.",
+            "oportunidades": "(1) Ahorros a largo plazo mediante eficiencia energética; (2) Mejora del acceso a financiamiento verde y reputación ambiental.",
+            "accióninicial": "Acción: Medir consumo energético y emisiones; Descripción: Implementar medición de consumo energético y huella de carbono en tiendas y centros logísticos. Pasos: 1) Instalar medidores inteligentes; 2) Calcular emisiones por alcance; 3) Publicar reportes anuales. Resultado esperado: Diagnóstico energético para la reducción de emisiones.",
+            "acciónmoderada": "Acción: Establecer metas de reducción de emisiones; Descripción: Definir objetivos de reducción de emisiones en transporte, refrigeración y logística, alineados con estándares internacionales. Pasos: 1) Validar metas con SBTi; 2) Implementar plan de eficiencia; 3) Monitorear resultados. Resultado esperado: Estrategia climática medible y verificable.",
+            "acciónestructural": "Acción: Transformar operaciones a carbono neutralidad; Descripción: Desarrollar un plan integral de transición energética con energías limpias y mejoras tecnológicas en toda la cadena. Pasos: 1) Identificar puntos de mayor consumo; 2) Invertir en energías renovables; 3) Certificar carbono neutralidad. Resultado esperado: Operaciones sostenibles y competitivas globalmente.",
+            "materialidadfinanciera": "Media",
+            "valormaterialidadfinanciera": 2.5
+          },
+          {
+            "temas": "Residuos y reciclaje",
+            "sector": "Venta minorista - No alimenticios",
+            "riesgos": "(1) Riesgo de sanciones y aumento de costos por manejo inadecuado de residuos y empaques; (2) Daño reputacional por operaciones que generen alto volumen de desechos.",
+            "oportunidades": "(1) Ahorro en costos y mejora de eficiencia operativa al optimizar el uso de materiales; (2) Reputación positiva como empresa comprometida con la economía circular.",
+            "accióninicial": "Acción: Separar residuos reciclables; Descripción: Implementar sistemas de separación de residuos en tiendas y oficinas administrativas para cumplir normativas locales y reducir el impacto ambiental. Pasos: 1) Identificar tipos de residuos; 2) Instalar contenedores diferenciados; 3) Monitorear cumplimiento mensual. Resultado esperado: Reducción del volumen de residuos enviados a vertedero.",
+            "acciónmoderada": "Acción: Establecer metas de reducción post-consumo; Descripción: Definir objetivos anuales de reducción de residuos post-consumo y de empaques, involucrando a proveedores en el rediseño. Pasos: 1) Cuantificar residuos actuales; 2) Fijar metas realistas; 3) Publicar resultados. Resultado esperado: Transparencia y progreso continuo hacia la reducción de residuos.",
+            "acciónestructural": "Acción: Integrar logística inversa y rediseñar empaques; Descripción: Desarrollar un sistema de retorno y rediseño de productos con materiales reutilizables, modulares o reparables. Pasos: 1) Mapear flujos de materiales; 2) Establecer acuerdos con clientes y proveedores; 3) Evaluar indicadores de circularidad. Resultado esperado: Cadena de valor circular y sostenible.",
+            "materialidadfinanciera": "Media",
+            "valormaterialidadfinanciera": 2.5
+          },
+          {
+            "temas": "Salud y seguridad de los trabajadores",
+            "sector": "Venta minorista - No alimenticios",
+            "riesgos": "(1) Riesgo de accidentes laborales y ausentismo por ergonomía deficiente; (2) Sanciones legales por incumplir normativas de seguridad ocupacional.",
+            "oportunidades": "(1) Reducción de accidentes y mejora del bienestar laboral; (2) Reputación fortalecida como empleador responsable.",
+            "accióninicial": "Acción: Capacitar en ergonomía y prevención; Descripción: Implementar capacitaciones regulares sobre posturas adecuadas, manipulación segura y uso correcto de equipos en bodegas. Pasos: 1) Diseñar programa de formación; 2) Capacitar por áreas de riesgo; 3) Evaluar desempeño semestral. Resultado esperado: Disminución de lesiones y mejora del bienestar físico.",
+            "acciónmoderada": "Acción: Implementar protocolos y chequeos de salud; Descripción: Establecer monitoreos médicos y controles preventivos para trabajadores expuestos a esfuerzos físicos repetitivos. Pasos: 1) Identificar grupos de riesgo; 2) Programar exámenes periódicos; 3) Registrar resultados en base de datos. Resultado esperado: Detección temprana de enfermedades ocupacionales.",
+            "acciónestructural": "Acción: Automatizar tareas y rediseñar estaciones; Descripción: Sustituir procesos repetitivos o pesados por automatización y rediseñar estaciones según criterios ergonómicos y bienestar. Pasos: 1) Mapear procesos críticos; 2) Adquirir soluciones automatizadas; 3) Medir impacto en seguridad. Resultado esperado: Mayor productividad y entorno laboral seguro.",
+            "materialidadfinanciera": "Media",
+            "valormaterialidadfinanciera": 2.5
+          },
+          {
+            "temas": "Protección de la privacidad",
+            "sector": "Venta minorista - No alimenticios",
+            "riesgos": "(1) Riesgo de sanciones regulatorias o pérdida de clientes por fallas en protección de datos; (2) Daños reputacionales ante filtraciones o uso indebido de información.",
+            "oportunidades": "(1) Fidelización y confianza del cliente por cumplimiento riguroso de privacidad; (2) Ventaja competitiva mediante certificaciones internacionales.",
+            "accióninicial": "Acción: Actualizar políticas de privacidad; Descripción: Revisar y actualizar las políticas de privacidad en ecommerce y apps, asegurando claridad, consentimiento informado y cumplimiento legal. Pasos: 1) Auditar políticas actuales; 2) Redactar versiones actualizadas; 3) Publicar y comunicar cambios. Resultado esperado: Cumplimiento normativo y confianza digital.",
+            "acciónmoderada": "Acción: Establecer procedimientos internos de gestión de datos; Descripción: Crear protocolos claros de manejo, almacenamiento y acceso a datos personales con formación obligatoria al personal. Pasos: 1) Diseñar manual de procedimientos; 2) Capacitar equipos de atención y marketing; 3) Realizar auditorías semestrales. Resultado esperado: Cultura organizacional basada en ética digital.",
+            "acciónestructural": "Acción: Certificarse en estándares internacionales; Descripción: Implementar controles y rediseñar la arquitectura digital siguiendo principios de “privacy by design”, buscando certificaciones ISO 27701 o equivalentes. Pasos: 1) Diagnosticar brechas; 2) Incorporar mejoras tecnológicas; 3) Obtener certificación. Resultado esperado: Protección avanzada de datos y liderazgo en confianza digital.",
+            "materialidadfinanciera": "Media",
+            "valormaterialidadfinanciera": 2.5
+          },
+          {
+            "temas": "Impacto en las comunidades",
+            "sector": "Venta minorista - No alimenticios",
+            "riesgos": "(1) Riesgo de pérdida de licencia social por operar sin generar beneficios locales; (2) Conflictos sociales por falta de integración o comunicación con comunidades.",
+            "oportunidades": "(1) Fortalecimiento de reputación y relaciones comunitarias; (2) Generación de valor compartido y fidelidad local.",
+            "accióninicial": "Acción: Donar productos no vendidos; Descripción: Establecer un programa permanente de donación de productos en buen estado a organizaciones sociales y fundaciones. Pasos: 1) Crear protocolo de donación; 2) Seleccionar aliados; 3) Monitorear resultados. Resultado esperado: Reducción de desperdicio y apoyo a comunidades vulnerables.",
+            "acciónmoderada": "Acción: Establecer programas de formación o empleo joven; Descripción: Crear programas de inserción laboral y capacitación para jóvenes de comunidades cercanas a tiendas. Pasos: 1) Identificar perfiles locales; 2) Desarrollar contenidos de formación; 3) Evaluar empleabilidad. Resultado esperado: Inclusión laboral y fortalecimiento de capital humano local.",
+            "acciónestructural": "Acción: Rediseñar estrategia territorial de valor local; Descripción: Incorporar proveedores comunitarios y alianzas con actores locales en la estrategia comercial para impulsar economías regionales. Pasos: 1) Mapear aliados locales; 2) Firmar convenios de largo plazo; 3) Reportar resultados sociales. Resultado esperado: Desarrollo económico local sostenible y legitimidad social.",
+            "materialidadfinanciera": "Media",
+            "valormaterialidadfinanciera": 2.5
+          },
+          {
+            "temas": "Contaminación",
+            "sector": "Venta minorista - No alimenticios",
+            "riesgos": "(1) Riesgo de sanciones ambientales por emisiones o vertimientos fuera de norma; (2) Daños reputacionales por contaminación visible o incidentes ambientales.",
+            "oportunidades": "(1) Ahorros en costos de mantenimiento y energía al optimizar procesos; (2) Reputación ambiental fortalecida por adopción de tecnologías limpias.",
+            "accióninicial": "Acción: Identificar y controlar derrames o emisiones; Descripción: Realizar inspecciones preventivas en zonas logísticas para evitar fugas y derrames de sustancias. Pasos: 1) Elaborar plan de control ambiental; 2) Asignar responsables; 3) Reportar incidentes. Resultado esperado: Operación más limpia y segura.",
+            "acciónmoderada": "Acción: Medir y reportar emisiones; Descripción: Instalar sistemas de medición de emisiones y efluentes, reportando resultados a autoridades y comunidades. Pasos: 1) Instalar sensores; 2) Monitorear indicadores mensuales; 3) Publicar resultados. Resultado esperado: Cumplimiento regulatorio y transparencia ambiental.",
+            "acciónestructural": "Acción: Rediseñar procesos para eliminar fuentes de contaminación; Descripción: Sustituir materiales y tecnologías contaminantes por alternativas limpias, mitigando pasivos históricos. Pasos: 1) Evaluar procesos críticos; 2) Invertir en tecnologías limpias; 3) Implementar restauración ambiental. Resultado esperado: Operaciones sostenibles y libres de contaminación.",
+            "materialidadfinanciera": "Baja",
+            "valormaterialidadfinanciera": 1
+          },
+          {
+            "temas": "Riesgo climático físico",
+            "sector": "Venta minorista - No alimenticios",
+            "riesgos": "(1) Riesgo de interrupciones logísticas o pérdidas de inventario por eventos climáticos extremos; (2) Incremento de costos por daños en infraestructura vulnerable.",
+            "oportunidades": "(1) Continuidad operativa mediante infraestructura resiliente; (2) Acceso a financiamiento verde por inversiones en adaptación climática.",
+            "accióninicial": "Acción: Evaluar vulnerabilidad de instalaciones; Descripción: Analizar el riesgo climático de instalaciones logísticas ante eventos extremos como inundaciones o olas de calor. Pasos: 1) Recopilar información meteorológica; 2) Evaluar exposición de cada instalación; 3) Clasificar riesgos. Resultado esperado: Diagnóstico de vulnerabilidad física.",
+            "acciónmoderada": "Acción: Ajustar protocolos de abastecimiento según riesgos; Descripción: Adaptar el sistema de abastecimiento y transporte para garantizar continuidad ante contingencias climáticas. Pasos: 1) Identificar rutas críticas; 2) Crear planes de contingencia; 3) Simular escenarios. Resultado esperado: Mayor resiliencia de la cadena logística.",
+            "acciónestructural": "Acción: Relocalizar centros logísticos y rediseñar infraestructura; Descripción: Trasladar instalaciones críticas y aplicar criterios de resiliencia climática en nuevos proyectos. Pasos: 1) Priorizar inversiones; 2) Diseñar infraestructura adaptada; 3) Supervisar ejecución. Resultado esperado: Infraestructura segura y preparada ante el cambio climático.",
+            "materialidadfinanciera": "Baja",
+            "valormaterialidadfinanciera": 1
+          },
+          {
+            "temas": "Acceso y asequibilidad",
+            "sector": "Venta minorista - No alimenticios",
+            "riesgos": "(1) Riesgo de exclusión de consumidores vulnerables por precios altos o surtido limitado; (2) Pérdida de reputación por falta de compromiso con la equidad económica.",
+            "oportunidades": "(1) Expansión de la base de clientes y fidelización mediante productos accesibles; (2) Posicionamiento como empresa inclusiva y socialmente responsable.",
+            "accióninicial": "Acción: Ofrecer productos esenciales a precios accesibles; Descripción: Implementar descuentos y precios sociales en productos básicos para segmentos de bajos ingresos. Pasos: 1) Analizar elasticidad de precios; 2) Definir lista de productos prioritarios; 3) Evaluar impacto comercial y social. Resultado esperado: Incremento del acceso equitativo a productos esenciales.",
+            "acciónmoderada": "Acción: Crear marcas propias de bajo costo; Descripción: Desarrollar líneas de productos accesibles con estándares mínimos de calidad y sostenibilidad, priorizando proveedores locales. Pasos: 1) Identificar categorías de alto consumo; 2) Diseñar formulaciones y empaques simples; 3) Lanzar campañas de comunicación inclusiva. Resultado esperado: Oferta competitiva y socialmente responsable.",
+            "acciónestructural": "Acción: Rediseñar surtido y estrategia de precios; Descripción: Ajustar la política de surtido y precios considerando criterios de equidad e impacto social, garantizando calidad y sostenibilidad. Pasos: 1) Analizar estructura de precios por región; 2) Establecer criterios de inclusión; 3) Reportar avances públicos. Resultado esperado: Inclusión económica y fidelización a largo plazo.",
+            "materialidadfinanciera": "Baja",
+            "valormaterialidadfinanciera": 1
+          },
+          {
+            "temas": "Agua",
+            "sector": "Venta minorista - No alimenticios",
+            "riesgos": "(1) Riesgo de sanciones por consumo excesivo o fugas no controladas; (2) Reputación negativa en comunidades por uso ineficiente del recurso hídrico.",
+            "oportunidades": "(1) Ahorros operativos por eficiencia hídrica; (2) Mejora de reputación por compromiso con el uso responsable del agua.",
+            "accióninicial": "Acción: Monitorear consumo de agua; Descripción: Implementar sistemas de monitoreo para registrar el consumo en sanitarios, refrigeración y limpieza, detectando fugas tempranas. Pasos: 1) Instalar medidores; 2) Analizar consumo mensual; 3) Reparar fugas detectadas. Resultado esperado: Disminución del consumo y cumplimiento regulatorio.",
+            "acciónmoderada": "Acción: Instalar sistemas de bajo consumo; Descripción: Sustituir grifería, sanitarios y equipos por versiones de alta eficiencia hídrica en todas las tiendas. Pasos: 1) Auditar equipos existentes; 2) Planificar reemplazos progresivos; 3) Verificar ahorro post implementación. Resultado esperado: Eficiencia hídrica y reducción de costos.",
+            "acciónestructural": "Acción: Reutilizar aguas grises y establecer metas; Descripción: Implementar sistemas de reutilización de aguas grises y fijar metas de reducción de consumo en operaciones. Pasos: 1) Diseñar infraestructura; 2) Instalar sistemas piloto; 3) Medir y comunicar resultados. Resultado esperado: Gestión sostenible y reputación positiva en comunidades.",
+            "materialidadfinanciera": "Baja",
+            "valormaterialidadfinanciera": 1
+          },
+          {
+            "temas": "Biodiversidad y uso de recursos",
+            "sector": "Venta minorista - No alimenticios",
+            "riesgos": "(1) Riesgo de sanciones o pérdida de certificaciones por uso de materiales asociados a deforestación; (2) Impactos negativos en ecosistemas y reputación de marca.",
+            "oportunidades": "(1) Reputación reforzada por abastecimiento responsable; (2) Acceso a mercados verdes mediante prácticas regenerativas.",
+            "accióninicial": "Acción: Evitar productos con materiales de alto impacto; Descripción: Auditar proveedores para excluir productos que provengan de prácticas destructivas como minería o tala no sostenible. Pasos: 1) Evaluar origen de materiales; 2) Actualizar políticas de compra; 3) Sustituir proveedores críticos. Resultado esperado: Surtido libre de impactos ambientales negativos.",
+            "acciónmoderada": "Acción: Priorizar materias primas certificadas; Descripción: Ampliar la compra de materias primas certificadas (FSC, RSPO, Fair Trade) y garantizar trazabilidad ambiental. Pasos: 1) Definir metas de compra responsable; 2) Verificar certificados; 3) Publicar resultados. Resultado esperado: Mayor transparencia y confianza del consumidor.",
+            "acciónestructural": "Acción: Rediseñar surtido con enfoque regenerativo; Descripción: Reestructurar la oferta de productos bajo criterios de regeneración y biodiversidad positiva, priorizando cadenas locales y sostenibles. Pasos: 1) Identificar productos de alto impacto; 2) Desarrollar alternativas regenerativas; 3) Evaluar impacto ecológico. Resultado esperado: Contribución activa a la protección de ecosistemas.",
+            "materialidadfinanciera": "Baja",
+            "valormaterialidadfinanciera": 1
+          }
+        ]
+      }
+    },
+    {
+      "name": "🔹 Prompt 3: Evaluación de Impactos",
+      "response_content": {
+        "resumen_sector": "El sector de venta minorista no alimenticios, según S&P, muestra una intersección de temas financieros, sociales y ambientales impactantes, resaltando la necesidad de adaptabilidad y sostenibilidad en un mercado consciente.",
+        "materiality_table": [
+          {
+            "tema": "Condiciones laborales",
+            "sector": "Venta minorista - No alimenticios",
+            "tipo_impacto": "Positivo",
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Alta",
+            "valor_materialidad_financiera": "5"
+          },
+          {
+            "tema": "Prácticas laborales",
+            "sector": "Venta minorista - No alimenticios",
+            "tipo_impacto": "Positivo",
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Alta",
+            "valor_materialidad_financiera": "5"
+          },
+          {
+            "tema": "Salud y seguridad del cliente",
+            "sector": "Venta minorista - No alimenticios",
+            "tipo_impacto": "Positivo",
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Alta",
+            "valor_materialidad_financiera": "5"
+          },
+          {
+            "tema": "Productos y servicios sostenibles",
+            "sector": "Venta minorista - No alimenticios",
+            "tipo_impacto": "Positivo",
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Alta",
+            "valor_materialidad_financiera": "5"
+          },
+          {
+            "tema": "Marketing responsable y etiquetado",
+            "sector": "Venta minorista - No alimenticios",
+            "tipo_impacto": "Negativo",
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "tema": "Riesgo de transición climática",
+            "sector": "Venta minorista - No alimenticios",
+            "tipo_impacto": "Negativo",
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "tema": "Residuos y reciclaje",
+            "sector": "Venta minorista - No alimenticios",
+            "tipo_impacto": "Negativo",
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "tema": "Salud y seguridad de los trabajadores",
+            "sector": "Venta minorista - No alimenticios",
+            "tipo_impacto": "Positivo",
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "tema": "Protección de la privacidad",
+            "sector": "Venta minorista - No alimenticios",
+            "tipo_impacto": "Negativo",
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "tema": "Impacto en las comunidades",
+            "sector": "Venta minorista - No alimenticios",
+            "tipo_impacto": "Positivo",
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "tema": "Contaminación",
+            "sector": "Venta minorista - No alimenticios",
+            "tipo_impacto": "Negativo",
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Baja",
+            "valor_materialidad_financiera": "1"
+          },
+          {
+            "tema": "Riesgo climático físico",
+            "sector": "Venta minorista - No alimenticios",
+            "tipo_impacto": "Negativo",
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Baja",
+            "valor_materialidad_financiera": "1"
+          },
+          {
+            "tema": "Acceso y asequibilidad",
+            "sector": "Venta minorista - No alimenticios",
+            "tipo_impacto": "Negativo",
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Baja",
+            "valor_materialidad_financiera": "1"
+          },
+          {
+            "tema": "Agua",
+            "sector": "Venta minorista - No alimenticios",
+            "tipo_impacto": "Negativo",
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Baja",
+            "valor_materialidad_financiera": "1"
+          },
+          {
+            "tema": "Biodiversidad y uso de recursos",
+            "sector": "Venta minorista - No alimenticios",
+            "tipo_impacto": "Negativo",
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Baja",
+            "valor_materialidad_financiera": "1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "🔹 Prompt 4: Evaluación de Impactos (doble materialidad)",
+      "response_content": {
+        "materiality_table": [
+          {
+            "tema": "Condiciones laborales",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "probabilidad": 4,
+            "tipo_impacto": "Positivo",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Alta",
+            "valor_materialidad_financiera": "5"
+          },
+          {
+            "tema": "Prácticas laborales",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "probabilidad": 4,
+            "tipo_impacto": "Positivo",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Alta",
+            "valor_materialidad_financiera": "5"
+          },
+          {
+            "tema": "Salud y seguridad del cliente",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "probabilidad": 4,
+            "tipo_impacto": "Positivo",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Alta",
+            "valor_materialidad_financiera": "5"
+          },
+          {
+            "tema": "Productos y servicios sostenibles",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 5,
+            "probabilidad": 3,
+            "tipo_impacto": "Positivo",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Alta",
+            "valor_materialidad_financiera": "5"
+          },
+          {
+            "tema": "Marketing responsable y etiquetado",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 3,
+            "gravedad": 3,
+            "probabilidad": 3,
+            "tipo_impacto": "Negativo",
+            "materialidad_esg": 12.5,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "tema": "Riesgo de transición climática",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "probabilidad": 4,
+            "tipo_impacto": "Negativo",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "tema": "Residuos y reciclaje",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 3,
+            "gravedad": 3,
+            "probabilidad": 3,
+            "tipo_impacto": "Negativo",
+            "materialidad_esg": 12.5,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "tema": "Salud y seguridad de los trabajadores",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "probabilidad": 4,
+            "tipo_impacto": "Positivo",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "tema": "Protección de la privacidad",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 3,
+            "gravedad": 3,
+            "probabilidad": 3,
+            "tipo_impacto": "Negativo",
+            "materialidad_esg": 12.5,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "tema": "Impacto en las comunidades",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "probabilidad": 4,
+            "tipo_impacto": "Positivo",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "tema": "Contaminación",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 2,
+            "gravedad": 2,
+            "probabilidad": 2,
+            "tipo_impacto": "Negativo",
+            "materialidad_esg": 7,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Baja",
+            "valor_materialidad_financiera": "1"
+          },
+          {
+            "tema": "Riesgo climático físico",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 2,
+            "gravedad": 2,
+            "probabilidad": 2,
+            "tipo_impacto": "Negativo",
+            "materialidad_esg": 7,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Baja",
+            "valor_materialidad_financiera": "1"
+          },
+          {
+            "tema": "Acceso y asequibilidad",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 2,
+            "gravedad": 2,
+            "probabilidad": 2,
+            "tipo_impacto": "Negativo",
+            "materialidad_esg": 7,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Baja",
+            "valor_materialidad_financiera": "1"
+          },
+          {
+            "tema": "Agua",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 2,
+            "gravedad": 2,
+            "probabilidad": 2,
+            "tipo_impacto": "Negativo",
+            "materialidad_esg": 7,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Baja",
+            "valor_materialidad_financiera": "1"
+          },
+          {
+            "tema": "Biodiversidad y uso de recursos",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 2,
+            "gravedad": 2,
+            "probabilidad": 2,
+            "tipo_impacto": "Negativo",
+            "materialidad_esg": 7,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Baja",
+            "valor_materialidad_financiera": "1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "🔹 Prompt 5: Priorización de Temas",
+      "response_content": {
+        "materiality_table": [
+          {
+            "tema": "Condiciones laborales",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "probabilidad": 4,
+            "tipo_impacto": "Positivo",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Alta",
+            "valor_materialidad_financiera": "5"
+          },
+          {
+            "tema": "Prácticas laborales",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "probabilidad": 4,
+            "tipo_impacto": "Positivo",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Alta",
+            "valor_materialidad_financiera": "5"
+          },
+          {
+            "tema": "Salud y seguridad del cliente",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "probabilidad": 4,
+            "tipo_impacto": "Positivo",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Alta",
+            "valor_materialidad_financiera": "5"
+          },
+          {
+            "tema": "Productos y servicios sostenibles",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 5,
+            "probabilidad": 3,
+            "tipo_impacto": "Positivo",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Alta",
+            "valor_materialidad_financiera": "5"
+          },
+          {
+            "tema": "Riesgo de transición climática",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "probabilidad": 4,
+            "tipo_impacto": "Negativo",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "tema": "Salud y seguridad de los trabajadores",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "probabilidad": 4,
+            "tipo_impacto": "Positivo",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "tema": "Impacto en las comunidades",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "probabilidad": 4,
+            "tipo_impacto": "Positivo",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "tema": "Marketing responsable y etiquetado",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 3,
+            "gravedad": 3,
+            "probabilidad": 3,
+            "tipo_impacto": "Negativo",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 12.5,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "tema": "Residuos y reciclaje",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 3,
+            "gravedad": 3,
+            "probabilidad": 3,
+            "tipo_impacto": "Negativo",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 12.5,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "tema": "Protección de la privacidad",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 3,
+            "gravedad": 3,
+            "probabilidad": 3,
+            "tipo_impacto": "Negativo",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 12.5,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          }
+        ]
+      }
+    },
+    {
+      "name": "🔹 Prompt 6: Vínculo con Objetivos de Desarrollo Sostenible (ODS)",
+      "response_content": {
+        "materiality_table": [
+          {
+            "ods": "Objetivo 8. Promover el crecimiento económico sostenido, inclusivo y sostenible, el empleo pleno y productivo y el trabajo decente para todos",
+            "tema": "Condiciones laborales",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "meta_ods": "8.1 Mantener el crecimiento económico per cápita de conformidad con las circunstancias nacionales y, en particular, un crecimiento del producto interno bruto de al menos el 7% anual en los países menos adelantados",
+            "probabilidad": 4,
+            "tipo_impacto": "Positivo",
+            "indicador_ods": "8.1.1 Tasa de crecimiento anual del PIB real per cápita",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Alta",
+            "valor_materialidad_financiera": "5"
+          },
+          {
+            "ods": "Objetivo 8. Promover el crecimiento económico sostenido, inclusivo y sostenible, el empleo pleno y productivo y el trabajo decente para todos",
+            "tema": "Prácticas laborales",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "meta_ods": "8.2 Lograr niveles más elevados de productividad económica mediante la diversificación, la modernización tecnológica y la innovación, entre otras cosas centrándose en los sectores con gran valor añadido y un uso intensivo de la mano de obra",
+            "probabilidad": 4,
+            "tipo_impacto": "Positivo",
+            "indicador_ods": "8.2.1 Tasa de crecimiento anual del PIB real por persona empleada",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Alta",
+            "valor_materialidad_financiera": "5"
+          },
+          {
+            "ods": "Objetivo 3. Garantizar una vida sana y promover el bienestar de todos a todas las edades",
+            "tema": "Salud y seguridad del cliente",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "meta_ods": "3.1 De aquí a 2030, reducir la tasa mundial de mortalidad materna a menos de 70 por cada 100.000 nacidos vivos",
+            "probabilidad": 4,
+            "tipo_impacto": "Positivo",
+            "indicador_ods": "3.1.1 Tasa de mortalidad materna",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Alta",
+            "valor_materialidad_financiera": "5"
+          },
+          {
+            "ods": "Objetivo 1. Poner fin a la pobreza en todas sus formas y en todo el mundo",
+            "tema": "Productos y servicios sostenibles",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 5,
+            "meta_ods": "1.2 De aquí a 2030, reducir al menos a la mitad la proporción de hombres, mujeres y niños de todas las edades que viven en la pobreza en todas sus dimensiones con arreglo a las definiciones nacionales",
+            "probabilidad": 3,
+            "tipo_impacto": "Positivo",
+            "indicador_ods": "1.2.1 Proporción de la población que vive por debajo del umbral nacional de pobreza, desglosada por sexo y edad",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Alta",
+            "valor_materialidad_financiera": "5"
+          },
+          {
+            "ods": "Objetivo 1. Poner fin a la pobreza en todas sus formas y en todo el mundo",
+            "tema": "Marketing responsable y etiquetado",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 3,
+            "gravedad": 3,
+            "meta_ods": "1.2 De aquí a 2030, reducir al menos a la mitad la proporción de hombres, mujeres y niños de todas las edades que viven en la pobreza en todas sus dimensiones con arreglo a las definiciones nacionales",
+            "probabilidad": 3,
+            "tipo_impacto": "Negativo",
+            "indicador_ods": "1.2.2 Proporción de hombres, mujeres y niños de todas las edades que viven en la pobreza, en todas sus dimensiones, con arreglo a las definiciones nacionales",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 12.5,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "ods": "Objetivo 1. Poner fin a la pobreza en todas sus formas y en todo el mundo",
+            "tema": "Riesgo de transición climática",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "meta_ods": "1.3 Implementar a nivel nacional sistemas y medidas apropiados de protección social para todos, incluidos niveles mínimos, y, de aquí a 2030, lograr una amplia cobertura de las personas pobres y vulnerables",
+            "probabilidad": 4,
+            "tipo_impacto": "Negativo",
+            "indicador_ods": "1.3.1 Proporción de la población cubierta por sistemas o niveles mínimos de protección social, desglosada por sexo, distinguiendo entre los niños, los desempleados, los ancianos, las personas con discapacidad, las mujeres embarazadas, los recién nacidos, las víctimas de accidentes de trabajo, los pobres y los vulnerables",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "ods": "Objetivo 12. Garantizar modalidades de consumo y producción sostenibles",
+            "tema": "Residuos y reciclaje",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 3,
+            "gravedad": 3,
+            "meta_ods": "12.1 Aplicar el Marco Decenal de Programas sobre Modalidades de Consumo y Producción Sostenibles, con la participación de todos los países y bajo el liderazgo de los países desarrollados, teniendo en cuenta el grado de desarrollo y las capacidades de los países en desarrollo",
+            "probabilidad": 3,
+            "tipo_impacto": "Negativo",
+            "indicador_ods": "12.1.1 Número de países que incluyen como prioridad o meta en las políticas nacionales planes de acción nacionales sobre el consumo y la producción sostenibles",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 12.5,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "ods": "Objetivo 3. Garantizar una vida sana y promover el bienestar de todos a todas las edades",
+            "tema": "Salud y seguridad de los trabajadores",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "meta_ods": "3.1 De aquí a 2030, reducir la tasa mundial de mortalidad materna a menos de 70 por cada 100.000 nacidos vivos",
+            "probabilidad": 4,
+            "tipo_impacto": "Positivo",
+            "indicador_ods": "3.1.2 Proporción de partos atendidos por personal sanitario especializado",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Directo",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "ods": "Objetivo 1. Poner fin a la pobreza en todas sus formas y en todo el mundo",
+            "tema": "Protección de la privacidad",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 3,
+            "gravedad": 3,
+            "meta_ods": "1.4 De aquí a 2030, garantizar que todos los hombres y mujeres, en particular los pobres y los vulnerables, tengan los mismos derechos a los recursos económicos y acceso a los servicios básicos, la propiedad y el control de la tierra y otros bienes, la herencia, los recursos naturales, las nuevas tecnologías apropiadas y los servicios financieros, incluida la microfinanciación",
+            "probabilidad": 3,
+            "tipo_impacto": "Negativo",
+            "indicador_ods": "1.4.1 Proporción de la población que vive en hogares con acceso a los servicios básicos",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 12.5,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Corto",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "ods": "Objetivo 10. Reducir la desigualdad en los países y entre ellos",
+            "tema": "Impacto en las comunidades",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 4,
+            "gravedad": 4,
+            "meta_ods": "10.1 De aquí a 2030, lograr progresivamente y mantener el crecimiento de los ingresos del 40% más pobre de la población a una tasa superior a la media nacional",
+            "probabilidad": 4,
+            "tipo_impacto": "Positivo",
+            "indicador_ods": "10.1.1 Tasas de crecimiento per cápita de los gastos o ingresos de los hogares del 40% más pobre de la población y la población total",
+            "tema_material": "Tema Material",
+            "materialidad_esg": 17,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "Intencionado",
+            "materialidad_financiera": "Media",
+            "valor_materialidad_financiera": "2.5"
+          },
+          {
+            "ods": "NA",
+            "tema": "Contaminación",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 2,
+            "gravedad": 2,
+            "meta_ods": "NA",
+            "probabilidad": 2,
+            "tipo_impacto": "Negativo",
+            "indicador_ods": "NA",
+            "tema_material": "NA",
+            "materialidad_esg": 7,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Baja",
+            "valor_materialidad_financiera": "1"
+          },
+          {
+            "ods": "NA",
+            "tema": "Riesgo climático físico",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 2,
+            "gravedad": 2,
+            "meta_ods": "NA",
+            "probabilidad": 2,
+            "tipo_impacto": "Negativo",
+            "indicador_ods": "NA",
+            "tema_material": "NA",
+            "materialidad_esg": 7,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Baja",
+            "valor_materialidad_financiera": "1"
+          },
+          {
+            "ods": "NA",
+            "tema": "Acceso y asequibilidad",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 2,
+            "gravedad": 2,
+            "meta_ods": "NA",
+            "probabilidad": 2,
+            "tipo_impacto": "Negativo",
+            "indicador_ods": "NA",
+            "tema_material": "NA",
+            "materialidad_esg": 7,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Real",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Baja",
+            "valor_materialidad_financiera": "1"
+          },
+          {
+            "ods": "NA",
+            "tema": "Agua",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 2,
+            "gravedad": 2,
+            "meta_ods": "NA",
+            "probabilidad": 2,
+            "tipo_impacto": "Negativo",
+            "indicador_ods": "NA",
+            "tema_material": "NA",
+            "materialidad_esg": 7,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Baja",
+            "valor_materialidad_financiera": "1"
+          },
+          {
+            "ods": "NA",
+            "tema": "Biodiversidad y uso de recursos",
+            "sector": "Venta minorista - No alimenticios",
+            "alcance": 2,
+            "gravedad": 2,
+            "meta_ods": "NA",
+            "probabilidad": 2,
+            "tipo_impacto": "Negativo",
+            "indicador_ods": "NA",
+            "tema_material": "NA",
+            "materialidad_esg": 7,
+            "grado_implicacion": "Indirecto",
+            "horizonte_impacto": "Largo",
+            "penetracion_impacto": "Reversible",
+            "potencialidad_impacto": "Potencial",
+            "intencionalidad_impacto": "No intencionado",
+            "materialidad_financiera": "Baja",
+            "valor_materialidad_financiera": "1"
+          }
+        ]
+      }
+    },
+    {
+      "name": "🔹 Prompt 8: Mapeo SASB Sectorial",
+      "response_content": {
+        "mapeo_sasb": [
+          {
+            "sector_sp": "Venta minorista - No alimenticios",
+            "industria_sasb": "Comercio electrónico"
+          }
+        ]
+      }
+    },
+    {
+      "name": "🔹 Prompt 9: Mapeo SASB (CSV local)",
+      "response_content": {
+        "tabla_sasb": [
+          {
+            "tema": "Infraestructura de hardware. Gestión de la energía y el agua",
+            "codigo": "CG-EC-130a.1",
+            "categoria": "Cuantitativo",
+            "industria": "Comercio electrónico",
+            "unidad_medida": "Gigajulios (GJ), porcentaje (%)",
+            "parametro_contabilidad": "(1) Total de energía consumida, (2) porcentaje de electricidad de la red, (3) porcentaje de renovables"
+          },
+          {
+            "tema": "Infraestructura de hardware. Gestión de la energía y el agua",
+            "codigo": "CG-EC-130a.2",
+            "categoria": "Cuantitativo",
+            "industria": "Comercio electrónico",
+            "unidad_medida": "Mil metros cúbicos (m³), porcentaje (%)",
+            "parametro_contabilidad": "(1) Total de agua extraída, (2) total de agua consumida, porcentaje de cada una en regiones con un estrés hídrico inicial alto o extremadamente alto"
+          },
+          {
+            "tema": "Infraestructura de hardware. Gestión de la energía y el agua",
+            "codigo": "CG-EC-130a.3",
+            "categoria": "Debate y análisis",
+            "industria": "Comercio electrónico",
+            "unidad_medida": "n/a",
+            "parametro_contabilidad": "Análisis de la integración de las consideraciones ambientales en la planificación estratégica para las necesidades del centro de datos"
+          },
+          {
+            "tema": "Estándares publicitarios y de protección de datos",
+            "codigo": "CG-EC-220a.1",
+            "categoria": "Cuantitativo",
+            "industria": "Comercio electrónico",
+            "unidad_medida": "Número",
+            "parametro_contabilidad": "Número de usuarios cuya información se utiliza con propósitos secundarios"
+          },
+          {
+            "tema": "Estándares publicitarios y de protección de datos",
+            "codigo": "CG-EC-220a.2",
+            "categoria": "Debate y análisis",
+            "industria": "Comercio electrónico",
+            "unidad_medida": "n/a",
+            "parametro_contabilidad": "Descripción de las políticas y las prácticas relacionadas con la publicidad basada en el comportamiento y la privacidad del usuario"
+          },
+          {
+            "tema": "Seguridad de los datos",
+            "codigo": "CG-EC-230a.1",
+            "categoria": "Debate y análisis",
+            "industria": "Comercio electrónico",
+            "unidad_medida": "n/a",
+            "parametro_contabilidad": "Descripción del enfoque para identificar y abordar los riesgos para la seguridad de los datos"
+          },
+          {
+            "tema": "Seguridad de los datos",
+            "codigo": "CG-EC-230a.2",
+            "categoria": "Cuantitativo",
+            "industria": "Comercio electrónico",
+            "unidad_medida": "Número, porcentaje (%)",
+            "parametro_contabilidad": "(1) Número de filtraciones de datos, (2) porcentaje que implica información de identificación personal (PII), (3) número de usuarios afectados²"
+          },
+          {
+            "tema": "Contratación, inclusión y rendimiento de los empleados",
+            "codigo": "CG-EC-330a.1",
+            "categoria": "Cuantitativo",
+            "industria": "Comercio electrónico",
+            "unidad_medida": "Porcentaje (%)",
+            "parametro_contabilidad": "Implicación de los empleados expresada en forma de porcentaje³"
+          },
+          {
+            "tema": "Contratación, inclusión y rendimiento de los empleados",
+            "codigo": "CG-EC-330a.2",
+            "categoria": "Cuantitativo",
+            "industria": "Comercio electrónico",
+            "unidad_medida": "Velocidad",
+            "parametro_contabilidad": "Tasa de reemplazo (1) voluntaria e (2) involuntaria para todos los empleados"
+          },
+          {
+            "tema": "Contratación, inclusión y rendimiento de los empleados",
+            "codigo": "CG-EC-330a.3",
+            "categoria": "Cuantitativo",
+            "industria": "Comercio electrónico",
+            "unidad_medida": "Porcentaje (%)",
+            "parametro_contabilidad": "Porcentaje de representación de géneros y grupos raciales/étnicos en (1) la dirección, (2) el personal técnico y (3) todos los demás empleados"
+          },
+          {
+            "tema": "Contratación, inclusión y rendimiento de los empleados",
+            "codigo": "CG-EC-330a.4",
+            "categoria": "Cuantitativo",
+            "industria": "Comercio electrónico",
+            "unidad_medida": "Porcentaje (%)",
+            "parametro_contabilidad": "Porcentaje del personal técnico que son titulares de un visado H-1B"
+          },
+          {
+            "tema": "Embalaje y distribución del producto",
+            "codigo": "CG-EC-410a.1",
+            "categoria": "Cuantitativo",
+            "industria": "Comercio electrónico",
+            "unidad_medida": "Toneladas métricas (t) de CO2-e",
+            "parametro_contabilidad": "Huella total de gases de efecto invernadero (GEI) de los envíos de productos"
+          },
+          {
+            "tema": "Embalaje y distribución del producto",
+            "codigo": "CG-EC-410a.2",
+            "categoria": "Debate y análisis",
+            "industria": "Comercio electrónico",
+            "unidad_medida": "n/a",
+            "parametro_contabilidad": "Análisis de las estrategias para reducir el impacto ambiental de productos en la fase de entrega"
+          },
+          {
+            "tema": "Medida de la actividad de los usuarios definida por la entidad⁵",
+            "codigo": "CG-EC-000.A",
+            "categoria": "Cuantitativo",
+            "industria": "Comercio electrónico",
+            "unidad_medida": "Número",
+            "parametro_contabilidad": "Medida de la actividad de los usuarios definida por la entidad⁵"
+          },
+          {
+            "tema": "Capacidad de procesamiento de datos, porcentaje subcontratado⁶",
+            "codigo": "CG-EC-000.B",
+            "categoria": "Cuantitativo",
+            "industria": "Comercio electrónico",
+            "unidad_medida": "Véase nota",
+            "parametro_contabilidad": "Capacidad de procesamiento de datos, porcentaje subcontratado⁶"
+          },
+          {
+            "tema": "Número de envíos",
+            "codigo": "CG-EC-000.C",
+            "categoria": "Cuantitativo",
+            "industria": "Comercio electrónico",
+            "unidad_medida": "Número",
+            "parametro_contabilidad": "Número de envíos"
+          }
+        ]
+      }
+    },
+    {
+      "name": "🔹 Prompt 10: Vinculación Normativa por Tema Material (GAIL)",
+      "response_content": {
+        "error": "El número de regulaciones generadas no coincide con el número de temas materiales de entrada.",
+        "regulaciones": []
+      }
+    },
+    {
+      "name": "🔹 Prompt 11: Estrategia de Sostenibilidad (Resumen Ejecutivo)",
+      "response_content": {
+        "parrafo_1": "Con base en el análisis de doble materialidad desarrollado, es crucial que Walmart de México y C. A. priorice la implementación de acciones inmediatas que optimicen sus condiciones laborales y prácticas laborales, ya que esto no solo asegura el bienestar de sus empleados, sino que también mejora la reputación y la productividad de la empresa. Se recomienda realizar encuestas de satisfacción laboral periódicas para evaluar el clima organizacional, además de formalizar contratos y jornadas laborales, lo cual mitigará riesgos legales y reputacionales. A mediano plazo, es fundamental establecer metas e indicadores de bienestar, así como auditar proveedores para garantizar condiciones laborales justas y estables en toda la cadena de suministro. A largo plazo, la creación de un modelo integral de gestión laboral que contemple flexibilidad y participación activa del personal permitirá a la empresa no solo cumplir con normativas, sino también posicionarse como un líder en prácticas laborales responsables en el sector. Asimismo, Walmart debería dar un fuerte impulso a la salud y seguridad del cliente mediante la actualización continua de protocolos de seguridad en tiendas y la capacitación regular de personal, asegurando una experiencia de compra positiva y segura para los consumidores, lo que se traducirá en una mayor lealtad y confianza de parte de ellos.",
+        "parrafo_2": "El enfoque en productos y servicios sostenibles debe estar en el centro de la estrategia de Walmart para asegurar su competitividad y alineación con las expectativas del mercado responsable. Las acciones iniciales deben incluir la etiquetación clara de productos con atributos sostenibles y la ampliación del surtido de productos certificados. En el mediano plazo, la empresa debería desarrollar marcas propias que sean sostenibles, lo que no solo diversificará su oferta, sino que también contribuirá a la transparencia de sus prácticas de abastecimiento. En un horizonte más largo, integrar tecnologías limpias en toda la cadena de suministro y rediseñar empaques para optimizar la economía circular es imperativo para reducir riesgos climáticos y proteger los recursos naturales, marcando así un compromiso genuino con la sostenibilidad. Además, es crítico que Walmart establezca una estrategia de marketing responsable y etiquetado que refuerce la confianza del consumidor y promueva la transparencia a través de comunicaciones éticas. Las acciones estructurales deben estar alineadas con los ODS, específicamente aquellas que promueven la equidad y la inclusión, asegurando que la empresa no solo aporte valor a sus accionistas, sino también a las comunidades en las que actúa. En resumen, la combinación de estas estrategias efectivas permitirá a Walmart no solo cumplir con sus objetivos de ESG, sino también ser un referente en sostenibilidad en la industria de retail."
+      }
+    }
   ]
