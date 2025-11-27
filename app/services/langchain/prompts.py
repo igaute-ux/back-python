@@ -361,8 +361,6 @@ prompt_6 = PromptTemplate(
     3. Leer el Excel de ODS que ya está montado en /mnt/data:
        - Ruta fija: "/mnt/data/file-LaYZZWTh9mzsG2ni3RkpKm"
        - Usar `ods_df = pd.read_excel("/mnt/data/file-LaYZZWTh9mzsG2ni3RkpKm")` para cargarlo.
-       - Revisa los 17 ODS completos y selecciona el que tenga la relación más fuerte y directa con el tema.
-       - Una vez elegido el ODS, revisa todas sus metas y selecciona la más directamente vinculada al tema.
        - Considera que la primera fila de `ods_df` contiene encabezados del tipo
          "Objetivo de Desarrollo Sostenible", "Meta", "Indicador".
        - Debes crear SIEMPRE un DataFrame solo con filas de datos (sin encabezados):
@@ -401,6 +399,113 @@ prompt_6 = PromptTemplate(
              - `meta_col = ods_data.iloc[:, 1].astype(str).str.lower()`
              - `ind_col = ods_data.iloc[:, 2].astype(str).str.lower()`
 
+           - Definir familias temáticas por palabras clave del tema:
+
+             Ejemplo de lógica (debes implementarla en Python):
+
+           - Definir familias temáticas por palabras clave del tema:
+
+             Ejemplo de lógica (debes implementarla en Python):
+
+             - Si el tema contiene palabras como:
+                 "clima", "climático", "climatico", "cambio climático",
+                 "emisiones", "emision", "huella de carbono", "co2",
+                 "descarbonización", "descarbonizacion"
+                   → priorizar ODS relacionados con cambio climático:
+                     filas de `ods_data` donde `ods_col.str.contains("objetivo 13", na=False)` sea True
+                     (y, en segunda instancia, donde contenga "objetivo 7" o "objetivo 12").
+
+             - Si el tema contiene:
+                 "residuo", "residuos", "recicl", "circular", "economía circular",
+                 "basura", "envases", "embalajes", "desechos"
+                   → priorizar ODS 12 (producción y consumo responsables)
+                     (`ods_col.str.contains("objetivo 12", na=False)`),
+                     y, si no hay buen match, ODS 11 o 6.
+
+             - Si el tema contiene:
+                 "contaminación", "contaminacion", "calidad del aire",
+                 "calidad del agua", "polución", "polucion", "emisiones locales",
+                 "ruido", "smog"
+                   → priorizar ODS 3, 6, 11 o 15 según corresponda,
+                     buscando primero "objetivo 3", luego "objetivo 6",
+                     luego "objetivo 11" o "objetivo 15" en `ods_col`.
+
+             - Si el tema contiene:
+                 "agua", "recursos hídricos", "recursoshidricos",
+                 "eficiencia hídrica", "escasez de agua"
+                   → priorizar ODS 6 (agua limpia y saneamiento)
+                     (`ods_col.str.contains("objetivo 6", na=False)`).
+
+             - Si el tema contiene:
+                 "trabajo", "laboral", "condiciones laborales", "derechos laborales",
+                 "empleo", "salario", "salarios", "sindicato", "sindicatos",
+                 "relaciones laborales", "huelga", "negociación colectiva"
+                   → priorizar ODS 8 (trabajo decente y crecimiento económico)
+                     (`ods_col.str.contains("objetivo 8", na=False)`),
+                     y, en segundo lugar, ODS 5 o 10 cuando se trate
+                     de igualdad, discriminación o brechas.
+
+             - Si el tema contiene:
+                 "salud", "seguridad de los trabajadores", "seguridad del cliente",
+                 "seguridad y salud", "higiene y seguridad", "accidentes",
+                 "enfermedades profesionales"
+                   → priorizar ODS 3 (salud y bienestar)
+                     (`ods_col.str.contains("objetivo 3", na=False)`),
+                     y, si el foco es exclusivamente laboral, combinar con ODS 8.
+
+             - Si el tema contiene:
+                 "comunidad", "comunidades", "impacto en las comunidades",
+                 "desarrollo local", "licencia social", "inclusión", "inclusion",
+                 "desigualdad", "pobreza", "vulnerabilidad social"
+                   → priorizar ODS 1, 10, 11 o 16:
+                     primero busca "objetivo 11" (ciudades y comunidades sostenibles),
+                     luego "objetivo 10" o "objetivo 16", y finalmente "objetivo 1"
+                     si el foco es pobreza extrema.
+
+             - Si el tema contiene:
+                 "biodiversidad", "ecosistema", "ecosistemas", "bosques",
+                 "flora", "fauna", "mares", "océanos", "oceanos",
+                 "hábitat", "habitat", "deforestación", "deforestacion"
+                   → priorizar ODS 14 o 15:
+                     primero "objetivo 15" para biodiversidad terrestre,
+                     luego "objetivo 14" si el foco es marino/costero.
+
+             - Si el tema contiene:
+                 "gobernanza", "gobernanza esg", "ética", "etica",
+                 "anticorrupción", "anticorrupcion", "soborno", "transparencia",
+                 "denuncias", "whistleblowing", "cumplimiento"
+                   → priorizar ODS 16 (paz, justicia e instituciones sólidas),
+                     buscando "objetivo 16" en `ods_col`.
+
+             - Si el tema contiene:
+                 "innovación", "innovacion", "tecnología", "tecnologia",
+                 "infraestructura sostenible", "digitalización", "digitalizacion"
+                   → priorizar ODS 9 (industria, innovación e infraestructura)
+                     (`ods_col.str.contains("objetivo 9", na=False)`),
+                     y, en segundo lugar, ODS 12 si el foco es eco-eficiencia.
+
+             - Si el tema contiene:
+                 "privacidad", "datos personales", "ciberseguridad", "ciber",
+                 "seguridad de la información", "protección de datos", "proteccion de datos"
+                   → priorizar ODS 9 y 16, buscando primero "objetivo 16"
+                     (instituciones sólidas, marco normativo) y luego "objetivo 9"
+                     (tecnología e infraestructura).
+
+             - Si el tema contiene:
+                 "cadena de suministro", "proveedores", "compras responsables",
+                 "abastecimiento responsable", "supply chain"
+                   → priorizar ODS 8 y 12:
+                     primero "objetivo 12" (consumo y producción responsables),
+                     luego "objetivo 8" (condiciones laborales en la cadena).
+
+             - Si ninguna de las palabras clave encaja claramente en las familias anteriores:
+                   → realiza una búsqueda por coincidencia general en `ods_col`,
+                     `meta_col` e `ind_col` usando palabras clave del tema
+                     (por ejemplo, términos principales del título del tema),
+                     y elige el ODS cuya meta/indicador tenga mayor relación semántica.
+                     En todo caso, NUNCA selecciones filas solo por su posición
+                     secuencial en `ods_data`; la elección debe basarse siempre
+                     en el contenido de texto.
 
            - Implementación sugerida:
 
